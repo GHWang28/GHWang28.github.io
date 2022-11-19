@@ -1,24 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import { Box } from '@mui/material';
+import { useSpring, animated } from 'react-spring';
 
 function App() {
+  const animationProps = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 }
+  })
+  const AnimatedBox = animated(Box);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AnimatedBox style={animationProps}>
+      WOW THIS IS A WEBSITE
+    </AnimatedBox>
   );
 }
 
