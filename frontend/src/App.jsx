@@ -10,7 +10,7 @@ function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }} >
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflowX: 'hidden' }} >
       <Box sx={{ flexGrow: 0 }}>
         <Navbar />
       </Box>

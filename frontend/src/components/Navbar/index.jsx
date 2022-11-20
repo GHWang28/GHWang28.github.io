@@ -1,7 +1,8 @@
-import { AppBar, Button, Divider, Toolbar, Typography } from '@mui/material';
+import { AppBar, Button, Divider, Toolbar } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router';
+import LogoBox from '../LogoBox';
 
 function Navbar () {
   // Animation
@@ -24,15 +25,7 @@ function Navbar () {
   return (
     <AnimatedAppBar style={animationProps} position='static'>
       <Toolbar>
-        <Typography
-          className={'gradient-text'}
-          mx={2}
-          fontWeight='bold'
-          sx={{ cursor: 'pointer' }}
-          onClick={() => { navigate('/') }}
-        >
-          Placeholder Text for Logo
-        </Typography>
+        <LogoBox />
         <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>

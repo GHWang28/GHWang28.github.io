@@ -17,7 +17,6 @@ code {
 }
 
 .gradient-text {
-
   background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% auto;
 
@@ -34,9 +33,52 @@ code {
     background-position: 0% 50%
   }
   50% {
-  background-position: 100% 50%
+    background-position: 100% 50%
   }
   100% {
-  background-position: 0% 50%
+    background-position: 0% 50%
   }
 }
+
+.sparklez-spin-clockwise {
+  animation: spinClockwise 0.6s linear forwards
+}
+
+.sparklez-spin-anticlockwise {
+  animation: spinAntiClockwise 0.6s linear forwards
+}
+
+.sparklez-grow-shrink {
+  animation: growShrink 0.6s ease-in-out forwards
+}
+
+@keyframes growShrink {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes spinAntiClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-135deg);
+  }
+}
+
+@keyframes spinClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(135deg);
+  }
+}
+

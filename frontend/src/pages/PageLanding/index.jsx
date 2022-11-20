@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
+import Sparklez from '../../components/Sparklez';
 
 function PageLanding () {
   const delay = 200;
@@ -21,6 +22,7 @@ function PageLanding () {
     delay: 1 * delay
   })
   const AnimatedTypography = animated(Typography);
+
   return (
     <Box
       sx={{
@@ -28,10 +30,16 @@ function PageLanding () {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%'
+        height: '100%',
+        overflow: 'visible'
       }}
     >
-      <Box>
+      <Box
+        component='img'
+        src='images/title-bg.png'
+        sx={{ position: 'absolute', opacity: 0.5 }}
+      />
+      <Box sx={{ position: 'relative' }} >
         <AnimatedTypography
           style={animationSlideRight}
           fontSize={'min(8vw, 50px)'}
@@ -40,18 +48,20 @@ function PageLanding () {
         >
           {'Gordon Wang\'s'}
         </AnimatedTypography>
-        <AnimatedTypography
-          style={animationAppear}
-          lineHeight={1}
-          className={'gradient-text'}
-          fontSize={'min(23vw, 180px)'}
-          sx={{ height: 'fit-content' }}
-          align='center'
-          fontWeight='bold'
-          m={0}
-        >
-          {'Portfolio'}
-        </AnimatedTypography>
+        <Sparklez frequency={2} sizeRange={[10, 45]}>
+          <AnimatedTypography
+            style={animationAppear}
+            lineHeight={1}
+            className={'gradient-text'}
+            fontSize={'min(23vw, 180px)'}
+            sx={{ height: 'fit-content' }}
+            align='center'
+            fontWeight='bold'
+            m={0}
+          >
+            {'Portfolio'}
+          </AnimatedTypography>
+        </Sparklez>
         <AnimatedTypography
           style={animationSlideLeft}
           fontSize={'min(8vw, 50px)'}
