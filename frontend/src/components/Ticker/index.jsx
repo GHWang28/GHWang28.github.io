@@ -11,9 +11,9 @@ const moveAnimation = keyframes`
   }
 `;
 
-function Ticker ({ children }) {
+function Ticker ({ width, children }) {
   return (
-    <Box sx={{ overflow: 'hidden', width: '40vw', bgcolor: 'black', border: '1px solid whitesmoke', borderRadius: '5px', }}>
+    <Box sx={{ overflow: 'hidden', width, bgcolor: 'black', border: '1px solid whitesmoke', borderRadius: '5px', }}>
       <Box
         p={1}
         sx={{
@@ -32,6 +32,7 @@ Ticker.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
+  width: PropTypes.string.isRequired
 };
 
 export default Ticker;

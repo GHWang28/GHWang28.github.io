@@ -21,7 +21,7 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
-        delay: 500
+        delay: 1750
       })
     },
     {
@@ -31,7 +31,7 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
-        delay: 250
+        delay: 1500
       })
     },
     {
@@ -41,13 +41,14 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
+        delay: 1250
       })
     },
   ]
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         right: '10px',
         bottom: '0px',
         display: 'flex',

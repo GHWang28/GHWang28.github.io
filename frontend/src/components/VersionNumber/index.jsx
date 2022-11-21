@@ -13,12 +13,13 @@ function VersionNumber () {
   const [hover, hoverState] = useState(false);
   const animationProps = useSpring({
     from: { y: 50 },
-    to: { y: 0 }
+    to: { y: 0 },
+    delay: 2000
   })
   const AnimatedTypography = animated(Typography);
   return (
     <Box
-      sx={{ overflow: 'hidden', position: 'absolute', left: '10px', bottom: '0px'}}
+      sx={{ overflow: 'hidden', position: 'fixed', left: '10px', bottom: '0px'}}
       onMouseEnter={() => { hoverState(true) }}
       onMouseLeave={() => { hoverState(false) }}
     >
@@ -51,7 +52,7 @@ function VersionNumber () {
                 <GitHubIcon />
               </IconButton>
             </BootstrapTooltip>
-            <Ticker>
+            <Ticker width='40vw'>
               {`(${ISOToDateStr(gitInfo.commit.date)}) ${gitInfo.commit.message}`}
             </Ticker>
           </Box>
