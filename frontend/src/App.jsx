@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import PageXnY from './pages/PageXnY.jsx';
 import { Route, Routes } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
+import Background from './components/Background';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -21,6 +22,7 @@ function App() {
             <Route path='/about' element={<></>}/>
           </Routes>
       </Box>
+      <Background />
     </Box>
   );
 }

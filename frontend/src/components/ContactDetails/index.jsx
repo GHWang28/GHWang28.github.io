@@ -7,7 +7,7 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import { useSpring, animated } from 'react-spring';
 
 const OutlinedButton = styled(IconButton)(() => ({
-  border: '1px solid whitesmoke',
+  border: '1px solid white',
   marginLeft: '5px'
 }));
 

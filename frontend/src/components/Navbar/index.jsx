@@ -3,6 +3,8 @@ import { useSpring, animated } from 'react-spring';
 import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
+import BackgroundItem from './BackgroundItem'
+import { useSelector } from 'react-redux';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
@@ -13,6 +15,8 @@ function Navbar () {
   })
   const AnimatedAppBar = animated(AppBar);
   const navigate = useNavigate();
+  const buttonSelected = useSelector(state => state.navButton);
+
   const navigationOptions =  [
     {
       label: 'Projects',
@@ -49,12 +53,15 @@ function Navbar () {
         <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>
-            <Button onClick={nav.func} >
+            <Button onClick={nav.func} disabled={buttonSelected === index}>
               {nav.label}
             </Button>
             <Divider orientation='vertical' variant='middle' flexItem />
           </Fragment>
         ))}
+        <Box ml='auto'>
+          <BackgroundItem />
+        </Box>
       </Toolbar>
     </AnimatedAppBar>
   )

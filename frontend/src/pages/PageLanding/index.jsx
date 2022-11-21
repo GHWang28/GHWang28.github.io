@@ -1,9 +1,11 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { animated, useSpring } from 'react-spring';
 import ContactDetails from '../../components/ContactDetails';
 import Sparklez from '../../components/Sparklez';
 import VersionNumber from '../../components/VersionNumber';
+import { setNavButtonPress } from '../../redux/actions';
 
 function PageLanding () {
   const delay = 200;
@@ -29,13 +31,18 @@ function PageLanding () {
     },
     delay: 1 * delay
   })
-  const aniamtedImage = useSpring({
+  const animatedImage = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
     delay: 0.5 * delay
   })
   const AnimatedBox = animated(Box);
   const AnimatedTypography = animated(Typography);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setNavButtonPress(-1))
+  }, [dispatch]);
 
   return (
     <Box
@@ -50,7 +57,7 @@ function PageLanding () {
     >
       <Box sx={{ position: 'relative' }} >
         <AnimatedBox
-          style={aniamtedImage}
+          style={animatedImage}
           component='img'
           src='images/title-bg.png'
           sx={{
