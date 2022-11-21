@@ -9,7 +9,7 @@ function LogoBox () {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setSrc('url(/images/gw-logo-anim.gif)');
+      setSrc('url(/images/gw-logo-anim-2.gif)');
     }, 10);
 
     return () => { clearTimeout(timeout) };
@@ -25,7 +25,7 @@ function LogoBox () {
         borderRadius: '4px',
         overflow: 'hidden',
         cursor: 'pointer',
-        transition: 'scale 0.1s ease-in-out',
+        transition: 'scale 0.3s ease-in-out',
         scale: (hover) ? '1.1' : '1',
       }}
       onMouseEnter={() => { setHover(true) }}

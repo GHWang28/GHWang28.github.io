@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
+import ContactDetails from '../../components/ContactDetails';
 import Sparklez from '../../components/Sparklez';
 import VersionNumber from '../../components/VersionNumber';
 
@@ -96,6 +97,7 @@ function PageLanding () {
         </AnimatedTypography>
       </Box>
       <VersionNumber />
+      <ContactDetails />
     </Box>
   )
 }
