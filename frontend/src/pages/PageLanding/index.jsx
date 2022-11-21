@@ -2,12 +2,16 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
 import Sparklez from '../../components/Sparklez';
+import VersionNumber from '../../components/VersionNumber';
 
 function PageLanding () {
   const delay = 200;
   const animationSlideRight = useSpring({
     from: { x: -200, opacity: 0 },
-    to: { x: 0, opacity: 1 },
+    to: async (next) => {
+      await next({ x: 10, opacity: 1 });
+      await next({ x: 0 });
+    },
     delay: 0 * delay,
   })
   const animationAppear = useSpring({
@@ -18,9 +22,18 @@ function PageLanding () {
   })
   const animationSlideLeft = useSpring({
     from: { x: 200, opacity: 0 },
-    to: { x: 0, opacity: 1 },
+    to: async (next) => {
+      await next({ x: -10, opacity: 1 });
+      await next({ x: 0 });
+    },
     delay: 1 * delay
   })
+  const aniamtedImage = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    delay: 0.5 * delay
+  })
+  const AnimatedBox = animated(Box);
   const AnimatedTypography = animated(Typography);
 
   return (
@@ -34,27 +47,36 @@ function PageLanding () {
         overflow: 'visible'
       }}
     >
-      <Box
-        component='img'
-        src='images/title-bg.png'
-        sx={{ position: 'absolute', opacity: 0.5 }}
-      />
       <Box sx={{ position: 'relative' }} >
+        <AnimatedBox
+          style={aniamtedImage}
+          component='img'
+          src='images/title-bg.png'
+          sx={{
+            position: 'absolute',
+            opacity: 0.8,
+            width: '100%',
+            translate: '0px -10%',
+            zIndex: -1
+          }}
+        />
         <AnimatedTypography
+          fontFamily='my-handwriting'
           style={animationSlideRight}
-          fontSize={'min(8vw, 50px)'}
+          fontSize={'min(10vw, 50px)'}
           align='left'
-          lineHeight={0.2}
+          lineHeight={0.6}
+          fontWeight='bold'
         >
           {'Gordon Wang\'s'}
         </AnimatedTypography>
-        <Sparklez frequency={2} sizeRange={[10, 45]}>
+        <Sparklez frequency={2} sizeRange={[10, 20]}>
           <AnimatedTypography
             style={animationAppear}
             lineHeight={1}
             className={'gradient-text'}
-            fontSize={'min(23vw, 180px)'}
-            sx={{ height: 'fit-content' }}
+            fontSize={'min(30vw, 180px)'}
+            sx={{ height: 'fit-content', fontFamily: 'hey_august' }}
             align='center'
             fontWeight='bold'
             m={0}
@@ -64,13 +86,16 @@ function PageLanding () {
         </Sparklez>
         <AnimatedTypography
           style={animationSlideLeft}
-          fontSize={'min(8vw, 50px)'}
-          lineHeight={0.2}
+          fontFamily='my-handwriting'
+          fontSize={'min(10vw, 50px)'}
+          lineHeight={0}
           align='right'
+          fontWeight='bold'
         >
           {'Website'}
         </AnimatedTypography>
       </Box>
+      <VersionNumber />
     </Box>
   )
 }

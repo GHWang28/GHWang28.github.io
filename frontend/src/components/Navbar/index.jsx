@@ -1,10 +1,11 @@
-import { AppBar, Button, Divider, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Collapse, Divider, Toolbar, Typography } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 
 function Navbar () {
+  const [logoHover, setLogoHover] = useState(false);
   // Animation
   const animationProps = useSpring({
     from: { y: -50 },
@@ -25,7 +26,26 @@ function Navbar () {
   return (
     <AnimatedAppBar style={animationProps} position='static'>
       <Toolbar>
-        <LogoBox />
+        <Box
+          m={1}
+          onMouseEnter={() => { setLogoHover(true) }}
+          onMouseLeave={() => { setLogoHover(false) }}
+        >
+          <LogoBox />
+        </Box>
+        <Collapse orientation='horizontal' in={logoHover}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', mr: 2 }}>
+            <Typography fontFamily='my-handwriting' fontSize={20} lineHeight='15px' noWrap>
+              {'Gordon Wang\'s'}
+            </Typography>
+            <Typography fontFamily='my-handwriting' fontWeight='bold' fontSize={20} lineHeight='15px' noWrap>
+              <span className='gradient-text'>
+                {'Portfolio'}
+              </span>
+              {' Website'}
+            </Typography>
+          </Box>
+        </Collapse>
         <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>

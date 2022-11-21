@@ -1,4 +1,5 @@
 import './App.css';
+import './fonts/font.css'
 import React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
@@ -8,7 +9,6 @@ import PageLanding from './pages/PageLanding';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflowX: 'hidden' }} >
       <Box sx={{ flexGrow: 0 }}>

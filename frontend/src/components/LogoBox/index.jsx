@@ -1,39 +1,52 @@
 import { Box } from "@mui/system"
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import LetterBox from "./LetterBox";
 
 function LogoBox () {
-  const [face, setFace] = useState(0);
   const navigate = useNavigate();
+  const [hover, setHover] = useState(false);
+  const [src, setSrc] = useState('url(/images/transparent-img.png)');
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrc('url(/images/gw-logo-anim.gif)');
+    }, 10);
+
+    return () => { clearTimeout(timeout) };
+  }, [])
 
   return (
     <Box
+      role='button'
+      title='Home Page'
       sx={{
-        width: '50px',
-        height: '50px',
-        mr: 2
+        width: '40px',
+        height: '40px',
+        borderRadius: '4px',
+        overflow: 'hidden',
+        cursor: 'pointer',
+        transition: 'scale 0.1s ease-in-out',
+        scale: (hover) ? '1.1' : '1',
       }}
-      onClick={() => { setFace((face + 1) % 6); navigate('/') }}
+      onMouseEnter={() => { setHover(true) }}
+      onMouseLeave={() => { setHover(false) }}
+      onClick={() => { navigate('/') }}
     >
-      {(face === 0) && (
-        <LetterBox letter='G' />
-      )}
-      {(face === 1) && (
-        <LetterBox letter='H' />
-      )}
-      {(face === 2) && (
-        <LetterBox letter='W' />
-      )}
-      {(face === 3) && (
-        <LetterBox letter='A' />
-      )}
-      {(face === 4) && (
-        <LetterBox letter='N' />
-      )}
-      {(face === 5) && (
-        <LetterBox letter='G' />
-      )}
+      <Box
+        name='mask'
+        sx={{
+          height: '100%',
+          width: '100%',
+          maskImage: src,
+          maskSize: '100%',
+          maskRepeat: 'no-repeat'
+        }}
+      >
+        <Box
+          className={'gradient-background'}
+          sx={{ height: '100%', width: '100%' }}
+        />
+      </Box>
     </Box>
   )
 }
