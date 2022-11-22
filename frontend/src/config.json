@@ -1,4 +1,27 @@
 {
-    "VERSION-NUMBER": "0.1.3",
-    "TOTAL_BGS": 2
+    "VERSION_NUMBER": "0.2.0",
+    "TOTAL_BGS": 2,
+    "SPLASH_TEXT": [
+        "Welcome!",
+        "Aloha!",
+        "Greetings!",
+        "Salutations!",
+        "Best place on the internet!",
+        "⬆⬆⬇⬇ ⬅➡⬅➡ BA",
+        "All your base are belong to us.",
+        "Batteries are not included",
+        "May contain traces of nuts",
+        "dQw4w9WgXcQ",
+        "Beep boop",
+        "Hey, you. You're finally awake.",
+        "missingno.",
+        "DFTBA",
+        "Not even the final form!",
+        "A randomly picked message",
+        "Contains 2.8% sugar",
+        "A randomly picked message",
+        "Going even further beyond!!",
+        "Deja vu",
+        "𝓕𝓪𝓷𝓬𝓬𝔂𝔂"
+    ]
 }

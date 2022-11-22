@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import config from '../../config.json';
+import packageJson from '../../../package.json';
 import { Box, Collapse, IconButton, Typography } from "@mui/material";
 import GitInfo from 'react-git-info/macro'
 import { ISOToDateStr } from '../../helpers';
@@ -30,7 +30,7 @@ function VersionNumber () {
         fontWeight='bold'
         sx={{ opacity: (hover) ? '1.0' : '0.4', transition: 'opacity 0.3s ease-in-out' }}
       >
-        {`v${config['VERSION-NUMBER']}`}
+        {`v${packageJson.version}`}
       </AnimatedTypography>
       <Collapse in={hover} orientation='vertical'>
           <Box

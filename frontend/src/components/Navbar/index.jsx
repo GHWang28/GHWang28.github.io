@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
-import BackgroundItem from './BackgroundItem'
+import Settings from './Settings'
 import { useSelector } from 'react-redux';
 
 function Navbar () {
@@ -42,8 +42,8 @@ function Navbar () {
             <Typography fontFamily='my-handwriting' fontSize={20} lineHeight='15px' noWrap>
               {'Gordon Wang\'s'}
             </Typography>
-            <Typography fontFamily='my-handwriting' fontWeight='bold' fontSize={20} lineHeight='15px' noWrap>
-              <span className='gradient-text'>
+            <Typography fontFamily='my-handwriting' fontSize={20} lineHeight='15px' noWrap>
+              <span className='gradient-text' style={{ fontWeight: 'bold' }}>
                 {'Portfolio'}
               </span>
               {' Website'}
@@ -60,7 +60,7 @@ function Navbar () {
           </Fragment>
         ))}
         <Box ml='auto'>
-          <BackgroundItem />
+          <Settings />
         </Box>
       </Toolbar>
     </AnimatedAppBar>

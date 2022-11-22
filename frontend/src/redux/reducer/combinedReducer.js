@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import setBackgroundReducer from './setBackground';
-import setNavButtonReducer from './setNavButton';
+import setBackgroundReducer from './setBackgroundReducer';
+import setNavButtonReducer from './setNavButtonReducer';
+import setToggleSplashReducer from './setToggleSplashReducer';
 
 /**
  * Combines reducers for Redux
@@ -8,6 +9,7 @@ import setNavButtonReducer from './setNavButton';
 const combinedReducer = combineReducers({
   navButton: setNavButtonReducer,
   background: setBackgroundReducer,
+  splash: setToggleSplashReducer
 })
 
 export default combinedReducer;
