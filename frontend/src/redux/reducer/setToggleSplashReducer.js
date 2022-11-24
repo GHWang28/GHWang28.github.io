@@ -1,5 +1,5 @@
 const setToggleSplashReducer = (
-  state = Boolean(localStorage.getItem('splash') || true),
+  state = (localStorage.getItem('splash')) ? localStorage.getItem('splash') === 'true' : true,
   action
 ) => {
   switch (action.type) {

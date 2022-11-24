@@ -5,10 +5,11 @@ function SparklezInstance ({ color, size, sx }) {
   return (
     <Box
       className='sparklez-grow-shrink'
-      sx={{ position: 'absolute', pointerEvents: 'none', ...sx }}
+      sx={{ position: 'absolute', pointerEvents: 'none', ...sx, translate: '-50% -50%' }}
     >
       <Box
         component='svg'
+        sx={{ transform: 'translate(-50000000%, 0)' }}
         width={size}
         height={size}
         viewBox='0 0 16 16'

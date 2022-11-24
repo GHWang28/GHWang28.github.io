@@ -1,10 +1,11 @@
-import { AppBar, Box, Button, Collapse, Divider, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Collapse, Divider, Toolbar, Typography } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import { useSelector } from 'react-redux';
+import NavbarButton from './NavbarButton';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
@@ -50,12 +51,15 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
+
         <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>
-            <Button onClick={nav.func} disabled={buttonSelected === index}>
-              {nav.label}
-            </Button>
+            <NavbarButton
+              onClick={nav.func}
+              disabled={buttonSelected === index}
+              label={nav.label}
+            />
             <Divider orientation='vertical' variant='middle' flexItem />
           </Fragment>
         ))}

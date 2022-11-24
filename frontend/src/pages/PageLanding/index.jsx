@@ -137,6 +137,39 @@ function PageLanding () {
           {'Website'}
         </AnimatedTypography>
       </Box>
+      {/* Body */}
+      <AnimatedTypography
+        style={useSpring({
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+          delay: 5 * delay,
+        })}
+        mt={15}
+        color='#a9a9a9'
+        fontWeight='bold'
+        fontFamily='my-handwriting'
+        lineHeight={0.5}
+        fontSize={35}
+      >
+        {'Hi, my name is '}
+        <Box component='span' color='whitesmoke'>
+          {'Gordon Wang'}
+        </Box>
+        {' and welcome to my GitHub page!'}
+      </AnimatedTypography>
+      <AnimatedTypography
+        style={useSpring({
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+          delay: 6 * delay,
+        })}
+        color='gray'
+        fontWeight='bold'
+        fontFamily='my-handwriting'
+        fontSize={28}
+      >
+        {'Feel free to look around using the navigation at the top.'}
+      </AnimatedTypography>
       <VersionNumber />
       <ContactDetails />
     </Box>

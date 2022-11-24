@@ -9,7 +9,7 @@ function generateSparklez (color = 'hsl(50deg, 100%, 50%)', size = rng(25, 75) )
     size: size,
     sx: {
       top:  `${rng(0, 100)}%`,
-      right: `${rng(0, 100)}%`,
+      left: `${rng(0, 100)}%`,
       zIndex: 2,
     }
   }
