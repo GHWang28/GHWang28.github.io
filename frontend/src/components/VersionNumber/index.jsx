@@ -27,7 +27,11 @@ function VersionNumber () {
         style={animationProps}
         fontSize={24}
         fontWeight='bold'
-        sx={{ opacity: (hover) ? '1.0' : '0.4', transition: 'opacity 0.3s ease-in-out' }}
+        sx={{
+          opacity: (hover) ? '1.0' : '0.4',
+          transition: 'opacity 0.3s ease-in-out',
+          userSelect: 'none'
+        }}
       >
         {`v${packageJson.version}`}
       </AnimatedTypography>

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { animated, useSpring } from 'react-spring';
@@ -11,6 +11,7 @@ import config from '../../config.json';
 import { rng } from '../../helpers';
 
 function PageLanding () {
+  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
   const [splashMsg, setSplashMsg] = useState('');
@@ -52,7 +53,7 @@ function PageLanding () {
           message={splashMsg}
           fontSize={'min(4.5vw, 30px)'}
           position={{
-            left: '90%',
+            left: (mediumMq) ? '90%' : '85%',
             bottom: '85%'
           }}
         />
@@ -140,7 +141,7 @@ function PageLanding () {
           to: { opacity: 1 },
           delay: 5 * delay,
         })}
-        mt={15}
+        mt={(mediumMq) ? 15 : 7}
         color='#a9a9a9'
         fontWeight='bold'
         fontSize={35}
