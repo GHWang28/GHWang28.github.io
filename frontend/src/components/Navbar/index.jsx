@@ -40,13 +40,13 @@ function Navbar () {
         </Box>
         <Collapse orientation='horizontal' in={logoHover}>
           <Box sx={{ display: 'flex', flexDirection: 'column', mr: 2 }}>
-            <Typography fontFamily='my-handwriting' fontSize={20} lineHeight='15px' noWrap>
+            <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
               {'Gordon Wang\'s'}
             </Typography>
-            <Typography fontFamily='my-handwriting' fontSize={20} lineHeight='15px' noWrap>
-              <span className='gradient-text' style={{ fontWeight: 'bold' }}>
+            <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
+              <Box component='span' className='gradient-text' sx={{ fontWeight: 'bold' }}>
                 {'Portfolio'}
-              </span>
+              </Box>
               {' Website'}
             </Typography>
           </Box>

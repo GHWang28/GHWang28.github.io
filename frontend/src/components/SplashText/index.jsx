@@ -22,16 +22,16 @@ function SplashText ({ message, position, fontSize, rotate = '15deg', style }) {
 
   return (
     <Typography
+      fontFamily='my-handwriting'
       align='center'
-      lineHeight='0.6em'
+      lineHeight='1.0em'
       style={style}
       sx={{
         translate: '-50% 50%',
         width: 'min(25vw, 250px)',
         fontSize,
-        fontFamily: 'my-handwriting',
         fontWeight: 'bold',
-        color: 'yellow',
+        color: 'yellow.main',
         animation: `${splashAnimation} ease-in-out 1.5s infinite`,
         position: 'absolute',
         textShadow: '4px 3px 0 black',

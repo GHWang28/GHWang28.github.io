@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, keyframes } from '@mui/system';
+import { Typography } from '@mui/material';
 
 const moveAnimation = keyframes`
   from {
@@ -14,7 +15,8 @@ const moveAnimation = keyframes`
 function Ticker ({ width, children }) {
   return (
     <Box sx={{ overflow: 'hidden', width, bgcolor: 'black', border: '1px solid whitesmoke', borderRadius: '5px', }}>
-      <Box
+      <Typography
+        fontWeight='bold'
         p={1}
         sx={{
           animation: `${moveAnimation} linear 15s infinite`,
@@ -22,7 +24,7 @@ function Ticker ({ width, children }) {
         }}
       >
         {children}
-      </Box>
+      </Typography>
     </Box>
   )
 }

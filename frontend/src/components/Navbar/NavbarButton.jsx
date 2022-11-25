@@ -13,10 +13,10 @@ function NavbarButton (props) {
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
       {...prunedProps}
-      sx={{ fontFamily: 'my-handwriting', fontWeight: 'bold', fontSize: 25 }}
+      sx={{ fontWeight: 'bold' }}
     >
       {(hover) ? (
-        <Sparklez frequency={2.5} sizeRange={[10, 15]}>
+        <Sparklez frequency={1.5} sizeRange={[10, 15]}>
           {props.label}
         </Sparklez>
       ) : (

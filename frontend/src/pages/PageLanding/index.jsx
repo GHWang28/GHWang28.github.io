@@ -20,38 +20,6 @@ function PageLanding () {
 
   // Defining animations
   const delay = 200;
-  const animationSlideRight = useSpring({
-    from: { x: -200, opacity: 0 },
-    to: async (next) => {
-      await next({ x: 10, opacity: 1 });
-      await next({ x: 0 });
-    },
-    delay: 0 * delay,
-  })
-  const animationAppear = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    delay: 2 * delay,
-    config: { duration: 1000 },
-  })
-  const animationSlideLeft = useSpring({
-    from: { x: 200, opacity: 0 },
-    to: async (next) => {
-      await next({ x: -10, opacity: 1 });
-      await next({ x: 0 });
-    },
-    delay: 1 * delay
-  })
-  const animatedImage = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    delay: 0.5 * delay
-  })
-  const animationSplashAppear = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    delay: 2 * delay,
-  })
   const AnimatedSplash = animated(SplashText);
   const AnimatedBox = animated(Box);
   const AnimatedTypography = animated(Typography);
@@ -76,9 +44,13 @@ function PageLanding () {
       <Box sx={{ position: 'relative' }} >
         {/* Splash Text */}
         <AnimatedSplash
-          style={animationSplashAppear}
+          style={useSpring({
+            from: { opacity: 0 },
+            to: { opacity: 1 },
+            delay: 2 * delay,
+          })}
           message={splashMsg}
-          fontSize={'min(5vw, 40px)'}
+          fontSize={'min(4.5vw, 30px)'}
           position={{
             left: '90%',
             bottom: '85%'
@@ -86,7 +58,11 @@ function PageLanding () {
         />
         {/* Background image */}
         <AnimatedBox
-          style={animatedImage}
+          style={useSpring({
+            from: { opacity: 0 },
+            to: { opacity: 1 },
+            delay: 0.5 * delay
+          })}
           component='img'
           alt='Landing page background'
           title='Landing page background'
@@ -101,19 +77,31 @@ function PageLanding () {
           }}
         />
         <AnimatedTypography
-          fontFamily='my-handwriting'
-          style={animationSlideRight}
+          style={useSpring({
+            from: { x: -200, opacity: 0 },
+            to: async (next) => {
+              await next({ x: 10, opacity: 1 });
+              await next({ x: 0 });
+            },
+            delay: 0 * delay,
+          })}
           sx={{ userSelect: 'none' }}
           fontSize={'min(10vw, 50px)'}
           align='left'
           lineHeight={0.6}
           fontWeight='bold'
+          fontFamily='my-handwriting'
         >
           {'Gordon Wang\'s'}
         </AnimatedTypography>
         <Sparklez frequency={2} sizeRange={[10, 20]}>
           <AnimatedTypography
-            style={animationAppear}
+            style={useSpring({
+              from: { opacity: 0 },
+              to: { opacity: 1 },
+              delay: 2 * delay,
+              config: { duration: 1000 },
+            })}
             lineHeight={1}
             className={'gradient-text'}
             fontSize={'min(30vw, 180px)'}
@@ -126,19 +114,27 @@ function PageLanding () {
           </AnimatedTypography>
         </Sparklez>
         <AnimatedTypography
-          style={animationSlideLeft}
+          style={useSpring({
+            from: { x: 200, opacity: 0 },
+            to: async (next) => {
+              await next({ x: -10, opacity: 1 });
+              await next({ x: 0 });
+            },
+            delay: 1 * delay
+          })}
           sx={{ userSelect: 'none' }}
-          fontFamily='my-handwriting'
           fontSize={'min(10vw, 50px)'}
           lineHeight={0}
           align='right'
           fontWeight='bold'
+          fontFamily='my-handwriting'
         >
           {'Website'}
         </AnimatedTypography>
       </Box>
       {/* Body */}
       <AnimatedTypography
+        align='center'
         style={useSpring({
           from: { opacity: 0 },
           to: { opacity: 1 },
@@ -147,9 +143,8 @@ function PageLanding () {
         mt={15}
         color='#a9a9a9'
         fontWeight='bold'
-        fontFamily='my-handwriting'
-        lineHeight={0.5}
         fontSize={35}
+        lineHeight={1.0}
       >
         {'Hi, my name is '}
         <Box component='span' color='whitesmoke'>
@@ -158,15 +153,17 @@ function PageLanding () {
         {' and welcome to my GitHub page!'}
       </AnimatedTypography>
       <AnimatedTypography
+        mt={4}
+        align='center'
         style={useSpring({
           from: { opacity: 0 },
           to: { opacity: 1 },
           delay: 6 * delay,
         })}
-        color='gray'
+        color='#808080'
         fontWeight='bold'
-        fontFamily='my-handwriting'
         fontSize={28}
+        lineHeight={1.0}
       >
         {'Feel free to look around using the navigation at the top.'}
       </AnimatedTypography>

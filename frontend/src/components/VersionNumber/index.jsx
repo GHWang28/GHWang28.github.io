@@ -25,7 +25,6 @@ function VersionNumber () {
     >
       <AnimatedTypography
         style={animationProps}
-        fontFamily='my-handwriting'
         fontSize={24}
         fontWeight='bold'
         sx={{ opacity: (hover) ? '1.0' : '0.4', transition: 'opacity 0.3s ease-in-out' }}
@@ -36,7 +35,6 @@ function VersionNumber () {
           <Box
             sx={{
               display: 'flex',
-              fontFamily: 'my-handwriting',
               whiteSpace: 'noWrap',
               fontSize: 24,
               alignItems: 'center',
