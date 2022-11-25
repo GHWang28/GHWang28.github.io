@@ -87,3 +87,28 @@ code {
   }
 }
 
+::-webkit-scrollbar-corner {
+  background: rgb(0, 0, 0);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track of scrollbar. Where the thumb can move to */
+::-webkit-scrollbar-track {
+  background: rgb(17, 19, 20);
+  border-radius: 6px;
+}
+
+/* Thumb of scrollbar. Where to click and drag */
+::-webkit-scrollbar-thumb {
+  border: 2px solid whitesmoke;
+  background: rgb(65, 70, 80); 
+  border-radius: 6px;
+}
+
+/* Hover color */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(78, 84, 94); 
+}

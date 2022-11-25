@@ -39,7 +39,7 @@ function Navbar () {
           <LogoBox />
         </Box>
         <Collapse orientation='horizontal' in={logoHover}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', mx: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1 }}>
             <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
               {'Gordon Wang\'s'}
             </Typography>

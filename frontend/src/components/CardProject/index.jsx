@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
 
 const TransluscentTypography = styled(Typography)(() => {
@@ -13,7 +13,17 @@ const TransluscentTypography = styled(Typography)(() => {
   }
 });
 
-function CardProject ({ title, date, type, body, imgs, index = 0 }) {
+function CardProject ({
+  title,
+  date,
+  type,
+  body,
+  imgs,
+  index = 0,
+  onClick,
+  buttonTxt = 'View',
+  buttonIcon
+}) {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -48,7 +58,8 @@ function CardProject ({ title, date, type, body, imgs, index = 0 }) {
         position: 'relative',
         border: '2px solid whitesmoke',
         scale: (hover) ? '1' : '0.975',
-        transition: 'scale 0.1s ease-in-out, background 1.0s ease-in-out',
+        boxShadow: (hover) ? '0 4px 32px 0 rgba(0, 0, 0, 0.8)' : '0 4px 16px 0 rgba(0, 0, 0, 0.8)',
+        transition: 'scale 0.1s ease-in-out, boxShadow 0.1s ease-in-out',
         borderRadius: '15px',
         height: 'fit-content',
         overflow: 'hidden',
@@ -57,7 +68,7 @@ function CardProject ({ title, date, type, body, imgs, index = 0 }) {
     >
       <Box
         sx={{
-          p: 5,
+          p: 2,
           width: 'inherit',
           height: 'inherit',
           backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 100%)` 
@@ -95,7 +106,7 @@ function CardProject ({ title, date, type, body, imgs, index = 0 }) {
             >
               {body.map((dotpoint, index) => (
                 <Box key={`dotpoint-${index}`} component='li'>
-                  <Typography>
+                  <Typography pr={1}>
                     {dotpoint}
                   </Typography>
                 </Box>
@@ -103,8 +114,10 @@ function CardProject ({ title, date, type, body, imgs, index = 0 }) {
             </Box>
           )}
         </Box>
+        <Button startIcon={buttonIcon} variant='outlined' onClick={onClick}>
+          {buttonTxt}
+        </Button>
       </Box>
-
       {/* Background Image */}
       {imgs.map((img, index) => (
         <Box
@@ -119,7 +132,7 @@ function CardProject ({ title, date, type, body, imgs, index = 0 }) {
             position: 'absolute',
             top: '0%',
             right: '0%',
-            height: '150%',
+            objectFit: 'cover',
             zIndex: -1
           }}
         />
@@ -138,6 +151,9 @@ CardProject.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  onClick: PropTypes.func,
+  buttonIcon: PropTypes.node,
+  buttonTxt: PropTypes.string,
 };
 
 export default CardProject;

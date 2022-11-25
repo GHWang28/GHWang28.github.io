@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
 import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
+import { cacheImages } from './helpers';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -20,17 +21,33 @@ function App() {
     return 0;
   }
 
+  cacheImages([
+    '/images/hscbow/homesweethome.jpg',
+    '/images/hscbow/leaving.jpg',
+    '/images/hscbow/bonvoyage.jpg',
+    '/images/hscbow/rabureta.jpg',
+    '/images/hscbow/ruiji.jpg',
+    '/images/hscbow/homecoming.jpg',
+  ])
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflowX: 'hidden' }} >
       <Box sx={{ flexGrow: 0 }}>
         <Navbar />
       </Box>
-      <Box sx={{ color: 'whitesmoke', mx: calcMarginX(), flexGrow: 1 }}>
-          <Routes>
-            <Route path='/' element={<PageLanding />}/>
-            <Route path='/projects' element={<PageProjects />}/>
-            <Route path='/about' element={<></>}/>
-          </Routes>
+      <Box
+        sx={{
+          color: 'whitesmoke',
+          px: calcMarginX(),
+          flexGrow: 1,
+          overflowY: 'auto'
+        }}
+      >
+        <Routes>
+          <Route path='/' element={<PageLanding />}/>
+          <Route path='/projects/*' element={<PageProjects />}/>
+          <Route path='/about' element={<></>}/>
+        </Routes>
       </Box>
       <Background />
     </Box>
