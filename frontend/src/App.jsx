@@ -40,7 +40,8 @@ function App() {
           color: 'whitesmoke',
           px: calcMarginX(),
           flexGrow: 1,
-          overflowY: 'auto'
+          overflowY: 'auto',
+          overflowX: 'hidden'
         }}
       >
         <Routes>
