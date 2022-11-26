@@ -18,6 +18,7 @@ function ButtonGoBack () {
         opacity: (hover) ? '1.0' : '0.5',
         transition: 'opacity 0.2s ease-in-out'
       }}
+      title='Go Back'
     >
       <ReplyIcon />
     </IconButton>
