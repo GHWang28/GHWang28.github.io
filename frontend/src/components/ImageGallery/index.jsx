@@ -13,7 +13,6 @@ import PropTypes from 'prop-types';
  * Not providing a mainImgSrc will display a default image.
  */
 function ImageGallery ({ imgArray = [] }) {
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
@@ -48,13 +47,6 @@ function ImageGallery ({ imgArray = [] }) {
     return '200px';
   }
 
-  const galleryMargin = () => {
-    if (xLargeMq) return '300px';
-    if (largeMq) return '150px';
-    if (mediumMq) return '100px';
-    return '10px';
-  }
-
   const gallerySX = {
     height: '100%',
     display: 'flex',
@@ -78,7 +70,7 @@ function ImageGallery ({ imgArray = [] }) {
           border: '2px solid whitesmoke',
           borderRadius: '8px',
           overflow: 'hidden',
-          marginX: galleryMargin()
+          marginX: '15%'
         }}
       >
         <Grid container sx={{ height: galleryHeight(), overflow: 'hidden' }}>

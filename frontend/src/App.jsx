@@ -28,6 +28,12 @@ function App() {
     '/images/hscbow/rabureta.jpg',
     '/images/hscbow/ruiji.jpg',
     '/images/hscbow/homecoming.jpg',
+    '/images/hscbow-hq/homesweethome.jpg',
+    '/images/hscbow-hq/leaving.jpg',
+    '/images/hscbow-hq/bonvoyage.jpg',
+    '/images/hscbow-hq/rabureta.jpg',
+    '/images/hscbow-hq/ruiji.jpg',
+    '/images/hscbow-hq/homecoming.jpg',
   ])
 
   return (

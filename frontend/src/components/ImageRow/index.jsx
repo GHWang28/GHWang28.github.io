@@ -1,6 +1,6 @@
-import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import PropTypes from 'prop-types';
-import { Fragment } from "react";
+import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 function ImageRow ({ src, title, body, rowNo }) {
@@ -9,7 +9,7 @@ function ImageRow ({ src, title, body, rowNo }) {
   const isOdd = (rowNo % 2);
 
   const imgCol = (
-    <Grid item xs={12} md={8.5}>
+    <Grid item xs={12} md={8.2}>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           component='img'
@@ -23,10 +23,15 @@ function ImageRow ({ src, title, body, rowNo }) {
     </Grid>
   )
   const textCol = (
-    <Grid item xs={12} md={3.5} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Typography variant={'h3'} align='center'>
-        <u>{title}</u>
-      </Typography>
+    <Grid item xs={12} md={3.8} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box p={2} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
+        <Typography variant={'h5'} align='center'>
+          <u>{title}</u>
+        </Typography>
+        <Typography variant={'h6'} align='center' sx={{ opacity: '0.75' }}>
+          {body}
+        </Typography>
+      </Box>
     </Grid>
   )
 
@@ -42,7 +47,7 @@ function ImageRow ({ src, title, body, rowNo }) {
         translate: (inView) ? '0%' : ((isOdd) ? '-100%' : '100%'),
         filter: (inView) ? '' : 'blur(5px)',
         transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out',
-        transitionDelay: '0.5s'
+        transitionDelay: '0.05s'
       }}
     >
       {row.map((col, index) => (
