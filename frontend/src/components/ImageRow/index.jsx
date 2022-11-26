@@ -46,8 +46,7 @@ function ImageRow ({ src, title, body, rowNo }) {
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0%' : ((isOdd) ? '-100%' : '100%'),
         filter: (inView) ? '' : 'blur(5px)',
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out',
-        transitionDelay: '0.05s'
+        transition: 'translate 0.7s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out',
       }}
     >
       {row.map((col, index) => (

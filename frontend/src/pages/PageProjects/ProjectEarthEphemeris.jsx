@@ -26,7 +26,7 @@ function ProjectEarthEphemeris () {
         })}
       >
         <Sparklez sizeRange={[30, 40]}>
-          <Typography className={'gradient-text'} variant='h1' fontWeight='bold' align='center'>
+          <Typography className={'gradient-text'} variant='h2' fontWeight='bold' align='center'>
             {'Earth\'s Ephemeris'}
           </Typography>
         </Sparklez>
@@ -52,7 +52,7 @@ function ProjectEarthEphemeris () {
             style={useSpring({
               from: { opacity: 0, y: '-100%' },
               to: {  opacity: 1, y: '0%' },
-              delay: 750
+              delay: 250
             })}
             p={3}
             sx={{
