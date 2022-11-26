@@ -25,7 +25,7 @@ function ProjectEarthEphemeris () {
           to: { opacity: 1 },
         })}
       >
-        <Sparklez sizeRange={[30, 40]}>
+        <Sparklez frequency={2} sizeRange={[20, 35]}>
           <Typography className={'gradient-text'} variant='h2' fontWeight='bold' align='center'>
             {'Earth\'s Ephemeris'}
           </Typography>

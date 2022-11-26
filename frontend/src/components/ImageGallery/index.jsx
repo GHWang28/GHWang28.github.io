@@ -6,6 +6,7 @@ import { getYouTubeThumbnailImg, isYouTubeURL } from '../../helpers';
 import VideoPlayer from '../VideoPlayer';
 import { animated, useSpring } from 'react-spring';
 import PropTypes from 'prop-types';
+import ModalImage from '../ModalImage';
 
 /**
  * A gallery/carousel that is responsive and can be navigated with
@@ -17,7 +18,7 @@ function ImageGallery ({ imgArray = [] }) {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const [imgIndexState, setImgIndexState] = useState(0);
-  // const [imgViewerVisible, setImgViewerVisible] = useState(false);
+  const [imgViewerVisible, setImgViewerVisible] = useState(false);
 
   // Spring Animation
   const animationProps = useSpring({
@@ -35,10 +36,6 @@ function ImageGallery ({ imgArray = [] }) {
     if (newIndex >= imgArray.length) newIndex = 0;
 
     setImgIndexState(newIndex);
-  };
-
-  const getImgTitle = () => {
-    return (imgIndexState === 0) ? 'Thumbnail' : `Property Image #${imgIndexState}`;
   };
 
   const galleryHeight = () => {
@@ -61,7 +58,7 @@ function ImageGallery ({ imgArray = [] }) {
 
   return (
     <Fragment>
-
+      <ModalImage src={imgArray[imgIndexState]} open={imgViewerVisible} setOpen={setImgViewerVisible} />
       <AnimatedBox
         style={animationProps}
         sx={{
@@ -109,8 +106,9 @@ function ImageGallery ({ imgArray = [] }) {
                 style={animationProps}
                 component='img'
                 sx={{ height: 'calc(100% - 20px)', cursor: 'pointer' }}
-                alt={getImgTitle()}
-                title={getImgTitle()}
+                alt={`Gallery Item #${imgIndexState}`}
+                title={`Gallery Item #${imgIndexState}`}
+                onClick={() => { setImgViewerVisible(true) }}
                 src={imgArray[imgIndexState]}
               />
             )}

@@ -1,6 +1,6 @@
-import { AppBar, Box, Collapse, Divider, Toolbar, Typography } from '@mui/material';
-import { useSpring, animated } from 'react-spring';
 import React, { Fragment, useState } from 'react';
+import { AppBar, Box, Collapse, Divider, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { useSpring, animated } from 'react-spring';
 import { useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
@@ -9,6 +9,7 @@ import NavbarButton from './NavbarButton';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
+  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   // Animation
   const animationProps = useSpring({
     from: { y: -50 },
@@ -38,7 +39,7 @@ function Navbar () {
         >
           <LogoBox />
         </Box>
-        <Collapse orientation='horizontal' in={logoHover}>
+        <Collapse orientation='horizontal' in={logoHover && smallMq}>
           <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1 }}>
             <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
               {'Gordon Wang\'s'}

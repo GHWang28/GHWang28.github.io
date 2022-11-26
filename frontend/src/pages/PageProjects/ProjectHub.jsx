@@ -20,7 +20,7 @@ function ProjectHub () {
       <Typography mt={5} variant='h2' fontWeight='bold' align='center'>
         {'Projects'}
       </Typography>
-      <Typography mb={2} variant='h5' fontWeight='bold' align='center'>
+      <Typography mb={2} variant='h4' fontWeight='bold' align='center'>
         {' I\'ve worked on'}
       </Typography>
       <Box component='hr' mb={3}/>
