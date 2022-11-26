@@ -7,7 +7,6 @@ import { Route, Routes } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
 import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
-import { cacheImages } from './helpers';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -20,21 +19,6 @@ function App() {
     if (smallMq) return 8;
     return 0;
   }
-
-  cacheImages([
-    '/images/hscbow/homesweethome.jpg',
-    '/images/hscbow/leaving.jpg',
-    '/images/hscbow/bonvoyage.jpg',
-    '/images/hscbow/rabureta.jpg',
-    '/images/hscbow/ruiji.jpg',
-    '/images/hscbow/homecoming.jpg',
-    '/images/hscbow-hq/homesweethome.jpg',
-    '/images/hscbow-hq/leaving.jpg',
-    '/images/hscbow-hq/bonvoyage.jpg',
-    '/images/hscbow-hq/rabureta.jpg',
-    '/images/hscbow-hq/ruiji.jpg',
-    '/images/hscbow-hq/homecoming.jpg',
-  ])
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflowX: 'hidden' }} >
