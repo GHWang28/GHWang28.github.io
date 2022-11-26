@@ -1,23 +1,34 @@
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
+  const [hover, setHover] = useState(false);
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const isOdd = (rowNo % 2);
 
   const imgCol = (
     <Grid item xs={12} md={8.2}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box
+        onMouseEnter={() => { setHover(true) }}
+        onMouseLeave={() => { setHover(false) }}
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
         <Box
           component='img'
           width='100%'
           maxWidth='1500px'
           src={src}
           alt={`${title}-artwork`}
-          sx={{ pointerEvents: 'none', borderRadius: '15px', border: '3px solid whitesmoke' }}
+          sx={{
+            pointerEvents: 'none',
+            borderRadius: '15px',
+            border: '3px solid whitesmoke',
+            transition: 'scale 0.2s ease-in-out',
+            scale: (hover) ? '1.025' : '1',
+          }}
         />
       </Box>
     </Grid>
@@ -45,8 +56,7 @@ function ImageRow ({ src, title, body, rowNo }) {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0%' : ((isOdd) ? '-100%' : '100%'),
-        filter: (inView) ? '' : 'blur(5px)',
-        transition: 'translate 0.7s ease-in-out, opacity 0.2s ease-in-out, filter 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
       {row.map((col, index) => (

@@ -59,7 +59,7 @@ function CardProject ({
         border: '2px solid whitesmoke',
         scale: (hover) ? '1' : '0.975',
         boxShadow: (hover) ? '0 4px 32px 0 rgba(0, 0, 0, 0.8)' : '0 4px 16px 0 rgba(0, 0, 0, 0.8)',
-        transition: 'scale 0.1s ease-in-out, boxShadow 0.1s ease-in-out',
+        transition: 'scale 0.2s ease-in-out, boxShadow 0.1s ease-in-out',
         borderRadius: '15px',
         height: 'fit-content',
         overflow: 'hidden',

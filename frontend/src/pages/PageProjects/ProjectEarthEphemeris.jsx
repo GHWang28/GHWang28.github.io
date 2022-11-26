@@ -61,7 +61,7 @@ function ProjectEarthEphemeris () {
               borderRadius: '15px',
               border: '3px solid whitesmoke',
               bgcolor: 'darkgray.main',
-              zIndex: -1
+              zIndex: 2
             }}
           >
             <Typography pb={2} fontWeight='bold' sx={{ opacity: '0.5' }}>
