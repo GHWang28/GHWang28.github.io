@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from "@mui/material";
-import PaletteIcon from '@mui/icons-material/Palette';
 import { Fragment } from "react";
+import PaletteIcon from '@mui/icons-material/Palette';
+import GameControllerIcon from '@mui/icons-material/SportsEsports';
+import CodeIcon from '@mui/icons-material/Code';
 
 const generateProjects = (navigate) => {
   return [
@@ -39,11 +41,45 @@ const generateProjects = (navigate) => {
           {'.'}
         </Fragment>
       ],
-      onClick: () => {
-        navigate('earth-ephemeris')
-      },
-      buttonTxt: 'View Artworks',
-      buttonIcon: <PaletteIcon />
+      buttons: [
+        {
+          text: 'View Artworks',
+          icon: <PaletteIcon />,
+          onClick: () => {
+            navigate('earth-ephemeris')
+          },
+        }
+      ]
+    },
+    {
+      title: 'Tic-Tac-Toe: Capture',
+      date: '(28/11/2022)',
+      type: 'Game',
+      imgs: [
+        '/images/tictactoe-capture/cover.jpg'
+      ],
+      body: [
+        'Recreation of Tic Tac Toe with a twist.',
+        'Two-player game',
+        'Negate your opponent\'s move with the right strategy.',
+        'Features options to reset game or undo previous move.'
+      ],
+      buttons: [
+        {
+          text: 'Play Game',
+          icon: <GameControllerIcon />,
+          onClick: () => {
+            navigate('tic-tac-toe-capture')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/tic-tac-toe-capture', '_blank').focus();
+          }
+        }
+      ]
     }
   ]
 } 

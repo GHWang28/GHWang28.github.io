@@ -10,6 +10,10 @@ body {
   background-image: radial-gradient(rgb(44, 49, 58), rgb(29, 32, 37));
 }
 
+html {
+  overflow: hidden;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -92,7 +96,8 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 5px;
+  height: 5px;
 }
 
 /* Track of scrollbar. Where the thumb can move to */
@@ -103,7 +108,7 @@ code {
 
 /* Thumb of scrollbar. Where to click and drag */
 ::-webkit-scrollbar-thumb {
-  border: 2px solid whitesmoke;
+  border: 0.5px solid whitesmoke;
   background: rgb(65, 70, 80); 
   border-radius: 6px;
 }

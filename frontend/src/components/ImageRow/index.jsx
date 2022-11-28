@@ -39,7 +39,7 @@ function ImageRow ({ src, title, body, rowNo }) {
   )
   const textCol = (
     <Grid item xs={12} md={3.8} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Box p={2} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
+      <Box p={(mediumMq) ? 2 : 0.1} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
         <Typography variant={'h5'} align='center'>
           <u>{title}</u>
         </Typography>
@@ -62,7 +62,7 @@ function ImageRow ({ src, title, body, rowNo }) {
         sx={{
           opacity: (inView) ? '1' : '0',
           translate: (inView) ? '0%' : ((isOdd) ? '-100%' : '100%'),
-          transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
+          transition: 'translate 0.4s ease-in-out, opacity 0.4s ease-in-out',
         }}
       >
         {row.map((col, index) => (

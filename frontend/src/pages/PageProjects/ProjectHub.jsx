@@ -27,14 +27,8 @@ function ProjectHub () {
       {projects.map((proj, index) => (
         <CardProject
           key={`proj-${index}`}
-          title={proj?.title}
-          date={proj?.date}
-          type={proj?.type}
-          imgs={proj?.imgs}
-          body={proj?.body}
-          onClick={proj?.onClick}
-          buttonTxt={proj?.buttonTxt}
-          buttonIcon={proj?.buttonIcon}
+          index={index}
+          {...proj}
         />
       ))}
     </Fragment>

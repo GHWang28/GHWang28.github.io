@@ -21,7 +21,7 @@ function App() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflowX: 'hidden' }} >
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }} >
       <Box sx={{ flexGrow: 0 }}>
         <Navbar />
       </Box>
