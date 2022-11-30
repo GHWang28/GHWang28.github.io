@@ -112,6 +112,7 @@ function CardProject ({
         {buttons.map((button, buttonIndex) => (
           (smallMq) ? (
             <Button
+              title={button.text}
               key={`c${index}-b${buttonIndex}]`}
               startIcon={button.icon}
               variant='outlined'
@@ -123,7 +124,7 @@ function CardProject ({
           ) : (
             <IconButton
               key={`c${index}-b${buttonIndex}]`}
-              
+              title={button.text}
               onClick={button.onClick}
               sx={{
                 mr: 1,
