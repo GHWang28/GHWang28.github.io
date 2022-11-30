@@ -58,7 +58,7 @@ function CardProject ({
         height: 'fit-content',
         overflow: 'hidden',
         mx: (largeMq) ? 10 : ((mediumMq) ? 5 : 0),
-        mb: 5
+        mb: (mediumMq) ? 5 : 2
       }}
     >
       <Box

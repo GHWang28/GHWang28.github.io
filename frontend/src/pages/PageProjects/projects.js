@@ -56,11 +56,11 @@ const generateProjects = (navigate) => {
       date: '(28/11/2022)',
       type: 'Game',
       imgs: [
-        '/images/tictactoe-capture/cover.jpg'
+        '/images/covers/tic-tac-toe-capture.jpg'
       ],
       body: [
         'Recreation of Tic Tac Toe with a twist.',
-        'Two-player game',
+        'Two-player game.',
         'Negate your opponent\'s move with the right strategy.',
         'Features options to reset game or undo previous move.'
       ],
@@ -69,7 +69,7 @@ const generateProjects = (navigate) => {
           text: 'Play Game',
           icon: <GameControllerIcon />,
           onClick: () => {
-            navigate('tic-tac-toe-capture')
+            navigate('showcase/tic-tac-toe-capture')
           }
         },
         {
@@ -80,7 +80,37 @@ const generateProjects = (navigate) => {
           }
         }
       ]
-    }
+    },
+    {
+      title: 'Spotter',
+      date: '(30/11/2022)',
+      type: 'Game',
+      imgs: [
+        '/images/covers/spotter.jpg'
+      ],
+      body: [
+        'Find your character before the time runs out.',
+        'Single player game.',
+        'Levels get progressively more difficult.',
+        'Player scores are saved.'
+      ],
+      buttons: [
+        {
+          text: 'Play Game',
+          icon: <GameControllerIcon />,
+          onClick: () => {
+            navigate('showcase/spotter')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/spotter', '_blank').focus();
+          }
+        }
+      ]
+    },
   ]
 } 
 
