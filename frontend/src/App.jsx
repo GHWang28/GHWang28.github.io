@@ -31,7 +31,8 @@ function App() {
           px: calcMarginX(),
           flexGrow: 1,
           overflowY: 'auto',
-          overflowX: 'hidden'
+          overflowX: 'hidden',
+          pb: (!smallMq) ? 10 : 0
         }}
       >
         <Routes>
