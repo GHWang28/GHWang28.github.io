@@ -7,6 +7,7 @@ import VideoPlayer from '../VideoPlayer';
 import { animated, useSpring } from 'react-spring';
 import PropTypes from 'prop-types';
 import ModalImage from '../ModalImage';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * A gallery/carousel that is responsive and can be navigated with
@@ -96,6 +97,7 @@ function ImageGallery ({ imgArray = [] }) {
           <Grid name='image-viewer' item xs={8} sm={10} sx={gallerySX}>
             {(isYouTubeURL(imgArray[imgIndexState])) && (
               <VideoPlayer
+                key={uuidv4()}
                 url={imgArray[imgIndexState]}
                 height={'calc(100% - 20px)'}
                 width='100%'

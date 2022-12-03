@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import PaletteIcon from '@mui/icons-material/Palette';
 import GameControllerIcon from '@mui/icons-material/SportsEsports';
 import CodeIcon from '@mui/icons-material/Code';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const generateProjects = (navigate) => {
   return [
@@ -48,6 +49,40 @@ const generateProjects = (navigate) => {
           onClick: () => {
             navigate('earth-ephemeris')
           },
+        }
+      ]
+    },
+    {
+      title: 'Minecraft Recreation',
+      date: '(10/12/2021)',
+      type: 'University Project + Game',
+      imgs: [
+        '/images/minecraft-recreation/1.png',
+        '/images/minecraft-recreation/2.png',
+        '/images/minecraft-recreation/3.png',
+        '/images/minecraft-recreation/4.png',
+        '/images/minecraft-recreation/5.png'
+      ],
+      body: [
+        'Recreation of Mojang\'s Minecraft with OpenGL C++.',
+        'Created during my first exposure to OpenGL in UNSW.',
+        'Features Block placing, shadows, planar reflections, billboard particles, collision detection...',
+        'Features several post processing features such as kernel manipulation and HDR rendering that auto-adjusts to the game\'s environment brightness levels.',
+      ],
+      buttons: [
+        {
+          text: 'View Project',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            navigate('minecraft-recreation')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/spotter', '_blank').focus();
+          }
         }
       ]
     },

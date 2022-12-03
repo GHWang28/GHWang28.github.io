@@ -150,7 +150,7 @@ function CardProject ({
           sx={{
             opacity: (imageIndex === index) ? '1.0' : '0.0',
             transition: 'opacity 0.5s ease-in-out',
-            translate: '0% -9%',
+            translate: '15% -10%',
             position: 'absolute',
             top: '0%',
             right: '0%',

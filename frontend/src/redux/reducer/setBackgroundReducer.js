@@ -1,7 +1,7 @@
 import config from '../../config.json'
 
 const setBackgroundReducer = (
-  state = Number(localStorage.getItem('background') || 0),
+  state = Number(localStorage.getItem('background') || 1),
   action
 ) => {
   switch (action.type) {

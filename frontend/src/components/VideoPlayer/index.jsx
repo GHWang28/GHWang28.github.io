@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getYouTubeThumbnailImg, trimYouTubeThumbnailURL } from '../../helpers';
+import { getYouTubeThumbnailImg, convertToEmbedYoutubeVid } from '../../helpers';
 import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 
@@ -31,7 +31,7 @@ function VideoPlayer (props) {
         <iframe
           width={width}
           height={height}
-          src={trimYouTubeThumbnailURL(props.url) + '?start=1&autoplay=1&enablejsapi=1'}
+          src={convertToEmbedYoutubeVid(props.url) + '?start=1&autoplay=1&enablejsapi=1'}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

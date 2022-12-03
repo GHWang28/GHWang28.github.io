@@ -21,11 +21,9 @@ export function ISOToDateStr (iso) {
  * @param {string} url
  * @returns {string}
  */
- export function trimYouTubeThumbnailURL (url) {
-  if (!url.includes(config.VID_PREFIX)) return url;
-  if (url === '' || url === ' ') return '';
-
-  return url.split(config.VID_PREFIX).slice(-1)[0];
+ export function convertToEmbedYoutubeVid (url) {
+  const id = getVideoId(url).id;
+  return `https://www.youtube.com/embed/${id}`;
 }
 
 /**
@@ -43,7 +41,7 @@ export function convertIdToYouTubeURL (vid) {
  * @returns {string}
  */
 export function getYouTubeThumbnailImg (url) {
-  const id = getVideoId(trimYouTubeThumbnailURL(url)).id;
+  const id = getVideoId(url).id;
   if (!id) return url;
   return `https://img.youtube.com/vi/${id}/0.jpg`;
 }
@@ -55,7 +53,7 @@ export function getYouTubeThumbnailImg (url) {
  * @returns
  */
 export function isYouTubeURL (url) {
-  return url.startsWith(config.VID_PREFIX);
+  return (getVideoId(url).service === 'youtube')
 }
 
 export async function cacheImages (arrayOfSrcs) {

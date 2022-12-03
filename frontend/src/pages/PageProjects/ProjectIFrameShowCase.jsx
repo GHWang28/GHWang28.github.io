@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 
-function ProjectIFrameShowCase () {
+export default function ProjectIFrameShowCase () {
   const projectName = useParams().project;
   const [loaded, setLoaded] = useState(false);
 
@@ -48,4 +48,3 @@ function ProjectIFrameShowCase () {
   )
 }
 
-export default ProjectIFrameShowCase;
