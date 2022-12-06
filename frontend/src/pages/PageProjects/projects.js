@@ -152,7 +152,8 @@ const generateProjects = (navigate) => {
         '/images/covers/xny.png'
       ],
       body: [
-        'Small puzzle game created using the RPG Maker MV Engine.'
+        'Small puzzle game created with the RPG Maker MV Engine.',
+        'Single player game.'
       ],
       buttons: [
         {

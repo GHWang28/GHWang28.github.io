@@ -49,6 +49,11 @@ export default function ProjectMinecraft () {
         <Box component='span' sx={{ color: 'red.main' }}>{'Mojang Studios'}</Box>
         {'.'}
       </BoxInfo>
+      <BoxInfo>
+        {'Due to '}
+        <Box component='span' sx={{ color: 'yellow.main' }}>{'University'}</Box>
+        {' Policies, the source code for this project can not be publicly shared.'} 
+      </BoxInfo>
       {/*
       <Typography mt={5} mb={4} variant='h3' fontWeight='bold' align='center'>
         {'Download'}
