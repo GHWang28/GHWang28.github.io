@@ -1,5 +1,6 @@
 import './fonts/font.css'
 import './App.css';
+import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';

@@ -1,31 +1,17 @@
-import React, { Fragment } from "react";
-import { Box, Typography } from "@mui/material";
-import ButtonGoBack from "../../components/ButtonGoBack";
-import ImageGallery from "../../components/ImageGallery";
-import Sparklez from "../../components/Sparklez";
-import { animated, useSpring } from "react-spring";
+import React, { Fragment } from 'react';
+import { Box, Link, Typography } from '@mui/material';
+import ButtonDownload from '../../components/ButtonDownload';
+import ButtonGoBack from '../../components/ButtonGoBack';
+import ImageGallery from '../../components/ImageGallery';
+import AnimatedTitle from './AnimatedTitle';
+import BoxInfo from '../../components/BoxInfo';
 
 export default function ProjectMinecraft () {
-  const AnimatedBox = animated(Box);
+
   return (
     <Fragment>
       <ButtonGoBack />
-      <AnimatedBox
-        component='section'
-        mt={1}
-        mb={4}
-        sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-        style={useSpring({
-          from: { opacity: 0 },
-          to: { opacity: 1 },
-        })}
-      >
-        <Sparklez frequency={2} sizeRange={[20, 35]}>
-          <Typography className={'gradient-text'} variant='h2' fontWeight='bold' align='center'>
-            {'Minecraft Recreation'}
-          </Typography>
-        </Sparklez>
-      </AnimatedBox>
+      <AnimatedTitle title={'Minecraft Recreation'} />
       <ImageGallery
         imgArray={[
           'https://youtu.be/xIFnil_tP2s',
@@ -37,6 +23,52 @@ export default function ProjectMinecraft () {
           '/images/minecraft-recreation/5.png'
         ]}
       />
+      <BoxInfo
+        title='Project Description'
+      >
+        <Link href='https://www.minecraft.net/' target='_blank'>{'Minecraft'}</Link>
+        {
+          ` is a game developed by `
+        }
+        <Box component='span' sx={{ color: 'red.main' }}>{'Mojang Studios'}</Box>
+        {
+          `. This University project created by Gordon Wang for `
+        }
+        <Box component='span' sx={{ color: 'yellow.main' }}>{'UNSW'}</Box>
+        {
+          `'s COMP3421 aims to recreate the basic gameplay mechanics of Minecraft's
+          creative mode. It aims to retain the game's original charm while adding on other features
+          such as Shadow mapping. This project was written in C++ and uses the `
+        }
+        <Link href='https://www.opengl.org/' target='_blank'>
+          {'Open Graphics Library'}
+        </Link>
+        {
+          `. All textures used in the projects, aside from the "Mirror Block"
+          and "Marccoin Block" rightfully belongs to `
+        }
+        <Box component='span' sx={{ color: 'red.main' }}>{'Mojang Studios'}</Box>
+        {'.'}
+      </BoxInfo>
+      <Typography mt={5} mb={4} variant='h3' fontWeight='bold' align='center'>
+        {'Download'}
+      </Typography>
+      <BoxInfo
+        footer={
+          <ButtonDownload
+            title={'Download MinecraftRecreation.exe'}
+            downloadLink={'/downloads/MinecraftRecreation.zip'}
+            fileName={'MinecraftRecreation.zip'}
+          />
+        }
+      >
+        {`As per `}
+        <Box component='span' sx={{ color: 'yellow.main' }}>{'UNSW'}</Box>
+        {
+          ` Policy, the source code for this project can not be publicly shared.
+          However, you may download the production build of the project here.`
+        } 
+      </BoxInfo>
     </Fragment>
   )
 }

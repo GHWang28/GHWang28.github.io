@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Box, Button, IconButton, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Chip, IconButton, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import ChipContainer from '../ChipContainer';
+import BootstrapTooltip from '../BootstrapTooltip';
+import PropTypes from 'prop-types';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
@@ -70,24 +72,42 @@ function CardProject ({
         }}
       >
         <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
-          <TransluscentTypography variant='h4'>
-            {title}
-          </TransluscentTypography>
-          {(date) && (
-            <TransluscentTypography
-              variant='subtitle1'
-              sx={{ opacity: '0.75', width: 'fit-content' }}
-            >
-              {date}
+          <BootstrapTooltip title='Title' placement='left'>
+            <TransluscentTypography variant='h4'>
+              {title}
             </TransluscentTypography>
-          )}
+          </BootstrapTooltip>
           {(type) && (
-            <TransluscentTypography
-              variant='subtitle2'
-              sx={{ opacity: '0.75', width: 'fit-content' }}
-            >
-              {`Type: ${type}`}
-            </TransluscentTypography>
+            <BootstrapTooltip title='Tags' placement='left'>
+              <Box
+                sx={{
+                  display: 'flex',
+                }}
+              >
+                <ChipContainer >
+                  {type.sort().map((label, index) => (
+                    <Chip
+                      sx={{
+                        mr: (index === type.length - 1) ? 0 : 1,
+                        border: '1px solid whitesmoke'
+                      }}
+                      key={`label-${index}`}
+                      label={label}
+                    />
+                  ))}
+                </ChipContainer>
+              </Box>
+            </BootstrapTooltip>
+          )}
+          {(date) && (
+            <BootstrapTooltip title='Date' placement='left'>
+              <TransluscentTypography
+                variant='subtitle1'
+                sx={{ opacity: '0.75', width: 'fit-content' }}
+              >
+                {date}
+              </TransluscentTypography>
+            </BootstrapTooltip>
           )}
           <Box component='hr' />
           {(body) && (
@@ -110,33 +130,35 @@ function CardProject ({
           )}
         </Box>
         {buttons.map((button, buttonIndex) => (
-          (smallMq) ? (
-            <Button
-              title={button.text}
-              key={`c${index}-b${buttonIndex}]`}
-              startIcon={button.icon}
-              variant='outlined'
-              onClick={button.onClick}
-              sx={{ mr: 1 }}
-            >
-              {button.text}
-            </Button>
-          ) : (
-            <IconButton
-              key={`c${index}-b${buttonIndex}]`}
-              title={button.text}
-              onClick={button.onClick}
-              sx={{
-                mr: 1,
-                color: 'primary.main',
-                borderColor: 'primary.main',
-                borderStyle: 'solid',
-                borderWidth: '1px'
-              }}
-            >
-              {button.icon}
-            </IconButton>
-          )
+          <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={700} title={button?.disabled || button.text}>
+            <span>
+              {(smallMq) ? (
+                <Button
+                  startIcon={button.icon}
+                  variant='outlined'
+                  onClick={button?.onClick}
+                  sx={{ mr: 1 }}
+                  disabled={(button?.disabled) !== undefined}
+                >
+                  {button.text}
+                </Button>
+              ) : (
+                <IconButton
+                  onClick={button.onClick}
+                  disabled={button?.disabled}
+                  sx={{
+                    mr: 1,
+                    color: 'primary.main',
+                    borderColor: (button?.disabled) ? 'gray' : 'primary.main',
+                    borderStyle: 'solid',
+                    borderWidth: '1px'
+                  }}
+                >
+                  {button.icon}
+                </IconButton>
+              )}
+            </span>
+          </BootstrapTooltip>
         ))}
       </Box>
       {/* Background Image */}
@@ -168,7 +190,7 @@ CardProject.propTypes = {
   imgs: PropTypes.array.isRequired,
   index: PropTypes.number,
   date: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.arrayOf(PropTypes.string),
   body: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -176,7 +198,8 @@ CardProject.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string.isRequired,
     icon: PropTypes.node.isRequired,
-    onClick: PropTypes.func.isRequired
+    disabled: PropTypes.string,
+    onClick: PropTypes.func
   })),
 };
 

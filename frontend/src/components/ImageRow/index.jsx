@@ -3,6 +3,9 @@ import React, { Fragment, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ModalImage from '../ModalImage';
 import PropTypes from 'prop-types';
+import { getLowResImg } from '../../helpers';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageLoader from '../ImageLoader';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
@@ -12,34 +15,27 @@ function ImageRow ({ src, title, body, rowNo }) {
   const isOdd = (rowNo % 2);
 
   const imgCol = (
-    <Grid item xs={12} md={8.2}>
+    <Grid item xs={12} md={9}>
       <Box
-        role='button'
         onMouseEnter={() => { setHover(true) }}
         onMouseLeave={() => { setHover(false) }}
         onClick={() => { setOpenModal(true) }}
-        sx={{ display: 'flex', justifyContent: 'center', cursor: 'pointer' }}
+        sx={{
+          cursor: 'pointer',
+          transition: 'scale 0.2s ease-in-out',
+          scale: (hover) ? '1.025' : '1',
+        }}
       >
-        <Box
-          component='img'
-          width='100%'
-          maxWidth='1500px'
+        <ImageLoader
           src={src}
           alt={`${title}-artwork`}
-          sx={{
-            pointerEvents: 'none',
-            borderRadius: '15px',
-            border: '3px solid whitesmoke',
-            transition: 'scale 0.2s ease-in-out',
-            scale: (hover) ? '1.025' : '1',
-          }}
         />
       </Box>
     </Grid>
   )
   const textCol = (
-    <Grid item xs={12} md={3.8} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Box p={(mediumMq) ? 2 : 0.1} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
+    <Grid item xs={12} md={3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box p={(mediumMq) ? 2 : 0} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
         <Typography variant={'h5'} align='center'>
           <u>{title}</u>
         </Typography>

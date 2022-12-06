@@ -56,16 +56,16 @@ export function isYouTubeURL (url) {
   return (getVideoId(url).service === 'youtube')
 }
 
-export async function cacheImages (arrayOfSrcs) {
-  const promises = await arrayOfSrcs.map((src) => (
-    new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = resolve();
-      img.onerror = reject();
-    })
-  ));
+export function getLowResImg (filename) {
+  const extensionIndex = getFileExtension(filename).index - 1;
+  return filename.slice(0, extensionIndex) + "_lowres" + filename.slice(extensionIndex);
+}
 
-  await Promise.all(promises);
-
+/**
+ * https://stackoverflow.com/questions/190852/how-can-i-get-file-extensions-with-javascript
+ * @param {String} filename 
+ * @returns {Array}
+ */
+export function getFileExtension (filename) {
+  return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined
 }

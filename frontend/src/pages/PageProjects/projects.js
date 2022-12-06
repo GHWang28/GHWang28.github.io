@@ -11,7 +11,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Earth\'s Ephemeris',
       date: '(25/12/2018) → (28/08/2019)',
-      type: 'Artwork',
+      type: ['Artwork'],
       imgs: [
         '/images/hscbow/homesweethome.jpg',
         '/images/hscbow/leaving.jpg',
@@ -55,7 +55,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Minecraft Recreation',
       date: '(10/12/2021)',
-      type: 'University Project + Game',
+      type: ['University Project', 'Game'],
       imgs: [
         '/images/minecraft-recreation/1.png',
         '/images/minecraft-recreation/2.png',
@@ -80,16 +80,14 @@ const generateProjects = (navigate) => {
         {
           text: 'View Code',
           icon: <CodeIcon />,
-          onClick: () => {
-            window.open('https://github.com/GHWang28/spotter', '_blank').focus();
-          }
+          disabled: 'Source Code can not be publicly shared.'
         }
       ]
     },
     {
       title: 'Tic-Tac-Toe: Capture',
       date: '(28/11/2022)',
-      type: 'Game',
+      type: ['Game'],
       imgs: [
         '/images/covers/tic-tac-toe-capture.jpg'
       ],
@@ -119,7 +117,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Spotter',
       date: '(30/11/2022)',
-      type: 'Game',
+      type: ['Game'],
       imgs: [
         '/images/covers/spotter.jpg'
       ],
