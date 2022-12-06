@@ -4,7 +4,7 @@ import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
 import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
@@ -13,7 +13,9 @@ function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+  const location = useLocation();
 
+  console.log(location);
   const calcMarginX = () => {
     if (largeMq) return 24;
     if (mediumMq) return 16;
@@ -28,18 +30,14 @@ function App() {
         sx={{
           color: 'whitesmoke',
           px: calcMarginX(),
-          flexGrow: 1,
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          pb: (!smallMq) ? 10 : 0,
-          pt: '64px'
+          pb: (location.pathname.includes('/projects/showcase')) ? 0 : 5
         }}
       >
         <Routes>
           <Route path='/' element={<PageLanding />}/>
           <Route path='/projects/*' element={<PageProjects />}/>
           <Route path='/about' element={<></>}/>
-        </Routes> 
+        </Routes>
       </Box>
       <Background />
     </Box>

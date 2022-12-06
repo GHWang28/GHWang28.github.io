@@ -38,8 +38,7 @@ function PageLanding () {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%',
-        overflow: 'visible'
+        height: 'calc(100vh - 64px)',
       }}
     >
       <Box sx={{ position: 'relative' }} >

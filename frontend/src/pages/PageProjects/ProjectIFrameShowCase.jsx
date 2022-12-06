@@ -16,7 +16,7 @@ export default function ProjectIFrameShowCase () {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: 'calc(100vh - 64px)',
           display: 'flex',
           justifyContent: 'center',
           position: 'relative',
