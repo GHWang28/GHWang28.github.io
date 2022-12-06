@@ -30,7 +30,7 @@ function Navbar () {
     }
   ]
   return (
-    <AnimatedAppBar style={animationProps} position='static'>
+    <AnimatedAppBar style={animationProps} position='fixed'>
       <Toolbar>
         <Box
           m={1}

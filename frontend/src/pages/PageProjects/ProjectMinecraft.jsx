@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import { Box, Link, Typography } from '@mui/material';
-import ButtonDownload from '../../components/ButtonDownload';
+import { Box, Link } from '@mui/material';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import ImageGallery from '../../components/ImageGallery';
 import AnimatedTitle from './AnimatedTitle';
@@ -50,6 +49,7 @@ export default function ProjectMinecraft () {
         <Box component='span' sx={{ color: 'red.main' }}>{'Mojang Studios'}</Box>
         {'.'}
       </BoxInfo>
+      {/*
       <Typography mt={5} mb={4} variant='h3' fontWeight='bold' align='center'>
         {'Download'}
       </Typography>
@@ -70,6 +70,7 @@ export default function ProjectMinecraft () {
         } 
         <Box component='span' sx={{ color: 'red.main' }}>{'(.exe file is not certified nor signed)'}</Box>
       </BoxInfo>
+      */}
     </Fragment>
   )
 }

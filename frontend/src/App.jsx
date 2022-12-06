@@ -22,10 +22,8 @@ function App() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }} >
-      <Box sx={{ flexGrow: 0 }}>
-        <Navbar />
-      </Box>
+    <Box>
+      <Navbar />
       <Box
         sx={{
           color: 'whitesmoke',
@@ -33,17 +31,19 @@ function App() {
           flexGrow: 1,
           overflowY: 'auto',
           overflowX: 'hidden',
-          pb: (!smallMq) ? 10 : 0
+          pb: (!smallMq) ? 10 : 0,
+          pt: '64px'
         }}
       >
         <Routes>
           <Route path='/' element={<PageLanding />}/>
           <Route path='/projects/*' element={<PageProjects />}/>
           <Route path='/about' element={<></>}/>
-        </Routes>
+        </Routes> 
       </Box>
       <Background />
     </Box>
+    
   );
 }
 
