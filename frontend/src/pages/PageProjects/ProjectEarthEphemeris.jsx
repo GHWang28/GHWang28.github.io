@@ -42,7 +42,7 @@ function ProjectEarthEphemeris () {
             p={3}
             sx={{
               position: 'sticky',
-              top: '30px',
+              top: '94px',
               borderRadius: '15px',
               border: '3px solid whitesmoke',
               bgcolor: 'darkgray.main',
