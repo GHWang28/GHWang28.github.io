@@ -66,8 +66,9 @@ export default function ProjectMinecraft () {
         <Box component='span' sx={{ color: 'yellow.main' }}>{'UNSW'}</Box>
         {
           ` Policy, the source code for this project can not be publicly shared.
-          However, you may download the production build of the project here.`
+          However, you may download the production build of the project here. `
         } 
+        <Box component='span' sx={{ color: 'red.main' }}>{'(.exe file is not certified nor signed)'}</Box>
       </BoxInfo>
     </Fragment>
   )
