@@ -13,7 +13,7 @@ function ImageRow ({ src, title, body, rowNo }) {
   const isOdd = (rowNo % 2);
 
   const imgCol = (
-    <Grid item xs={12} md={9}>
+    <Grid item xs={12} md={8.7}>
       <Box
         onMouseEnter={() => { setHover(true) }}
         onMouseLeave={() => { setHover(false) }}
@@ -32,7 +32,7 @@ function ImageRow ({ src, title, body, rowNo }) {
     </Grid>
   )
   const textCol = (
-    <Grid item xs={12} md={3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <Grid item xs={12} md={3.3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box p={(mediumMq) ? 2 : 0} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
         <Typography variant={'h5'} align='center'>
           <u>{title}</u>
