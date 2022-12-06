@@ -3,8 +3,6 @@ import React, { Fragment, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ModalImage from '../ModalImage';
 import PropTypes from 'prop-types';
-import { getLowResImg } from '../../helpers';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageLoader from '../ImageLoader';
 
 function ImageRow ({ src, title, body, rowNo }) {
