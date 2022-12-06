@@ -11,7 +11,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Earth\'s Ephemeris',
       date: '(25/12/2018) → (28/08/2019)',
-      type: ['Artwork'],
+      type: ['Artwork', 'High School Project'],
       imgs: [
         '/images/hscbow/homesweethome.jpg',
         '/images/hscbow/leaving.jpg',
@@ -87,7 +87,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Tic-Tac-Toe: Capture',
       date: '(28/11/2022)',
-      type: ['Game'],
+      type: ['Game', 'Personal Project'],
       imgs: [
         '/images/covers/tic-tac-toe-capture.jpg'
       ],
@@ -117,7 +117,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Spotter',
       date: '(30/11/2022)',
-      type: ['Game'],
+      type: ['Game', 'Personal Project'],
       imgs: [
         '/images/covers/spotter.jpg'
       ],
