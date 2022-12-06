@@ -15,7 +15,6 @@ function App() {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const location = useLocation();
 
-  console.log(location);
   const calcMarginX = () => {
     if (largeMq) return 24;
     if (mediumMq) return 16;
@@ -30,7 +29,7 @@ function App() {
         sx={{
           color: 'whitesmoke',
           px: calcMarginX(),
-          pb: (location.pathname.includes('/projects/showcase')) ? 0 : 5
+          pb: (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5
         }}
       >
         <Routes>

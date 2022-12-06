@@ -144,6 +144,33 @@ const generateProjects = (navigate) => {
         }
       ]
     },
+    {
+      title: 'Xeno and Yova',
+      date: '(21/9/2019)',
+      type: ['Game', 'High School Project'],
+      imgs: [
+        '/images/covers/xny.png'
+      ],
+      body: [
+        'Small puzzle game created using the RPG Maker MV Engine.'
+      ],
+      buttons: [
+        {
+          text: 'Play Game',
+          icon: <GameControllerIcon />,
+          onClick: () => {
+            navigate('showcase/Xeno-and-Yova')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/xeno-and-yova', '_blank').focus();
+          }
+        }
+      ]
+    },
   ]
 } 
 

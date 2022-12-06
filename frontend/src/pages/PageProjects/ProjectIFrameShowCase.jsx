@@ -5,9 +5,13 @@ import ButtonGoBack from '../../components/ButtonGoBack';
 
 export default function ProjectIFrameShowCase () {
   const projectName = useParams().project;
-  const [loaded, setLoaded] = useState(false);
+  const isXenoYova = (projectName.toLowerCase() === 'xeno-and-yova');
 
+  const [loaded, setLoaded] = useState(false);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+
   return (
     <Fragment>
       <Box mb={2} mt={-1} sx={{ position: (smallMq) ? 'absolute' : 'relative', left: (smallMq) ? '2%' : '' }}>
@@ -19,16 +23,22 @@ export default function ProjectIFrameShowCase () {
           height: 'calc(100vh - 64px)',
           display: 'flex',
           justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
           position: 'relative',
         }}
       >
         <Box
+          id={'project-showcase'}
           component='iframe'
-          sx={{ opacity: (loaded) ? '1.0' : '0.0' }}
           onLoad={() => { setLoaded(true) }}
           title={'project-showcase'}
-          width={'100%'}
-          height={'99%'}
+          sx={{
+            scale: (isXenoYova  && largeMq) ? '140%' : ((isXenoYova  && mediumMq) ? '120%' : (((isXenoYova  && smallMq) ? '110%' : '100%'))),
+            opacity: (loaded) ? '1.0' : '0.0'
+          }}
+          width={(isXenoYova) ? 'min(714px, 100vw)' : '100%'}
+          height={(isXenoYova) ? '546px' : '99%'}
           src={`https://ghwang28.github.io/${projectName}`}
         />
         {(!loaded) && (

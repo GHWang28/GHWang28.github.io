@@ -50,7 +50,7 @@ const darkTheme = createTheme({
     },
     darkgray: {
       main: "rgb(40,40,40)",
-      translucent: "rgba(40,40,40,0.5)",
+      translucent: "rgba(40,40,40,0.7)",
       transparent: "rgba(40,40,40,0.2)"
     },
     gray: {

@@ -11,7 +11,7 @@ const TransluscentTypography = styled(Typography)(() => {
     borderRadius: '15px',
     margin: '5px 0px',
     padding: '0px 10px',
-    backgroundColor: theme.palette.darkgray.main
+    backgroundColor: theme.palette.darkgray.translucent
   }
 });
 
@@ -55,7 +55,7 @@ function CardProject ({
         boxShadow: (hover) ? '0 4px 32px 0 rgba(0, 0, 0, 0.8)' : '0 4px 16px 0 rgba(0, 0, 0, 0.8)',
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((index % 2) ? '200px' : '-200px'),
-        transition: 'scale 0.4s ease-in-out, boxShadow 0.4s ease-in-out, translate 0.4s ease-in-out, opacity 0.4s ease-in-out',
+        transition: 'scale 0.2s ease-in-out, boxShadow 0.2s ease-in-out, translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
         borderRadius: '15px',
         height: 'fit-content',
         overflow: 'hidden',
@@ -68,7 +68,7 @@ function CardProject ({
           p: 2,
           width: 'inherit',
           height: 'inherit',
-          backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 100%)` 
+          backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 60%)` 
         }}
       >
         <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
@@ -116,7 +116,7 @@ function CardProject ({
               sx={{
                 py: 3,
                 borderRadius: '15px',
-                backgroundColor: theme.palette.darkgray.main
+                backgroundColor: theme.palette.darkgray.translucent
               }}
             >
               {body.map((dotpoint, index) => (
@@ -176,7 +176,6 @@ function CardProject ({
             position: 'absolute',
             top: '0%',
             right: '0%',
-            objectFit: 'cover',
             zIndex: -1
           }}
         />
