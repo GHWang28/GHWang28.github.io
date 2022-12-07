@@ -3,7 +3,7 @@ import packageJson from '../../../package.json';
 import { Box, Collapse, IconButton, Typography } from "@mui/material";
 import GitInfo from 'react-git-info/macro'
 import { ISOToDateStr } from '../../helpers';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import CodeIcon from '@mui/icons-material/Code';
 import { useSpring, animated } from 'react-spring';
 import BootstrapTooltip from '../BootstrapTooltip';
 import Ticker from '../Ticker';
@@ -51,7 +51,7 @@ function VersionNumber () {
                 href={'https://github.com/GHWang28/GHWang28.github.io'}
                 target='_blank'
               >
-                <GitHubIcon />
+                <CodeIcon />
               </IconButton>
             </BootstrapTooltip>
             <Ticker width='40vw'>
