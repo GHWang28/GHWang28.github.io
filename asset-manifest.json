@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.b031480e.css",
-    "main.js": "/static/js/main.5cefb05b.js",
+    "main.css": "/static/css/main.75bbb2fd.css",
+    "main.js": "/static/js/main.b8da038d.js",
     "static/js/787.68a9c807.chunk.js": "/static/js/787.68a9c807.chunk.js",
     "static/media/hey_august-webfont.woff": "/static/media/hey_august-webfont.4a8137b5d415d2d3f24a.woff",
     "static/media/hey_august-webfont.woff2": "/static/media/hey_august-webfont.39c476ecff5a58ba33f8.woff2",
     "static/media/gordon-handwriting-webfont.woff": "/static/media/gordon-handwriting-webfont.006cf372556536e13144.woff",
     "static/media/gordon-handwriting-webfont.woff2": "/static/media/gordon-handwriting-webfont.2d6a3d8744b5135fd4e3.woff2",
     "index.html": "/index.html",
-    "main.b031480e.css.map": "/static/css/main.b031480e.css.map",
-    "main.5cefb05b.js.map": "/static/js/main.5cefb05b.js.map",
+    "main.75bbb2fd.css.map": "/static/css/main.75bbb2fd.css.map",
+    "main.b8da038d.js.map": "/static/js/main.b8da038d.js.map",
     "787.68a9c807.chunk.js.map": "/static/js/787.68a9c807.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b031480e.css",
-    "static/js/main.5cefb05b.js"
+    "static/css/main.75bbb2fd.css",
+    "static/js/main.b8da038d.js"
   ]
 }
