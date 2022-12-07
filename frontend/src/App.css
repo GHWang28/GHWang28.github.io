@@ -5,10 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
-  width: 100vw;
   overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: 'none';
+}
+
+html {
   background-image: radial-gradient(rgb(44, 49, 58), rgb(29, 32, 37));
+  overscroll-behavior-y: 'none';
 }
 
 code {

@@ -7,12 +7,17 @@ function NavbarButton (props) {
   const [hover, setHover] = useState(false);
   const prunedProps = {...props};
   delete prunedProps.label;
+  delete prunedProps.onClick;
 
   return (
     <Button
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
       {...prunedProps}
+      onClick={() => {
+        setHover(false);
+        props.onClick();
+      }}
       sx={{ fontWeight: 'bold' }}
     >
       {(hover) ? (

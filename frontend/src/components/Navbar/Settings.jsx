@@ -6,7 +6,7 @@ import WavesIcon from '@mui/icons-material/Waves';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBackground, setToggleSplash } from '../../redux/actions';
-import DropDownButton from '../ButtonDropDown';
+import ButtonDropDown from '../ButtonDropDown';
 
 function Settings () {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function Settings () {
     },
   ];
   return (
-    <DropDownButton icon={<SettingsIcon />}>
+    <ButtonDropDown icon={<SettingsIcon />}>
       <Typography align='center' m={1} sx={{ width: '220px' }}>
         Settings
       </Typography>
@@ -48,7 +48,7 @@ function Settings () {
         <ListItemIcon><AbcIcon /></ListItemIcon>
         <Typography>{`Splash Text ${(splashState) ? 'enabled': 'disabled'}`}</Typography>
       </MenuItem>
-    </DropDownButton>
+    </ButtonDropDown>
   )
 }
 

@@ -25,6 +25,7 @@ function CardProject ({
   buttons = []
 }) {
   const [ref, inView] = useInView();
+  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -59,7 +60,7 @@ function CardProject ({
         borderRadius: '15px',
         height: 'fit-content',
         overflow: 'hidden',
-        mx: (largeMq) ? 10 : ((mediumMq) ? 5 : 0),
+        mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
         mb: (mediumMq) ? 5 : 2
       }}
     >
@@ -130,7 +131,7 @@ function CardProject ({
           )}
         </Box>
         {buttons.map((button, buttonIndex) => (
-          <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={700} title={button?.disabled || button.text}>
+          <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
             <span>
               {(smallMq) ? (
                 <Button
@@ -170,12 +171,14 @@ function CardProject ({
           title={`Background Image #${index}`}
           src={img}
           sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
             opacity: (imageIndex === index) ? '1.0' : '0.0',
             transition: 'opacity 0.5s ease-in-out',
-            translate: '15% -10%',
-            position: 'absolute',
-            top: '0%',
-            right: '0%',
+            translate: '0% -10%',
+            minWidth: '100%',
+            minHeight: '100%',
             zIndex: -1
           }}
         />

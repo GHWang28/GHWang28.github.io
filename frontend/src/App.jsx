@@ -29,7 +29,8 @@ function App() {
         sx={{
           color: 'whitesmoke',
           px: calcMarginX(),
-          pb: (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5
+          pb: (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5,
+          overflowX: 'hidden'
         }}
       >
         <Routes>

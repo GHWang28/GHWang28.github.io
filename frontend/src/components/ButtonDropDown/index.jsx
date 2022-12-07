@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  * The children should be the menu. Give tooltip a valid string to have a tooltip
  * wrapped around the button.
  */
-function DropDownButton ({
+function ButtonDropDown ({
   id,
   children,
   icon,
@@ -32,7 +32,10 @@ function DropDownButton ({
       name={name}
       title={title}
       aria-label={title}
-      sx={sx}
+      sx={{
+        ...sx,
+        border: '2px solid whitesmoke'
+      }}
       id={id}
       aria-controls={dropDownListingMenu ? 'dropdown-menu' : undefined}
       aria-haspopup="true"
@@ -45,7 +48,6 @@ function DropDownButton ({
 
   const dropDownMenu = (
     <Menu
-      disableScrollLock
       anchorEl={dropDownListingMenu}
       open={Boolean(dropDownListingMenu)}
       onClose={hideListingMenuFn}
@@ -82,7 +84,7 @@ function DropDownButton ({
   }
 }
 
-DropDownButton.propTypes = {
+ButtonDropDown.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
@@ -96,4 +98,4 @@ DropDownButton.propTypes = {
   closeOnClick: PropTypes.bool
 };
 
-export default DropDownButton;
+export default ButtonDropDown;
