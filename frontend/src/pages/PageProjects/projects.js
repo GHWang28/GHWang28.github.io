@@ -7,7 +7,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const generateProjects = (navigate) => {
-  return [
+  const projects = [
     {
       title: 'Earth\'s Ephemeris',
       date: '(25/12/2018) → (28/08/2019)',
@@ -173,6 +173,15 @@ const generateProjects = (navigate) => {
       ]
     },
   ]
+
+  return projects.sort((a, b) => {
+    if ( a.title < b.title ){
+      return -1;
+    } else if ( a.title > b.title ){
+      return 1;
+    }
+    return 0;
+  });
 } 
 
 export default generateProjects;

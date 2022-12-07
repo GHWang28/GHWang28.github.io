@@ -26,11 +26,12 @@ function App() {
     <Box>
       <Navbar />
       <Box
+        name='sd'
         sx={{
           color: 'whitesmoke',
           px: calcMarginX(),
           pb: (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5,
-          overflowX: 'hidden'
+          overflowX: 'clip',
         }}
       >
         <Routes>

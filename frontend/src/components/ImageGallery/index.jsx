@@ -68,7 +68,6 @@ function ImageGallery ({ imgArray = [] }) {
           border: '2px solid whitesmoke',
           borderRadius: '8px',
           overflow: 'hidden',
-          marginX: '15%'
         }}
       >
         <Grid container sx={{ height: galleryHeight(), overflow: 'hidden' }}>

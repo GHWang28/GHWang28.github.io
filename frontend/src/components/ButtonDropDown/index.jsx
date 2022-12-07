@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
-import { IconButton, Menu } from "@mui/material";
-import BootstrapTooltip from "../BootstrapTooltip";
+import React, { Fragment, useState } from 'react';
+import { IconButton, Menu } from '@mui/material';
+import BootstrapTooltip from '../BootstrapTooltip';
 import PropTypes from 'prop-types';
 
 /**
@@ -38,7 +38,7 @@ function ButtonDropDown ({
       }}
       id={id}
       aria-controls={dropDownListingMenu ? 'dropdown-menu' : undefined}
-      aria-haspopup="true"
+      aria-haspopup='true'
       aria-expanded={dropDownListingMenu ? 'true' : undefined}
       onClick={dropListingMenuFn}
     >
@@ -48,6 +48,7 @@ function ButtonDropDown ({
 
   const dropDownMenu = (
     <Menu
+      disableScrollLock
       anchorEl={dropDownListingMenu}
       open={Boolean(dropDownListingMenu)}
       onClose={hideListingMenuFn}

@@ -4,6 +4,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AbcIcon from '@mui/icons-material/Abc';
 import WavesIcon from '@mui/icons-material/Waves';
 import CancelIcon from '@mui/icons-material/Cancel';
+import SquareIcon from '@mui/icons-material/Square';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBackground, setToggleSplash } from '../../redux/actions';
 import ButtonDropDown from '../ButtonDropDown';
@@ -20,6 +21,10 @@ function Settings () {
     {
       icon: <WavesIcon />,
       label: 'Waves'
+    },
+    {
+      icon: <SquareIcon />,
+      label: 'Blocks'
     },
   ];
   return (

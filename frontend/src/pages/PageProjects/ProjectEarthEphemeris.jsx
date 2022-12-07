@@ -61,7 +61,6 @@ function ProjectEarthEphemeris () {
             </Typography>
           </AnimatedBox>
         </Grid>
-
       </Grid>
       <Box component='hr' m={4} />
 
@@ -81,6 +80,8 @@ function ProjectEarthEphemeris () {
           imgArray={[
             '/images/newsletter/nsw-art-gallery.jpg',
             '/images/newsletter/cabramatta-article.jpg',
+            '/images/sketch/ryoko.jpg',
+            '/images/sketch/ct320.jpg',
           ]}
         />
       </Box>
