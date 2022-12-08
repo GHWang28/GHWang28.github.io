@@ -61,7 +61,8 @@ function CardProject ({
         height: 'fit-content',
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
-        mb: (mediumMq) ? 5 : 2
+        mb: (mediumMq) ? 5 : 2,
+        bgcolor: 'black'
       }}
     >
       <Box
@@ -167,13 +168,14 @@ function CardProject ({
           src={img}
           sx={{
             position: 'absolute',
-            top: 0,
-            left: 0,
+            top: '0px',
+            right: '0px',
+            width: '100%',
+            height: '100%',
             opacity: (imageIndex === index) ? '1.0' : '0.0',
             transition: 'opacity 0.5s ease-in-out',
-            minWidth: '100%',
-            minHeight: '100%',
-            zIndex: -1
+            objectFit: 'cover',
+            zIndex: -1,
           }}
         />
       ))}
