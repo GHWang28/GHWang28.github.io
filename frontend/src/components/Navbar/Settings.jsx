@@ -28,17 +28,13 @@ function Settings () {
       label: 'Blocks x16'
     },
     {
-      icon: <SquareIcon sx={{ scale: '0.666' }}/>,
+      icon: <SquareIcon sx={{ scale: '0.5' }}/>,
       label: 'Blocks x32'
-    },
-    {
-      icon: <SquareIcon sx={{ scale: '0.333' }}/>,
-      label: 'Blocks x64'
     },
   ];
   return (
     <ButtonDropDown icon={<SettingsIcon />}>
-      <Typography align='center' m={1} sx={{ width: '220px' }}>
+      <Typography align='center' m={1} sx={{ width: '250px' }}>
         Settings
       </Typography>
       <hr />

@@ -11,7 +11,6 @@ function Background () {
     case 1: return <BackgroundWave />;
     case 2: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />
     case 3: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />
-    case 4: return <BackgroundBlock dim={config.BLOCK_BG_DIM_X_LARGE} />
     default: return null;
   }
 }

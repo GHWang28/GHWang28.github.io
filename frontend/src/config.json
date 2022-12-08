@@ -1,8 +1,7 @@
 {
-    "TOTAL_BGS": 5,
+    "TOTAL_BGS": 4,
     "BLOCK_BG_DIM_SMALL": 16,
     "BLOCK_BG_DIM_LARGE": 32,
-    "BLOCK_BG_DIM_X_LARGE": 64,
     "SPLASH_TEXT": [
         "Welcome!",
         "Aloha!",
@@ -24,7 +23,8 @@
         "A randomly picked message",
         "Going even further beyond!!",
         "Deja vu",
-        "𝓕𝓪𝓷𝓬𝓬𝔂𝔂"
+        "𝓕𝓪𝓷𝓬𝓬𝔂𝔂",
+        "Reduce, reuse and recycle!"
     ],
     "VID_PREFIX": "%@%VIDEO%@%"
 }

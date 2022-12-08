@@ -9,8 +9,6 @@ export default function ProjectIFrameShowCase () {
 
   const [loaded, setLoaded] = useState(false);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   return (
     <Fragment>
@@ -34,7 +32,6 @@ export default function ProjectIFrameShowCase () {
           onLoad={() => { setLoaded(true) }}
           title={'project-showcase'}
           sx={{
-            scale: (isXenoYova  && largeMq) ? '140%' : ((isXenoYova  && mediumMq) ? '120%' : (((isXenoYova  && smallMq) ? '110%' : '100%'))),
             opacity: (loaded) ? '1.0' : '0.0'
           }}
           width={(isXenoYova) ? 'min(714px, 100vw)' : '100%'}
