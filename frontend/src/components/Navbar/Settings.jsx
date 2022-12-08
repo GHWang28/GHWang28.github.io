@@ -13,6 +13,7 @@ function Settings () {
   const dispatch = useDispatch();
   const backgroundIndex = useSelector(state => state.background);
   const splashState = useSelector(state => state.splash);
+
   const backgroundOptions = [
     {
       icon: <CancelIcon />,
@@ -23,8 +24,16 @@ function Settings () {
       label: 'Waves'
     },
     {
-      icon: <SquareIcon />,
-      label: 'Blocks'
+      icon: <SquareIcon sx={{ scale: '1.0' }}/>,
+      label: 'Blocks x16'
+    },
+    {
+      icon: <SquareIcon sx={{ scale: '0.666' }}/>,
+      label: 'Blocks x32'
+    },
+    {
+      icon: <SquareIcon sx={{ scale: '0.333' }}/>,
+      label: 'Blocks x64'
     },
   ];
   return (
@@ -35,10 +44,7 @@ function Settings () {
       <hr />
       <MenuItem
         name='change-background-btn'
-        onClick={(event) => {
-          event.stopPropagation();
-          dispatch(setBackground(backgroundIndex + 1))
-        }}
+        onClick={(event) => { event.stopPropagation(); dispatch(setBackground(backgroundIndex + 1)); }}
       >
         <ListItemIcon>{backgroundOptions[backgroundIndex].icon}</ListItemIcon>
         <Typography>{`Background: ${backgroundOptions[backgroundIndex].label}`}</Typography>

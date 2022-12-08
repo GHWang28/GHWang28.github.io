@@ -1,4 +1,5 @@
 import config from '../../config.json'
+import { mod } from '../../helpers';
 
 const setBackgroundReducer = (
   state = Number(localStorage.getItem('background') || 1),
@@ -6,8 +7,9 @@ const setBackgroundReducer = (
 ) => {
   switch (action.type) {
     case 'CHANGE_BACKGROUND':
-      localStorage.setItem('background', action.value % config.TOTAL_BGS)
-      return action.value % config.TOTAL_BGS;
+      const value = mod(action.value, config.TOTAL_BGS);
+      localStorage.setItem('background', value)
+      return value;
     default:
       return state;
   }

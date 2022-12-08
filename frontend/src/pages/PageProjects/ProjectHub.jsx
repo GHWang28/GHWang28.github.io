@@ -1,5 +1,5 @@
-import { Box, Collapse, MenuItem, Typography } from '@mui/material';
 import React, { Fragment, useEffect, useState } from 'react';
+import { Box, Collapse, MenuItem, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import CardProjectContainer from '../../components/CardProjectContainer';
@@ -43,17 +43,19 @@ function ProjectHub () {
 
   return (
     <Fragment>
-      <Typography mt={5} variant='h2' fontWeight='bold' align='center'>
-        {'Projects'}
-      </Typography>
-      <Typography mb={2} variant='h4' fontWeight='bold' align='center'>
-        {' I\'ve worked on'}
-      </Typography>
+      <Box className='gradient-text'>
+        <Typography mt={5} variant='h2' fontWeight='bold' align='center'>
+          {'Projects'}
+        </Typography>
+        <Typography mb={2} variant='h4' fontWeight='bold' align='center'>
+          {' I\'ve worked on'}
+        </Typography>
+      </Box>
       <Box component='hr' mb={1}/>
   
       {/* Filter Button */}
       <Box sx={{ width: '100%', display: 'flex' }}>
-        <ButtonDropDown sx={{ ml: 'auto' }} title='Filter' icon={<FilterAltIcon />}>
+        <ButtonDropDown sx={{ ml: 'auto', mb: 2 }} title='Filter' icon={<FilterAltIcon />}>
           <MenuItem onClick={(event) => { event.stopPropagation(); setUseFilter(!useFilter); }}>
             <Typography align='center' sx={{ width: '220px' }}>
               {(useFilter) ? 'Disable Filters' : 'Enable Filters'}
