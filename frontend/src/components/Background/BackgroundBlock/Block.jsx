@@ -30,7 +30,7 @@ function Block ({ animation, dim }) {
 }
 
 Block.propTypes = {
-  animation: PropTypes.string,
+  animation: PropTypes.object,
   dim: PropTypes.number
 };
 

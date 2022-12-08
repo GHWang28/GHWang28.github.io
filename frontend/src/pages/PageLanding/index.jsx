@@ -92,7 +92,7 @@ function PageLanding () {
           fontWeight='bold'
           fontFamily='my-handwriting'
         >
-          {'Gordon Wang\'s'}
+          Gordon&nbsp;Wang&#39;s
         </AnimatedTypography>
         <Sparklez frequency={2} sizeRange={[10, 20]}>
           <AnimatedTypography

@@ -102,12 +102,7 @@ function CardProject ({
           )}
           {(date) && (
             <BootstrapTooltip title='Date' placement='left'>
-              <TransluscentTypography
-                variant='subtitle1'
-                sx={{ opacity: '0.75', width: 'fit-content' }}
-              >
-                {date}
-              </TransluscentTypography>
+              <Chip label={date} sx={{ border: '1px solid whitesmoke' }}/>
             </BootstrapTooltip>
           )}
           <Box component='hr' />
