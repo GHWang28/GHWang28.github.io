@@ -1,5 +1,6 @@
 {
     "TOTAL_BGS": 3,
+    "BLOCK_BG_DIM": 48,
     "SPLASH_TEXT": [
         "Welcome!",
         "Aloha!",

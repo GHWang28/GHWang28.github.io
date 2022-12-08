@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import BackgroundCubes from './BackgroundCubes';
+import BackgroundBlock from './BackgroundBlock';
 import BackgroundWave from './BackgroundWave';
 
 function Background () {
@@ -8,7 +8,7 @@ function Background () {
 
   switch (backgroundIndex) {
     case 1: return <BackgroundWave />;
-    case 2: return <BackgroundCubes />
+    case 2: return <BackgroundBlock />
     default: return null;
   }
 }

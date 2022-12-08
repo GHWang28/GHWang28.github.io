@@ -176,7 +176,6 @@ function CardProject ({
             left: 0,
             opacity: (imageIndex === index) ? '1.0' : '0.0',
             transition: 'opacity 0.5s ease-in-out',
-            translate: '0% -10%',
             minWidth: '100%',
             minHeight: '100%',
             zIndex: -1
