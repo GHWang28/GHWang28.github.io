@@ -1,14 +1,12 @@
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import React, { Fragment, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import ModalImage from '../ModalImage';
-import PropTypes from 'prop-types';
 import ImageLoader from '../ImageLoader';
+import PropTypes from 'prop-types';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
   const [hover, setHover] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const isOdd = (rowNo % 2);
 
@@ -17,7 +15,6 @@ function ImageRow ({ src, title, body, rowNo }) {
       <Box
         onMouseEnter={() => { setHover(true) }}
         onMouseLeave={() => { setHover(false) }}
-        onClick={() => { setOpenModal(true) }}
         sx={{
           cursor: 'pointer',
           transition: 'scale 0.2s ease-in-out',
@@ -48,7 +45,6 @@ function ImageRow ({ src, title, body, rowNo }) {
   
   return (
     <Fragment>
-      <ModalImage open={openModal} setOpen={setOpenModal} src={src} title={title}/>
       <Grid
         container
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}

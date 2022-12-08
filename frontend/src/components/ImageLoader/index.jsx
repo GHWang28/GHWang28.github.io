@@ -1,39 +1,41 @@
 
-import { Box } from "@mui/material";
-import { useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { getLowResImg } from "../../helpers"
+import { Box } from '@mui/material';
+import { useState } from 'react';
+import { getLowResImg } from '../../helpers';
+import Zoom from 'react-medium-image-zoom';
 
 function ImageLoader ({ src, alt }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <Box sx={{ position: 'relative' }}>
-      <Box
-        component={LazyLoadImage}
-        sx={{
-          position: (loaded) ? '' : 'absolute',
-          display: (loaded) ? '' : 'none',
-          pointerEvents: 'none',
-          borderRadius: '15px',
-          border: '3px solid whitesmoke',
-        }}
-        afterLoad={() => { setLoaded(true) }}
-        width='100%'
-        src={src}
-        alt={alt}
-      />
-      {(!loaded) && (
+      <Zoom>
         <Box
+          onContextMenu={(event) => { event.preventDefault() }}
+          onLoad={() => { setLoaded(true) }}
+          component={'img'}
           sx={{
-            zIndex: -1,
-            borderRadius: '15px',
+            borderRadius: '2%',
             border: '3px solid whitesmoke',
           }}
-          component='img'
           width='100%'
-          src={getLowResImg(src)}
+          src={src}
           alt={alt}
         />
+      </Zoom>
+      {(!loaded) && (
+        <Zoom>
+          <Box
+            sx={{
+              zIndex: 20,
+              borderRadius: '2%',
+              border: '3px solid whitesmoke',
+            }}
+            component='img'
+            width='100%'
+            src={getLowResImg(src)}
+            alt={alt + 'Low Resolution'}
+          />
+        </Zoom>
       )}
     </Box>
   )
