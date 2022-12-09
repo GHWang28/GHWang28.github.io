@@ -11,7 +11,7 @@ function Block ({ animation, dim }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setPulsate(!pulsate);
-    }, rng(2500, 8000));
+    }, rng(2000, 10000));
 
     return () => { clearTimeout(timeout) }
   })

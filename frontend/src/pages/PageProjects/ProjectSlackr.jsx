@@ -1,16 +1,29 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Box } from '@mui/material';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import ImageGallery from '../../components/ImageGallery';
-import AnimatedTitle from './AnimatedTitle';
 import BoxInfo from '../../components/BoxInfo';
 
 export default function ProjectSlackr () {
 
+  const [hover, setHover] = useState(false);
+
   return (
     <Fragment>
       <ButtonGoBack />
-      <AnimatedTitle title={'Slackr'} />
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: -5, mt: -15 }}>
+        <Box
+          onMouseEnter={() => { setHover(true) }}
+          onMouseLeave={() => { setHover(false) }}
+          sx={{
+            scale: (hover) ? '1.05' : '1.0',
+            transition: 'scale 0.5s ease-in-out'
+          }}
+          component='img'
+          src='/images/slackr/slackr-logo.png'
+          width='min(75%, 600px)'
+        />
+      </Box>
       <ImageGallery
         imgArray={[
           'https://youtu.be/7aiWjkj7hHA',
@@ -20,9 +33,7 @@ export default function ProjectSlackr () {
           'images/slackr/mobile-responsive-4.png',
         ]}
       />
-      <BoxInfo
-        title='Project Description'
-      >
+      <BoxInfo title='Project Description'>
         {
           `This University Assignment created by Gordon Wang for `
         }

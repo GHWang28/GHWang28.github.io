@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { Fragment } from "react";
 import PaletteIcon from '@mui/icons-material/Palette';
 import GameControllerIcon from '@mui/icons-material/SportsEsports';
@@ -55,7 +55,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Minecraft Recreation',
       date: '(10/12/2021)',
-      type: ['University Project', 'Game'],
+      type: ['University Project', 'Game', 'C++', 'OpenGL'],
       imgs: [
         '/images/minecraft-recreation/1.png',
         '/images/minecraft-recreation/2.png',
@@ -65,9 +65,21 @@ const generateProjects = (navigate) => {
       ],
       body: [
         'Recreation of Mojang\'s Minecraft with OpenGL C++.',
+        <Fragment>
+          {'Created entirely from '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'OpenGL'}
+          </Box>
+          {' and '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'C++'}
+          </Box>
+          {'.'}
+        </Fragment>,
         'Created during my first exposure to OpenGL in UNSW.',
         'Features Block placing, shadows, planar reflections, billboard particles, collision detection...',
         'Features several post processing features such as kernel manipulation and HDR rendering that auto-adjusts to the game\'s environment brightness levels.',
+        'Achieved 100% for this Assignment.'
       ],
       buttons: [
         {
@@ -87,7 +99,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Tic-Tac-Toe: Capture',
       date: '(28/11/2022)',
-      type: ['Game', 'Personal Project'],
+      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
       imgs: [
         '/images/covers/tic-tac-toe-capture.jpg'
       ],
@@ -117,7 +129,7 @@ const generateProjects = (navigate) => {
     {
       title: 'Spotter',
       date: '(30/11/2022)',
-      type: ['Game', 'Personal Project'],
+      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
       imgs: [
         '/images/covers/spotter.jpg'
       ],
@@ -145,7 +157,7 @@ const generateProjects = (navigate) => {
       ]
     },
     {
-      title: 'Xeno and Yova',
+      title: 'Xeno & Yova',
       date: '(21/9/2019)',
       type: ['Game', 'High School Project'],
       imgs: [
@@ -153,7 +165,8 @@ const generateProjects = (navigate) => {
       ],
       body: [
         'Small puzzle game created with the RPG Maker MV Engine.',
-        'Single player game.'
+        'Single player game.',
+        'Control two characters simultaneously to solve a series of puzzles.'
       ],
       buttons: [
         {
@@ -175,14 +188,26 @@ const generateProjects = (navigate) => {
     {
       title: 'Slackr',
       date: '(24/10/2022)',
-      type: ['Frontend', 'University Project'],
+      type: ['Frontend', 'University Project', 'JavaScript'],
       imgs: [
         '/images/covers/slackr.png'
       ],
       body: [
-        'My Slackr Assignment work at COMP6080 UNSW.',
+        <Fragment>
+          {'Slackr Assignment work at COMP6080 '}
+          <Box component='span' sx={{ color: 'yellow.main' }}>
+            {'UNSW'}
+          </Box>
+          {'.'}
+        </Fragment>,
         'A messaging website that has many features included.',
-        'Made entirely from JavaScript and DOM manipulations.',
+        <Fragment>
+          {'Made entirely using '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'JavaScript'}
+          </Box>
+          {', DOM manipulations and the Bootstrap Framework.'}
+        </Fragment>,
         'Achieved 100% for this Assignment.',
       ],
       buttons: [

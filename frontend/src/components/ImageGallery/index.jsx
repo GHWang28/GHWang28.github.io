@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Grid, IconButton, useMediaQuery } from '@mui/material';
+import { Box, Button, Grid, useMediaQuery } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { getYouTubeThumbnailImg, isYouTubeURL } from '../../helpers';
@@ -86,19 +86,18 @@ function ImageGallery ({ imgArray = [] }) {
           sx={{ ...gallerySX, ...arrowSx }}
           zIndex={5}
         >
-          <IconButton
+          <Button
             aria-label='Previous Image'
             name='prev-img-btn'
             title='Previous Image'
-            sx={{ border: '2px solid whitesmoke', scale: '0.8' }}
-            size='small'
+            sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
             onClick={() => {
               cycleImg(imgIndexState - 1);
             }}
             disableRipple
           >
             <ArrowLeftIcon/>
-          </IconButton>
+          </Button>
         </Grid>
         {/* Image viewer */}
         <Grid name='image-viewer' item xs={10} sm={10} sx={gallerySX}>
@@ -130,19 +129,18 @@ function ImageGallery ({ imgArray = [] }) {
           sx={{ ...gallerySX, ...arrowSx }}
           zIndex={5}
         >
-          <IconButton
+          <Button
             aria-label='Next Image'
             name='next-img-btn'
             title='Next Image'
-            sx={{ border: '2px solid whitesmoke', scale: '0.8' }}
-            size='small'
+            sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
             onClick={() => {
               cycleImg(imgIndexState + 1);
             }}
             disableRipple
           >
             <ArrowRightIcon/>
-          </IconButton>
+          </Button>
         </Grid>
       </Grid>
       {/* Display other images on the bottom */}

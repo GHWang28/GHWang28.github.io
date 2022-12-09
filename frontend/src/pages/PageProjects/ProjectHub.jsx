@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Box, Collapse, MenuItem, Typography } from '@mui/material';
+import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import CardProjectContainer from '../../components/CardProjectContainer';
 import { setNavButtonPress } from '../../redux/actions';
 import generateProjects from './projects';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
 
@@ -13,29 +15,26 @@ function ProjectHub () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [useFilter, setUseFilter] = useState(false);
   const [filter, setFilter] = useState([
     { type: 'Artwork', enabled: false },
     { type: 'Frontend', enabled: false },
-    { type: 'Game', enabled: true },
+    { type: 'Game', enabled: false },
     { type: 'High School Project', enabled: false },
     { type: 'Personal Project', enabled: false },
     { type: 'University Project', enabled: false },
+    { type: 'C++', enabled: false },
+    { type: 'OpenGL', enabled: false },
+    { type: 'JavaScript', enabled: false },
+    { type: 'React', enabled: false },
   ]);
-  const filterTypes = filter.map((filterObj) => (filterObj.type));
+
   const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
-  const projects = (useFilter)
-    ? (
-      generateProjects(navigate).filter((project) => {
-        for (const filterObj of filterEnabled) {
-          if (project.type.includes(filterObj.type)) return true;
-        }
-        return false;
-      })
-    )
-    : (
-      generateProjects(navigate)
-    )
+  const projects = generateProjects(navigate).filter((project) => {
+    for (const filterObj of filterEnabled) {
+      if (!project.type.includes(filterObj.type)) return false;
+    }
+    return true;
+  });
 
   // Set the navbar button to none
   useEffect(() => {
@@ -57,29 +56,28 @@ function ProjectHub () {
       {/* Filter Button */}
       <Box sx={{ width: '100%', display: 'flex' }}>
         <ButtonDropDown sx={{ ml: 'auto', mb: 2 }} title='Filter' icon={<FilterAltIcon />}>
-          <MenuItem onClick={(event) => { event.stopPropagation(); setUseFilter(!useFilter); }}>
-            <Typography align='center' sx={{ width: '220px' }}>
-              {(useFilter) ? 'Disable Filters' : 'Enable Filters'}
-            </Typography>
-          </MenuItem>
-          <Collapse in={useFilter}>
-            <hr />
-            {filterTypes.map((item, index) => (
-              <MenuItem
-                key={`filter-${index}`}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  const newFilter = [...filter];
-                  newFilter[index].enabled = !newFilter[index].enabled;
-                  setFilter([...newFilter]);
-                }}
-              >
-                <Typography sx={{ color: (filter[index].enabled) ? 'green.main' : 'red.main' }}>
-                  {item}
-                </Typography>
-              </MenuItem>
-            ))}
-          </Collapse>
+          <Typography align='center' m={1} sx={{ width: '250px' }}>
+            Filters
+          </Typography>
+          <hr />
+          {filter.map((item, index) => (
+            <MenuItem
+              key={`filter-${index}`}
+              onClick={(event) => {
+                event.stopPropagation();
+                const newFilter = [...filter];
+                newFilter[index].enabled = !item.enabled;
+                setFilter([...newFilter]);
+              }}
+            >
+              <ListItemIcon>
+                {(item.enabled) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+              </ListItemIcon>
+              <Typography sx={{ color: (item.enabled) ? 'green.main' : 'red.main' }}>
+                {item.type}
+              </Typography>
+            </MenuItem>
+          ))}
         </ButtonDropDown>
       </Box>
       {(projects.length === 0) ? (
