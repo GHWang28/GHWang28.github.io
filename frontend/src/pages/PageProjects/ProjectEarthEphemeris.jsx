@@ -54,7 +54,7 @@ function ProjectEarthEphemeris () {
             </Typography>
             <Typography fontWeight='bold' fontSize={19}>
               {`
-                Earth's Ephemeris represents an alternative reality where
+                Earth's Ephemeris represents an alternate reality where
                 abandoning Earth was essential. The narrative follows a rover
                 named CT-320 which was created to survey various planets.
               `}

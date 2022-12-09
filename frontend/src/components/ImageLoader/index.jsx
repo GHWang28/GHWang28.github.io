@@ -14,8 +14,10 @@ function ImageLoader ({ src, alt }) {
           onLoad={() => { setLoaded(true) }}
           component={'img'}
           sx={{
-            borderRadius: '5%',
+            borderRadius: '1em',
             border: '3px solid whitesmoke',
+            pointerEvents: (loaded) ? 'auto' : 'none',
+            opacity: (loaded) ? 1 : 0
           }}
           width='100%'
           src={src}
