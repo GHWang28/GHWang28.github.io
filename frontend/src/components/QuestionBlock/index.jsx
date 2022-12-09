@@ -94,8 +94,8 @@ function QuestionBlock () {
             }}
             sx={{
               animation: `${coinAnimation} 0.7s ease-in-out 1`,
-              width: (coinKey.startsWith('1up')) ? '75px' : '40px',
-              height: (coinKey.startsWith('1up')) ? '75px' : '60px',
+              width: '55px',
+              height: '75px',
               position: 'absolute',
               bottom: 0,
               left: '50%',

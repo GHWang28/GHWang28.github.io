@@ -94,7 +94,7 @@ function ProjectHub () {
           }}
         >
           <QuestionBlock />
-          <Typography align='center' my={5} fontSize={20} fontWeight='bold' sx={{ opacity: 0.5 }}>
+          <Typography align='center' my={2} fontSize={20} fontWeight='bold' sx={{ opacity: 0.5 }}>
             There's nothing here.
             <br/>
             Maybe try changing the filters.
