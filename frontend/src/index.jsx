@@ -7,6 +7,7 @@ import combinedReducer from './redux/reducer/combinedReducer';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import ScrollToTop from './components/ScrollToTop';
 
 const darkTheme = createTheme({
   palette: {
@@ -77,9 +78,9 @@ root.render(
     <Provider store={store}>
       <HashRouter>
         <ThemeProvider theme={darkTheme}>
-
+          <ScrollToTop>
             <App />
-
+          </ScrollToTop>
         </ThemeProvider>
       </HashRouter>
     </Provider>
