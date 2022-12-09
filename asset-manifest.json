@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8dcf1606.css",
-    "main.js": "/static/js/main.58fbdbfe.js",
+    "main.js": "/static/js/main.97a6bcd8.js",
     "static/js/845.e0f73c4c.chunk.js": "/static/js/845.e0f73c4c.chunk.js",
     "static/js/787.68a9c807.chunk.js": "/static/js/787.68a9c807.chunk.js",
     "static/media/hey_august-webfont.woff": "/static/media/hey_august-webfont.4a8137b5d415d2d3f24a.woff",
@@ -12,12 +12,12 @@
     "static/media/smb-coin.ogg": "/static/media/smb-coin.55ad339c69ad2126350b.ogg",
     "index.html": "/index.html",
     "main.8dcf1606.css.map": "/static/css/main.8dcf1606.css.map",
-    "main.58fbdbfe.js.map": "/static/js/main.58fbdbfe.js.map",
+    "main.97a6bcd8.js.map": "/static/js/main.97a6bcd8.js.map",
     "845.e0f73c4c.chunk.js.map": "/static/js/845.e0f73c4c.chunk.js.map",
     "787.68a9c807.chunk.js.map": "/static/js/787.68a9c807.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8dcf1606.css",
-    "static/js/main.58fbdbfe.js"
+    "static/js/main.97a6bcd8.js"
   ]
 }
