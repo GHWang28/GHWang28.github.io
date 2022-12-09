@@ -1,23 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.68fa53e8.css",
-    "main.js": "/static/js/main.4aff3c1a.js",
+    "main.css": "/static/css/main.29bb0000.css",
+    "main.js": "/static/js/main.4da246db.js",
     "static/js/845.e0f73c4c.chunk.js": "/static/js/845.e0f73c4c.chunk.js",
     "static/js/787.68a9c807.chunk.js": "/static/js/787.68a9c807.chunk.js",
-    "static/media/hey_august-webfont.woff": "/static/media/hey_august-webfont.4a8137b5d415d2d3f24a.woff",
-    "static/media/hey_august-webfont.woff2": "/static/media/hey_august-webfont.39c476ecff5a58ba33f8.woff2",
-    "static/media/gordon-handwriting-webfont.woff": "/static/media/gordon-handwriting-webfont.006cf372556536e13144.woff",
-    "static/media/gordon-handwriting-webfont.woff2": "/static/media/gordon-handwriting-webfont.2d6a3d8744b5135fd4e3.woff2",
     "static/media/smb-1up.ogg": "/static/media/smb-1up.e8097445aec853546b56.ogg",
     "static/media/smb-coin.ogg": "/static/media/smb-coin.55ad339c69ad2126350b.ogg",
     "index.html": "/index.html",
-    "main.68fa53e8.css.map": "/static/css/main.68fa53e8.css.map",
-    "main.4aff3c1a.js.map": "/static/js/main.4aff3c1a.js.map",
+    "main.29bb0000.css.map": "/static/css/main.29bb0000.css.map",
+    "main.4da246db.js.map": "/static/js/main.4da246db.js.map",
     "845.e0f73c4c.chunk.js.map": "/static/js/845.e0f73c4c.chunk.js.map",
     "787.68a9c807.chunk.js.map": "/static/js/787.68a9c807.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.68fa53e8.css",
-    "static/js/main.4aff3c1a.js"
+    "static/css/main.29bb0000.css",
+    "static/js/main.4da246db.js"
   ]
 }

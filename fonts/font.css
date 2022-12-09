@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap');
+
+@font-face {
+  font-family: 'hey_august';
+  src: url('hey_august-webfont.woff2') format('woff2'), url('hey_august-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'my-handwriting';
+  src: url('gordon-handwriting-webfont.woff2') format('woff2'), url('gordon-handwriting-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
