@@ -6,13 +6,14 @@ import config from '../../config.json';
 import useSound from 'use-sound';
 import SMBCoinSFX from '../../sfx/smb-coin.ogg';
 import SMB1upSFX from '../../sfx/smb-1up.ogg';
+import Sparklez from '../Sparklez';
 
 const coinAnimation = keyframes`
   0% {
     translate: -50% 0%
   }
   45%, 55% {
-    translate: -50% -110%
+    translate: -50% -130%
   }
   100% {
     translate: -50% 0%
@@ -31,6 +32,12 @@ function QuestionBlock () {
     coinBlockElement.classList.remove('coin-block-anim');
     void coinBlockElement.offsetWidth;
     coinBlockElement.classList.add('coin-block-anim');
+
+    const coinMaskElement = document.getElementById('coin-mask');
+    coinMaskElement.classList.remove('coin-clip-anim');
+    void coinMaskElement.offsetWidth;
+    coinMaskElement.classList.add('coin-clip-anim');
+
     setCoins([...coins, v4()]);
 
     if (coinCount + 1 >= config.MARIO_EASTER_EGG_LIMIT) {
@@ -46,41 +53,43 @@ function QuestionBlock () {
 
   return (
     <Box sx={{ position: 'relative' }} name='coin-block-easter-egg-container'>
-      <Box
-        id='coin-block'
-        role='button'
-        onContextMenu={(event) => { event.preventDefault() }}
-        onClick={onClick}
-        sx={{
-          cursor: 'pointer',
-          width: '75px',
-          height: '75px',
-        }}
-      >
+      <Sparklez frequency={1.5} sizeRange={[15, 30]}>
         <Box
+          id='coin-block'
+          role='button'
+          onContextMenu={(event) => { event.preventDefault() }}
+          onClick={onClick}
           sx={{
-            height: '100%',
-            width: '100%',
-            maskImage: 'url(/images/easter-egg/question-block.svg)',
-            maskSize: '100%',
-            maskRepeat: 'no-repeat'
+            cursor: 'pointer',
+            width: '75px',
+            height: '75px',
           }}
         >
           <Box
-            className={'gradient-background'}
-            sx={{ height: '100%', width: '100%' }}
-          />
+            sx={{
+              height: '100%',
+              width: '100%',
+              maskImage: 'url(/images/easter-egg/question-block.svg)',
+              maskSize: '100%',
+              maskRepeat: 'no-repeat'
+            }}
+          >
+            <Box
+              className={'gradient-background'}
+              sx={{ height: '100%', width: '100%' }}
+            />
+          </Box>
         </Box>
-      </Box>
+      </Sparklez>
       <Box
-        name='coin-mask'
+        id='coin-mask'
         sx={{
           position: 'absolute',
           width: '75px',
           height: '300px',
           bottom: 0,
           pointerEvents: 'none',
-          clipPath: 'polygon(0 0, 100% 0%, 100% 75%, 0 75%);'
+          clipPath: 'polygon(0 0, 100% 0%, 100% 75%, 0 75%)'
         }}
       >
         {coins.map((coinKey) => (
@@ -93,8 +102,8 @@ function QuestionBlock () {
               setCoins([...newCoins]);
             }}
             sx={{
-              animation: `${coinAnimation} 0.7s ease-in-out 1`,
-              width: '55px',
+              animation: `${coinAnimation} 0.65s ease-in-out 1`,
+              width: (coinKey.startsWith('coin')) ? '50px' : '75px',
               height: '75px',
               position: 'absolute',
               bottom: 0,
