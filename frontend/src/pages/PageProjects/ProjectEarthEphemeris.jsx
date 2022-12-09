@@ -52,7 +52,7 @@ function ProjectEarthEphemeris () {
             <Typography pb={2} fontWeight='bold' sx={{ opacity: '0.5' }}>
               {'Body of Work Description'}
             </Typography>
-            <Typography fontWeight='bold' fontSize={19}>
+            <Typography fontWeight='bold' fontSize={20}>
               {`
                 Earth's Ephemeris represents an alternate reality where
                 abandoning Earth was essential. The narrative follows a rover

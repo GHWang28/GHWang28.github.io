@@ -87,7 +87,7 @@ function QuestionBlock () {
           position: 'absolute',
           width: '75px',
           height: '300px',
-          bottom: 0,
+          bottom: '4px',
           pointerEvents: 'none',
           clipPath: 'polygon(0 0, 100% 0%, 100% 75%, 0 75%)'
         }}

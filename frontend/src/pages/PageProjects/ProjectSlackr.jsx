@@ -14,6 +14,10 @@ export default function ProjectSlackr () {
       <ImageGallery
         imgArray={[
           'https://youtu.be/7aiWjkj7hHA',
+          'images/slackr/mobile-responsive-1.png',
+          'images/slackr/mobile-responsive-2.png',
+          'images/slackr/mobile-responsive-3.png',
+          'images/slackr/mobile-responsive-4.png',
         ]}
       />
       <BoxInfo
