@@ -52,7 +52,13 @@ export default function ProjectMinecraft () {
       <BoxInfo>
         {'Due to '}
         <Box component='span' sx={{ color: 'yellow.main' }}>{'University'}</Box>
-        {' Policies, the source code for this project can not be publicly shared.'} 
+        {' Policies, the source code for this project can not be '}
+        <Box component='span' sx={{ color: 'red.main' }}>{'publicly'}</Box>
+        {' shared.'} 
+        <br/>
+        <Box component='span' sx={{ opacity: 0.5 }}>
+          {'(However, may be requested for by contacting me).'} 
+        </Box>
       </BoxInfo>
       {/*
       <Typography mt={5} mb={4} variant='h3' fontWeight='bold' align='center'>

@@ -7,6 +7,7 @@ import { setNavButtonPress } from '../../redux/actions';
 import generateProjects from './projects';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ButtonDropDown from '../../components/ButtonDropDown';
+import QuestionBlock from '../../components/QuestionBlock';
 
 function ProjectHub () {
   const dispatch = useDispatch();
@@ -14,11 +15,12 @@ function ProjectHub () {
 
   const [useFilter, setUseFilter] = useState(false);
   const [filter, setFilter] = useState([
-    { type: 'Game', enabled: true },
     { type: 'Artwork', enabled: false },
-    { type: 'University Project', enabled: false },
-    { type: 'Personal Project', enabled: false },
+    { type: 'Frontend', enabled: false },
+    { type: 'Game', enabled: true },
     { type: 'High School Project', enabled: false },
+    { type: 'Personal Project', enabled: false },
+    { type: 'University Project', enabled: false },
   ]);
   const filterTypes = filter.map((filterObj) => (filterObj.type));
   const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
@@ -34,7 +36,6 @@ function ProjectHub () {
     : (
       generateProjects(navigate)
     )
-
 
   // Set the navbar button to none
   useEffect(() => {
@@ -81,7 +82,27 @@ function ProjectHub () {
           </Collapse>
         </ButtonDropDown>
       </Box>
-      <CardProjectContainer projects={projects} />
+      {(projects.length === 0) ? (
+        <Box
+          sx={{
+            width: '100%',
+            height: 'calc(100vh - 350px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          <QuestionBlock />
+          <Typography align='center' my={5} fontSize={20} fontWeight='bold' sx={{ opacity: 0.5 }}>
+            There's nothing here.
+            <br/>
+            Maybe try changing the filters.
+          </Typography>
+        </Box>
+      ) : (
+        <CardProjectContainer projects={projects} />
+      )}
     </Fragment>
   )
 }

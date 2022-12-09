@@ -70,22 +70,18 @@ function CardProject ({
           p: 2,
           width: 'inherit',
           height: 'inherit',
-          backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 60%)` 
+          backgroundImage: `linear-gradient(90deg, ${bgColor} 35%, rgba(255,255,255,0) 70%)` 
         }}
       >
         <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
-          <BootstrapTooltip title='Title' placement='left'>
+          <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
             <TransluscentTypography variant='h4'>
               {title}
             </TransluscentTypography>
           </BootstrapTooltip>
           {(type) && (
-            <BootstrapTooltip title='Tags' placement='left'>
-              <Box
-                sx={{
-                  display: 'flex',
-                }}
-              >
+            <BootstrapTooltip title='Tags' placement={(smallMq) ? 'left' : 'top-start'}>
+              <Box sx={{ display: 'flex' }}>
                 <ChipContainer >
                   {type.sort().map((label, index) => (
                     <Chip
@@ -102,7 +98,7 @@ function CardProject ({
             </BootstrapTooltip>
           )}
           {(date) && (
-            <BootstrapTooltip title='Date' placement='left'>
+            <BootstrapTooltip title='Date' placement={(smallMq) ? 'left' : 'top-start'}>
               <Chip label={date} sx={{ border: '1px solid whitesmoke' }}/>
             </BootstrapTooltip>
           )}

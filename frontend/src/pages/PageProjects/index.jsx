@@ -4,6 +4,7 @@ import ProjectEarthEphemeris from './ProjectEarthEphemeris';
 import ProjectHub from './ProjectHub';
 import ProjectIFrameShowCase from './ProjectIFrameShowCase';
 import ProjectMinecraft from './ProjectMinecraft';
+import ProjectSlackr from './ProjectSlackr';
 
 function PageProjects () {
 
@@ -12,8 +13,9 @@ function PageProjects () {
       <Route path='' element={<ProjectHub />}/>
       <Route path='earth-ephemeris/' element={<ProjectEarthEphemeris />}/>
       <Route path='minecraft-recreation/' element={<ProjectMinecraft />}/>
+      <Route path='slackr/' element={<ProjectSlackr />}/>
       <Route path='showcase/:project' element={<ProjectIFrameShowCase />}/>
-    </Routes>
+    </Routes> 
   )
 }
 

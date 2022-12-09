@@ -1,5 +1,5 @@
-import { rng } from '../../helpers'
-import { v4 } from 'uuid'
+import { rng } from '../../helpers';
+import { v4 } from 'uuid';
 
 function generateSparklez (color = 'hsl(50deg, 100%, 50%)', size = rng(25, 75) ) {
   return {

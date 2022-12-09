@@ -26,5 +26,6 @@
         "𝓕𝓪𝓷𝓬𝓬𝔂𝔂",
         "Reduce, reuse and recycle!"
     ],
-    "VID_PREFIX": "%@%VIDEO%@%"
+    "VID_PREFIX": "%@%VIDEO%@%",
+    "MARIO_EASTER_EGG_LIMIT": 100
 }

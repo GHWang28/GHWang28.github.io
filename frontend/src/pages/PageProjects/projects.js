@@ -172,6 +172,34 @@ const generateProjects = (navigate) => {
         }
       ]
     },
+    {
+      title: 'Slackr',
+      date: '(24/10/2022)',
+      type: ['Frontend', 'University Project'],
+      imgs: [
+        '/images/covers/slackr.png'
+      ],
+      body: [
+        'My Slackr Assignment work at COMP6080 UNSW.',
+        'A messaging website that has many features included.',
+        'Made entirely from JavaScript and DOM manipulations.',
+        'Achieved 100% for this Assignment.',
+      ],
+      buttons: [
+        {
+          text: 'View Project',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            navigate('slackr')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          disabled: 'Source Code can not be publicly shared.'
+        }
+      ]
+    },
   ]
 
   return projects.sort((a, b) => {
