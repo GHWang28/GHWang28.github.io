@@ -94,10 +94,12 @@ function ProjectHub () {
           }}
         >
           <QuestionBlock />
-          <Typography align='center' my={2} fontSize={20} fontWeight='bold' sx={{ opacity: 0.5 }}>
-            There's nothing here.
+          <Typography align='center' my={2} fontSize={20} fontWeight='bold' sx={{ opacity: 0.75 }}>
+            There's nothing here...
             <br/>
-            Maybe try changing the filters.
+            ...except for a mysterious block!
+            <br/>
+            <Box component='span' sx={{ opacity: 0.5 }}>{'(Try changing to filters to get some results.)'}</Box>
           </Typography>
         </Box>
       ) : (
