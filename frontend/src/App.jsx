@@ -1,4 +1,3 @@
-import './fonts/font.css';
 import './ImageZoom.css';
 import './App.css';
 import React from 'react';
