@@ -12,7 +12,7 @@ const coinAnimation = keyframes`
     translate: -50% 0%
   }
   45%, 55% {
-    translate: -50% -250%
+    translate: -50% -110%
   }
   100% {
     translate: -50% 0%
@@ -36,11 +36,11 @@ function QuestionBlock () {
     if (coinCount + 1 >= config.MARIO_EASTER_EGG_LIMIT) {
       play1up();
       setCoinCount(0);
-      setCoins([...coins, '1up-' + v4()]);
+      setCoins([...coins, `1up-${v4()}`]);
     } else {
       playCoin();
       setCoinCount(coinCount + 1);
-      setCoins([...coins, v4()]);
+      setCoins([...coins, `coin-${v4()}`]);
     }
   }
 
@@ -85,7 +85,7 @@ function QuestionBlock () {
       >
         {coins.map((coinKey) => (
           <Box
-            key={`coin-entity-${coinKey}`}
+            key={coinKey}
             onContextMenu={(event) => { event.preventDefault() }}
             onAnimationEnd={() => {
               const newCoins = [...coins];
