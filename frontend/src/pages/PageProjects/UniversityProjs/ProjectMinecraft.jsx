@@ -9,7 +9,7 @@ export default function ProjectMinecraft () {
 
   return (
     <Fragment>
-      <ButtonGoBack />
+      <ButtonGoBack destination={'/projects'} />
       <AnimatedTitle title={'Minecraft Recreation'} />
       <ImageGallery
         imgArray={[

@@ -6,7 +6,7 @@ import GameControllerIcon from '@mui/icons-material/SportsEsports';
 import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-const generateProjects = (navigate) => {
+const generateProjects = (navigate, location) => {
   const projects = [
     {
       title: 'Earth\'s Ephemeris',
@@ -47,7 +47,7 @@ const generateProjects = (navigate) => {
           text: 'View Artworks',
           icon: <PaletteIcon />,
           onClick: () => {
-            navigate('earth-ephemeris')
+            navigate('earth-ephemeris', { state: { prevLocation: location.pathname } })
           },
         }
       ]
@@ -85,7 +85,7 @@ const generateProjects = (navigate) => {
           text: 'View Project',
           icon: <VisibilityIcon />,
           onClick: () => {
-            navigate('minecraft-recreation')
+            navigate('minecraft-recreation', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -113,7 +113,7 @@ const generateProjects = (navigate) => {
           text: 'Play Game',
           icon: <GameControllerIcon />,
           onClick: () => {
-            navigate('showcase/tic-tac-toe-capture')
+            navigate('showcase/tic-tac-toe-capture', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -143,7 +143,7 @@ const generateProjects = (navigate) => {
           text: 'Play Game',
           icon: <GameControllerIcon />,
           onClick: () => {
-            navigate('showcase/spotter')
+            navigate('showcase/spotter', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -172,7 +172,7 @@ const generateProjects = (navigate) => {
           text: 'Play Game',
           icon: <GameControllerIcon />,
           onClick: () => {
-            navigate('showcase/Xeno-and-Yova')
+            navigate('showcase/Xeno-and-Yova', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -214,7 +214,7 @@ const generateProjects = (navigate) => {
           text: 'View Project',
           icon: <VisibilityIcon />,
           onClick: () => {
-            navigate('slackr')
+            navigate('slackr', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -254,7 +254,7 @@ const generateProjects = (navigate) => {
           text: 'View Project',
           icon: <VisibilityIcon />,
           onClick: () => {
-            navigate('minecraft-screensaver')
+            navigate('minecraft-screensaver', { state: { prevLocation: location.pathname } })
           }
         },
         {
@@ -293,7 +293,7 @@ const generateProjects = (navigate) => {
           text: 'View Project',
           icon: <VisibilityIcon />,
           onClick: () => {
-            navigate('airbnb')
+            navigate('airbnb', { state: { prevLocation: location.pathname } })
           }
         },
         {

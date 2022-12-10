@@ -10,7 +10,7 @@ export default function ProjectSlackr () {
 
   return (
     <Fragment>
-      <ButtonGoBack />
+      <ButtonGoBack destination={'/projects'} />
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: -5, mt: -15 }}>
         <Box
           onMouseEnter={() => { setHover(true) }}

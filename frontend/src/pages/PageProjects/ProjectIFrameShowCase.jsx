@@ -13,7 +13,7 @@ export default function ProjectIFrameShowCase () {
   return (
     <Fragment>
       <Box mb={2} mt={-1} sx={{ position: (smallMq) ? 'absolute' : 'relative', left: (smallMq) ? '2%' : '' }}>
-        <ButtonGoBack />
+        <ButtonGoBack destination={'/projects'} />
       </Box>
       <Box
         sx={{

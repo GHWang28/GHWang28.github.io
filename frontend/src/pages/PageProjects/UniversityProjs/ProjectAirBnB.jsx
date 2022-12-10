@@ -10,7 +10,7 @@ export default function ProjectAirBnB () {
 
   return (
     <Fragment>
-      <ButtonGoBack />
+      <ButtonGoBack destination={'/projects'} />
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: 3 }}>
         <Box
           onMouseEnter={() => { setHover(true) }}

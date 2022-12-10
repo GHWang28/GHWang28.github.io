@@ -14,7 +14,7 @@ function ProjectEarthEphemeris () {
 
   return (
     <Fragment>
-      <ButtonGoBack />
+      <ButtonGoBack destination={'/projects'} />
       <AnimatedTitle title={'Earth\'s Ephemeris'} />
 
       <Grid container p={4} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!xLargeMq) ? 'column-reverse' : '' }}>

@@ -39,6 +39,7 @@ function PageLanding () {
         justifyContent: 'center',
         alignItems: 'center',
         height: 'calc(100vh - 64px)',
+        width: '100%'
       }}
     >
       <Box sx={{ position: 'relative' }} >

@@ -9,7 +9,7 @@ import setToggleSplashReducer from './setToggleSplashReducer';
 const combinedReducer = combineReducers({
   navButton: setNavButtonReducer,
   background: setBackgroundReducer,
-  splash: setToggleSplashReducer
+  splash: setToggleSplashReducer,
 })
 
 export default combinedReducer;

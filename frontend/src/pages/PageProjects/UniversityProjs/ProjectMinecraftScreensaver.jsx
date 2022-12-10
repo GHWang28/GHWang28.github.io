@@ -9,7 +9,7 @@ export default function ProjectMinecraftScreensaver () {
 
   return (
     <Fragment>
-      <ButtonGoBack />
+      <ButtonGoBack destination={'/projects'} />
       <AnimatedTitle title={'Minecraft Screensaver'} />
       <ImageGallery
         imgArray={[

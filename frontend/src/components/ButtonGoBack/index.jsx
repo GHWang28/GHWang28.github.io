@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import ReplyIcon from '@mui/icons-material/Reply';
 import { IconButton } from '@mui/material';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import BootstrapTooltip from '../BootstrapTooltip';
 
-function ButtonGoBack () {
+function ButtonGoBack ({ destination }) {
   const navigate = useNavigate();
   const [hover, setHoverState] = useState(false);
+  const location = useLocation();
 
   return (
     <BootstrapTooltip placement='bottom' arrow title='Go Back'>
       <IconButton
         onMouseEnter={() => { setHoverState(true) }}
         onMouseLeave={() => { setHoverState(false) }}
-        onClick={() => { navigate(-1) }}
+        onClick={() => { navigate(destination, { state: { prevLocation: location.pathname } }) }}
         sx={{
           mt: 3,
           border: '2px solid whitesmoke',

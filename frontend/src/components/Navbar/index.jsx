@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { AppBar, Box, Collapse, Divider, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import { useSelector } from 'react-redux';
@@ -17,16 +17,17 @@ function Navbar () {
   })
   const AnimatedAppBar = animated(AppBar);
   const navigate = useNavigate();
+  const location = useLocation();
   const buttonSelected = useSelector(state => state.navButton);
 
   const navigationOptions =  [
     {
       label: 'Projects',
-      func: () => { navigate('/projects') }
+      func: () => { navigate('/projects', { state: { prevLocation: location.pathname } }) }
     },
     {
       label: 'About',
-      func: () => { navigate('/about') }
+      func: () => { navigate('/about', { state: { prevLocation: location.pathname } }) }
     }
   ]
   return (

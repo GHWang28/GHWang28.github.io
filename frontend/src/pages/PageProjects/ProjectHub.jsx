@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import CardProjectContainer from '../../components/CardProjectContainer';
 import { setNavButtonPress } from '../../redux/actions';
 import generateProjects from './projects';
@@ -14,6 +14,7 @@ import QuestionBlock from '../../components/QuestionBlock';
 function ProjectHub () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [filter, setFilter] = useState([
     { type: 'Artwork', enabled: false },
@@ -29,7 +30,7 @@ function ProjectHub () {
   ]);
 
   const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
-  const projects = generateProjects(navigate).filter((project) => {
+  const projects = generateProjects(navigate, location).filter((project) => {
     for (const filterObj of filterEnabled) {
       if (!project.type.includes(filterObj.type)) return false;
     }
@@ -105,7 +106,7 @@ function ProjectHub () {
             <br/>
             ...except for a mysterious block!
             <br/>
-            <Box component='span' sx={{ opacity: 0.5 }}>{'(Try changing to filters to get some results.)'}</Box>
+            <Box component='span' sx={{ opacity: 0.5 }}>{'(Try changing the filters to get some results.)'}</Box>
           </Typography>
         </Box>
       ) : (
