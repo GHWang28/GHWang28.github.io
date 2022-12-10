@@ -7,6 +7,7 @@ import useSound from 'use-sound';
 import SMBCoinSFX from '../../sfx/smb-coin.ogg';
 import SMB1upSFX from '../../sfx/smb-1up.ogg';
 import Sparklez from '../Sparklez';
+import { animated, useSpring } from 'react-spring';
 
 const coinAnimation = keyframes`
   0% {
@@ -25,6 +26,7 @@ function QuestionBlock () {
   const [coinCount, setCoinCount] = useState(0);
   const [playCoin] = useSound(SMBCoinSFX);
   const [play1up] = useSound(SMB1upSFX);
+  const AnimatedBox = animated(Box);
 
   const onClick = (event) => {
     event.preventDefault();
@@ -54,9 +56,13 @@ function QuestionBlock () {
   return (
     <Box sx={{ position: 'relative' }} name='coin-block-easter-egg-container'>
       <Sparklez frequency={1.5} sizeRange={[15, 30]}>
-        <Box
+        <AnimatedBox
           id='coin-block'
           role='button'
+          style={useSpring({
+            from: { opacity: 0, y: -500 },
+            to: { opacity: 1, y: 0 }
+          })}
           onContextMenu={(event) => { event.preventDefault() }}
           onClick={onClick}
           sx={{
@@ -79,7 +85,7 @@ function QuestionBlock () {
               sx={{ height: '100%', width: '100%' }}
             />
           </Box>
-        </Box>
+        </AnimatedBox>
       </Sparklez>
       <Box
         id='coin-mask'

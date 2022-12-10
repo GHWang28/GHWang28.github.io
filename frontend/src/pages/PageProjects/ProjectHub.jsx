@@ -92,7 +92,15 @@ function ProjectHub () {
           }}
         >
           <QuestionBlock />
-          <Typography align='center' my={2} fontSize={20} fontWeight='bold' sx={{ opacity: 0.75 }}>
+          <Typography
+            align='center'
+            my={2}
+            fontSize={20}
+            fontWeight='bold'
+            sx={{
+              opacity: 0.75
+            }}
+          >
             There's nothing here...
             <br/>
             ...except for a mysterious block!

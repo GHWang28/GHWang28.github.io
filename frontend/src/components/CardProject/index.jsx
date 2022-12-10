@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Chip, IconButton, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
+import ImageSlideShow from './ImageSlideShow';
 import PropTypes from 'prop-types';
+import VideoShow from './VideoShow';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
@@ -31,18 +33,7 @@ function CardProject ({
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const theme = useTheme();
   const [hover, setHover] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
   const bgColor = theme.palette.gray.main;
-
-  useEffect(() => {
-    if (imgs.length <= 1) return;
-
-    const timeout = setTimeout(() => {
-      setImageIndex((imageIndex + 1) % imgs.length)
-    }, 8000);
-
-    return () => { clearTimeout(timeout) }
-  }, [imageIndex, imgs.length]);
 
   return (
     <Box
@@ -68,8 +59,6 @@ function CardProject ({
       <Box
         sx={{
           p: 2,
-          width: 'inherit',
-          height: 'inherit',
           backgroundImage: `linear-gradient(90deg, ${bgColor} 35%, rgba(255,255,255,0) 70%)` 
         }}
       >
@@ -98,7 +87,7 @@ function CardProject ({
             </BootstrapTooltip>
           )}
           {(date) && (
-            <BootstrapTooltip title='Date' placement={(smallMq) ? 'left' : 'top-start'}>
+            <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
               <Chip label={date} sx={{ border: '1px solid whitesmoke' }}/>
             </BootstrapTooltip>
           )}
@@ -155,33 +144,20 @@ function CardProject ({
         ))}
       </Box>
       {/* Background Image */}
-      {imgs.map((img, index) => (
-        <Box
-          key={`card-bg-${index}`}
-          component='img'
-          alt={`image-background-${index}`}
-          title={`Background Image #${index}`}
-          src={img}
-          sx={{
-            position: 'absolute',
-            top: '0px',
-            right: '0px',
-            width: '100%',
-            height: '100%',
-            opacity: (imageIndex === index) ? '1.0' : '0.0',
-            transition: 'opacity 0.5s ease-in-out',
-            objectFit: 'cover',
-            zIndex: -1,
-          }}
-        />
-      ))}
+      {(imgs[0].endsWith('.mp4'))
+        ? (
+          <VideoShow src={imgs[0]} poster={imgs[1]} />
+        ) : (
+          <ImageSlideShow imgs={imgs} />
+        )
+      }
     </Box>
   )
 }
 
 CardProject.propTypes = {
   title: PropTypes.string.isRequired,
-  imgs: PropTypes.array.isRequired,
+  imgs: PropTypes.arrayOf(PropTypes.string).isRequired,
   index: PropTypes.number,
   date: PropTypes.string,
   type: PropTypes.arrayOf(PropTypes.string),

@@ -76,7 +76,6 @@ const generateProjects = (navigate) => {
           </Box>
           {'.'}
         </Fragment>,
-        'Created during my first exposure to OpenGL in UNSW.',
         'Features Block placing, shadows, planar reflections, billboard particles, collision detection...',
         'Features several post processing features such as kernel manipulation and HDR rendering that auto-adjusts to the game\'s environment brightness levels.',
         'Achieved 100% for this Assignment.'
@@ -216,6 +215,85 @@ const generateProjects = (navigate) => {
           icon: <VisibilityIcon />,
           onClick: () => {
             navigate('slackr')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          disabled: 'Source Code can not be publicly shared.'
+        }
+      ]
+    },
+    {
+      title: 'Minecraft Screensaver',
+      date: '(20/9/2021)',
+      type: ['OpenGL', 'University Project', 'C++'],
+      imgs: [
+        '/images/minecraft-recreation/screensaver.mp4',
+        '/images/minecraft-recreation/screensaver.jpg'
+      ],
+      body: [
+        'Based on Mojang\'s Minecraft.',
+        'A simple interactable screensaver that randomly generates the scenery on a 2D plane.',
+        <Fragment>
+          {'Created entirely from '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'OpenGL'}
+          </Box>
+          {' and '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'C++'}
+          </Box>
+          {'.'}
+        </Fragment>,
+        'Showcases application of textures, drawing 2D shapes and shaders.',
+        'Achieved 100% for this Assignment.',
+      ],
+      buttons: [
+        {
+          text: 'View Project',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            navigate('minecraft-screensaver')
+          }
+        },
+        {
+          text: 'View Code',
+          icon: <CodeIcon />,
+          disabled: 'Source Code can not be publicly shared.'
+        }
+      ]
+    },{
+      title: 'Nutritious AirBnB',
+      date: '(18/11/2022)',
+      type: ['Frontend', 'University Project', 'JavaScript', 'React'],
+      imgs: [
+        '/images/comp6080/airbnb-logo.png'
+      ],
+      body: [
+        <Fragment>
+          {'AirBnB Assignment work at COMP6080 '}
+          <Box component='span' sx={{ color: 'yellow.main' }}>
+            {'UNSW'}
+          </Box>
+          {'.'}
+        </Fragment>,
+        'An online marketplace website focused on helping people rent out their properties.',
+        <Fragment>
+          {'Made using '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'React'}
+          </Box>
+          {' and Material UI.'}
+        </Fragment>,
+        'Achieved 100% for this Assignment.',
+      ],
+      buttons: [
+        {
+          text: 'View Project',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            navigate('airbnb')
           }
         },
         {
