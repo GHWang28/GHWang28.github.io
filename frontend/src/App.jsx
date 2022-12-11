@@ -35,25 +35,26 @@ function App() {
     }
     const currLoc = location.pathname;
     const prevLoc = location?.state?.prevLocation;
-    if (!prevLoc) return defaultTransition;
 
-    if (currLoc === '/' && prevLoc === '/projects') {
+    if (
+      (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
+      || (currLoc === '/projects' && prevLoc === '/about')
+    ) {
+      // Right to left
       return {
         from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
         enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: 'translate3d(0%,0,0)' },
+        leave: { opacity: 0, transform: 'translate3d(50%,0,0)' },
       }
-    } else if (currLoc === '/about' && prevLoc === '/projects') {
+    } else if (
+      (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
+      || (currLoc === '/projects' && prevLoc === '/')
+    ) {
+      // Left to right
       return {
         from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
         enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: 'translate3d(0%,0,0)' },
-      }
-    } else if (currLoc === '/projects' && prevLoc === '/') {
-      return {
-        from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-        enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: 'translate3d(0%,0,0)' },
+        leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
       }
     }
     return defaultTransition;
@@ -80,7 +81,7 @@ function App() {
                 <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageProjects /></AbsoluteWrapper>
               }/>
               <Route path='/about' element={
-                <></>
+                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageLanding /></AbsoluteWrapper>
               }/>
             </Routes>
           </animated.div>
