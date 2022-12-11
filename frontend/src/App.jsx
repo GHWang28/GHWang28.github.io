@@ -34,7 +34,7 @@ function App() {
       leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
     }
     const currLoc = location.pathname;
-    const prevLoc = location.state.prevLocation;
+    const prevLoc = location?.state?.prevLocation;
     if (currLoc === '/' && prevLoc === '/projects') {
       return {
         from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
