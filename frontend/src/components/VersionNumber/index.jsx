@@ -19,7 +19,8 @@ function VersionNumber () {
   const AnimatedTypography = animated(Typography);
   return (
     <Box
-      sx={{ overflow: 'hidden', position: 'fixed', left: '10px', bottom: '0px'}}
+      name='version-number'
+      sx={{ overflow: 'hidden', position: 'absolute', left: '10px', bottom: '0px'}}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
     >

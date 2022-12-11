@@ -80,11 +80,8 @@ function PageLanding () {
         <AnimatedTypography
           style={useSpring({
             from: { x: -200, opacity: 0 },
-            to: async (next) => {
-              await next({ x: 10, opacity: 1 });
-              await next({ x: 0 });
-            },
-            delay: 0 * delay,
+            to: { x: 0, opacity: 1 },
+            delay: 2 * delay,
           })}
           sx={{ userSelect: 'none' }}
           fontSize={'min(10vw, 50px)'}
@@ -100,7 +97,7 @@ function PageLanding () {
             style={useSpring({
               from: { opacity: 0 },
               to: { opacity: 1 },
-              delay: 2 * delay,
+              delay: 3 * delay,
               config: { duration: 1000 },
             })}
             lineHeight={1}
@@ -117,11 +114,8 @@ function PageLanding () {
         <AnimatedTypography
           style={useSpring({
             from: { x: 200, opacity: 0 },
-            to: async (next) => {
-              await next({ x: -10, opacity: 1 });
-              await next({ x: 0 });
-            },
-            delay: 1 * delay
+            to: { x: 0, opacity: 1 },
+            delay: 4 * delay
           })}
           sx={{ userSelect: 'none' }}
           fontSize={'min(10vw, 50px)'}

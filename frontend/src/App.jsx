@@ -9,7 +9,6 @@ import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
 import { useTransition, animated } from 'react-spring';
 import AbsoluteWrapper from './pages/AbsoluteWrapper';
-import { useEffect } from 'react';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -25,14 +24,8 @@ function App() {
   }
   const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
   const pt = '64px';
-  useEffect(() => {})
 
   const getTransitionEffect = () => {
-    const defaultTransition = {
-      from: { opacity: 0, transform: 'translate3d(0,0,0)' },
-      enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
-      leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
-    }
     const currLoc = location.pathname;
     const prevLoc = location?.state?.prevLocation;
 
@@ -55,9 +48,13 @@ function App() {
         from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
         enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
         leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
-      }
+      };
     }
-    return defaultTransition;
+    return {
+      from: { opacity: 0, transform: 'translate3d(0,0,0)' },
+      enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
+      leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
+    };
   }
 
   const transitions = useTransition(location, getTransitionEffect());
