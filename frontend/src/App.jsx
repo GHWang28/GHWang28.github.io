@@ -1,7 +1,7 @@
 import './ImageZoom.css';
 import './App.css';
 import React from 'react';
-import { Box, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
@@ -81,7 +81,7 @@ function App() {
                 <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageProjects /></AbsoluteWrapper>
               }/>
               <Route path='/about' element={
-                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageLanding /></AbsoluteWrapper>
+                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><Typography align='center'> W.I.P.</Typography></AbsoluteWrapper>
               }/>
             </Routes>
           </animated.div>
