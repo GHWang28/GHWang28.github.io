@@ -35,6 +35,8 @@ function App() {
     }
     const currLoc = location.pathname;
     const prevLoc = location?.state?.prevLocation;
+    if (!prevLoc) return defaultTransition;
+
     if (currLoc === '/' && prevLoc === '/projects') {
       return {
         from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
@@ -54,7 +56,6 @@ function App() {
         leave: { opacity: 0, transform: 'translate3d(0%,0,0)' },
       }
     }
-    console.log('Got here 3')
     return defaultTransition;
   }
 
