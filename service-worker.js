@@ -1,4 +1,4 @@
-const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6dd7-4ab5-88ea-fd9b56e928e6';
+const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6d77-4ab5-88ea-fd9b56e928p6';
 
 const IMPERATIVE_CACHES = [
     '/images/easter-egg/1up.png',

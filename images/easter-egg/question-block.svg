@@ -3,7 +3,7 @@
 <style type="text/css">
 	.A{stroke:black;stroke-width:40;fill:rgba(0,0,0,0);}
 	.B{stroke:black;stroke-width:40;fill:rgba(0,0,0,0);}
-	.C{stroke:black;stroke-width:40;fill:rgba(0,0,0,0);}
+	.C{stroke:black;stroke-width:40;fill:rgba(0,0,0,1);}
 </style>
 <g id="ハテナブロック">
 	<path class="A" d="M815,0H41.2C13.5,0,0,13.4,0,41.2v773.9c0,27.7,13.5,41.2,41.2,41.2H815c27.8,0,41.3-13.5,41.3-41.2V41.2
