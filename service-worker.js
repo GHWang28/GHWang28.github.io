@@ -1,15 +1,15 @@
-const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6d77-4ab5-88ea-fd9b56e928p6';
+const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6d77-4ab5-87ea-fd9b56e928p6';
 
 const IMPERATIVE_CACHES = [
     '/images/easter-egg/1up.png',
     '/images/easter-egg/coin.svg',
     '/images/easter-egg/question-block.svg',
     'https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap',
-    'fonts/gordon-handwriting-webfont.woff',
-    'fonts/hey_august-webfont.woff',
-    'fonts/gordon-handwriting-webfont.woff2',
-    'fonts/hey_august-webfont.woff2',
-    'images/title-bg.png',
+    '/fonts/gordon-handwriting-webfont.woff',
+    '/fonts/hey_august-webfont.woff',
+    '/fonts/gordon-handwriting-webfont.woff2',
+    '/fonts/hey_august-webfont.woff2',
+    '/images/title-bg.png',
     '/images/hscbow/homesweethome.jpg',
     '/images/hscbow/leaving.jpg',
     '/images/hscbow/bonvoyage.jpg',
