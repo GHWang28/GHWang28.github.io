@@ -4,7 +4,6 @@ import { Box, Typography, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
-import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
 import { useTransition, animated } from 'react-spring';
 import AbsoluteWrapper from './pages/AbsoluteWrapper';
@@ -112,9 +111,7 @@ function App() {
         </Fragment>
       )}
       <ImageZoomer {...imgZoom} />
-      <Background />
     </Box>
-    
   );
 }
 

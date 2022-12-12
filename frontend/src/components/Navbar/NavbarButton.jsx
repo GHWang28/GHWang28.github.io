@@ -11,6 +11,7 @@ function NavbarButton (props) {
 
   return (
     <Button
+      title={props.label}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
       {...prunedProps}

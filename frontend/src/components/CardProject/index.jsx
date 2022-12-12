@@ -50,7 +50,6 @@ function CardProject ({
         translate: (inView) ? '0px' : ((index % 2) ? '200px' : '-200px'),
         transition: 'scale 0.2s ease-in-out, boxShadow 0.2s ease-in-out, translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
         borderRadius: '15px',
-        height: 'fit-content',
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
         mb: (mediumMq) ? 5 : 2,
@@ -148,11 +147,8 @@ function CardProject ({
       </Box>
       {/* Background Image */}
       {(imgs[0].endsWith('.mp4'))
-        ? (
-          <VideoShow src={imgs[0]} poster={imgs[1]} />
-        ) : (
-          <ImageSlideShow imgs={imgs} />
-        )
+        ? <VideoShow src={imgs[0]} />
+        : <ImageSlideShow imgs={imgs} />
       }
     </Box>
   )

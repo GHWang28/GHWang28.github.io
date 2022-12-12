@@ -14,6 +14,10 @@ export default function ProjectMinecraftScreensaver () {
       <ImageGallery
         imgArray={[
           'https://youtu.be/dCYTLbNl_to',
+          'images/minecraft-recreation/screensaver-1.jpg',
+          'images/minecraft-recreation/screensaver-2.jpg',
+          'images/minecraft-recreation/screensaver-3.jpg',
+          'images/minecraft-recreation/screensaver-4.jpg'
         ]}
       />
       <BoxInfo
@@ -26,12 +30,21 @@ export default function ProjectMinecraftScreensaver () {
         }
         <Box component='span' sx={{ color: 'red.main' }}>{'Mojang Studios'}</Box>
         {'.'}
+        <br/>
+        <br/>
+        {'This project was my first exposure to the '}
+        <Box component='span' sx={{ color: 'green.main' }}>{'Open Graphics Library'}</Box>
+        {' and '}
+        <Box component='span' sx={{ color: 'green.main' }}>{'C++'}</Box>
+        {
+          `. Working on this project taught me many tricks and skills to animate and draw a seamless looping animation.
+          Such skills are included but not limited to: applying trigonometry and bezier curves for animation, manipulating shaders to render what is needed,
+          taking advantage of the different texture options provided by `
+        }
+        <Box component='span' sx={{ color: 'green.main' }}>{'OpenGL'}</Box>
+        {' etc.'}
       </BoxInfo>
-      <BoxInfo>
-        {'To prevent plagiarism, the source code for this project can not be '}
-        <Box component='span' sx={{ color: 'red.main' }}>{'publicly'}</Box>
-        {' shared.'} 
-      </BoxInfo>
+      <BoxInfo plagiarism/>
       {/*
       <Typography mt={5} mb={4} variant='h3' fontWeight='bold' align='center'>
         {'Download'}

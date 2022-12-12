@@ -63,11 +63,7 @@ export default function ProjectSlackr () {
           ` and gave me experience in working with the HTML Document Object Model and Service Workers.`
         }
       </BoxInfo>
-      <BoxInfo>
-        {'To prevent plagiarism, the source code for this project can not be '}
-        <Box component='span' sx={{ color: 'red.main' }}>{'publicly'}</Box>
-        {' shared.'} 
-      </BoxInfo>
+      <BoxInfo plagiarism/>
     </Fragment>
   )
 }

@@ -20,7 +20,7 @@ function Ticker ({ width, children }) {
         p={1}
         sx={{
           animation: `${moveAnimation} linear 15s infinite`,
-          width: 'fit-content',
+          width: 'fit-content'
         }}
       >
         {children}

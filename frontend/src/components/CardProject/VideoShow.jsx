@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import PropTypes from 'prop-types';
 
-function VideoShow ({ src, poster }) {
+function VideoShow ({ src }) {
   return (
     <Box
       component='video'
@@ -18,7 +18,6 @@ function VideoShow ({ src, poster }) {
         objectFit: 'cover',
         zIndex: -1,
       }}
-      poster={poster}
     >
       <source src={src} type='video/mp4'/>
     </Box>

@@ -5,6 +5,7 @@ import { setImageZoom } from '../../redux/actions';
 import { animated, useTransition } from 'react-spring';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 function ImageZoomer ({ src, show }) {
   const dispatch = useDispatch();
@@ -65,5 +66,10 @@ function ImageZoomer ({ src, show }) {
     : null
   ))
 }
+
+ImageZoomer.propTypes = {
+  src: PropTypes.string,
+  show: PropTypes.bool
+};
 
 export default ImageZoomer;

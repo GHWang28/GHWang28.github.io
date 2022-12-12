@@ -115,7 +115,8 @@ function ImageGallery ({ imgArray = [] }) {
             <Box
               component={'img'}
               alt={`Gallery Item #${imgIndexState}`}
-              sx={{ height: galleryHeight() }}
+              sx={{ height: galleryHeight(), cursor: 'pointer' }}
+              onContextMenu={(event) => { event.preventDefault() }}
               title={`Gallery Item #${imgIndexState}`}
               src={imgArray[imgIndexState]}
               onClick={() => { dispatch(setImageZoom(imgArray[imgIndexState])) }}

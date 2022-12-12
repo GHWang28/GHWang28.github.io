@@ -1,7 +1,8 @@
 {
-    "TOTAL_BGS": 4,
+    "TOTAL_BGS": 9,
     "BLOCK_BG_DIM_SMALL": 16,
     "BLOCK_BG_DIM_LARGE": 32,
+    "BLOCK_BG_DIM_XLARGE": 64,
     "SPLASH_TEXT": [
         "Welcome!",
         "Aloha!",

@@ -59,11 +59,7 @@ export default function ProjectAirBnB () {
           ' practices such as Component and UI Testing, propType usage, reusable components etc.'
         }
       </BoxInfo>
-      <BoxInfo>
-        {'To prevent plagiarism, the source code for this project can not be '}
-        <Box component='span' sx={{ color: 'red.main' }}>{'publicly'}</Box>
-        {' shared.'} 
-      </BoxInfo>
+      <BoxInfo plagiarism/>
     </Fragment>
   )
 }

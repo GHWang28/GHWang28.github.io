@@ -229,8 +229,7 @@ const generateProjects = (navigate, location) => {
       date: '(20/9/2021)',
       type: ['OpenGL', 'University Project', 'C++'],
       imgs: [
-        '/images/minecraft-recreation/screensaver.mp4',
-        '/images/minecraft-recreation/screensaver.jpg'
+        '/images/minecraft-recreation/screensaver.mp4'
       ],
       body: [
         'Based on Mojang\'s Minecraft.',

@@ -1,13 +1,14 @@
-import { createTheme, ThemeProvider } from '@mui/material';
 import React from 'react';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createTheme, ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
-import App from './App';
 import combinedReducer from './redux/reducer/combinedReducer';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
 import ScrollToTop from './components/ScrollToTop';
+import Background from './components/Background';
 
 const darkTheme = createTheme({
   palette: {
@@ -81,6 +82,7 @@ root.render(
           <ScrollToTop>
             <App />
           </ScrollToTop>
+          <Background />
         </ThemeProvider>
       </HashRouter>
     </Provider>

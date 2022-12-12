@@ -93,7 +93,7 @@ function PageLanding () {
             lineHeight={1}
             className={'gradient-text'}
             fontSize={'min(30vw, 180px)'}
-            sx={{ height: 'fit-content', fontFamily: 'hey_august', userSelect: 'none' }}
+            sx={{ fontFamily: 'hey_august', userSelect: 'none' }}
             align='center'
             fontWeight='bold'
             m={0}
