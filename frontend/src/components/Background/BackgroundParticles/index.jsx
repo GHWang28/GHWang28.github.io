@@ -16,9 +16,9 @@ function BackgroundParticles ({ bgIndex }) {
 
   const totalParticles = () => {
     if (xLargeMq) return 200;
-    if (largeMq) return 150;
-    if (mediumMq) return 100;
-    return 50;
+    if (largeMq) return 100;
+    if (mediumMq) return 50;
+    return 10;
   }
 
   const getPreset = () => {

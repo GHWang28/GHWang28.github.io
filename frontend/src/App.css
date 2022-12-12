@@ -15,6 +15,7 @@ html {
   background-image: radial-gradient(rgb(53, 58, 68), rgb(29, 32, 37));
   overscroll-behavior-y: none;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 code {
