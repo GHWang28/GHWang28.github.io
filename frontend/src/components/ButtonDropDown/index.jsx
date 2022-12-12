@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 import { IconButton, Menu } from '@mui/material';
 import BootstrapTooltip from '../BootstrapTooltip';
 import PropTypes from 'prop-types';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 /**
  * A component for a button that will drop down a menu that is initially hidden.
@@ -19,16 +20,20 @@ function ButtonDropDown ({
   closeOnClick = true
 }) {
   const [dropDownListingMenu, setDropDownListingMenu] = useState(null);
+  const ref = useRef(null);
   const dropListingMenuFn = (event) => {
     event.stopPropagation();
     setDropDownListingMenu(event.currentTarget);
+    disableBodyScroll(ref.current);
   };
   const hideListingMenuFn = () => {
     setDropDownListingMenu(null);
+    enableBodyScroll(ref.current);
   };
 
   const iconButton = (
     <IconButton
+      ref={ref}
       name={name}
       title={title}
       aria-label={title}

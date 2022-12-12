@@ -2,7 +2,7 @@ import { Box } from "@mui/system"
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-function LogoBox () {
+function LogoBox ({ doNavigate = false }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [hover, setHover] = useState(false);
@@ -31,7 +31,7 @@ function LogoBox () {
       }}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
-      onClick={() => { navigate('/', { state: { prevLocation: location.pathname } }) }}
+      onClick={() => { if (doNavigate) navigate('/', { state: { prevLocation: location.pathname } }) }}
     >
       <Box
         name='mask'

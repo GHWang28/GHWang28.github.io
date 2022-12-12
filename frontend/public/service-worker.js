@@ -1,4 +1,4 @@
-const CACHE_NAME = 'GHWANG_CACHE_V1';
+const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6dd7-4ab5-88ea-fd9b56e928e6';
 
 const IMPERATIVE_CACHES = [
     '/images/easter-egg/1up.png',
@@ -10,6 +10,18 @@ const IMPERATIVE_CACHES = [
     'fonts/gordon-handwriting-webfont.woff2',
     'fonts/hey_august-webfont.woff2',
     'images/title-bg.png',
+    '/images/hscbow/homesweethome.jpg',
+    '/images/hscbow/leaving.jpg',
+    '/images/hscbow/bonvoyage.jpg',
+    '/images/hscbow/rabureta.jpg',
+    '/images/hscbow/ruiji.jpg',
+    '/images/hscbow/homecoming.jpg',
+    // 'images/minecraft-recreation/screensaver.mp4',
+    '/images/minecraft-recreation/1.png',
+    '/images/minecraft-recreation/2.png',
+    '/images/minecraft-recreation/3.png',
+    '/images/minecraft-recreation/4.png',
+    '/images/minecraft-recreation/5.png',
 ];
 
 /**

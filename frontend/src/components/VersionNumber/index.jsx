@@ -11,16 +11,16 @@ import Ticker from '../Ticker';
 function VersionNumber () {
   const gitInfo = GitInfo();
   const [hover, setHover] = useState(false);
+  const AnimatedTypography = animated(Typography);
   const animationProps = useSpring({
     from: { y: 50 },
     to: { y: 0 },
-    delay: 2000
+    delay: 2250
   })
-  const AnimatedTypography = animated(Typography);
   return (
     <Box
       name='version-number'
-      sx={{ overflow: 'hidden', position: 'absolute', left: '10px', bottom: '0px'}}
+      sx={{ overflow: 'hidden', position: 'fixed', left: '10px', bottom: '0px', color: 'whitesmoke' }}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
     >

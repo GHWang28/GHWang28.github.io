@@ -12,9 +12,12 @@ export const setToggleSplash = (boolean) => {
   }
 }
 
-export const setNavButtonPress = (buttonIndex) => {
+export const setImageZoom = (src, show = true) => {
   return {
-    type: 'NAV_BUTTON_SET',
-    value: buttonIndex
+    type: 'SET_IMAGE_ZOOM',
+    value: {
+      src,
+      show
+    }
   };
 }

@@ -1,6 +1,5 @@
-import './ImageZoom.css';
 import './App.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -9,12 +8,31 @@ import Background from './components/Background';
 import PageProjects from './pages/PageProjects';
 import { useTransition, animated } from 'react-spring';
 import AbsoluteWrapper from './pages/AbsoluteWrapper';
+import VersionNumber from './components/VersionNumber';
+import ContactDetails from './components/ContactDetails';
+import { useEffect } from 'react';
+import { preloadImgs } from './helpers';
+import { useSelector } from 'react-redux';
+import ImageZoomer from './components/ImageZoomer';
 
 function App() {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const location = useLocation();
+  const imgZoom = useSelector(state => state.imgZoom);
+
+  useEffect(() => {
+    window.history.replaceState({}, document.title);
+    preloadImgs([
+      '/images/hscbow/homesweethome.jpg',
+      '/images/hscbow/leaving.jpg',
+      '/images/hscbow/bonvoyage.jpg',
+      '/images/hscbow/rabureta.jpg',
+      '/images/hscbow/ruiji.jpg',
+      '/images/hscbow/homecoming.jpg'
+    ]);
+  }, []);
 
   const px = () => {
     if (largeMq) return 24;
@@ -28,6 +46,13 @@ function App() {
   const getTransitionEffect = () => {
     const currLoc = location.pathname;
     const prevLoc = location?.state?.prevLocation;
+    const defaultTrans = {
+      from: { opacity: 0, transform: 'translate3d(0,0,0)' },
+      enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
+      leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
+    };
+
+    if (!prevLoc) return defaultTrans;
 
     if (
       (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
@@ -50,11 +75,7 @@ function App() {
         leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
       };
     }
-    return {
-      from: { opacity: 0, transform: 'translate3d(0,0,0)' },
-      enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
-      leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
-    };
+    return defaultTrans;
   }
 
   const transitions = useTransition(location, getTransitionEffect());
@@ -84,6 +105,13 @@ function App() {
           </animated.div>
         ))}
       </Box>
+      {(location.pathname === '/') && (
+        <Fragment>
+          <VersionNumber />
+          <ContactDetails />
+        </Fragment>
+      )}
+      <ImageZoomer {...imgZoom} />
       <Background />
     </Box>
     

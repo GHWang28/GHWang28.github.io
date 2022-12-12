@@ -4,7 +4,6 @@ import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
-import { useSelector } from 'react-redux';
 import NavbarButton from './NavbarButton';
 
 function Navbar () {
@@ -18,16 +17,15 @@ function Navbar () {
   const AnimatedAppBar = animated(AppBar);
   const navigate = useNavigate();
   const location = useLocation();
-  const buttonSelected = useSelector(state => state.navButton);
 
   const navigationOptions =  [
     {
       label: 'Projects',
-      func: () => { navigate('/projects', { state: { prevLocation: location.pathname } }) }
+      loc: '/projects',
     },
     {
       label: 'About',
-      func: () => { navigate('/about', { state: { prevLocation: location.pathname } }) }
+      loc: '/about',
     }
   ]
   return (
@@ -38,7 +36,7 @@ function Navbar () {
           onMouseEnter={() => { setLogoHover(true) }}
           onMouseLeave={() => { setLogoHover(false) }}
         >
-          <LogoBox />
+          <LogoBox doNavigate={(location.pathname !== '/')} />
         </Box>
         <Collapse orientation='horizontal' in={logoHover && smallMq}>
           <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1 }}>
@@ -53,13 +51,14 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
-
         <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>
             <NavbarButton
-              onClick={nav.func}
-              disabled={buttonSelected === index}
+              onClick={() => {
+                navigate(nav.loc, { state: { prevLocation: location.pathname } })
+              }}
+              disabled={location.pathname === nav.loc}
               label={nav.label}
             />
             <Divider orientation='vertical' variant='middle' flexItem />

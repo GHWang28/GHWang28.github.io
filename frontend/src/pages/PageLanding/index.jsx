@@ -1,12 +1,8 @@
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { animated, useSpring } from 'react-spring';
-import ContactDetails from '../../components/ContactDetails';
 import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
-import VersionNumber from '../../components/VersionNumber';
-import { setNavButtonPress } from '../../redux/actions';
 import config from '../../config.json';
 import { rng } from '../../helpers';
 
@@ -24,12 +20,6 @@ function PageLanding () {
   const AnimatedSplash = animated(SplashText);
   const AnimatedBox = animated(Box);
   const AnimatedTypography = animated(Typography);
-  const dispatch = useDispatch();
-
-  // Set the navbar button to none
-  useEffect(() => {
-    dispatch(setNavButtonPress(-1))
-  }, [dispatch]);
 
   return (
     <Box
@@ -162,10 +152,10 @@ function PageLanding () {
       >
         {'Feel free to look around using the navigation at the top.'}
       </AnimatedTypography>
-      <VersionNumber />
-      <ContactDetails />
     </Box>
   )
+
+
 }
 
 export default PageLanding;

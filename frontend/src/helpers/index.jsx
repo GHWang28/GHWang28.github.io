@@ -21,7 +21,7 @@ export function ISOToDateStr (iso) {
  * @param {string} url
  * @returns {string}
  */
- export function convertToEmbedYoutubeVid (url) {
+export function convertToEmbedYoutubeVid (url) {
   const id = getVideoId(url).id;
   return `https://www.youtube.com/embed/${id}`;
 }
@@ -73,3 +73,11 @@ export function getFileExtension (filename) {
 export function mod (value, mod) {
   return ((value % mod) + mod) % mod;
 };
+
+const images = []
+export function preloadImgs(imgs) {
+  for (const index in imgs) {
+    images[index] = new Image();
+    images[index].src = imgs[index];
+  }
+}

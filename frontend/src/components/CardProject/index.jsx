@@ -6,6 +6,7 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import ImageSlideShow from './ImageSlideShow';
 import PropTypes from 'prop-types';
 import VideoShow from './VideoShow';
+import TagIcon from '../../icons/TagIcon';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
@@ -74,9 +75,11 @@ function CardProject ({
                 <ChipContainer >
                   {type.sort().map((label, index) => (
                     <Chip
+                      icon={<TagIcon label={label} sx={{ ml: 0.6 }}/>}
+                      variant='outlined'
                       sx={{
                         mr: (index === type.length - 1) ? 0 : 1,
-                        border: '1px solid whitesmoke'
+                        borderColor: 'whitesmoke'
                       }}
                       key={`label-${index}`}
                       label={label}
@@ -88,7 +91,7 @@ function CardProject ({
           )}
           {(date) && (
             <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
-              <Chip label={date} sx={{ border: '1px solid whitesmoke' }}/>
+              <Chip label={date} variant='outlined' sx={{ borderColor: 'whitesmoke' }}/>
             </BootstrapTooltip>
           )}
           <Box component='hr' />

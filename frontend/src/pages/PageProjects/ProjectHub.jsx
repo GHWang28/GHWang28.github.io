@@ -1,18 +1,16 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import CardProjectContainer from '../../components/CardProjectContainer';
-import { setNavButtonPress } from '../../redux/actions';
 import generateProjects from './projects';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
+import TagIcon from '../../icons/TagIcon';
 
 function ProjectHub () {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,11 +34,6 @@ function ProjectHub () {
     }
     return true;
   });
-
-  // Set the navbar button to none
-  useEffect(() => {
-    dispatch(setNavButtonPress(0))
-  }, [dispatch]);
 
   return (
     <Fragment>
@@ -73,6 +66,9 @@ function ProjectHub () {
             >
               <ListItemIcon>
                 {(item.enabled) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+              </ListItemIcon>
+              <ListItemIcon>
+                <TagIcon label={item.type} />
               </ListItemIcon>
               <Typography sx={{ color: (item.enabled) ? 'green.main' : 'red.main' }}>
                 {item.type}

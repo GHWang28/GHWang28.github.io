@@ -5,16 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  height: 100vh;
+  width: 100vw;
 }
 
 html {
   background-image: radial-gradient(rgb(53, 58, 68), rgb(29, 32, 37));
   overscroll-behavior-y: none;
   background-attachment: fixed;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: 100vh;
-  width: 100vw;
 }
 
 code {
@@ -127,27 +127,28 @@ code {
 }
 
 ::-webkit-scrollbar-corner {
-  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  opacity: 0.5;
+  width: 14px;
+  height: 14px;
 }
 
 /* Track of scrollbar. Where the thumb can move to */
 ::-webkit-scrollbar-track {
-  background: rgb(17, 19, 20);
+  background: rgba(17, 19, 20, 0.5);
 }
 
 /* Thumb of scrollbar. Where to click and drag */
 ::-webkit-scrollbar-thumb {
-  border: 0.5px solid whitesmoke;
-  background: rgb(65, 70, 80); 
-  border-radius: 6px;
+  border: 0.5px solid rgba(245, 245, 245, 0.5);
+  background: rgba(65, 70, 80, 0.5); 
+  border-radius: 5px;
 }
 
 /* Hover color */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(78, 84, 94); 
+  background: rgb(93, 99, 109);
 }

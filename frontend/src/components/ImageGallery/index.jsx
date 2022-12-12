@@ -6,9 +6,10 @@ import { getYouTubeThumbnailImg, isYouTubeURL } from '../../helpers';
 import VideoPlayer from '../VideoPlayer';
 import { animated, useSpring } from 'react-spring';
 import { v4 as uuidv4 } from 'uuid';
-import Zoom from 'react-medium-image-zoom'
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
+import { useDispatch } from 'react-redux';
+import { setImageZoom } from '../../redux/actions';
 
 /**
  * A gallery/carousel that is responsive and can be navigated with
@@ -18,9 +19,10 @@ import { useSwipeable } from 'react-swipeable';
 function ImageGallery ({ imgArray = [] }) {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const dispatch = useDispatch();
   const swipeHandler = useSwipeable({
-    onSwipedLeft: (eventData) => cycleImg(imgIndexState + 1),
-    onSwipedRight: (eventData) => cycleImg(imgIndexState - 1),
+    onSwipedLeft: () => cycleImg(imgIndexState + 1),
+    onSwipedRight: () => cycleImg(imgIndexState - 1),
     trackMouse: true
   });
 
@@ -110,15 +112,14 @@ function ImageGallery ({ imgArray = [] }) {
             />
           )}
           {(!isYouTubeURL(imgArray[imgIndexState])) && (
-            <Zoom>
-              <Box
-                component={'img'}
-                alt={`Gallery Item #${imgIndexState}`}
-                sx={{ height: galleryHeight() }}
-                title={`Gallery Item #${imgIndexState}`}
-                src={imgArray[imgIndexState]}
-              />
-            </Zoom>
+            <Box
+              component={'img'}
+              alt={`Gallery Item #${imgIndexState}`}
+              sx={{ height: galleryHeight() }}
+              title={`Gallery Item #${imgIndexState}`}
+              src={imgArray[imgIndexState]}
+              onClick={() => { dispatch(setImageZoom(imgArray[imgIndexState])) }}
+            />
           )}
         </Grid>
         {/* > */}
