@@ -27,6 +27,15 @@ export default function ProjectAirBnB () {
       <ImageGallery
         imgArray={[
           'https://youtu.be/USkb7SA7QiQ',
+          '/images/comp6080/airbnb-1.jpg',
+          '/images/comp6080/airbnb-2.jpg',
+          '/images/comp6080/airbnb-3.jpg',
+          '/images/comp6080/airbnb-4.jpg',
+          '/images/comp6080/airbnb-5.jpg',
+          '/images/comp6080/airbnb-mobile-responsive-1.jpg',
+          '/images/comp6080/airbnb-mobile-responsive-2.jpg',
+          '/images/comp6080/airbnb-mobile-responsive-3.jpg',
+          '/images/comp6080/airbnb-mobile-responsive-4.jpg',
         ]}
       />
       <BoxInfo title='Project Description'>

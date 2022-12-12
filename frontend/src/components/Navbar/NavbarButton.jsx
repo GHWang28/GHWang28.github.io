@@ -19,6 +19,7 @@ function NavbarButton (props) {
         setHover(false);
         props.onClick();
       }}
+      disableRipple
       sx={{ fontWeight: 'bold' }}
     >
       {(hover) ? (

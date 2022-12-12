@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Box, Button, Grid, useMediaQuery } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { getYouTubeThumbnailImg, isYouTubeURL } from '../../helpers';
+import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../helpers';
 import VideoPlayer from '../VideoPlayer';
-import { animated, useSpring } from 'react-spring';
+import { animated, useSpring, useTransition } from 'react-spring';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
@@ -19,19 +19,26 @@ import { setImageZoom } from '../../redux/actions';
 function ImageGallery ({ imgArray = [] }) {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const [imgIndex, setImgIndex] = useState(0);
+  const [prevImgIndex, setPrevImgIndex] = useState(0);
   const dispatch = useDispatch();
+
+  // Handles swiping for mobile
   const swipeHandler = useSwipeable({
-    onSwipedLeft: () => cycleImg(imgIndexState + 1),
-    onSwipedRight: () => cycleImg(imgIndexState - 1),
+    onSwipedLeft: () => cycleImg(imgIndex + 1),
+    onSwipedRight: () => cycleImg(imgIndex - 1),
     trackMouse: true
   });
-
-  const [imgIndexState, setImgIndexState] = useState(0);
 
   // Spring Animation
   const animationProps = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
+  });
+  const transitions = useTransition(imgIndex, {
+    from: { x: (prevImgIndex > imgIndex) ? '-50%' : '50%', opacity: 0 },
+    enter: { x : '0%', opacity: 1 },
+    leave: { x: (prevImgIndex <= imgIndex) ? '-25%' : '25%', opacity: 0  },
   });
   const AnimatedBox = animated(Box);
 
@@ -40,11 +47,12 @@ function ImageGallery ({ imgArray = [] }) {
    * @param {number} newIndex
    */
   const cycleImg = (newIndex) => {
-    if (newIndex < 0) newIndex = imgArray.length - 1;
-    if (newIndex >= imgArray.length) newIndex = 0;
-
-    setImgIndexState(newIndex);
+    switchImg(mod(newIndex, imgArray.length));
   };
+  const switchImg = (img) => {
+    setPrevImgIndex(imgIndex);
+    setImgIndex(img);
+  }
 
   const galleryHeight = () => {
     if (largeMq) return '500px';
@@ -94,34 +102,40 @@ function ImageGallery ({ imgArray = [] }) {
             title='Previous Image'
             sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
             onClick={() => {
-              cycleImg(imgIndexState - 1);
+              cycleImg(imgIndex - 1);
             }}
             disableRipple
           >
-            <ArrowLeftIcon/>
+            <ArrowLeftIcon sx={{ scale: '3' }}/>
           </Button>
         </Grid>
         {/* Image viewer */}
-        <Grid name='image-viewer' item xs={10} sm={10} sx={gallerySX}>
-          {(isYouTubeURL(imgArray[imgIndexState])) && (
-            <VideoPlayer
-              key={uuidv4()}
-              url={imgArray[imgIndexState]}
-              height={'calc(100% - 20px)'}
-              width='100%'
-            />
-          )}
-          {(!isYouTubeURL(imgArray[imgIndexState])) && (
-            <Box
-              component={'img'}
-              alt={`Gallery Item #${imgIndexState}`}
-              sx={{ height: galleryHeight(), cursor: 'pointer' }}
-              onContextMenu={(event) => { event.preventDefault() }}
-              title={`Gallery Item #${imgIndexState}`}
-              src={imgArray[imgIndexState]}
-              onClick={() => { dispatch(setImageZoom(imgArray[imgIndexState])) }}
-            />
-          )}
+        <Grid name='image-viewer' item xs={10} sm={10} sx={{...gallerySX, position: 'relative'}}>
+          {transitions((style, imgIndex) => (
+            <AnimatedBox
+              style={style}
+              sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', justifyContent: 'center' }}
+            >
+              {(isYouTubeURL(imgArray[imgIndex]) ? (
+                <VideoPlayer
+                  key={uuidv4()}
+                  url={imgArray[imgIndex]}
+                  height={'calc(100% - 20px)'}
+                  width='100%'
+                />
+              ) : (
+                <Box
+                  component={'img'}
+                  alt={`Gallery Item #${imgIndex}`}
+                  sx={{ height: galleryHeight(), cursor: 'pointer' }}
+                  onContextMenu={(event) => { event.preventDefault() }}
+                  title={`Gallery Item #${imgIndex}`}
+                  src={imgArray[imgIndex]}
+                  onClick={() => { dispatch(setImageZoom(imgArray[imgIndex])) }}
+                />
+              ))}
+            </AnimatedBox>
+          ))}
         </Grid>
         {/* > */}
         <Grid
@@ -137,11 +151,11 @@ function ImageGallery ({ imgArray = [] }) {
             title='Next Image'
             sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
             onClick={() => {
-              cycleImg(imgIndexState + 1);
+              cycleImg(imgIndex + 1);
             }}
             disableRipple
           >
-            <ArrowRightIcon/>
+            <ArrowRightIcon sx={{ scale: '3' }}/>
           </Button>
         </Grid>
       </Grid>
@@ -154,27 +168,46 @@ function ImageGallery ({ imgArray = [] }) {
           height: '100px',
           width: '100%',
           backgroundColor: 'rgb(28,28,28)',
-          overflowX: 'auto'
+          overflowX: 'auto',
+          overflowY: 'hidden'
         }}
       >
         {imgArray.map((imgSrc, imgSrcNo) => (
-          <Box
-            key={`img-${imgSrcNo}`}
-            component='img'
-            name={(imgIndexState === imgSrcNo) ? 'img-selected' : 'img-unselected'}
-            sx={{
-              cursor: 'pointer',
-              height: '100%',
-              transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
-              scale: (imgIndexState === imgSrcNo) ? '1.0' : '0.9',
-              opacity: (imgIndexState === imgSrcNo) ? '1.0' : '0.5',
-            }}
-            onClick={() => { setImgIndexState(imgSrcNo) }}
-            src={getYouTubeThumbnailImg(imgSrc)}
-            title={
-              (imgSrcNo === 0) ? 'Thumbnail' : `Additional image #${imgSrcNo}`
-            }
-          />
+          <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative' }}>
+            {(isYouTubeURL(imgSrc)) && (
+              <Box
+                component='img'
+                sx={{
+                  position: 'absolute',
+                  width: '50%',
+                  top: '50%',
+                  left: '50%',
+                  translate: '-50% -50%',
+                  pointerEvents: 'none',
+                  transition: 'scale 0.2s ease-in-out',
+                  scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
+                  zIndex: 2
+                }}
+                src='/images/youtube.svg'
+              />
+            )}
+            <Box
+              component='img'
+              name={(imgIndex === imgSrcNo) ? 'img-selected' : 'img-unselected'}
+              sx={{
+                cursor: 'pointer',
+                height: '100%',
+                transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
+                scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
+                opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',
+              }}
+              onClick={() => { switchImg(imgSrcNo) }}
+              src={getYouTubeThumbnailImg(imgSrc)}
+              title={
+                (imgSrcNo === 0) ? 'Thumbnail' : `Additional image #${imgSrcNo}`
+              }
+            />
+          </Box>
         ))}
       </Box>
     </AnimatedBox>

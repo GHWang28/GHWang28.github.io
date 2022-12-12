@@ -6,7 +6,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
 import PageProjects from './pages/PageProjects';
 import { useTransition, animated } from 'react-spring';
-import AbsoluteWrapper from './pages/AbsoluteWrapper';
+import AbsoluteWrapper from './wrappers/AbsoluteWrapper';
 import VersionNumber from './components/VersionNumber';
 import ContactDetails from './components/ContactDetails';
 import { useEffect } from 'react';
@@ -42,39 +42,47 @@ function App() {
   const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
   const pt = '64px';
 
+  /**
+   * Manages how to transition between each page
+   */
   const getTransitionEffect = () => {
     const currLoc = location.pathname;
     const prevLoc = location?.state?.prevLocation;
-    const defaultTrans = {
-      from: { opacity: 0, transform: 'translate3d(0,0,0)' },
-      enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
-      leave: { opacity: 0, transform: 'translate3d(0,0,0)' },
-    };
-
-    if (!prevLoc) return defaultTrans;
 
     if (
       (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
       || (currLoc === '/projects' && prevLoc === '/about')
     ) {
-      // Right to left
+      // left to right
       return {
-        from: { opacity: 0, transform: 'translate3d(-100%,0,0)' },
-        enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: 'translate3d(50%,0,0)' },
+        from: { opacity: 0, x: '-50%', y: '0%' },
+        enter: { opacity: 1, x: '0%', y: '0%' },
+        leave: { opacity: 0,  x: '25%', y: '0%' },
       }
     } else if (
       (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
       || (currLoc === '/projects' && prevLoc === '/')
     ) {
-      // Left to right
+      // right to left
       return {
-        from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-        enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-        leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
+        from: { opacity: 0, x: '50%', y: '0%' },
+        enter: { opacity: 1, x: '0%', y: '0%' },
+        leave: { opacity: 0, x: '-25%', y: '0%' },
+      };
+    } else if (prevLoc && prevLoc.startsWith('/projects/')) {
+      // bottom to top
+      return {
+        from: { opacity: 0, x: '0%', y: '200px' },
+        enter: { opacity: 1,  x: '0%', y: '0px' },
+        leave: { opacity: 0,  x: '0%', y: '-100px' },
       };
     }
-    return defaultTrans;
+    // top to bottom
+    return {
+      from: { opacity: 0, x: '0%', y: '-200px' },
+      enter: { opacity: 1,  x: '0%', y: '0px' },
+      leave: { opacity: 0,  x: '0%', y: '100px' },
+    };
   }
 
   const transitions = useTransition(location, getTransitionEffect());

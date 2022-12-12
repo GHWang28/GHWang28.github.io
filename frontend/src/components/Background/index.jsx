@@ -7,7 +7,6 @@ import BackgroundParticles from './BackgroundParticles';
 
 function Background () {
   const backgroundIndex = useSelector(state => state.background);
-  console.log('hey')
   switch (backgroundIndex) {
     case 1: return <BackgroundWave />;
     case 2:

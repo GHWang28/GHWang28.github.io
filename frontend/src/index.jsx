@@ -7,8 +7,9 @@ import { HashRouter } from 'react-router-dom';
 import combinedReducer from './redux/reducer/combinedReducer';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
-import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from './wrappers/ScrollToTop';
 import Background from './components/Background';
+import EasterEggConsole from './wrappers/EasterEggConsole';
 
 const darkTheme = createTheme({
   palette: {
@@ -86,6 +87,7 @@ root.render(
         </ThemeProvider>
       </HashRouter>
     </Provider>
+    <EasterEggConsole />
   </React.StrictMode>
 );
 
