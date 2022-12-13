@@ -31,7 +31,8 @@ export default function App() {
       '/images/hscbow/bonvoyage.jpg',
       '/images/hscbow/rabureta.jpg',
       '/images/hscbow/ruiji.jpg',
-      '/images/hscbow/homecoming.jpg'
+      '/images/hscbow/homecoming.jpg',
+      '/images/about/profile-pic.jpg'
     ]);
   }, []);
 
