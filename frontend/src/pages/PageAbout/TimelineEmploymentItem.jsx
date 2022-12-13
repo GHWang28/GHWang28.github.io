@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
-import { Box, Collapse, keyframes, Typography } from '@mui/material';
+import { Box, Collapse, keyframes, Typography, useMediaQuery } from '@mui/material';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 
@@ -25,6 +25,7 @@ const rotateAnimationReverse = keyframes`
 export default function TimelineEmploymentItem ({ data, index }) {
   const [hide, setHide] = useState(false);
   const [hover, setHover] = useState(false);
+  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   return (
     <TimelineItem>
@@ -60,9 +61,9 @@ export default function TimelineEmploymentItem ({ data, index }) {
           {data.timelineTitle}
         </Typography>
         <Collapse in={hide}>
-          <Box component='ul' sx={{ direction: (index % 2) ? 'rtl' : '' }}>
-            <Typography>
-              {data.timelineContent && data.timelineContent.map((dotpoint, dotpointIndex) => (
+          {(mediumMq) ? (
+            <Box component='ul' sx={{ direction: (index % 2) ? 'rtl' : '' }}>
+              {data.timelineContent.map((dotpoint, dotpointIndex) => (
                 <Box
                   key={`dotpoint-key-${index}-${dotpointIndex}`}
                   component='li'
@@ -73,8 +74,23 @@ export default function TimelineEmploymentItem ({ data, index }) {
                   {dotpoint}
                 </Box>
               ))}
-            </Typography>
-          </Box>
+            </Box>
+          ) : (
+            <Fragment>
+              {data.timelineContent.map((dotpoint, dotpointIndex) => (
+                <Typography
+                  key={`dotpoint-key-${index}-${dotpointIndex}`}
+                  p={1}
+                  fontSize={'min(1rem,3vw)'}
+                  bgcolor={!(dotpointIndex % 2) ? 'rgb(0,0,0,0.4)' : ''}
+                  borderRadius={'15px'}
+                >
+                  {dotpoint}
+                </Typography>
+              ))}
+            </Fragment>
+          )}
+          
         </Collapse>
       </TimelineContent>
     </TimelineItem>
