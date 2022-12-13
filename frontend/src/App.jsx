@@ -14,11 +14,12 @@ import { preloadImgs } from './helpers';
 import { useSelector } from 'react-redux';
 import ImageZoomer from './components/ImageZoomer';
 
-function App() {
+export default function App() {
+  const location = useLocation();
+  const transitions = useTransition(location, getTransitionEffect(location.pathname, location?.state?.prevLocation));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const location = useLocation();
   const imgZoom = useSelector(state => state.imgZoom);
 
   useEffect(() => {
@@ -42,53 +43,8 @@ function App() {
   const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
   const pt = '64px';
 
-  /**
-   * Manages how to transition between each page
-   */
-  const getTransitionEffect = () => {
-    const currLoc = location.pathname;
-    const prevLoc = location?.state?.prevLocation;
-
-    if (
-      (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
-      || (currLoc === '/projects' && prevLoc === '/about')
-    ) {
-      // left to right
-      return {
-        from: { opacity: 0, x: '-50%', y: '0%' },
-        enter: { opacity: 1, x: '0%', y: '0%' },
-        leave: { opacity: 0,  x: '25%', y: '0%' },
-      }
-    } else if (
-      (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
-      || (currLoc === '/projects' && prevLoc === '/')
-    ) {
-      // right to left
-      return {
-        from: { opacity: 0, x: '50%', y: '0%' },
-        enter: { opacity: 1, x: '0%', y: '0%' },
-        leave: { opacity: 0, x: '-25%', y: '0%' },
-      };
-    } else if (prevLoc && prevLoc.startsWith('/projects/')) {
-      // bottom to top
-      return {
-        from: { opacity: 0, x: '0%', y: '200px' },
-        enter: { opacity: 1,  x: '0%', y: '0px' },
-        leave: { opacity: 0,  x: '0%', y: '-100px' },
-      };
-    }
-    // top to bottom
-    return {
-      from: { opacity: 0, x: '0%', y: '-200px' },
-      enter: { opacity: 1,  x: '0%', y: '0px' },
-      leave: { opacity: 0,  x: '0%', y: '100px' },
-    };
-  }
-
-  const transitions = useTransition(location, getTransitionEffect());
-
   return (
-    <Box sx={{ minHeight: '100vh' }}>
+    <Fragment>
       <Navbar />
       <Box
         sx={{
@@ -119,8 +75,46 @@ function App() {
         </Fragment>
       )}
       <ImageZoomer {...imgZoom} />
-    </Box>
+    </Fragment>
   );
 }
 
-export default App;
+/**
+   * Manages how to transition between each page
+   */
+const getTransitionEffect = (currLoc, prevLoc) => {
+  if (
+    (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
+    || (currLoc === '/projects' && prevLoc === '/about')
+  ) {
+    // left to right
+    return {
+      from: { opacity: 0, x: '-50%', y: '0px' },
+      enter: { opacity: 1, x: '0%', y: '0px' },
+      leave: { opacity: 0,  x: '25%', y: '0px' },
+    }
+  } else if (
+    (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
+    || (currLoc === '/projects' && prevLoc === '/')
+  ) {
+    // right to left
+    return {
+      from: { opacity: 0, x: '50%', y: '0px' },
+      enter: { opacity: 1, x: '0%', y: '0px' },
+      leave: { opacity: 0, x: '-25%', y: '0px' },
+    };
+  } else if (prevLoc && prevLoc.startsWith('/projects/')) {
+    // bottom to top
+    return {
+      from: { opacity: 0, x: '0%', y: '200px' },
+      enter: { opacity: 1,  x: '0%', y: '0px' },
+      leave: { opacity: 0,  x: '0%', y: '-100px' },
+    };
+  }
+  // top to bottom
+  return {
+    from: { opacity: 0, x: '0%', y: '-200px' },
+    enter: { opacity: 1,  x: '0%', y: '0px' },
+    leave: { opacity: 0,  x: '0%', y: '100px' },
+  };
+}

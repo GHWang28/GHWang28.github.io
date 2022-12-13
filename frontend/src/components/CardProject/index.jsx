@@ -53,7 +53,7 @@ function CardProject ({
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
         mb: (mediumMq) ? 5 : 2,
-        bgcolor: 'black'
+        bgcolor: 'black.main'
       }}
     >
       <Box
@@ -129,7 +129,7 @@ function CardProject ({
               ) : (
                 <IconButton
                   onClick={button.onClick}
-                  disabled={button?.disabled}
+                  disabled={button?.disabled === true}
                   sx={{
                     mr: 1,
                     color: 'primary.main',

@@ -189,7 +189,7 @@ const generateProjects = (navigate, location) => {
       date: '(24/10/2022)',
       type: ['Frontend', 'University Project', 'JavaScript'],
       imgs: [
-        '/images/covers/slackr.png'
+        '/images/comp6080/slackr-cover.png'
       ],
       body: [
         <Fragment>
@@ -267,7 +267,7 @@ const generateProjects = (navigate, location) => {
       date: '(18/11/2022)',
       type: ['Frontend', 'University Project', 'JavaScript', 'React'],
       imgs: [
-        '/images/comp6080/airbnb-logo.png'
+        '/images/comp6080/airbnb-cover.jpg'
       ],
       body: [
         <Fragment>
