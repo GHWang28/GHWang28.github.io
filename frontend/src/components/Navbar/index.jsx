@@ -29,8 +29,26 @@ function Navbar () {
     }
   ]
   return (
-    <AnimatedAppBar style={animationProps} position='fixed'>
-      <Toolbar>
+    <AnimatedAppBar
+      style={animationProps}
+      position='fixed'
+      sx={{
+        backgroundColor: 'rgba(0,0,0,0.7) ',
+        backdropFilter: `blur(0.5px)
+          url('data:image/svg+xml,\
+          <svg xmlns="http://www.w3.org/2000/svg">\
+            <filter id="turbulence" x="0" y="0" width="100%" height="100%">\
+              <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>\
+              <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>\
+            </filter>\
+          </svg>#turbulence')
+        `
+      }}
+    >
+      <Toolbar
+        name='hey'
+        
+      >
         <Box
           m={1}
           onMouseEnter={() => { setLogoHover(true) }}
