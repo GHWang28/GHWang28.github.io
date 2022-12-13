@@ -6,7 +6,7 @@ import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
 
-function PageLanding () {
+export default function PageLanding () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
@@ -43,8 +43,8 @@ function PageLanding () {
           message={splashMsg}
           fontSize={'min(4.5vw, 30px)'}
           position={{
-            left: (mediumMq) ? '90%' : '85%',
-            bottom: '85%'
+            left: (mediumMq) ? '12%' : '17%',
+            bottom: '5%'
           }}
         />
         {/* Background image */}
@@ -154,8 +154,4 @@ function PageLanding () {
       </AnimatedTypography>
     </Box>
   )
-
-
 }
-
-export default PageLanding;

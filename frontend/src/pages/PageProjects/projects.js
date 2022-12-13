@@ -89,7 +89,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           disabled: 'Source Code can not be publicly shared.'
         }
@@ -117,7 +117,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
             window.open('https://github.com/GHWang28/tic-tac-toe-capture', '_blank').focus();
@@ -147,7 +147,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
             window.open('https://github.com/GHWang28/spotter', '_blank').focus();
@@ -158,7 +158,7 @@ const generateProjects = (navigate, location) => {
     {
       title: 'Xeno & Yova',
       date: '(21/9/2019)',
-      type: ['Game', 'High School Project'],
+      type: ['Game', 'Personal Project'],
       imgs: [
         '/images/covers/xny.png'
       ],
@@ -176,7 +176,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
             window.open('https://github.com/GHWang28/xeno-and-yova', '_blank').focus();
@@ -218,7 +218,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           disabled: 'Source Code can not be publicly shared.'
         }
@@ -257,7 +257,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           disabled: 'Source Code can not be publicly shared.'
         }
@@ -296,7 +296,7 @@ const generateProjects = (navigate, location) => {
           }
         },
         {
-          text: 'View Code',
+          text: 'View Source',
           icon: <CodeIcon />,
           disabled: 'Source Code can not be publicly shared.'
         }

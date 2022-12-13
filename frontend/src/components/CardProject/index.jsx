@@ -129,7 +129,7 @@ function CardProject ({
               ) : (
                 <IconButton
                   onClick={button.onClick}
-                  disabled={button?.disabled === true}
+                  disabled={button?.disabled !== undefined}
                   sx={{
                     mr: 1,
                     color: 'primary.main',

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Fragment } from 'react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import PageLanding from './pages/PageLanding';
@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { preloadImgs } from './helpers';
 import { useSelector } from 'react-redux';
 import ImageZoomer from './components/ImageZoomer';
+import PageAbout from './pages/PageAbout';
 
 export default function App() {
   const location = useLocation();
@@ -62,7 +63,7 @@ export default function App() {
                 <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageProjects /></AbsoluteWrapper>
               }/>
               <Route path='/about' element={
-                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><Typography align='center'> W.I.P.</Typography></AbsoluteWrapper>
+                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageAbout /></AbsoluteWrapper>
               }/>
             </Routes>
           </animated.div>

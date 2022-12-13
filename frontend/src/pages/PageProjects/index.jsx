@@ -8,7 +8,7 @@ import ProjectMinecraft from './UniversityProjs/ProjectMinecraft';
 import ProjectSlackr from './UniversityProjs/ProjectSlackr';
 import ProjectMinecraftScreensaver from './UniversityProjs/ProjectMinecraftScreensaver';
 
-function PageProjects () {
+export default function PageProjects () {
 
   return (
     <Routes>
@@ -22,5 +22,3 @@ function PageProjects () {
     </Routes> 
   )
 }
-
-export default PageProjects;

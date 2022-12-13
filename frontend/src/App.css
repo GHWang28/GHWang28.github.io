@@ -1,3 +1,7 @@
+:root {
+  --linear-gradient: linear-gradient(45deg, #F8F615,#EE7752,#E73C7E,#23A6D5,#23D5AB,#23A6D5,#E73C7E,#EE7752, #F8F615);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -23,21 +27,21 @@ code {
 }
 
 .gradient-text {
-  background: linear-gradient(45deg,#EE7752,#E73C7E,#23A6D5,#23D5AB,#23A6D5,#E73C7E,#EE7752);
-  background-size: 1400% auto;
+  background: var(--linear-gradient);
+  background-size: 1800% auto;
 
   color: #000;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  animation: shine 40s linear infinite;
+  animation: shine 60s linear infinite;
 }
 
 .gradient-background {
-  background: linear-gradient(45deg,#EE7752,#E73C7E,#23A6D5,#23D5AB,#23A6D5,#E73C7E,#EE7752);
-  background-size: 1400% auto;
-  animation: shine 40s linear infinite;
+  background: var(--linear-gradient);
+  background-size: 1800% auto;
+  animation: shine 60s linear infinite;
 }
 
 @keyframes shine {

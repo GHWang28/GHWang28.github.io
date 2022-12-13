@@ -34,21 +34,18 @@ function Navbar () {
       position='fixed'
       sx={{
         backgroundColor: 'rgba(0,0,0,0.7) ',
-        backdropFilter: `blur(0.5px)
+        backdropFilter: `blur(1px)
           url('data:image/svg+xml,\
           <svg xmlns="http://www.w3.org/2000/svg">\
-            <filter id="turbulence" x="0" y="0" width="100%" height="100%">\
-              <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>\
-              <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>\
+            <filter id="turbulence" x="0" y="0">\
+              <feTurbulence numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>\
+              <feDisplacementMap scale="12" in="SourceGraphic"></feDisplacementMap>\
             </filter>\
           </svg>#turbulence')
         `
       }}
     >
-      <Toolbar
-        name='hey'
-        
-      >
+      <Toolbar>
         <Box
           m={1}
           onMouseEnter={() => { setLogoHover(true) }}
