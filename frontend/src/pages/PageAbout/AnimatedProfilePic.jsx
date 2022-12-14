@@ -31,8 +31,9 @@ export default function AnimatedProfilePic () {
       alt={'Profile Shot of Gordon Wang'}
       src={'images/about/profile-pic.jpg'}
       sx={{
-        width: (largeMq) ? '100%' : '50%',
         height: 'fit-content',
+        maxWidth: (largeMq) ? '100%' : '50%',
+        maxHeight: (largeMq) ? 'none' : '350px',
         border: '2px solid whitesmoke',
         borderRadius: '15px',
         cursor: 'pointer',

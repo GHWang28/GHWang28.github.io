@@ -38,7 +38,7 @@ export default function PageLanding () {
           style={useSpring({
             from: { opacity: 0 },
             to: { opacity: 1 },
-            delay: 2 * delay,
+            delay: 11 * delay,
           })}
           message={splashMsg}
           fontSize={'min(4.5vw, 30px)'}

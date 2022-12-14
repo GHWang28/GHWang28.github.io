@@ -2,15 +2,16 @@ import React from 'react';
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
 import AnimatedProfilePic from './AnimatedProfilePic';
-import TimelineEmployment from './TimelineEmployment';
+import TimelineEmploymentSection from './TimelineEmploymentSection';
 import { animated, useSpring } from 'react-spring';
+import ContactMeSection from './ContactMeSection';
 
 export default function PageAbout () {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const AnimatedTypography = animated(Typography);
 
   return (
-    <Grid container rowGap={3} columnSpacing={3}>
+    <Grid container columnSpacing={3}>
       <Grid item xs={12}>
         <AnimatedTitle title={'About Me'} />
         <hr />
@@ -84,15 +85,10 @@ export default function PageAbout () {
       </Grid>
       {/* Timeline */}
       <Grid item xs={12} >
-        <Box component='hr' width='100%'/>
-        <Typography mt={5} variant='h3' fontWeight='bold' align='center'>
-          {'Employment Timeline'}
-        </Typography>
-        <Typography mb={4} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-          {'(Click on the icons to expand)'}
-        </Typography>
-        <TimelineEmployment />
-        <Box component='hr' width='100%'/>
+        <TimelineEmploymentSection />
+      </Grid>
+      <Grid item xs={12} >
+        <ContactMeSection />
       </Grid>
     </Grid>
   )
