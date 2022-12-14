@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { AppBar, Box, Collapse, Divider, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Collapse, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
@@ -66,7 +66,6 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
-        <Divider orientation='vertical' variant='middle' flexItem />
         {navigationOptions.map((nav, index) => (
           <Fragment key={`navigation-btn-${index}`}>
             <NavbarButton
@@ -76,7 +75,6 @@ function Navbar () {
               disabled={location.pathname === nav.loc}
               label={nav.label}
             />
-            <Divider orientation='vertical' variant='middle' flexItem />
           </Fragment>
         ))}
         <Box ml='auto'>

@@ -52,6 +52,7 @@ export default function App() {
         sx={{
           color: 'whitesmoke',
           overflowX: 'clip',
+          height: 'fit-content'
         }}
       >
         {transitions((styles, item) => (

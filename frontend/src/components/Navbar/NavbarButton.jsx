@@ -19,8 +19,13 @@ function NavbarButton (props) {
         setHover(false);
         props.onClick();
       }}
+      sx={{
+        border: '1px solid rgba(0,0,0,0)',
+        borderColor: (props.disabled) ? 'primary.main' : '',
+        fontWeight: 'bold',
+        height: '100%'
+      }}
       disableRipple
-      sx={{ fontWeight: 'bold' }}
     >
       {(hover) ? (
         <Sparklez frequency={1.5} sizeRange={[10, 15]}>

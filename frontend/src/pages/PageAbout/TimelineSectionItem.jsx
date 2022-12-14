@@ -1,14 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
-import { Box, Collapse, Typography, useMediaQuery } from '@mui/material';
+import { Box, Collapse, Typography } from '@mui/material';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-export default function TimelineEmploymentItem ({ data, index }) {
+export default function TimelineEmploymentItem ({ data, index, end}) {
   const [hide, setHide] = useState(false);
   const [hover, setHover] = useState(false);
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const [ref, inView] = useInView();
 
   return (
@@ -43,8 +42,8 @@ export default function TimelineEmploymentItem ({ data, index }) {
             <WorkHistoryIcon sx={{ width: '45px', height: '45px' }} />
           )}
         </TimelineDot>
-        {(data.timelineTitle !== 'Present Time') && (
-          //  Show a connection to the next timeline item if it is not the last one
+        {(!end) && (
+          // Only show a connector if this item is not the end
           <TimelineConnector />
         )}
       </TimelineSeparator>
@@ -56,38 +55,17 @@ export default function TimelineEmploymentItem ({ data, index }) {
         </Typography>
         {/* Body */}
         <Collapse in={hide}>
-          {(mediumMq) ? (
-            // Show dotpoints if the screensize is wide enough
-            <Box component='ul' sx={{ direction: (index % 2) ? 'rtl' : '' }}>
-              {data.timelineContent.map((dotpoint, dotpointIndex) => (
-                <Box
-                  key={`dotpoint-key-${index}-${dotpointIndex}`}
-                  component='li'
-                  p={1}
-                  bgcolor={!(dotpointIndex % 2) ? 'rgb(0,0,0,0.4)' : ''}
-                  borderRadius={'15px'}
-                >
-                  {dotpoint}
-                </Box>
-              ))}
-            </Box>
-          ) : (
-            // Do not show dotpoints if the screen width is too low
-            <Fragment>
-              {data.timelineContent.map((dotpoint, dotpointIndex) => (
-                <Typography
-                  key={`dotpoint-key-${index}-${dotpointIndex}`}
-                  p={1}
-                  fontSize={'min(1rem,2.5vw)'}
-                  bgcolor={!(dotpointIndex % 2) ? 'rgb(0,0,0,0.4)' : ''}
-                  borderRadius={'15px'}
-                >
-                  {dotpoint}
-                </Typography>
-              ))}
-            </Fragment>
-          )}
-          
+          {data.timelineContent.map((dotpoint, dotpointIndex) => (
+            <Typography
+              key={`dotpoint-key-${index}-${dotpointIndex}`}
+              p={1}
+              fontSize={'min(1rem,2.5vw)'}
+              bgcolor={!(dotpointIndex % 2) ? 'rgb(0,0,0,0.4)' : ''}
+              borderRadius={'15px'}
+            >
+              {dotpoint}
+            </Typography>
+          ))}
         </Collapse>
       </TimelineContent>
     </TimelineItem>

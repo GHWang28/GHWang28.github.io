@@ -14,7 +14,7 @@ function ButtonGoBack ({ destination }) {
       <IconButton
         onMouseEnter={() => { setHoverState(true) }}
         onMouseLeave={() => { setHoverState(false) }}
-        onClick={() => { navigate(destination, { state: { prevLocation: location.pathname } }) }}
+        onClick={() => { navigate(location.state?.prevLocation || destination, { state: { prevLocation: location.pathname } }) }}
         sx={{
           mt: 3,
           border: '2px solid whitesmoke',

@@ -32,7 +32,7 @@ function ProjectEarthEphemeris () {
         </Grid>
         
         {/* Containing the side message */}
-        <Grid item xs={12} xl={2.5}>
+        <Grid item xs={12} xl={2.5} >
           <AnimatedBox
             style={useSpring({
               from: { opacity: 0, y: '-100%' },

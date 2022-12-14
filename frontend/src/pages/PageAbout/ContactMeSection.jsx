@@ -44,7 +44,7 @@ export default function ContactMeSection () {
       ref={ref}
       sx={{
         opacity: (inView) ? '1' : '0',
-        translate: (inView) ? '0px' : '200px',
+        translate: (inView) ? '0px' : '-200px',
         transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
       }}
     >
@@ -53,7 +53,7 @@ export default function ContactMeSection () {
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='h5' fontWeight='bold' align='center' color='text.secondary'>
-        {'Contact me for any inquiries'}
+        {'Contact me for any inquiries (...or a chat)'}
       </Typography>
       <Grid container rowSpacing={2}>
         {contacts.map((contact, index) => (

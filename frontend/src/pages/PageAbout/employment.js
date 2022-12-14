@@ -5,7 +5,7 @@ const generateEmploymentTimeline = () => {
     {
       oppContent: '(February 2018)',
       timlineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/employment/aie.jpg',
+      timelineDotImg: '/images/timeline/aie.jpg',
       timelineTitle: 'Academy of Interactive Entertainment Work Experience',
       timelineContent: [
         'Gained valuable insight and experience with industry standard tools for Game Development and Animation (Autodesk Maya, Adobe Animate, Photoshop, GameMaker Studio)',
@@ -17,7 +17,7 @@ const generateEmploymentTimeline = () => {
     {
       oppContent: '(30th November 2019) → (Present Time)',
       timlineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/employment/abc.jpg',
+      timelineDotImg: '/images/timeline/abc.jpg',
       timelineTitle: 'Australia ABC College Tutor',
       timelineContent: [
         'Held onto a tutoring and administration role at Australia ABC College which specialises in tutoring Primary and High School students',
