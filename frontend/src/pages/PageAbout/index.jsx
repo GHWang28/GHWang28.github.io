@@ -4,12 +4,14 @@ import AnimatedTitle from '../PageProjects/AnimatedTitle';
 import AnimatedProfilePic from './AnimatedProfilePic';
 import TimelineSection from './TimelineSection';
 import ContactMeSection from './ContactMeSection';
+import HobbiesSection from './HobbiesSection';
 import { animated, useSpring } from 'react-spring';
 import generateEmploymentTimeline from './employment';
 import generateExtraCurricularTimeline from './extracurricular';
 import { useLocation, useNavigate } from 'react-router';
 
 export default function PageAbout () {
+  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const AnimatedTypography = animated(Typography);
@@ -33,7 +35,9 @@ export default function PageAbout () {
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        p={5}
+        pt={(smallMq) ? 5 : 0}
+        pb={(smallMq) ? 5 : 3}
+        px={(smallMq) ? 5 : 2}
       >
         {/* Section containing introduction */}
         <AnimatedTypography
@@ -61,7 +65,7 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={3}
         >
-          {'Currently, I\'m a Final Year Student studying '}
+          {'I am currently in the final year of my '}
           <Box
             component='code'
             px={1}
@@ -69,7 +73,7 @@ export default function PageAbout () {
           >
             Computer&nbsp;Science
           </Box>
-          {' at '}
+          {' degree at '}
           <Box component='span' color='yellow.main'>{'UNSW '}</Box>
           <Box component='span' className='ozzie-text'>{'Australia'}</Box>
           {'.'}
@@ -86,7 +90,7 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={3}
         >
-          {'I had my Primary and Secondary Education at '}
+          {'I completed my primary and secondary education at '}
           <Box component='span' color='yellow.main'>
             {'Saint Joachim\'s Primary School'}
           </Box>
@@ -107,7 +111,7 @@ export default function PageAbout () {
           fontWeight='bold'
           color='#a9a9a9'
         >
-          {'I love pushing my creative limits with every project I work on and am eager to acquire and learn new skills to do so.'}
+          {'I am passionate about pushing the boundaries of my creativity with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
         </AnimatedTypography>
       </Grid>
       {/* Timeline */}
@@ -122,7 +126,7 @@ export default function PageAbout () {
       </Grid>
       {(xLargeMq)
         ? <Divider orientation="vertical" flexItem sx={{ mr: -1, bgcolor: 'whitesmoke' }}/>
-        : <Box component='hr' width='100%' sx={{ my: 0 }}/>
+        : <Box component='hr' width='100%' my={0}/>
       }
       <Grid item xl={6} xs={12} >
         <TimelineSection
@@ -131,6 +135,11 @@ export default function PageAbout () {
           subtitle={'Activities I\'ve participated in outside of academics'}
         />
       </Grid>
+      <Box component='hr' width='100%' my={0}/>
+      <Grid item xs={12} >
+        <HobbiesSection />
+      </Grid>
+      <Box component='hr' width='100%' my={0}/>
       <Grid item xs={12} >
         <ContactMeSection />
       </Grid>

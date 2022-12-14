@@ -18,7 +18,7 @@ export default function TimelineSection ({ timelineItems, title, subtitle, odd})
         top: '64px'
       }}
     >
-      <Typography mt={5} variant='h3' fontWeight='bold' align='center'>
+      <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
         {title}
       </Typography>
       <Typography variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>

@@ -19,8 +19,8 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineDotImg: '/images/timeline/sefton-hs.jpg',
       timelineTitle: 'Peer Support Leader at Sefton High School',
       timelineContent: [
-        'A school-term long commitment of mentoring and guiding a group of 7th grade high schoolers',
-        'The role consisted of organising weekly activities and an end-of-term picnic to strengthen the student\'s familiarity with the school and their bonds amongs their cohort and teachers',
+        'Committed to a school-term long mentorship role, providing guidance and support to a group of 7th grade high school students',
+        'The role involved organising weekly activities and an end-of-term picnic to foster a sense of community and connection among students, their peers, and teachers. This allowed me to play a key role in creating a positive and supportive learning environment for students',
         'Continued to maintain positive relationships with students after the role till High School graduation'
       ]
     },
@@ -30,10 +30,10 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineDotImg: '/images/timeline/art-express.jpg',
       timelineTitle: 'ArtExpress 2020',
       timelineContent: [
-        'Entered my 6-piece Body of Work for Art Express 2020 and was nominated to be displayed at the Art Gallery of New South Wales',
+        'Submitted a 6-piece body of work for Art Express 2020, which later was selected for display at the prestigious Art Gallery of New South Wales',
         'Extensive usage of Photoshop, Clip Studio and understanding of colours were required to create the Body of Work',
-        'Took initiative to plan and organise my project by using several diaries and planners to keep track of ideas, character/environment designs and document progress.',
-        'Undertaking this project taught me valuable experiences with project management',
+        'Demonstrated initiative and organisation by utilising multiple diaries and planners to track ideas, character/environment designs, and document progress throughout the project. This approach allowed me to effectively plan and manage my work, ensuring timely and successful completion without compromising any of my ideas',
+        'The successful completion of this project also provided valuable experience in project management, demonstrating my ability to effectively plan and enact on complex tasks',
         <Link sx={{ cursor: 'pointer' }} onClick={() => {
           navigate('/projects/earth-ephemeris', { state: { prevLocation: location.pathname } })
         }}>

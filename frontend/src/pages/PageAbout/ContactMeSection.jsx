@@ -48,12 +48,11 @@ export default function ContactMeSection () {
         transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
       }}
     >
-      <Box component='hr' width='100%' mt={0}/>
-      <Typography mt={5} variant='h3' fontWeight='bold' align='center'>
+      <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='h5' fontWeight='bold' align='center' color='text.secondary'>
-        {'Contact me for any inquiries (...or a chat)'}
+        {'Contact me for any inquiries (or if you just want to chat)'}
       </Typography>
       <Grid container rowSpacing={2}>
         {contacts.map((contact, index) => (
