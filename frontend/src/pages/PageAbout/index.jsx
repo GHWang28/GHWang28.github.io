@@ -47,7 +47,7 @@ export default function PageAbout () {
           fontWeight='bold'
           mb={(largeMq) ? 8 : 4}
         >
-          {'Hey, my name is Gordon Wang.'}
+          {'Hi, my name is Gordon Wang.'}
         </AnimatedTypography>
         <AnimatedTypography
           style={useSpring({
