@@ -23,7 +23,7 @@ export default function TimelineEmploymentSection () {
         {'Employment Timeline'}
       </Typography>
       <Typography mb={4} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'(Click on the icons to expand)'}
+        {'(Click on the icons to learn more)'}
       </Typography>
       <Timeline position='alternate' sx={{ mb: 0 }}>
         {/* AIE */}
