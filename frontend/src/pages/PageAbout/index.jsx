@@ -111,7 +111,7 @@ export default function PageAbout () {
           fontWeight='bold'
           color='#a9a9a9'
         >
-          {'I am passionate about pushing the boundaries of my creativity with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
+          {'I aim to push my creative limits with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
         </AnimatedTypography>
       </Grid>
       {/* Timeline */}
@@ -120,7 +120,7 @@ export default function PageAbout () {
         <TimelineSection
           timelineItems={generateEmploymentTimeline()}
           title={'Employment History'}
-          subtitle={'Occupations I\'ve undertaken'}
+          subtitle={'Positions I have held in the workforce'}
           odd
         />
       </Grid>
@@ -132,7 +132,7 @@ export default function PageAbout () {
         <TimelineSection
           timelineItems={generateExtraCurricularTimeline(useNavigate(), useLocation())}
           title={'Extra-Curricular History'}
-          subtitle={'Activities I\'ve participated in outside of academics'}
+          subtitle={'Activities outside of academics that I have participated in'}
         />
       </Grid>
       <Box component='hr' width='100%' my={0}/>

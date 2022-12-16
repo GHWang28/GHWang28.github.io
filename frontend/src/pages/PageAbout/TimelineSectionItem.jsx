@@ -4,8 +4,9 @@ import { Box, Collapse, Typography } from '@mui/material';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import PropTypes from 'prop-types';
 
-export default function TimelineEmploymentItem ({ data, index, end}) {
+export default function TimelineSectionItem ({ data, index, end }) {
   const [hide, setHide] = useState(false);
   const [hover, setHover] = useState(false);
   const [ref, inView] = useInView();
@@ -71,3 +72,15 @@ export default function TimelineEmploymentItem ({ data, index, end}) {
     </TimelineItem>
   )
 }
+
+TimelineSectionItem.propTypes = {
+  data: PropTypes.shape({
+    oppContent: PropTypes.string,
+    timlineDotColor: PropTypes.string,
+    timelineDotImg: PropTypes.string,
+    timelineTitle: PropTypes.string,
+    timelineContent: PropTypes.array
+  }),
+  index: PropTypes.number,
+  end: PropTypes.bool,
+};

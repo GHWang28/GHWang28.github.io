@@ -7,7 +7,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-function ImageZoomer ({ src, show }) {
+export default function ImageZoomer ({ src, show }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
   const transitions = useTransition(show, {
@@ -71,5 +71,3 @@ ImageZoomer.propTypes = {
   src: PropTypes.string,
   show: PropTypes.bool
 };
-
-export default ImageZoomer;

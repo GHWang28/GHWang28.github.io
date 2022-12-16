@@ -20,7 +20,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineTitle: 'Peer Support Leader at Sefton High School',
       timelineContent: [
         'Committed to a school-term long mentorship role, providing guidance and support to a group of 7th grade high school students',
-        'The role involved organising weekly activities and an end-of-term picnic to foster a sense of community and connection among students, their peers, and teachers. This allowed me to play a key role in creating a positive and supportive learning environment for students',
+        'The role involved organising weekly activities and an end-of-term picnic to foster a sense of community and connection among students, their peers, and teachers. This allowed me to play a key role in creating a positive and supportive learning environment for the students',
         'Continued to maintain positive relationships with students after the role till High School graduation'
       ]
     },
@@ -32,7 +32,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineContent: [
         'Submitted a 6-piece body of work for Art Express 2020, which later was selected for display at the prestigious Art Gallery of New South Wales',
         'Extensive usage of Photoshop, Clip Studio and understanding of colours were required to create the Body of Work',
-        'Demonstrated initiative and organisation by utilising multiple diaries and planners to track ideas, character/environment designs, and document progress throughout the project. This approach allowed me to effectively plan and manage my work, ensuring timely and successful completion without compromising any of my ideas',
+        'Demonstrated initiative and organisational skills by utilising multiple diaries and planners to track ideas, character/environment designs, and document progress throughout the project. This approach allowed me to effectively plan and manage my work, ensuring timely and successful completion without compromising any of my ideas',
         'The successful completion of this project also provided valuable experience in project management, demonstrating my ability to effectively plan and enact on complex tasks',
         <Link sx={{ cursor: 'pointer' }} onClick={() => {
           navigate('/projects/earth-ephemeris', { state: { prevLocation: location.pathname } })
@@ -51,9 +51,9 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineTitle: 'TracHack 22.2',
       timelineContent: [
         'Participated in a global competition that involved working as a team and creating a Machine Learning model that was able to predict the eligibility of customers for the Emergency Broadband Benifit Program',
-        'Models created were trained using unsupervised Machine Learning algorithms',
+        'Unsupervised machine learning algorithms were used to train the models',
         'Taught me skills in Python regarding the manipulation of big data, data cleaning and the many Machine Learning algorithms and its benefits',
-        'Improved my skills as a team player'
+        'Developed stronger team-oriented skills'
       ]
     }
   ]
