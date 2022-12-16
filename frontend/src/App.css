@@ -17,7 +17,7 @@ body {
 }
 
 html {
-  background-image: radial-gradient(rgb(53, 58, 68), rgb(29, 32, 37));
+  background: rgb(40, 44, 51);
   overscroll-behavior-y: none;
   background-attachment: fixed;
   height: 100vh;

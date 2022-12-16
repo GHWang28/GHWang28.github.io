@@ -4,6 +4,7 @@ import { rng } from "../../helpers";
 function SparklezInstance ({ color, size, sx }) {
   return (
     <Box
+      component='span'
       className='sparklez-grow-shrink'
       sx={{ position: 'absolute', pointerEvents: 'none', ...sx, translate: '-50% -50%' }}
     >

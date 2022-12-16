@@ -1,7 +1,7 @@
 import { Box, IconButton, keyframes, Typography } from "@mui/material";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import BootstrapTooltip from "../../components/BootstrapTooltip";
+import BootstrapTooltip from "../../../components/BootstrapTooltip";
 
 const onClick = keyframes`
   0% {

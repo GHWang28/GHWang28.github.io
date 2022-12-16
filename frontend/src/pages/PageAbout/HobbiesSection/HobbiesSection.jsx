@@ -21,7 +21,7 @@ export default function HobbiesSection () {
         {'Hobbies & Interests'}
       </Typography>
       <Typography mb={(smallMq) ? 0 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Areas of interest that I am fond of'}
+        {'My areas of interest'}
       </Typography>
       {listOfHobbies.map((hobby, index) => (
         <Grid

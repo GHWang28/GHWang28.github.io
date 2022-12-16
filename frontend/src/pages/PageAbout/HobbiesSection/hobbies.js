@@ -18,7 +18,7 @@ const generateHobbies = () => {
       icon: <PaletteIcon {...props} />
     },
     {
-      text: 'I am also incredibly passionate about game design. There is a unique thrill in creating an interactive medium that others can engage with and enjoy. It is incredibly satisfying to watch others play and interact with something I have designed, and this passion drives me to constantly seek out new and innovative ways to create engaging and immersive experiences for players.',
+      text: 'I am also incredibly passionate about game design. There is a unique thrill in creating an interactive medium that others can engage with and it is incredibly satisfying to see them interact with something I have designed. Incorporating user\'s feedback to further improve the game\'s design adds to the satisfaction as it further fuels my creative thinking. This passion drives me to constantly seek out new and innovative ways to create engaging and interesting experiences for players.',
       icon: <SportsEsportsIcon {...props} />
     },
     {

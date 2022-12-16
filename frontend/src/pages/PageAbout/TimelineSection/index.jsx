@@ -4,10 +4,11 @@ import TimelineSectionItem from './TimelineSectionItem';
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import TimelineSectionItemSmall from './TimelineSectionItemSmall';
+import PropTypes from 'prop-types';
 
-export default function TimelineSection ({ timelineItems, title, subtitle, odd}) {
-  const [ref, inView] = useInView();
+export default function TimelineSection ({ timelineItems, title, subtitle, odd }) {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm')); 
+  const [ref, inView] = useInView();
 
   return (
     <Box
@@ -45,3 +46,11 @@ export default function TimelineSection ({ timelineItems, title, subtitle, odd})
     </Box>
   )
 }
+
+TimelineSection.propTypes = {
+  timelineItems: PropTypes.array,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  odd: PropTypes.bool
+};
+

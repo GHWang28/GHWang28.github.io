@@ -52,6 +52,7 @@ function Sparklez ({ children, frequency = 1, sizeRange = [5, 15] }) {
         />
       ))}
       <Box
+        component='span'
         sx={{
           position: 'relative',
           zIndex: 1,

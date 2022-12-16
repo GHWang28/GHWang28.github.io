@@ -4,17 +4,33 @@ import AnimatedTitle from '../PageProjects/AnimatedTitle';
 import AnimatedProfilePic from './AnimatedProfilePic';
 import TimelineSection from './TimelineSection';
 import ContactMeSection from './ContactMeSection';
-import HobbiesSection from './HobbiesSection';
+import HobbiesSection from './HobbiesSection/HobbiesSection';
 import { animated, useSpring } from 'react-spring';
 import generateEmploymentTimeline from './employment';
 import generateExtraCurricularTimeline from './extracurricular';
 import { useLocation, useNavigate } from 'react-router';
+import SkillsSection from './SkillsSection';
+import FunFactSection from './FunFactSection';
 
 export default function PageAbout () {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const AnimatedTypography = animated(Typography);
+
+  const skillAndFunFactSection = (
+    <Grid container sx={{ border: (xLargeMq) ? '1px solid whitesmoke' : '', borderRadius: (xLargeMq) ? '15px' : '0px' }}>
+      <Grid item xs={5.95} my={3} pl={0.5}>
+        <FunFactSection />
+      </Grid>
+      <Grid item xs={0.1} sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Divider orientation='vertical' flexItem sx={{ bgcolor: 'whitesmoke' }}/>
+      </Grid>
+      <Grid item xs={5.95} my={3} pr={0.5}>
+        <SkillsSection />
+      </Grid>
+    </Grid>
+  )
 
   return (
     <Grid container>
@@ -49,9 +65,9 @@ export default function PageAbout () {
           align='center'
           variant='h3'
           fontWeight='bold'
-          mb={(largeMq) ? 8 : 4}
+          mb={(largeMq) ? 4 : 2}
         >
-          {'Hi, my name is Gordon Wang.'}
+          Hi, my name is Gordon&nbsp;Wang.
         </AnimatedTypography>
         <AnimatedTypography
           style={useSpring({
@@ -85,10 +101,10 @@ export default function PageAbout () {
             delay: 750
           })}
           align='center'
-          fontSize={24}
+          fontSize={18}
           fontWeight='bold'
           color='#a9a9a9'
-          mb={3}
+          mb={(xLargeMq) ? 3 : 0}
         >
           {'I completed my primary and secondary education at '}
           <Box component='span' color='yellow.main'>
@@ -98,22 +114,16 @@ export default function PageAbout () {
           <Box component='span' color='yellow.main'>
             {'Sefton High School'}
           </Box>
-          {' respectively.'}
+          {' respectively. I aim a highly motivated individual and I aim to push my creative limits with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
         </AnimatedTypography>
-        <AnimatedTypography
-          style={useSpring({
-            from: { x: '50%', opacity: 0 },
-            to: { x: '0%', opacity: 1 },
-            delay: 1000
-          })}
-          align='center'
-          fontSize={20}
-          fontWeight='bold'
-          color='#a9a9a9'
-        >
-          {'I aim to push my creative limits with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
-        </AnimatedTypography>
+        {(xLargeMq) && (skillAndFunFactSection)}
       </Grid>
+      {(!xLargeMq) && (
+        <Grid item xs={12}>
+          <Box component='hr' width='100%' sx={{ my: 0 }}/>
+          {skillAndFunFactSection}
+        </Grid>
+      )}
       {/* Timeline */}
       <Box component='hr' width='100%' sx={{ my: 0 }}/>
       <Grid item xl={6} xs={12} >
@@ -132,7 +142,7 @@ export default function PageAbout () {
         <TimelineSection
           timelineItems={generateExtraCurricularTimeline(useNavigate(), useLocation())}
           title={'Extra-Curricular History'}
-          subtitle={'Activities outside of academics that I have participated in'}
+          subtitle={'Notable activities outside of academics that I have participated in'}
         />
       </Grid>
       <Box component='hr' width='100%' my={0}/>
