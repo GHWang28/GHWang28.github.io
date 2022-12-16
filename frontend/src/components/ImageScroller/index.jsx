@@ -10,14 +10,14 @@ const tickScroll = keyframes`
   }
 `;
 
-export default function ImageScroller ({ images, height, itemGap }) {
+export default function ImageScroller ({ images, height, length = '10s', bgcolor }) {
   return (
-    <Box sx={{ overflowX: 'hidden', bgcolor: 'rgba(245,245,245,0.75)', border: '2px solid whitesmoke', borderRadius: '15px' }}>
+    <Box sx={{ overflowX: 'hidden', bgcolor, border: '2px solid whitesmoke', borderRadius: '15px' }}>
       <Box sx={{
           width: 'fit-content',
           height,
           display: 'flex',
-          animation: `${tickScroll} 15s linear infinite`
+          animation: `${tickScroll} ${length} linear infinite`
         }}
       >
         {([...images, ...images].map((src, index) => (
@@ -47,5 +47,7 @@ export default function ImageScroller ({ images, height, itemGap }) {
 
 ImageScroller.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  itemGap: PropTypes.string
+  itemGap: PropTypes.string,
+  length: PropTypes.string,
+  bgcolor: PropTypes.string
 };

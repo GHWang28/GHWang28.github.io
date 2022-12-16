@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Box, IconButton, keyframes, Typography } from '@mui/material';
+import { Box, Grid, IconButton, keyframes, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
 import { rng } from '../../../helpers';
@@ -49,6 +49,7 @@ export default function FunFactSection () {
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [playRefreshAnim, setPlayRefreshAnim] = useState(false);
   const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);
+  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   const transitions = useTransition(funfact, {
     from: { rotateY: '-180deg', position: 'static' },
@@ -69,43 +70,40 @@ export default function FunFactSection () {
       <Typography variant='h4' fontWeight='bold' align='center'>
         {'Fun Facts'}
       </Typography>
-      <Typography mb={1} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Mildly interesting tidbits about me'}
+      <Typography mb={(smallMq) ? 1 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+        {'Mildly interesting facts about me'}
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <BootstrapTooltip placement='right' title='Re-roll a different fact'>
-          <IconButton
-            sx={{
-              border: '2px solid whitesmoke',
-              animation: (playRefreshAnim) ? `${rotateAnim} 0.2s ease-in-out 1` : ''
-            }}
-            onAnimationEnd={() => { setPlayRefreshAnim(false) }}
-            onClick={(event) => {
-              // Prevent spam clicking
-              if (Date.now() - lastClicked <= 550) return;
-              // Avoid randomising into the same fact
-              let randomIndex = rng(0, funfactPool.length - 1);
-              while (funfact === funfactPool[randomIndex]) {
-                randomIndex = rng(0, funfactPool.length - 1);
-              }
+      <Grid container>
+        <Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'start' }}>
+          <BootstrapTooltip placement='left' title='Re-roll a different fact'>
+            <IconButton
+              sx={{
+                border: '2px solid whitesmoke',
+                animation: (playRefreshAnim) ? `${rotateAnim} 0.2s ease-in-out 1` : ''
+              }}
+              onAnimationEnd={() => { setPlayRefreshAnim(false) }}
+              onClick={() => {
+                // Prevent spam clicking
+                if (Date.now() - lastClicked <= 550) return;
+                // Avoid randomising into the same fact
+                let randomIndex = rng(0, funfactPool.length - 1);
+                while (funfact === funfactPool[randomIndex]) {
+                  randomIndex = rng(0, funfactPool.length - 1);
+                }
 
-              // Setting states
-              setFunfact(funfactPool[randomIndex]);
-              setLastClicked(Date.now());
-              setPlayRefreshAnim(true);
-            }}
-          >
-            <RefreshIcon fontSize='small' />
-          </IconButton>
-        </BootstrapTooltip>
-        <Box
-          mt={1.0}
+                // Setting states
+                setFunfact(funfactPool[randomIndex]);
+                setLastClicked(Date.now());
+                setPlayRefreshAnim(true);
+              }}
+            >
+              <RefreshIcon fontSize='small' />
+            </IconButton>
+          </BootstrapTooltip>
+        </Grid>
+        <Grid
+          item
+          xs={10}
           sx={{
             position: 'relative',
             display: 'flex',
@@ -118,20 +116,21 @@ export default function FunFactSection () {
               style={style}
               p={1}
               sx={{
+                width: '100%',
                 backfaceVisibility: 'hidden',
                 bgcolor: 'black.main',
                 border: '2px solid whitesmoke',
                 borderRadius: '15px'
               }}
-              fontSize={15}
+              fontSize={16}
               align='center'
               height='fit-content'
             >
               {item}
             </AnimatedTypography>
           ))}
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Box>
   )
 }
