@@ -14,19 +14,24 @@ import FunFactSection from './FunFactSection';
 
 export default function PageAbout () {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const AnimatedTypography = animated(Typography);
 
   const skillAndFunFactSection = (
     <Grid container sx={{ border: (xLargeMq) ? '1px solid whitesmoke' : '', borderRadius: (xLargeMq) ? '15px' : '0px' }}>
-      <Grid item xs={5.95} my={3} pl={0.5}>
+      <Grid item md={5.9} xs={12} my={3}>
         <FunFactSection />
       </Grid>
-      <Grid item xs={0.1} sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Divider orientation='vertical' flexItem sx={{ bgcolor: 'whitesmoke' }}/>
-      </Grid>
-      <Grid item xs={5.95} my={3} pr={0.5}>
+      {(mediumMq) ? (
+        <Grid item md={0.2} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Divider orientation='vertical' flexItem sx={{ bgcolor: 'whitesmoke' }}/>
+        </Grid>
+      ) : (
+        <Box component='hr' width='100%' sx={{ my: 0 }}/>
+      )}
+      <Grid item md={5.9} xs={12} my={3}>
         <SkillsSection />
       </Grid>
     </Grid>
@@ -107,14 +112,16 @@ export default function PageAbout () {
           mb={(xLargeMq) ? 3 : 0}
         >
           {'I completed my primary and secondary education at '}
-          <Box component='span' color='yellow.main'>
+          <Box component='span' color='purple.main'>
             {'Saint Joachim\'s Primary School'}
           </Box>
           {' and '}
-          <Box component='span' color='yellow.main'>
+          <Box component='span' color='purple.main'>
             {'Sefton High School'}
           </Box>
-          {' respectively. I aim a highly motivated individual and I aim to push my creative limits with every project I work on, and I am constantly seeking out new skills and knowledge to help me do so.'}
+          {' respectively.'}
+          <br/>
+          {'As a highly motivated individual, I am always looking to push the limits of my creativity with every project I undertake. As such, I am always seeking out new skills and knowledge to help me achieve my goals.'}
         </AnimatedTypography>
         {(xLargeMq) && (skillAndFunFactSection)}
       </Grid>

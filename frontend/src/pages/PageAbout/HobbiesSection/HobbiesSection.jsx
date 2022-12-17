@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import generateHobbies from './hobbies';
+import HobbiesItem from './HobbiesItem';
 
 export default function HobbiesSection () {
   const [ref, inView] = useInView();
@@ -24,35 +25,7 @@ export default function HobbiesSection () {
         {'My areas of interest'}
       </Typography>
       {listOfHobbies.map((hobby, index) => (
-        <Grid
-          container
-          key={`hobby-${index}`}
-          pt={(smallMq) ? 0 : 2}
-          sx={{
-            bgcolor: (index % 2) ? 'rgba(0,0,0,0.25)' : '',
-            borderRadius: '15px'
-          }}
-        >
-          <Grid
-            item
-            sm={1}
-            xs={12}
-            display='flex'
-            alignItems='center'
-            justifyContent='center'
-          >
-            {hobby.icon}
-          </Grid>
-          <Grid
-            item
-            sm={11}
-            xs={12}
-          >
-            <Typography p={2}>
-              {hobby.text}
-            </Typography>
-          </Grid>
-        </Grid>
+        <HobbiesItem key={`hobby-${index}`} data={hobby} odd={index % 2 !== 0} />
       ))}
     </Box>
   )
