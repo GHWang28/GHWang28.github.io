@@ -13,9 +13,7 @@ body {
   overflow-x: hidden;
   overflow-y: overlay;
   background-image: radial-gradient(rgb(53, 58, 68), rgb(29, 32, 37));
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: rgb(29, 32, 37);
   height: 100%;
 }
 
