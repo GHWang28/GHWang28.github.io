@@ -35,7 +35,7 @@ export default function ImageScroller ({ images, height, length = '10s', bgcolor
             <Box
               component='img'
               sx={{ height: '90%' }}
-              alt={`character-${index}-portrait`}
+              alt={`skill-${index}`}
               src={process.env.PUBLIC_URL + src}
             />
           </Box>
