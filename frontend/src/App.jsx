@@ -37,9 +37,9 @@ export default function App() {
   }, []);
 
   const px = () => {
-    if (largeMq) return 24;
-    if (mediumMq) return 16;
-    if (smallMq) return 8;
+    if (largeMq) return 22;
+    if (mediumMq) return 14;
+    if (smallMq) return 6;
     return 0;
   }
   const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;

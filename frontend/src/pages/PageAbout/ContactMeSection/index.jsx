@@ -70,7 +70,6 @@ export default function ContactMeSection () {
           </Grid>
         ))}
       </Grid>
-      <Box component='hr' width='100%' mt={5}/>
     </Box>
   )
 }

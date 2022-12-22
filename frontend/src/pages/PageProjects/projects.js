@@ -262,7 +262,8 @@ const generateProjects = (navigate, location) => {
           disabled: 'Source Code can not be publicly shared.'
         }
       ]
-    },{
+    },
+    {
       title: 'Nutritious AirBnB',
       date: '(18/11/2022)',
       type: ['Frontend', 'University Project', 'JavaScript', 'React'],
@@ -299,6 +300,37 @@ const generateProjects = (navigate, location) => {
           text: 'View Source',
           icon: <CodeIcon />,
           disabled: 'Source Code can not be publicly shared.'
+        }
+      ]
+    },
+    {
+      title: 'Minesweeper Recreation',
+      date: '(22/12/2022)',
+      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
+      imgs: [
+        '/images/covers/minesweeper.mp4'
+      ],
+      body: [
+        'Based on the classic Minesweeper game popularised by Microsoft.',
+        'Single player game.',
+        'Player gets to decide how many mines and the dimension of their grid to play with.',
+        'Player scores are saved.',
+        'Includes unique visuals and animations.',
+      ],
+      buttons: [
+        {
+          text: 'Play Game',
+          icon: <GameControllerIcon />,
+          onClick: () => {
+            navigate('showcase/minesweeper', { state: { prevLocation: location.pathname } })
+          }
+        },
+        {
+          text: 'View Source',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/minesweeper', '_blank').focus();
+          }
         }
       ]
     },
