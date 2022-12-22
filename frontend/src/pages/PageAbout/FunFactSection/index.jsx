@@ -18,7 +18,7 @@ const rotateAnim = keyframes`
 
 const funfactPool = [
   'I used to play the piano frequently.',
-  'There\'s a mole with a raidus of 6cm on my arm.',
+  // 'There\'s a mole with a raidus of 6cm on my arm.',
   'I enjoy binging anime/manga in my spare time.',
   'I\'ve been taking care of a potted bamboo since starting my University degree.',
   'Penguins are my favourite animals 🐧.',
