@@ -1,6 +1,8 @@
-import { Box, Typography, useMediaQuery } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
+import { easings } from '@react-spring/web'
+import Blob from '../../components/Blob';
 import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
@@ -38,7 +40,7 @@ export default function PageLanding () {
           style={useSpring({
             from: { opacity: 0 },
             to: { opacity: 1 },
-            delay: 11 * delay,
+            delay: 14 * delay,
           })}
           message={splashMsg}
           fontSize={'min(4.5vw, 30px)'}
@@ -67,11 +69,53 @@ export default function PageLanding () {
             userSelect: 'none'
           }}
         />
+        {/* Blobs */}
+        <Blob
+          color='rgba(150,246,246,0.1)'
+          fill='none'
+          strokeWidth={2}
+          speed={300}
+          sx={{
+            position: 'absolute',
+            scale: '4.2 1.6',
+            zIndex: -2,
+            translate: '0px -22.5%'
+          }}
+        />
+        <Blob
+          color='rgba(185,239,164,0.075)'
+          fill='none'
+          strokeWidth={2}
+          speed={400}
+          sx={{
+            position: 'absolute',
+            scale: '3.8 2.0',
+            zIndex: -2,
+            translate: '0px -22.5%'
+          }}
+        />
+        <Blob
+          color='rgba(150,246,246,0.075)'
+          fill='none'
+          strokeWidth={3}
+          speed={500}
+          sx={{
+            position: 'absolute',
+            scale: '3.4 2.4',
+            zIndex: -2,
+            translate: '0px -22.5%'
+          }}
+        />
+        {/* Top text */}
         <AnimatedTypography
           style={useSpring({
             from: { x: -200, opacity: 0 },
             to: { x: 0, opacity: 1 },
             delay: 2 * delay,
+            config: {
+              duration: 1000,
+              easing: easings.easeOutBounce
+            }
           })}
           sx={{ userSelect: 'none' }}
           fontSize={'min(10vw, 50px)'}
@@ -80,7 +124,7 @@ export default function PageLanding () {
           fontWeight='bold'
           fontFamily='my-handwriting'
         >
-          Gordon&nbsp;Wang&#39;s
+          {'Gordon Wang\'s'}
         </AnimatedTypography>
         <Sparklez frequency={2} sizeRange={[10, 20]}>
           <AnimatedTypography
@@ -101,11 +145,16 @@ export default function PageLanding () {
             {'Portfolio'}
           </AnimatedTypography>
         </Sparklez>
+        {/* Bottom text */}
         <AnimatedTypography
           style={useSpring({
             from: { x: 200, opacity: 0 },
             to: { x: 0, opacity: 1 },
-            delay: 4 * delay
+            delay: 4 * delay,
+            config: {
+              duration: 1000,
+              easing: easings.easeOutBounce
+            }
           })}
           sx={{ userSelect: 'none' }}
           fontSize={'min(10vw, 50px)'}

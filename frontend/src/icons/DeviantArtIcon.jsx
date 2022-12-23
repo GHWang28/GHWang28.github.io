@@ -1,8 +1,8 @@
 import { SvgIcon } from "@mui/material";
 
-function DeviantArtIcon () {
+export default function DeviantArtIcon ({ sx }) {
   return (
-    <SvgIcon sx={{ color: 'white' }} viewBox="0 0 512 512">
+    <SvgIcon sx={{ color: 'white', ...sx }} viewBox="0 0 512 512">
       <path d="M418.121,93.867l0.026-85.333c0-2.261-0.913-4.437-2.517-6.033c-1.596-1.604-3.78-2.5-6.042-2.5h-93.867
         c-3.029,0-5.837,1.604-7.364,4.215l-47.65,76.194L250.15,93.867H102.387c-4.71,0-8.533,3.814-8.533,8.533v128.051
         c0,4.719,3.823,8.533,8.533,8.533h81.664l1.758,1.852L94.878,409.199c-0.666,1.254-1.024,2.645-1.024,4.062v90.206
@@ -12,5 +12,3 @@ function DeviantArtIcon () {
     </SvgIcon>
   )
 }
-
-export default DeviantArtIcon;

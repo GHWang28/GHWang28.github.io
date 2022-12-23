@@ -3,8 +3,9 @@ import packageJson from '../../../package.json';
 import { Box, Collapse, IconButton, Typography } from "@mui/material";
 import GitInfo from 'react-git-info/macro'
 import { ISOToDateStr } from '../../helpers';
-import CodeIcon from '@mui/icons-material/Code';
 import { useSpring, animated } from 'react-spring';
+import { easings } from '@react-spring/web'
+import CodeIcon from '@mui/icons-material/Code';
 import BootstrapTooltip from '../BootstrapTooltip';
 import Ticker from '../Ticker';
 
@@ -15,7 +16,11 @@ function VersionNumber () {
   const animationProps = useSpring({
     from: { y: 50 },
     to: { y: 0 },
-    delay: 2250
+    delay: 2250,
+    config: {
+      duration: 1000,
+      easing: easings.easeOutBounce
+    }
   })
   return (
     <Box

@@ -9,7 +9,7 @@ import FaceIcon from '@mui/icons-material/Face';
 import WebIcon from '@mui/icons-material/Web';
 import HighschoolIcon from './HighschoolIcon';
 
-function TagIcon ({ label, sx }) {
+export default function TagIcon ({ label, sx }) {
   switch (label.toLowerCase()) {
     case 'artwork': return <PaletteIcon sx={sx}/>;
     case 'react': return <ReactIcon sx={sx} />;
@@ -24,5 +24,3 @@ function TagIcon ({ label, sx }) {
     default: return null;
   }
 }
-
-export default TagIcon;

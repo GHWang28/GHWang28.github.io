@@ -6,6 +6,8 @@ import WavesIcon from '@mui/icons-material/Waves';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import MemoryIcon from '@mui/icons-material/Memory';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SquareIcon from '@mui/icons-material/Square';
@@ -22,6 +24,14 @@ function Settings () {
     {
       icon: <CancelIcon />,
       label: 'None'
+    },
+    {
+      icon: <LocationCityIcon />,
+      label: 'Skyscrapers'
+    },
+    {
+      icon: <MemoryIcon />,
+      label: 'Circuitry'
     },
     {
       icon: <WavesIcon />,

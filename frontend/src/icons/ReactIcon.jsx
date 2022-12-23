@@ -1,6 +1,6 @@
 import { SvgIcon } from '@mui/material';
 
-function ReactIcon ({ sx }) {
+export default function ReactIcon ({ sx }) {
   return (
     <SvgIcon sx={sx} viewBox='-11.5 -10.23174 23 20.46348'>
       <circle xmlns='http://www.w3.org/2000/svg' cx='0' cy='0' r='2.05' fill='whitesmoke'/>
@@ -12,5 +12,3 @@ function ReactIcon ({ sx }) {
     </SvgIcon>
   )
 }
-
-export default ReactIcon;

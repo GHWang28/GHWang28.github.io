@@ -5,6 +5,7 @@ import { Box, IconButton, styled } from '@mui/material';
 import DeviantArtIcon from '../../icons/DeviantArtIcon';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useSpring, animated } from 'react-spring';
+import { easings } from '@react-spring/web'
 
 const OutlinedButton = styled(IconButton)(() => ({
   border: '1px solid white',
@@ -21,7 +22,11 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
-        delay: 2000
+        delay: 2000,
+        config: {
+          duration: 1000,
+          easing: easings.easeOutBounce
+        }
       })
     },
     {
@@ -31,7 +36,11 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
-        delay: 1750
+        delay: 1750,
+        config: {
+          duration: 1000,
+          easing: easings.easeOutBounce
+        }
       })
     },
     {
@@ -41,7 +50,11 @@ function ContactDetails () {
       style: useSpring({
         from: { y: 50 },
         to: { y: 0 },
-        delay: 1500
+        delay: 1500,
+        config: {
+          duration: 1000,
+          easing: easings.easeOutBounce
+        }
       })
     },
   ]

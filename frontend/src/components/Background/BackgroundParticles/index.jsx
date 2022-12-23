@@ -23,10 +23,10 @@ function BackgroundParticles ({ bgIndex }) {
 
   const getPreset = () => {
     switch (bgIndex) {
-      case 2: return 'links';
-      case 3: return 'snow';
-      case 4: return 'triangles';
-      case 5: return 'stars';
+      case 4: return 'links';
+      case 5: return 'snow';
+      case 6: return 'triangles';
+      case 7: return 'stars';
       default: return '';
     }
   }
@@ -48,7 +48,7 @@ function BackgroundParticles ({ bgIndex }) {
   return (
     <Particles
       style={{
-        opacity: 0.3
+        opacity: (getPreset() === 'triangles') ? 0.1 : 0.3
       }}
       options={{
         ...defaultOptions,

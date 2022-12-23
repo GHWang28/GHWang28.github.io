@@ -1,6 +1,6 @@
 import { SvgIcon } from '@mui/material';
 
-function CppIcon ({ sx }) {
+export default function CppIcon ({ sx }) {
   return (
     <SvgIcon sx={sx} xmlns='http://www.w3.org/2000/svg' version='1.1' width='256' height='256' viewBox='0 0 256 256'>
       <g stroke='none' strokeWidth='0' strokeDasharray='none' strokeLinecap='butt' strokeLinejoin='miter' strokeMiterlimit='10' fill='none' fillRule='nonzero' opacity='1' transform='translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)'>
@@ -9,5 +9,3 @@ function CppIcon ({ sx }) {
     </SvgIcon>
   )
 }
-
-export default CppIcon;

@@ -1,6 +1,6 @@
 import { SvgIcon } from '@mui/material';
 
-function HighschoolIcon ({ sx }) {
+export default function HighschoolIcon ({ sx }) {
   return (
     <SvgIcon
       xmlns='http://www.w3.org/2000/svg'
@@ -21,5 +21,3 @@ function HighschoolIcon ({ sx }) {
     </SvgIcon>
   )
 }
-
-export default HighschoolIcon;
