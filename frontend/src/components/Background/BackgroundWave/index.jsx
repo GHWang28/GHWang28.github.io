@@ -29,12 +29,12 @@ function BackgroundWave () {
 
   return (
     <Box sx={{ position: 'fixed', width: '100vw', height: '100vh', bottom: '0px', zIndex: -1 }}>
-      <Box sx={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '40vh', bottom: '0px'}}>
+      <Box sx={{ opacity: 0.025, position: 'absolute', width: '100vw', height: '40vh', bottom: '0px'}}>
         <Wave fill='url(#wave-gradient)' options={options}>
           <WaveGradient />
         </Wave>
       </Box>
-      <Box sx={{ opacity: 0.15, position: 'absolute', width: '100vw', height: '35vh', bottom: '0px'}}>
+      <Box sx={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '35vh', bottom: '0px'}}>
         <Wave fill='url(#wave-gradient)' options={options}>
           <WaveGradient />
         </Wave>
@@ -50,10 +50,10 @@ function BackgroundWave () {
           animationDelay: '-0.5s'
         }}
       />
-      <Box sx={{ opacity: 0.25, position: 'absolute', width: '100vw', height: '30vh', bottom: '0px'}}>
+      <Box sx={{ opacity: 0.10, position: 'absolute', width: '100vw', height: '30vh', bottom: '0px'}}>
         <Wave fill='url(#wave-gradient)' options={{ ...options, speed: 0.2, points: 8 }} />
       </Box>
-      <Box sx={{ opacity: 0.35, position: 'absolute', width: '100vw', height: '25vh', bottom: '0px'}}>
+      <Box sx={{ opacity: 0.15, position: 'absolute', width: '100vw', height: '25vh', bottom: '0px'}}>
         <Wave fill='url(#wave-gradient)' options={{ ...options, speed: 0.4, points: 5 }} />
       </Box>
     </Box>
