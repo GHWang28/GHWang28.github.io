@@ -75,7 +75,7 @@ const generateProjects = (navigate, location) => {
         '/images/minecraft-recreation/5.png'
       ],
       body: [
-        'Recreation of Mojang\'s Minecraft with OpenGL C++.',
+        'Recreation of the base gameplay loop of Mojang\'s Minecraft with added features.',
         <Fragment>
           {'Created entirely from '}
           <Box component='span' sx={{ color: 'green.main' }}>
@@ -87,7 +87,7 @@ const generateProjects = (navigate, location) => {
           </Box>
           {'.'}
         </Fragment>,
-        'Features Block placing, shadows, planar reflections, billboard particles, collision detection...',
+        'Features Block placing, shadows, planar reflections, billboard particles, collision detection, real-time cube-map reflections...',
         'Features several post processing features such as kernel manipulation and HDR rendering that auto-adjusts to the game\'s environment brightness levels.',
         dotpoint100Percent
       ],
