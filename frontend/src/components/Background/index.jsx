@@ -33,6 +33,7 @@ function Background () {
           opacity: 0.25,
           width: '100%',
           height: '100%',
+          bottom: '0px',
           maskImage: 'url(/images/background/circuitry.svg)',
           maskSize: 'cover',
           maskRepeat: 'no-repeat',
