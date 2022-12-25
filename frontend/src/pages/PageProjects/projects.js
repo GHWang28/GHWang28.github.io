@@ -128,7 +128,7 @@ const generateProjects = (navigate, location) => {
     {
       title: 'Spotter',
       date: '(30/11/2022)',
-      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
+      type: ['Game', 'Personal Project', 'React', 'JavaScript', 'Firebase'],
       imgs: [
         '/images/covers/spotter.jpg'
       ],
@@ -136,7 +136,8 @@ const generateProjects = (navigate, location) => {
         'Find your character before the time runs out.',
         'Single player game.',
         'Levels get progressively more difficult.',
-        'Player scores are saved.'
+        'Player scores are saved.',
+        'Player have the option to post their scores onto a public scoreboard.'
       ],
       buttons: [
         {

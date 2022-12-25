@@ -8,6 +8,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import FaceIcon from '@mui/icons-material/Face';
 import WebIcon from '@mui/icons-material/Web';
 import HighschoolIcon from './HighschoolIcon';
+import FirebaseIcon from './FirebaseIcon';
 
 export default function TagIcon ({ label, sx }) {
   switch (label.toLowerCase()) {
@@ -21,6 +22,7 @@ export default function TagIcon ({ label, sx }) {
     case 'personal project': return <FaceIcon sx={sx} />
     case 'university project': return <SchoolIcon sx={sx} />
     case 'high school project': return <HighschoolIcon sx={sx} />
+    case 'firebase': return <FirebaseIcon sx={sx} />
     default: return null;
   }
 }

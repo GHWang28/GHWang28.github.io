@@ -26,6 +26,7 @@ export default function SkillsSection () {
         images={[
           '/images/about/skills/c++.svg',
           '/images/about/skills/css.svg',
+          '/images/about/skills/firebase.svg',
           '/images/about/skills/html.svg',
           '/images/about/skills/java.svg',
           '/images/about/skills/js.svg',

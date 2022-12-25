@@ -17,6 +17,7 @@ function ProjectHub () {
 
   const [filter, setFilter] = useState([
     { type: 'Artwork', enabled: false },
+    { type: 'Firebase', enabled: false },
     { type: 'Frontend', enabled: false },
     { type: 'Game', enabled: false },
     { type: 'High School Project', enabled: false },
