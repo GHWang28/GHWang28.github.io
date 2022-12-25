@@ -5,8 +5,19 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import GameControllerIcon from '@mui/icons-material/SportsEsports';
 import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Sparklez from '../../components/Sparklez';
 
 const generateProjects = (navigate, location) => {
+  const dotpoint100Percent = (
+    <Fragment>
+      {'Achieved '}
+      <Sparklez>
+        <Box component='span' className='gradient-text'>{'100%'}</Box>
+      </Sparklez>
+      {' for this Assignment.'}
+    </Fragment>
+  )
+
   const projects = [
     {
       title: 'Earth\'s Ephemeris',
@@ -78,7 +89,7 @@ const generateProjects = (navigate, location) => {
         </Fragment>,
         'Features Block placing, shadows, planar reflections, billboard particles, collision detection...',
         'Features several post processing features such as kernel manipulation and HDR rendering that auto-adjusts to the game\'s environment brightness levels.',
-        'Achieved 100% for this Assignment.'
+        dotpoint100Percent
       ],
       buttons: [
         {
@@ -103,10 +114,10 @@ const generateProjects = (navigate, location) => {
         '/images/covers/tic-tac-toe-capture.jpg'
       ],
       body: [
-        'Recreation of Tic Tac Toe with a twist.',
+        'The classic game of Tic Tac Toe with a new layer of strategy.',
         'Two-player game.',
-        'Negate your opponent\'s move with the right strategy.',
-        'Features options to reset game or undo previous move.'
+        'Utilize effective strategies to negate your opponent\'s moves and gain an advantage in the game.',
+        'Features options to reset game or undo a previous move.'
       ],
       buttons: [
         {
@@ -133,11 +144,10 @@ const generateProjects = (navigate, location) => {
         '/images/covers/spotter.jpg'
       ],
       body: [
-        'Find your character before the time runs out.',
+        'Players must locate your character before the time runs out.',
         'Single player game.',
-        'Levels get progressively more difficult.',
-        'Player scores are saved.',
-        'Player have the option to post their scores onto a public scoreboard.'
+        'As they progress through the game, the levels will become increasingly challenging.',
+        'Player scores are saved to locally, with the option to post their scores onto a public scoreboard.'
       ],
       buttons: [
         {
@@ -208,7 +218,7 @@ const generateProjects = (navigate, location) => {
           </Box>
           {', DOM manipulations and the Bootstrap Framework.'}
         </Fragment>,
-        'Achieved 100% for this Assignment.',
+        dotpoint100Percent
       ],
       buttons: [
         {
@@ -247,7 +257,7 @@ const generateProjects = (navigate, location) => {
           {'.'}
         </Fragment>,
         'Showcases application of textures, drawing 2D shapes and shaders.',
-        'Achieved 100% for this Assignment.',
+        dotpoint100Percent
       ],
       buttons: [
         {
@@ -279,7 +289,7 @@ const generateProjects = (navigate, location) => {
           </Box>
           {'.'}
         </Fragment>,
-        'An online marketplace website focused on helping people rent out their properties.',
+        'An online marketplace website dedicated to connecting property owners with potential renters while facilitating the rental process for both parties.',
         <Fragment>
           {'Made using '}
           <Box component='span' sx={{ color: 'green.main' }}>
@@ -287,7 +297,7 @@ const generateProjects = (navigate, location) => {
           </Box>
           {' and Material UI.'}
         </Fragment>,
-        'Achieved 100% for this Assignment.',
+        dotpoint100Percent
       ],
       buttons: [
         {
