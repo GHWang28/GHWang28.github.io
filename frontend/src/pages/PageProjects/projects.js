@@ -325,7 +325,7 @@ const generateProjects = (navigate, location) => {
         'Based on the classic Minesweeper game popularised by Microsoft.',
         'Single player game.',
         'Player gets to decide how many mines and the dimension of their grid to play with.',
-        'Player scores are saved.',
+        'Player scores are saved locally.',
         'Includes unique visuals and animations.',
       ],
       buttons: [
