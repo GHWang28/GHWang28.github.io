@@ -10,6 +10,7 @@ import AnimatedTitle from './AnimatedTitle';
 function ProjectEarthEphemeris () {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
+  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
 
   return (
@@ -17,11 +18,11 @@ function ProjectEarthEphemeris () {
       <ButtonGoBack destination={'/projects'} />
       <AnimatedTitle title={'Earth\'s Ephemeris'} />
 
-      <Grid container p={4} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!xLargeMq) ? 'column-reverse' : '' }}>
+      <Grid container p={(smallMq) ? 4 : 2} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!xLargeMq) ? 'column-reverse' : '' }}>
 
         {/* Cotaining the images */}
         <Grid item xs={12} xl={9.5}>
-          <Grid container p={4} rowSpacing={1} rowGap={{ xs: 8 }} >
+          <Grid container p={(smallMq) ? 4 : 0} rowSpacing={1} rowGap={{ xs: 8 }} >
             <ImageRow src='/images/hscbow/homesweethome.jpg' title='Home Sweet Home' body='Artwork #1' rowNo={1} />
             <ImageRow src='/images/hscbow/leaving.jpg' title='Exiting W/O Leaving' body='Artwork #2' rowNo={2} />
             <ImageRow src='/images/hscbow/bonvoyage.jpg' title='Bon Voyage' body='Artwork #3' rowNo={3} />
