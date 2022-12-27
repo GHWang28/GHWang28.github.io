@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Chip, IconButton, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Chip, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
@@ -59,7 +59,7 @@ function CardProject ({
       <Box
         sx={{
           p: 2,
-          backgroundImage: `linear-gradient(90deg, ${bgColor} 35%, rgba(255,255,255,0) 70%)` 
+          backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 75%)` 
         }}
       >
         <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
@@ -116,39 +116,21 @@ function CardProject ({
         {buttons.map((button, buttonIndex) => (
           <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
             <span>
-              {(smallMq) ? (
-                <Button
-                  startIcon={button.icon}
-                  variant='outlined'
-                  onClick={button?.onClick}
-                  sx={{ mr: 1 }}
-                  disabled={(button?.disabled) !== undefined}
-                >
-                  {button.text}
-                </Button>
-              ) : (
-                <IconButton
-                  onClick={button.onClick}
-                  disabled={button?.disabled !== undefined}
-                  sx={{
-                    mr: 1,
-                    color: 'primary.main',
-                    borderColor: (button?.disabled) ? 'gray' : 'primary.main',
-                    borderStyle: 'solid',
-                    borderWidth: '1px'
-                  }}
-                >
-                  {button.icon}
-                </IconButton>
-              )}
+              <Button
+                startIcon={button.icon}
+                variant='outlined'
+                onClick={button?.onClick}
+                sx={{ mr: 1 }}
+                disabled={(button?.disabled) !== undefined}
+              >
+                {button.text}
+              </Button>
             </span>
           </BootstrapTooltip>
         ))}
       </Box>
       {/* Background Image */}
-      {(imgs[0].endsWith('.mp4'))
-        ? <VideoShow src={imgs[0]} />
-        : <ImageSlideShow imgs={imgs} />
+      {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />
       }
     </Box>
   )
