@@ -7,7 +7,8 @@ const setBackgroundReducer = (
 ) => {
   switch (action.type) {
     case 'CHANGE_BACKGROUND':
-      localStorage.setItem('background', mod(action.value, config.TOTAL_BGS))
+      const value = mod(action.value, config.TOTAL_BGS);
+      localStorage.setItem('background', value)
       return value;
     default:
       return state;
