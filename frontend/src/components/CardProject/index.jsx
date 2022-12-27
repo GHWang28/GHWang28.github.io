@@ -43,7 +43,7 @@ function CardProject ({
       onMouseLeave={() => { setHover(false) }}
       sx={{
         position: 'relative',
-        border: '2px solid whitesmoke',
+        backgroundImage: 'url("data:image/svg+xml,%3csvg width=\'100%25\' height=\'100%25\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3crect width=\'100%25\' height=\'100%25\' fill=\'none\' rx=\'15\' ry=\'15\' stroke=\'wh\' stroke-width=\'10\' stroke-dasharray=\'15%2c 15%2c 2\' stroke-dashoffset=\'0\' stroke-linecap=\'square\'/%3e%3c/svg%3e")',
         scale: (hover) ? '1' : '0.975',
         boxShadow: (hover) ? '0 4px 32px 0 rgba(0, 0, 0, 0.8)' : '0 4px 16px 0 rgba(0, 0, 0, 0.8)',
         opacity: (inView) ? '1' : '0',
