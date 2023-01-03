@@ -16,7 +16,7 @@ function VideoShow ({ src }) {
         height: '100%',
         transition: 'opacity 0.5s ease-in-out',
         objectFit: 'cover',
-        zIndex: -1,
+        zIndex: -2,
       }}
     >
       <source src={src} type='video/mp4'/>

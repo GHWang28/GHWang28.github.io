@@ -40,7 +40,7 @@ export default function PageAbout () {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <AnimatedTitle title={'About Me'} />
+        <AnimatedTitle title='About Me' subtitle='My README.md'/>
         <hr />
       </Grid>
       <Grid my={2.5} item lg={3.5} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

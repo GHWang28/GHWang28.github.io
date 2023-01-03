@@ -33,7 +33,7 @@ function ImageSlideShow ({ imgs }) {
             opacity: (imageIndex === index) ? '1.0' : '0.0',
             transition: 'opacity 0.5s ease-in-out',
             objectFit: 'cover',
-            zIndex: -1,
+            zIndex: -2,
           }}
         />
       ))}

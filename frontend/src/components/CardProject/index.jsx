@@ -7,6 +7,7 @@ import ImageSlideShow from './ImageSlideShow';
 import PropTypes from 'prop-types';
 import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
+import WavyBackdrop from './WavyBackdrop';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
@@ -34,7 +35,6 @@ function CardProject ({
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const theme = useTheme();
   const [hover, setHover] = useState(false);
-  const bgColor = theme.palette.gray.main;
 
   return (
     <Box
@@ -56,12 +56,7 @@ function CardProject ({
         bgcolor: 'black.main'
       }}
     >
-      <Box
-        sx={{
-          p: 2,
-          backgroundImage: `linear-gradient(90deg, ${bgColor} 40%, rgba(255,255,255,0) 75%)` 
-        }}
-      >
+      <Box p={2}>
         <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
           <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
             <TransluscentTypography variant='h4'>
@@ -129,9 +124,11 @@ function CardProject ({
           </BootstrapTooltip>
         ))}
       </Box>
-      {/* Background Image */}
-      {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />
-      }
+      {/* Wavy Backdrop displayed behind text */}
+      <WavyBackdrop bgColor={theme.palette.gray.main} speed={7} yPos='-45%'/>
+      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-80%'/>
+      {/* Background to show image slideshow or video */}
+      {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
     </Box>
   )
 }

@@ -9,7 +9,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
 import TagIcon from '../../icons/TagIcon';
-import Sparklez from '../../components/Sparklez';
+import AnimatedTitle from './AnimatedTitle';
 
 function ProjectHub () {
   const navigate = useNavigate();
@@ -39,20 +39,8 @@ function ProjectHub () {
 
   return (
     <Fragment>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Sparklez frequency={2} sizeRange={[20,30]}>
-          <Box className='gradient-text'>
-            <Typography mt={1} variant='h2' fontWeight='bold'>
-              {'Projects'}
-            </Typography>
-            <Typography mb={2} variant='h4' fontWeight='bold'>
-              {' I\'ve worked on'}
-            </Typography>
-          </Box>
-        </Sparklez>
-      </Box>
+      <AnimatedTitle title='Projects' subtitle={'My proud creations, big and small'}/>
       <Box component='hr' mb={1}/>
-  
       {/* Filter Button */}
       <Box sx={{ width: '100%', display: 'flex' }}>
         <ButtonDropDown sx={{ ml: 'auto', mb: 2 }} title='Filter' icon={<FilterAltIcon />}>
