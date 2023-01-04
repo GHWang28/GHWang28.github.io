@@ -4,10 +4,10 @@ import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
 import ImageSlideShow from './ImageSlideShow';
-import PropTypes from 'prop-types';
 import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
 import WavyBackdrop from './WavyBackdrop';
+import PropTypes from 'prop-types';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
@@ -19,7 +19,7 @@ const TransluscentTypography = styled(Typography)(() => {
   }
 });
 
-function CardProject ({
+export default function CardProject ({
   title,
   date,
   type,
@@ -113,7 +113,7 @@ function CardProject ({
             <span>
               <Button
                 startIcon={button.icon}
-                variant='outlined'
+                variant='contained'
                 onClick={button?.onClick}
                 sx={{ mr: 1 }}
                 disabled={(button?.disabled) !== undefined}
@@ -125,8 +125,8 @@ function CardProject ({
         ))}
       </Box>
       {/* Wavy Backdrop displayed behind text */}
-      <WavyBackdrop bgColor={theme.palette.gray.main} speed={7} yPos='-45%'/>
-      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-80%'/>
+      <WavyBackdrop bgColor={theme.palette.gray.main} speed={7} yPos='-37.5%' direction={(index % 2) ? 'up' : 'down'} inView={inView}/>
+      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-70%' direction={!(index % 2) ? 'up' : 'down'} inView={inView}/>
       {/* Background to show image slideshow or video */}
       {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
     </Box>
@@ -150,5 +150,3 @@ CardProject.propTypes = {
     onClick: PropTypes.func
   })),
 };
-
-export default CardProject;
