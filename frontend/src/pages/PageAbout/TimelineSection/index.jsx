@@ -18,7 +18,7 @@ export default function TimelineSection ({ timelineItems, title, subtitle, odd }
         translate: (inView) ? '0px' : ((odd) ? '-200px' : '200px'),
         transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
         position: 'sticky',
-        top: '64px'
+        top: '94px'
       }}
     >
       <Typography mt={5} variant='h4' fontWeight='bold' align='center'>

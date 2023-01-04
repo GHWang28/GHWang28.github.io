@@ -126,7 +126,7 @@ export default function CardProject ({
       </Box>
       {/* Wavy Backdrop displayed behind text */}
       <WavyBackdrop bgColor={theme.palette.gray.main} speed={7} yPos='-37.5%' direction={(index % 2) ? 'up' : 'down'} inView={inView}/>
-      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-70%' direction={!(index % 2) ? 'up' : 'down'} inView={inView}/>
+      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-67%' direction={!(index % 2) ? 'up' : 'down'} inView={inView}/>
       {/* Background to show image slideshow or video */}
       {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
     </Box>
