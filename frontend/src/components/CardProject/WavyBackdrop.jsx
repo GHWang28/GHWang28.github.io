@@ -42,7 +42,7 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
         sx={{
           width: '100%',
           height: '100%',
-          animation: `${wavyUpAnimation} ${speed}s linear infinite, ${wavySideAnimation} ${speed / 2}s ease-in-out -${(direction === 'up') ? speed / 16 : 0}s infinite`,
+          animation: `${wavyUpAnimation} ${speed}s linear infinite, ${wavySideAnimation} ${speed / 2}s ease-in-out -${(direction === 'up') ? speed / 10 : 0}s infinite`,
           backgroundImage: `linear-gradient(90deg, ${bgColor} 65%, rgba(255,255,255,0) 150%)`,
           mask: `
             radial-gradient(46.86px at calc(100% - 66.00px) 50%,#000 99%,#0000 101%) 0 calc(50% - 60px)/100% 120px,
