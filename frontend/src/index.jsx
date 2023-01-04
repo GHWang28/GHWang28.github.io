@@ -5,11 +5,11 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import combinedReducer from './redux/reducer/combinedReducer';
-import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
 import ScrollToTop from './wrappers/ScrollToTop';
 import Background from './components/Background';
 import EasterEggConsole from './wrappers/EasterEggConsole';
+// import reportWebVitals from './reportWebVitals';
 
 const darkTheme = createTheme({
   palette: {
