@@ -17,7 +17,9 @@ function ChipContainer ({ children, width, maxHeight, style }) {
     overflowY: (maxHeight) ? 'auto' : '',
     margin: '5px 0px',
     borderRadius: '16px',
-    bgcolor: 'darkgray.main'
+    rowGap: '8px',
+    border: '1px solid whitesmoke',
+    bgcolor: 'darkgray.translucent'
   }
 
   return (

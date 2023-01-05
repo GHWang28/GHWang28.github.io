@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
   return {
+    border: '1px solid whitesmoke',
     borderRadius: '15px',
     margin: '5px 0px',
     padding: '0px 10px',
@@ -41,14 +42,14 @@ export default function CardProject ({
       ref={ref}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
+      className='border-gradient'
       sx={{
         position: 'relative',
-        border: '2px solid whitesmoke',
         scale: (hover) ? '1' : '0.975',
-        boxShadow: (hover) ? '0 4px 32px 0 rgba(0, 0, 0, 0.8)' : '0 4px 16px 0 rgba(0, 0, 0, 0.8)',
+        boxShadow: (hover) ? '0 4px 16px 0 rgba(255,255,255,0.2)' : '0 4px 8px 0 rgba(255,255,255,0.2)',
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((index % 2) ? '200px' : '-200px'),
-        transition: 'scale 0.2s ease-in-out, boxShadow 0.2s ease-in-out, translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'scale 0.2s ease-in-out, box-shadow 0.2s ease-in-out, translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
         borderRadius: '15px',
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
@@ -73,6 +74,7 @@ export default function CardProject ({
                       variant='outlined'
                       sx={{
                         mr: (index === type.length - 1) ? 0 : 1,
+                        bgcolor: 'darkgray.main',
                         borderColor: 'whitesmoke'
                       }}
                       key={`label-${index}`}
@@ -94,8 +96,9 @@ export default function CardProject ({
               component='ul'
               sx={{
                 py: 3,
+                border: '1px solid whitesmoke',
                 borderRadius: '15px',
-                backgroundColor: theme.palette.darkgray.translucent
+                bgcolor: 'darkgray.translucent'
               }}
             >
               {body.map((dotpoint, index) => (
@@ -115,7 +118,7 @@ export default function CardProject ({
                 startIcon={button.icon}
                 variant='contained'
                 onClick={button?.onClick}
-                sx={{ mr: 1 }}
+                sx={{ mr: 1, border: '1px solid whitesmoke' }}
                 disabled={(button?.disabled) !== undefined}
               >
                 {button.text}
@@ -126,7 +129,7 @@ export default function CardProject ({
       </Box>
       {/* Wavy Backdrop displayed behind text */}
       <WavyBackdrop bgColor={theme.palette.gray.main} speed={7} yPos='-37.5%' direction={(index % 2) ? 'up' : 'down'} inView={inView}/>
-      <WavyBackdrop bgColor='rgba(0,0,0,0.4)' speed={7} yPos='-67%' direction={!(index % 2) ? 'up' : 'down'} inView={inView}/>
+      <WavyBackdrop bgColor='rgba(20,20,20,0.6)' speed={7} yPos='-67%' direction={!(index % 2) ? 'up' : 'down'} inView={inView}/>
       {/* Background to show image slideshow or video */}
       {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
     </Box>

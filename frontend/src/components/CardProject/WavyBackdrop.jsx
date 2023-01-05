@@ -14,13 +14,13 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
 
   const wavySideAnimation = keyframes`
     0% {
-      transform: translateX(10px)
+      transform: translateX(15px)
     }
     50% {
-      transform: translateX(-10px)
+      transform: translateX(-15px)
     }
     100% {
-      transform: translateX(10px)
+      transform: translateX(15px)
     }
   `
 
@@ -34,7 +34,7 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
         top: (direction === 'up') ? '0px' : '-120px',
         left: yPos,
         translate: (inView) ? '-50%' : '15%',
-        transition: 'translate 1.5s ease-in-out',
+        transition: 'translate 0.8s ease-out',
         zIndex: -1
       }}
     >
@@ -42,7 +42,7 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
         sx={{
           width: '100%',
           height: '100%',
-          animation: `${wavyUpAnimation} ${speed}s linear infinite, ${wavySideAnimation} ${speed / 2}s ease-in-out -${(direction === 'up') ? speed / 10 : 0}s infinite`,
+          animation: `${wavyUpAnimation} ${speed}s linear infinite, ${wavySideAnimation} ${speed / 2}s ease-in-out -${(direction === 'up') ? speed / 8 : 0}s infinite`,
           backgroundImage: `linear-gradient(90deg, ${bgColor} 65%, rgba(255,255,255,0) 150%)`,
           mask: `
             radial-gradient(46.86px at calc(100% - 66.00px) 50%,#000 99%,#0000 101%) 0 calc(50% - 60px)/100% 120px,

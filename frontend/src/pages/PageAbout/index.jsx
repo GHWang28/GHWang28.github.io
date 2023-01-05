@@ -68,7 +68,7 @@ export default function PageAbout () {
             delay: 550
           })}
           align='center'
-          variant='h3'
+          variant='h4'
           fontWeight='bold'
           mb={(largeMq) ? 4 : 2}
         >
@@ -106,7 +106,7 @@ export default function PageAbout () {
             delay: 750
           })}
           align='center'
-          fontSize={18}
+          fontSize={16}
           fontWeight='bold'
           color='#a9a9a9'
           mb={(xLargeMq) ? 3 : 0}
@@ -120,6 +120,7 @@ export default function PageAbout () {
             {'Sefton High School'}
           </Box>
           {' respectively.'}
+          <br/>
           <br/>
           {'As a highly motivated individual, I am always looking to push the limits of my creativity with every project I undertake. As such, I am always seeking out new skills and knowledge to help me achieve my goals.'}
         </AnimatedTypography>

@@ -1,4 +1,7 @@
-import './App.css';
+import './styles/App.css';
+import './styles/CoinBlock.css';
+import './styles/Gradient.css';
+import './styles/Sparklez.css';
 import React, { Fragment } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import Navbar from './components/Navbar';

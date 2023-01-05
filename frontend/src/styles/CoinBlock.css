@@ -1,0 +1,31 @@
+.coin-block-anim {
+  animation: coinBlockHit 0.15s ease-in-out 1
+}
+
+.coin-clip-anim {
+  animation: coinClipHit 0.15s ease-in-out 1
+}
+
+@keyframes coinBlockHit {
+  0% {
+    translate: 0px 0%
+  }
+  50% {
+    translate: 0px -18.75px
+  }
+  100% {
+    translate: 0px 0%
+  }
+}
+
+@keyframes coinClipHit {
+  0% {
+    clip-path: polygon(0 0, 100% 0%, 100% 75%, 0 75%)
+  }
+  50% {
+    clip-path: polygon(0 0, 100% 0%, 100% 68.75%, 0 68.75%)
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0%, 100% 75%, 0 75%)
+  }
+}
