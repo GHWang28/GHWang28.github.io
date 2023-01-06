@@ -1,4 +1,4 @@
-const CACHE_NAME = 'GHWANG-CACHE-ee7c64d6-6d77-4ab5-87ea-fd9b560928p6';
+const CACHE_NAME = 'GHWANG-CACHE-2e7c64d6-7d77-4ab5-87ea-fd9b560928p6';
 
 const IMPERATIVE_CACHES = [
     '/images/easter-egg/1up.png',
@@ -16,7 +16,8 @@ const IMPERATIVE_CACHES = [
     '/images/hscbow/rabureta.jpg',
     '/images/hscbow/ruiji.jpg',
     '/images/hscbow/homecoming.jpg',
-    // 'images/minecraft-recreation/screensaver.mp4',
+    '/images/minecraft-recreation/screensaver.mp4',
+    '/images/covers/minesweeper.mp4',
     '/images/minecraft-recreation/1.png',
     '/images/minecraft-recreation/2.png',
     '/images/minecraft-recreation/3.png',
