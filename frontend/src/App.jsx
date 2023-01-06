@@ -32,7 +32,7 @@ export default function App() {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: (themeMode === 'light') ? 'rgb(25,43,83)' : 'rgb(150,246,246)'
+        main: (themeMode === 'light') ? 'rgb(15,182,182)' : 'rgb(150,246,246)'
       },
       purple: {
         main: 'rgb(230,169,254)',
@@ -69,17 +69,28 @@ export default function App() {
         transparent: 'rgba(28,28,28,0.2)'
       },
       darkgray: {
-        main: (themeMode === 'light') ? 'rgb(215,215,215)' : 'rgb(40,40,40)',
+        main: 'rgb(40,40,40)',
         translucent: 'rgba(40,40,40,0.7)',
         transparent: 'rgba(40,40,40,0.2)'
       },
       gray: {
-        main: (themeMode === 'light') ? 'rgb(190,185,175)' : 'rgb(65,70,80)',
+        main: 'rgb(65,70,80)',
         transparent: 'rgba(65,70,80,0.2)'
       },
       orange: {
         main: 'rgb(255,146,72)',
         transparent: 'rgba(255,146,72,0.15)'
+      },
+      borderColor: {
+        main: (themeMode === 'light') ? 'black' : 'whitesmoke',
+      },
+      tooltipColor: {
+        bgColor: (themeMode === 'light') ? 'black' : 'whitesmoke',
+        textColor: (themeMode === 'light') ? 'whitesmoke' : 'black'
+      },
+      bgColor: {
+        main: (themeMode === 'light') ? 'rgba(245,245,245,0.6)' : 'rgba(40,40,40,0.7)',
+        darker: (themeMode === 'light') ? 'rgba(205,205,205,0.6)' : 'rgba(0,0,0,0.7)',
       },
       mode: themeMode,
     },

@@ -33,15 +33,6 @@ const funfactPool = [
     </Sparklez>
     {'.'}
   </Fragment>,
-  <Fragment>
-    {'I own a collection of '}
-    <Sparklez>
-      <Box component='span' className='gradient-text'>
-        {'Amiibos'}
-      </Box>
-    </Sparklez>
-    {'.'}
-  </Fragment>,
   'I have a tiny piece of led stuck in my index finger since first grade.'
 ]
 
@@ -121,7 +112,9 @@ export default function FunFactSection () {
                 width: '100%',
                 backfaceVisibility: 'hidden',
                 bgcolor: (themeMode === 'dark') ? 'black.main' : 'white.main',
-                border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
+                borderWidth: '2px',
+                borderStyle: 'solid',
+                borderColor: 'borderColor.main',
                 borderRadius: '15px'
               }}
               fontSize={16}

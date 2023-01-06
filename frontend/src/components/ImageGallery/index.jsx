@@ -78,7 +78,9 @@ function ImageGallery ({ imgArray = [] }) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        border: '2px solid whitesmoke',
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: 'borderColor.main',
         borderRadius: '8px',
         overflow: 'hidden',
         mx: (mediumMq) ? 10 : 0
@@ -100,7 +102,13 @@ function ImageGallery ({ imgArray = [] }) {
             aria-label='Previous Image'
             name='prev-img-btn'
             title='Previous Image'
-            sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
+            sx={{
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: 'borderColor.main',
+              width: '100%',
+              height: '100%'
+            }}
             onClick={() => {
               cycleImg(imgIndex - 1);
             }}
@@ -149,7 +157,13 @@ function ImageGallery ({ imgArray = [] }) {
             aria-label='Next Image'
             name='next-img-btn'
             title='Next Image'
-            sx={{ border: '2px solid whitesmoke', width: '100%', height: '100%' }}
+            sx={{
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: 'borderColor.main',
+              width: '100%',
+              height: '100%'
+            }}
             onClick={() => {
               cycleImg(imgIndex + 1);
             }}
@@ -167,7 +181,7 @@ function ImageGallery ({ imgArray = [] }) {
           justifyContent: 'left',
           height: '100px',
           width: '100%',
-          backgroundColor: 'rgb(28,28,28)',
+          bgcolor: 'bgColor.darker',
           overflowX: 'auto',
           overflowY: 'hidden'
         }}

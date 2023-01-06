@@ -68,6 +68,7 @@
 
   /* Prevent inner content from being masked */
   content: "";
+  pointer-events: none;
   position: absolute;
   inset: 0;
   mask:

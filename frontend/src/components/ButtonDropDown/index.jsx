@@ -3,7 +3,6 @@ import { IconButton, Menu } from '@mui/material';
 import BootstrapTooltip from '../BootstrapTooltip';
 import PropTypes from 'prop-types';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import { useSelector } from 'react-redux';
 
 /**
  * A component for a button that will drop down a menu that is initially hidden.
@@ -20,7 +19,6 @@ function ButtonDropDown ({
   name,
   closeOnClick = true
 }) {
-  const themeMode = useSelector(state => state.themeMode);
   const [dropDownListingMenu, setDropDownListingMenu] = useState(null);
   const ref = useRef(null);
   const dropListingMenuFn = (event) => {
@@ -41,7 +39,9 @@ function ButtonDropDown ({
       aria-label={title}
       sx={{
         ...sx,
-        border: `2px solid ${((themeMode) === 'dark') ? 'whitesmoke' : 'black'}`
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: 'borderColor.main'
       }}
       id={id}
       aria-controls={dropDownListingMenu ? 'dropdown-menu' : undefined}

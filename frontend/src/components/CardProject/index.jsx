@@ -57,7 +57,7 @@ export default function CardProject ({
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
         mb: (mediumMq) ? 5 : 2,
-        bgcolor: 'black.main'
+        bgcolor: 'bgColor.main'
       }}
     >
       <Box p={2}>
@@ -77,7 +77,7 @@ export default function CardProject ({
                       variant='outlined'
                       sx={{
                         mr: (index === type.length - 1) ? 0 : 1,
-                        borderColor: (themeMode === 'dark') ? 'whitesmoke' : 'black.main'
+                        borderColor: 'borderColor.main'
                       }}
                       key={`label-${index}`}
                       label={label}
@@ -89,7 +89,7 @@ export default function CardProject ({
           )}
           {(date) && (
             <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
-              <Chip label={date} variant='outlined' sx={{ borderColor: (themeMode === 'dark') ? 'whitesmoke' : 'black.main' }}/>
+              <Chip label={date} variant='outlined' sx={{ borderColor: 'borderColor.main', bgcolor: 'bgColor.main' }}/>
             </BootstrapTooltip>
           )}
           <Box component='hr' />
@@ -98,9 +98,9 @@ export default function CardProject ({
               component='ul'
               sx={{
                 py: 3,
-                border: `1px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
+                border: `1px solid ${theme.palette.borderColor.main}`,
                 borderRadius: '15px',
-                bgcolor: (themeMode === 'dark') ? 'darkgray.translucent' : 'white.translucent'
+                bgcolor: 'bgColor.main'
               }}
             >
               {body.map((dotpoint, index) => (
@@ -120,7 +120,7 @@ export default function CardProject ({
                 startIcon={button.icon}
                 variant='contained'
                 onClick={button?.onClick}
-                sx={{ mr: 1, border: `1px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}` }}
+                sx={{ mr: 1, border: `1px solid ${theme.palette.borderColor.main}` }}
                 disabled={(button?.disabled) !== undefined}
               >
                 {button.text}

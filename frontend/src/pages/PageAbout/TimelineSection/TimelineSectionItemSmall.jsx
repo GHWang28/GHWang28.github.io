@@ -32,7 +32,11 @@ export default function TimelineSectionItemSmall ({ data, index }) {
               height: '57px',
               overflow: 'clip',
               borderRadius: '50%',
-              bgcolor: data.timlineDotColor,
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: 'borderColor.main',
+              color: 'whitesmoke',
+              bgcolor: data.timelineDotColor,
               cursor: 'pointer',
               transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
               rotate: (hide) ? '360deg' : '0deg',
@@ -85,7 +89,7 @@ export default function TimelineSectionItemSmall ({ data, index }) {
 TimelineSectionItemSmall.propTypes = {
   data: PropTypes.shape({
     oppContent: PropTypes.string,
-    timlineDotColor: PropTypes.string,
+    timelineDotColor: PropTypes.string,
     timelineDotImg: PropTypes.string,
     timelineTitle: PropTypes.string,
     timelineContent: PropTypes.array

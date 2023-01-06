@@ -17,7 +17,9 @@ function ImageLoader ({ src, alt }) {
         component={'img'}
         sx={{
           borderRadius: '1em',
-          border: '3px solid whitesmoke',
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: 'borderColor.main',
           pointerEvents: (loaded) ? 'auto' : 'none',
           opacity: (loaded) ? 1 : 0
         }}
@@ -33,7 +35,9 @@ function ImageLoader ({ src, alt }) {
           sx={{
             zIndex: 20,
             borderRadius: '2%',
-            border: '3px solid whitesmoke',
+            borderWidth: '2px',
+            borderStyle: 'solid',
+            borderColor: 'borderColor.main',
           }}
           component='img'
           width='100%'

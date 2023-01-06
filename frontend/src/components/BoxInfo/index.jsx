@@ -17,8 +17,10 @@ function BoxInfo ({ children, title, footer, plagiarism = false }) {
       mx={(mediumMq) ? 10 : 0}
       sx={{
         borderRadius: '15px',
-        border: '3px solid whitesmoke',
-        bgcolor: 'darkgray.main',
+        borderWidth: '2px',
+        borderStyle: 'solid',
+        borderColor: 'borderColor.main',
+        bgcolor: 'bgColor.darker',
       }}
     >
       {(title) && (

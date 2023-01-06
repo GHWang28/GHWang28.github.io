@@ -27,7 +27,10 @@ export default function TimelineSectionItem ({ data, index, end }) {
         <TimelineDot
           sx={{
             overflow: 'clip',
-            bgcolor: data.timlineDotColor,
+            bgcolor: data.timelineDotColor,
+            borderWidth: '2px',
+            borderStlye: 'solid',
+            borderColor: 'borderColor.main',
             cursor: 'pointer',
             scale: (hover) ? '1.25' : '1.0',
             transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
@@ -76,7 +79,7 @@ export default function TimelineSectionItem ({ data, index, end }) {
 TimelineSectionItem.propTypes = {
   data: PropTypes.shape({
     oppContent: PropTypes.string,
-    timlineDotColor: PropTypes.string,
+    timelineDotColor: PropTypes.string,
     timelineDotImg: PropTypes.string,
     timelineTitle: PropTypes.string,
     timelineContent: PropTypes.array
