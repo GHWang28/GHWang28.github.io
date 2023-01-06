@@ -35,7 +35,7 @@ export default function App() {
         main: (themeMode === 'light') ? 'rgb(15,182,182)' : 'rgb(150,246,246)'
       },
       purple: {
-        main: 'rgb(230,169,254)',
+        main: (themeMode === 'light') ? 'rgb(150,2,209)' : 'rgb(230,169,254)',
         transparent: 'rgba(230,169,254,0.15)'
       },
       green: {
