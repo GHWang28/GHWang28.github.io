@@ -7,7 +7,9 @@ const generateHobbies = () => {
   const props = {
     fontSize: 'large',
     sx: {
-      border: '2px solid whitesmoke',
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderColor: 'borderColor.main',
       borderRadius: '50%'
     }
   }
