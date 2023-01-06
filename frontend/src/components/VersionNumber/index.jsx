@@ -8,10 +8,12 @@ import { easings } from '@react-spring/web'
 import CodeIcon from '@mui/icons-material/Code';
 import BootstrapTooltip from '../BootstrapTooltip';
 import Ticker from '../Ticker';
+import { useSelector } from 'react-redux';
 
 function VersionNumber () {
   const gitInfo = GitInfo();
   const [hover, setHover] = useState(false);
+  const themeMode = useSelector(state => state.themeMode);
   const AnimatedTypography = animated(Typography);
   const animationProps = useSpring({
     from: { y: 50 },
@@ -25,7 +27,13 @@ function VersionNumber () {
   return (
     <Box
       name='version-number'
-      sx={{ overflow: 'hidden', position: 'fixed', left: '10px', bottom: '0px', color: 'whitesmoke' }}
+      sx={{
+        overflow: 'hidden',
+        position: 'fixed',
+        left: '10px',
+        bottom: '0px',
+        color: (themeMode === 'light') ? 'rgb(79,89,91)' : 'whitesmoke'
+      }}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
     >
@@ -53,7 +61,7 @@ function VersionNumber () {
         >
           <BootstrapTooltip title={'Go to this Website\'s Repository'} arrow>
             <IconButton
-              sx={{ border: '1px solid white', mr: 1 }}
+              sx={{ border: `1px solid ${(themeMode === 'light') ? 'rgb(79,89,91)' : 'whitesmoke'}`, mr: 1 }}
               href={'https://github.com/GHWang28/GHWang28.github.io'}
               target='_blank'
             >

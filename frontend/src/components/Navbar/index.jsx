@@ -5,9 +5,11 @@ import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton';
+import { useSelector } from 'react-redux';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
+  const themeMode = useSelector(state => state.themeMode);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   // Animation
   const animationProps = useSpring({
@@ -33,7 +35,7 @@ function Navbar () {
       style={animationProps}
       position='fixed'
       sx={{
-        backgroundColor: 'rgba(0,0,0,0.7) ',
+        backgroundColor: (themeMode === 'dark') ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
         backdropFilter: `blur(1px)
           url('data:image/svg+xml,\
           <svg xmlns="http://www.w3.org/2000/svg">\

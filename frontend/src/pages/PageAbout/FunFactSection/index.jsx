@@ -6,6 +6,7 @@ import { rng } from '../../../helpers';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { animated, useTransition } from 'react-spring';
 import BootstrapTooltip from '../../../components/BootstrapTooltip';
+import { useSelector } from 'react-redux';
 
 const rotateAnim = keyframes`
   0% {
@@ -46,6 +47,7 @@ const funfactPool = [
 
 export default function FunFactSection () {
   const [ref, inView] = useInView();
+  const themeMode = useSelector(state => state.themeMode);
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [playRefreshAnim, setPlayRefreshAnim] = useState(false);
   const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);
@@ -118,8 +120,8 @@ export default function FunFactSection () {
               sx={{
                 width: '100%',
                 backfaceVisibility: 'hidden',
-                bgcolor: 'black.main',
-                border: '2px solid whitesmoke',
+                bgcolor: (themeMode === 'dark') ? 'black.main' : 'white.main',
+                border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
                 borderRadius: '15px'
               }}
               fontSize={16}

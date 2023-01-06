@@ -1,5 +1,6 @@
 import { Box, keyframes } from "@mui/material";
 import PropTypes from 'prop-types';
+import { useSelector } from "react-redux";
 
 const tickScroll = keyframes`
   0% {
@@ -11,8 +12,16 @@ const tickScroll = keyframes`
 `;
 
 export default function ImageScroller ({ images, height, length = '10s', bgcolor }) {
+  const themeMode = useSelector(state => state.themeMode);
   return (
-    <Box sx={{ overflowX: 'hidden', bgcolor, border: '2px solid whitesmoke', borderRadius: '15px' }}>
+    <Box
+      sx={{
+        overflowX: 'hidden',
+        bgcolor,
+        border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
+        borderRadius: '15px'
+      }}
+    >
       <Box sx={{
           width: 'fit-content',
           height,

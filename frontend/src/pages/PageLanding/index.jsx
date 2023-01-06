@@ -7,9 +7,11 @@ import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
+import { useSelector } from 'react-redux';
 
 export default function PageLanding () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const themeMode = useSelector(state => state.themeMode);
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
   const [splashMsg, setSplashMsg] = useState('');
@@ -66,12 +68,13 @@ export default function PageLanding () {
             width: '100%',
             translate: '0px -10%',
             zIndex: -1,
-            userSelect: 'none'
+            userSelect: 'none',
+            filter: (themeMode === 'light') ? 'invert(100%)' : '' 
           }}
         />
         {/* Blobs */}
         <Blob
-          color='rgba(150,246,246,0.1)'
+          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={2}
           speed={300}
@@ -83,7 +86,7 @@ export default function PageLanding () {
           }}
         />
         <Blob
-          color='rgba(185,239,164,0.075)'
+          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={2}
           speed={400}
@@ -95,7 +98,7 @@ export default function PageLanding () {
           }}
         />
         <Blob
-          color='rgba(150,246,246,0.075)'
+          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={3}
           speed={500}
@@ -174,6 +177,9 @@ export default function PageLanding () {
           to: { opacity: 1 },
           delay: 5 * delay,
         })}
+        sx={{
+          color: (themeMode === 'light') ? 'rgb(86,86,86)' : ''
+        }}
         mt={(mediumMq) ? 15 : 7}
         color='#a9a9a9'
         fontWeight='bold'
@@ -181,7 +187,7 @@ export default function PageLanding () {
         lineHeight={1.0}
       >
         {'Hi, my name is '}
-        <Box component='span' color='whitesmoke'>
+        <Box component='span' color={(themeMode === 'light') ? 'black.main' : ''}>
           {'Gordon Wang'}
         </Box>
         {' and welcome to my GitHub page!'}

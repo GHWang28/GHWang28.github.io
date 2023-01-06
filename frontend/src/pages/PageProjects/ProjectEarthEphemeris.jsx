@@ -6,9 +6,11 @@ import ImageGallery from '../../components/ImageGallery';
 import ImageRow from '../../components/ImageRow';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import AnimatedTitle from './AnimatedTitle';
+import { useSelector } from 'react-redux';
 
 function ProjectEarthEphemeris () {
   const [ref, inView] = useInView();
+  const themeMode = useSelector(state => state.themeMode);
   const AnimatedBox = animated(Box);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
@@ -45,7 +47,7 @@ function ProjectEarthEphemeris () {
               position: 'sticky',
               top: '94px',
               borderRadius: '15px',
-              border: '3px solid whitesmoke',
+              border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
               bgcolor: 'darkgray.main',
               zIndex: 2
             }}

@@ -21,3 +21,10 @@ export const setImageZoom = (src, show = true) => {
     }
   };
 }
+
+export const setThemeMode = (theme) => {
+  return {
+    type: 'SET_THEME',
+    value: theme
+  };
+}

@@ -7,27 +7,25 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import MemoryIcon from '@mui/icons-material/Memory';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SquareIcon from '@mui/icons-material/Square';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBackground, setToggleSplash } from '../../redux/actions';
+import { setBackground, setThemeMode, setToggleSplash } from '../../redux/actions';
 import ButtonDropDown from '../ButtonDropDown';
 
 function Settings () {
   const dispatch = useDispatch();
   const backgroundIndex = useSelector(state => state.background);
   const splashState = useSelector(state => state.splash);
+  const themeMode = useSelector(state => state.themeMode);
 
   const backgroundOptions = [
     {
       icon: <CancelIcon />,
       label: 'None'
-    },
-    {
-      icon: <LocationCityIcon />,
-      label: 'Skyscrapers'
     },
     {
       icon: <MemoryIcon />,
@@ -60,11 +58,7 @@ function Settings () {
     {
       icon: <SquareIcon sx={{ scale: '0.66' }}/>,
       label: 'Blocks x32'
-    },
-    {
-      icon: <SquareIcon sx={{ scale: '0.33' }}/>,
-      label: 'Blocks x64'
-    },
+    }
   ];
   return (
     <ButtonDropDown title='Settings' icon={<SettingsIcon />}>
@@ -91,6 +85,16 @@ function Settings () {
       >
         <ListItemIcon><AbcIcon /></ListItemIcon>
         <Typography>{`Splash Text ${(splashState) ? 'enabled': 'disabled'}`}</Typography>
+      </MenuItem>
+      <MenuItem
+        name='change-theme-btn'
+        onClick={(event) => {
+          event.stopPropagation();
+          dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark'))
+        }}
+      >
+        <ListItemIcon>{(themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>}</ListItemIcon>
+        <Typography>{`${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()}`}</Typography>
       </MenuItem>
     </ButtonDropDown>
   )

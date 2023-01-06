@@ -7,26 +7,26 @@ import BackgroundParticles from './BackgroundParticles';
 import { Box } from '@mui/material';
 
 function Background () {
+  const themeMode = useSelector(state => state.themeMode);
+  return (
+    <Box
+      sx={{
+        position: 'absolute',
+        filter: (themeMode === 'light') ? 'invert(100%)' : '',
+        width: '100vw',
+        height: '100vh',
+        zIndex: -999
+      }}
+    >
+      <BackgroundInner/>
+    </Box>
+  )
+}
+
+function BackgroundInner () {
   const backgroundIndex = useSelector(state => state.background);
   switch (backgroundIndex) {
     case 1: return (
-      <Box
-        component='img'
-        sx={{
-          position: 'fixed',
-          bottom: 0,
-          minWidth: '100vw',
-          minHeight: '100vh',
-          opacity: 0.75,
-          pointerEvents: 'none',
-          userSelect: 'none',
-          zIndex: -32
-        }}
-        src='/images/background/skyscraper.svg'
-        alt='background-chipped'
-      />
-    )
-    case 2: return (
       <Box
         sx={{
           position: 'fixed',
@@ -46,14 +46,13 @@ function Background () {
         />
       </Box>
     )
-    case 3: return <BackgroundWave />;
+    case 2: return <BackgroundWave />;
+    case 3:
     case 4:
     case 5:
-    case 6:
-    case 7: return <BackgroundParticles bgIndex={backgroundIndex} />;
-    case 8: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />;
-    case 9: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />;
-    case 10: return <BackgroundBlock dim={config.BLOCK_BG_DIM_XLARGE} />;
+    case 6: return <BackgroundParticles bgIndex={backgroundIndex} />;
+    case 7: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />;
+    case 8: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />;
     default: return null;
   }
 }

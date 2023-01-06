@@ -3,11 +3,13 @@ import React, { Fragment, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ImageLoader from '../ImageLoader';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
   const [hover, setHover] = useState(false);
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const themeMode = useSelector(state => state.themeMode);
   const isOdd = (rowNo % 2);
 
   const imgCol = (
@@ -30,7 +32,7 @@ function ImageRow ({ src, title, body, rowNo }) {
   )
   const textCol = (
     <Grid item xs={12} md={3.3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <Box p={(mediumMq) ? 2 : 0} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: '3px solid whitesmoke' }}>
+      <Box p={(mediumMq) ? 2 : 0} m={1} sx={{ bgcolor: 'darkgray.main', borderRadius: '15px', border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}` }}>
         <Typography variant={'h5'} align='center'>
           <u>{title}</u>
         </Typography>

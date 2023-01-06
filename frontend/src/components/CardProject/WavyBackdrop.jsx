@@ -8,7 +8,7 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
       translate: 0px 0px
     }
     100% {
-      translate: 0px ${(direction === 'up') ? '-' : ''}120px
+      translate: 0px ${(direction === 'up') ? '-' : ''}240px
     }
   `
 
@@ -24,14 +24,19 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
     }
   `
 
+  const waveMask = `
+    radial-gradient(98.41px at calc(100% - 138.00px) 50%,#000 99%,#0000 101%) 0 calc(50% - 120px)/100% 240px,
+    radial-gradient(98.41px at calc(100% + 78.00px) 50%,#0000 99%,#000 101%) calc(100% - 60px) 50%/100% 240px repeat-y
+  `
+
   return (
     /* Wave contained in another div to separate inView animation and the wavy animation */
     <Box
       sx={{
         width: '200%',
-        height: 'calc(100% + 120px)',
+        height: 'calc(100% + 240px)',
         position: 'absolute',
-        top: (direction === 'up') ? '0px' : '-120px',
+        top: (direction === 'up') ? '0px' : '-240px',
         left: yPos,
         translate: (inView) ? '-50%' : '15%',
         transition: 'translate 0.8s ease-out',
@@ -44,14 +49,8 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
           height: '100%',
           animation: `${wavyUpAnimation} ${speed}s linear infinite, ${wavySideAnimation} ${speed / 2}s ease-in-out -${(direction === 'up') ? speed / 8 : 0}s infinite`,
           backgroundImage: `linear-gradient(90deg, ${bgColor} 65%, rgba(255,255,255,0) 150%)`,
-          mask: `
-            radial-gradient(46.86px at calc(100% - 66.00px) 50%,#000 99%,#0000 101%) 0 calc(50% - 60px)/100% 120px,
-            radial-gradient(46.86px at calc(100% + 36.00px) 50%,#0000 99%,#000 101%) calc(100% - 30px) 50%/100% 120px repeat-y
-          `,
-          WebkitMask: `
-            radial-gradient(46.86px at calc(100% - 66.00px) 50%,#000 99%,#0000 101%) 0 calc(50% - 60px)/100% 120px,
-            radial-gradient(46.86px at calc(100% + 36.00px) 50%,#0000 99%,#000 101%) calc(100% - 30px) 50%/100% 120px repeat-y
-          `
+          mask: waveMask,
+          WebkitMask: waveMask
         }}
       />
     </Box>

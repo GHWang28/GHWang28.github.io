@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, keyframes } from '@mui/system';
 import { Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const moveAnimation = keyframes`
   from {
@@ -13,8 +14,9 @@ const moveAnimation = keyframes`
 `;
 
 function Ticker ({ width, children }) {
+  const themeMode = useSelector(state => state.themeMode);
   return (
-    <Box sx={{ overflow: 'hidden', width, bgcolor: 'black', border: '1px solid whitesmoke', borderRadius: '5px', }}>
+    <Box sx={{ overflow: 'hidden', width, bgcolor: 'black', border: `1px solid ${(themeMode === 'light') ? 'rgb(79,89,91)' : 'whitesmoke'}`, borderRadius: '5px', }}>
       <Typography
         fontWeight='bold'
         p={1}

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 /**
  * A div that contains Material UI chips
  */
 function ChipContainer ({ children, width, maxHeight, style }) {
+  const themeMode = useSelector(state => state.themeMode);
   const chipContainerStyle = {
     display: 'flex',
     flexWrap: 'wrap',
@@ -19,8 +21,8 @@ function ChipContainer ({ children, width, maxHeight, style }) {
     p: '5px',
     borderRadius: '20px',
     rowGap: '8px',
-    border: '1px solid whitesmoke',
-    bgcolor: 'darkgray.translucent'
+    border: `1px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
+    bgcolor: (themeMode === 'dark') ? 'darkgray.translucent' : 'white.translucent'
   }
 
   return (

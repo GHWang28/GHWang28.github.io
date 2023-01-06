@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import setBackgroundReducer from './setBackgroundReducer';
 import setImageZoomReducer from './setImageZoomReducer';
+import setThemeModeReducer from './setThemeModeReducer';
 import setToggleSplashReducer from './setToggleSplashReducer';
 
 /**
@@ -9,7 +10,8 @@ import setToggleSplashReducer from './setToggleSplashReducer';
 const combinedReducer = combineReducers({
   background: setBackgroundReducer,
   splash: setToggleSplashReducer,
-  imgZoom: setImageZoomReducer
+  imgZoom: setImageZoomReducer,
+  themeMode: setThemeModeReducer
 })
 
 export default combinedReducer;

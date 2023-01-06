@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles';
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { loadLinksPreset } from 'tsparticles-preset-links';
 import { loadTrianglesPreset } from 'tsparticles-preset-triangles';
 import { loadSnowPreset } from 'tsparticles-preset-snow';
@@ -10,9 +10,10 @@ import { loadStarsPreset } from 'tsparticles-preset-stars';
  * The background particle option
  */
 function BackgroundParticles ({ bgIndex }) {
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
-  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const theme = useTheme();
+  const xLargeMq = useMediaQuery(theme.breakpoints.up('xl'));
+  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
+  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
 
   const totalParticles = () => {
     if (xLargeMq) return 200;
@@ -23,10 +24,10 @@ function BackgroundParticles ({ bgIndex }) {
 
   const getPreset = () => {
     switch (bgIndex) {
-      case 4: return 'links';
-      case 5: return 'snow';
-      case 6: return 'triangles';
-      case 7: return 'stars';
+      case 3: return 'links';
+      case 4: return 'snow';
+      case 5: return 'triangles';
+      case 6: return 'stars';
       default: return '';
     }
   }
