@@ -11,7 +11,7 @@ function Background () {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         filter: (themeMode === 'light') ? 'invert(100%)' : '',
         width: '100vw',
         height: '100vh',
