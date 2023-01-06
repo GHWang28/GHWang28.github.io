@@ -5,7 +5,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
   return [
     {
       oppContent: '(2017)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/robotics.jpg',
       timelineTitle: 'Zero Robotics High School Tournament',
       timelineContent: [
@@ -15,7 +15,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
     },
     {
       oppContent: '(2018)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/sefton-hs.jpg',
       timelineTitle: 'Peer Support Leader at Sefton High School',
       timelineContent: [
@@ -26,7 +26,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
     },
     {
       oppContent: '(2019)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/art-express.jpg',
       timelineTitle: 'ArtExpress 2020',
       timelineContent: [
@@ -46,7 +46,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
     },
     {
       oppContent: '(2022)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/trachack.jpg',
       timelineTitle: 'TracHack 22.2',
       timelineContent: [

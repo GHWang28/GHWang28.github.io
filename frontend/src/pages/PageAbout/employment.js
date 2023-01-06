@@ -4,7 +4,7 @@ const generateEmploymentTimeline = () => {
   return [
     {
       oppContent: '(February 2018)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/aie.jpg',
       timelineTitle: 'Academy of Interactive Entertainment Work Experience',
       timelineContent: [
@@ -16,7 +16,7 @@ const generateEmploymentTimeline = () => {
     },
     {
       oppContent: '(30th November 2019) → (Present Time)',
-      timlineDotColor: 'rgb(255,255,255)',
+      timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/abc.jpg',
       timelineTitle: 'Australia ABC College Tutor',
       timelineContent: [
@@ -29,7 +29,7 @@ const generateEmploymentTimeline = () => {
     },
     {
       oppContent: `(${moment().format('Do MMMM YYYY')})`,
-      timlineDotColor: 'rgb(0,0,0)',
+      timelineDotColor: 'rgb(0,0,0)',
       timelineTitle: 'Present Time',
       timelineContent: [
         'Currently employed at ABC College and have applied for a tutoring position at UNSW'
