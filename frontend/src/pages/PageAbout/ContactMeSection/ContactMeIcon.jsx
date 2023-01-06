@@ -35,7 +35,9 @@ export default function ContactMeIcon ({ contact }) {
           onMouseLeave={() => { setHover(false) }}
           onClick={() => { contact.onClick(); setClicked(true); }}
           sx={{
-            border: '2px solid whitesmoke',
+            borderWidth: '2px',
+            borderStyle: 'solid',
+            borderColor: 'borderColor.main',
             transition: 'rotate 0.5s ease-in-out',
             rotate: (hover) ? '360deg' : '0deg'
           }}
