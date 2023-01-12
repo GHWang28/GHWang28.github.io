@@ -345,12 +345,57 @@ const generateProjects = (navigate, location) => {
         }
       ]
     },
+    {
+      title: 'Convo',
+      date: '(03/01/2023) (Work in Progress)',
+      type: ['Personal Project', 'React', 'JavaScript', 'Firebase', 'Frontend'],
+      imgs: [
+        '/images/covers/convo.jpg'
+      ],
+      body: [
+        'A work in Progress messaging applet that allows users to create private/public channels to communicate in.',
+        <Fragment>
+          {'Frontend created with'}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'React'}
+          </Box>
+          {' and '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'JavaScript'}
+          </Box>
+          {'.'}
+        </Fragment>,
+        <Fragment>
+          {'Backend managed with '}
+          <Box component='span' sx={{ color: 'green.main' }}>
+            {'Firebase'}
+          </Box>
+          {'.'}
+        </Fragment>,
+      ],
+      buttons: [
+        {
+          text: 'View Live',
+          icon: <GameControllerIcon />,
+          onClick: () => {
+            window.open('http://ghwang28.github.io/convo', '_blank').focus();
+          }
+        },
+        {
+          text: 'View Source',
+          icon: <CodeIcon />,
+          onClick: () => {
+            window.open('https://github.com/GHWang28/convo', '_blank').focus();
+          }
+        }
+      ]
+    }
   ]
 
   return projects.sort((a, b) => {
-    if ( a.title < b.title ){
+    if ( a.title < b.title ) {
       return -1;
-    } else if ( a.title > b.title ){
+    } else if ( a.title > b.title ) {
       return 1;
     }
     return 0;
