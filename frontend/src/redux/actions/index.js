@@ -12,13 +12,10 @@ export const setToggleSplash = (boolean) => {
   }
 }
 
-export const setImageZoom = (src, show = true) => {
+export const setImageZoom = (src) => {
   return {
     type: 'SET_IMAGE_ZOOM',
-    value: {
-      src,
-      show
-    }
+    value: src
   };
 }
 

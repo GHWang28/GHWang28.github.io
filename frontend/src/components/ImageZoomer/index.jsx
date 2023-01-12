@@ -1,24 +1,25 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setImageZoom } from '../../redux/actions';
 import { animated, useTransition } from 'react-spring';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export default function ImageZoomer ({ src, show }) {
+export default function ImageZoomer () {
   const dispatch = useDispatch();
   const ref = useRef(null);
-  const transitions = useTransition(show, {
+  const src = useSelector(state => state.imgZoom);
+  const transitions = useTransition(src, {
     from: { backgroundColor: 'rgba(0,0,0,0)', backdropFilter: 'blur(0px)', y: '-50%', opacity: 0 },
     enter: { backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(10px)', y : '0%', opacity: 1 },
     leave: { backgroundColor: 'rgba(0,0,0,0)', backdropFilter: 'blur(0px)', y: '25%', opacity: 0  },
   });
   const AnimatedBox = animated(Box);
 
-  return transitions((style, item) => (
-    item ?
+  return transitions((style, itemSrc) => (
+    itemSrc ?
       <AnimatedBox
         ref={ref}
         id='img-zoom'
@@ -44,14 +45,14 @@ export default function ImageZoomer ({ src, show }) {
         onClick={() => {
           // Enable body scroll
           enableBodyScroll(ref.current);
-          dispatch(setImageZoom(src, false));
+          dispatch(setImageZoom(null));
         }}
       >
         <AnimatedBox
           component='img'
           alt='zoomed-in-image'
           onContextMenu={(event) => { event.preventDefault() }}
-          src={src}
+          src={itemSrc}
           style={{
             y: style.y,
             opacity: style.opacity

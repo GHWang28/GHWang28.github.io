@@ -28,6 +28,15 @@ const generateEmploymentTimeline = () => {
       ]
     },
     {
+      oppContent: '(13th February 2023) → (Present Time)',
+      timelineDotColor: 'rgb(254,230,0)',
+      timelineDotImg: '/images/timeline/unsw.jpg',
+      timelineTitle: 'UNSW COMP6080 Web Front-End Programming Tutor',
+      timelineContent: [
+        'Employment at this role has not commenced yet'
+      ]
+    },
+    {
       oppContent: `(${moment().format('Do MMMM YYYY')})`,
       timelineDotColor: 'rgb(0,0,0)',
       timelineTitle: 'Present Time',

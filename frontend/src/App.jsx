@@ -21,7 +21,6 @@ import PageAbout from './pages/PageAbout';
 export default function App() {
   const location = useLocation();
   const transitions = useTransition(location, getTransitionEffect(location.pathname, location?.state?.prevLocation));
-  const imgZoom = useSelector(state => state.imgZoom);
   const themeMode = useSelector(state => state.themeMode);
 
   const theme = useTheme();
@@ -161,7 +160,7 @@ export default function App() {
           <ContactDetails />
         </Fragment>
       )}
-      <ImageZoomer {...imgZoom} />
+      <ImageZoomer />
     </ThemeProvider>
   );
 }

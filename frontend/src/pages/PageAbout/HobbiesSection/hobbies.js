@@ -3,7 +3,6 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import SchoolIcon from '@mui/icons-material/School';
 
 const generateHobbies = () => {
-
   const props = {
     fontSize: 'large',
     sx: {
