@@ -353,7 +353,8 @@ const generateProjects = (navigate, location) => {
         '/images/covers/convo.jpg'
       ],
       body: [
-        'A Work in Progress messaging applet that allows users to create private/public channels to communicate in.',
+        'A passion project that I work on in my spare time.',
+        'A messaging applet that allows users to create private/public channels to communicate in.',
         <Fragment>
           {'Frontend created with '}
           <Box component='span' sx={{ color: 'green.main' }}>
@@ -372,6 +373,8 @@ const generateProjects = (navigate, location) => {
           </Box>
           {'.'}
         </Fragment>,
+        'Currently has a plethora of features, including channel creation, channel customisation, infinite scrolling, image sharing and messages that can be edited and reacted to.',
+        'More features are planned'
       ],
       buttons: [
         {
