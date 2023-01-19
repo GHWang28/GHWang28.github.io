@@ -354,7 +354,7 @@ const generateProjects = (navigate, location) => {
       ],
       body: [
         'A passion project that I work on in my spare time.',
-        'A messaging applet that allows users to create private/public channels to communicate in.',
+        'A messaging applet that allows users to create private/public channels to communicate with others in real-time.',
         <Fragment>
           {'Frontend created with '}
           <Box component='span' sx={{ color: 'green.main' }}>
