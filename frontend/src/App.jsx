@@ -2,32 +2,21 @@ import './styles/App.css';
 import './styles/CoinBlock.css';
 import './styles/Gradient.css';
 import './styles/Sparklez.css';
-import React, { Fragment } from 'react';
-import { Box, createTheme, ThemeProvider, useMediaQuery, useTheme } from '@mui/material';
-import Navbar from './components/Navbar';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import PageLanding from './pages/PageLanding';
-import PageProjects from './pages/PageProjects';
-import { useTransition, animated } from 'react-spring';
-import AbsoluteWrapper from './wrappers/AbsoluteWrapper';
-import VersionNumber from './components/VersionNumber';
-import ContactDetails from './components/ContactDetails';
-import { useEffect } from 'react';
-import { preloadImgs } from './helpers';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useSwipeable } from 'react-swipeable';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { preloadImgs } from './helpers';
+import Navbar from './components/Navbar';
 import ImageZoomer from './components/ImageZoomer';
-import PageAbout from './pages/PageAbout';
+import PageRouter from './pages/PageRouter';
 
 export default function App() {
   const location = useLocation();
-  const transitions = useTransition(location, getTransitionEffect(location.pathname, location?.state?.prevLocation));
+  const navigate = useNavigate();
   const themeMode = useSelector(state => state.themeMode);
-
-  const theme = useTheme();
-  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
-
+  
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -117,90 +106,36 @@ export default function App() {
     } else {
       document.body.className = 'light-mode-bg'
     }
-  }, [themeMode])
+  }, [themeMode]);
 
-  const px = () => {
-    if (largeMq) return 22;
-    if (mediumMq) return 14;
-    if (smallMq) return 6;
-    return 0;
-  }
-  const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
-  const pt = '64px';
+  const { ref: documentRef } = useSwipeable({
+    onSwipedLeft: () => {
+      if (location.pathname === '/') {
+        navigate('/projects', { state: { prevLocation: location.pathname } });
+      } else if (location.pathname.startsWith('/projects')) {
+        navigate('/about', { state: { prevLocation: location.pathname } });
+      }
+    },
+    onSwipedRight: () => {
+      if (location.pathname === '/about') {
+        navigate('/projects', { state: { prevLocation: location.pathname } });
+      } else if (location.pathname.startsWith('/projects')) {
+        navigate('/', { state: { prevLocation: location.pathname } });
+      }
+    }
+  });
+
+  useEffect(() => {
+    // Adds swipeable to the document
+    documentRef(document);
+  }, [documentRef]);
+
 
   return (
     <ThemeProvider theme={darkTheme}>
       <Navbar />
-      <Box
-        sx={{
-          color: (themeMode === 'light') ? 'rgb(36,36,36)' : 'whitesmoke',
-          overflowX: 'clip',
-          height: 'fit-content'
-        }}
-      >
-        {transitions((styles, item) => (
-          <animated.div style={styles}>
-            <Routes location={item}>
-              <Route path='/' element={
-                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageLanding /></AbsoluteWrapper>
-              }/>
-              <Route path='/projects/*' element={
-                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageProjects /></AbsoluteWrapper>
-              }/>
-              <Route path='/about' element={
-                <AbsoluteWrapper pb={pb} px={px()} pt={pt}><PageAbout /></AbsoluteWrapper>
-              }/>
-            </Routes>
-          </animated.div>
-        ))}
-      </Box>
-      {(location.pathname === '/') && (
-        <Fragment>
-          <VersionNumber />
-          <ContactDetails />
-        </Fragment>
-      )}
+      <PageRouter />
       <ImageZoomer />
     </ThemeProvider>
   );
-}
-
-/**
-   * Manages how to transition between each page
-   */
-const getTransitionEffect = (currLoc, prevLoc) => {
-  if (
-    (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
-    || (currLoc === '/projects' && prevLoc === '/about')
-  ) {
-    // left to right
-    return {
-      from: { opacity: 0, x: '-50%', y: '0px' },
-      enter: { opacity: 1, x: '0%', y: '0px' },
-      leave: { opacity: 0,  x: '25%', y: '0px' },
-    }
-  } else if (
-    (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
-    || (currLoc === '/projects' && prevLoc === '/')
-  ) {
-    // right to left
-    return {
-      from: { opacity: 0, x: '50%', y: '0px' },
-      enter: { opacity: 1, x: '0%', y: '0px' },
-      leave: { opacity: 0, x: '-25%', y: '0px' },
-    };
-  } else if (prevLoc && prevLoc.startsWith('/projects/')) {
-    // bottom to top
-    return {
-      from: { opacity: 0, x: '0%', y: '200px' },
-      enter: { opacity: 1,  x: '0%', y: '0px' },
-      leave: { opacity: 0,  x: '0%', y: '-100px' },
-    };
-  }
-  // top to bottom
-  return {
-    from: { opacity: 0, x: '0%', y: '-200px' },
-    enter: { opacity: 1,  x: '0%', y: '0px' },
-    leave: { opacity: 0,  x: '0%', y: '100px' },
-  };
 }

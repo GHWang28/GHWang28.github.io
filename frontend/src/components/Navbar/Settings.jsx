@@ -63,7 +63,7 @@ function Settings () {
   return (
     <ButtonDropDown title='Settings' icon={<SettingsIcon />}>
       <Typography align='center' m={1} sx={{ width: '250px' }}>
-        Settings
+        {'Settings'}
       </Typography>
       <hr />
       <MenuItem

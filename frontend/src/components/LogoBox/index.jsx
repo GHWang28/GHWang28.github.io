@@ -1,12 +1,26 @@
 import { Box } from "@mui/system"
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { animated, easings, useSpring } from "react-spring";
 
-function LogoBox ({ doNavigate = false }) {
+function LogoBox () {
   const navigate = useNavigate();
   const location = useLocation();
+  const doNavigate = location.pathname !== '/';
+
   const [hover, setHover] = useState(false);
   const [src, setSrc] = useState('url(/images/transparent-img.png)');
+
+  const AnimatedBox = animated(Box);
+  const animationProps = useSpring({
+    from: { scale: 0.75 },
+    to: { scale: 1.0 },
+    config: {
+      duration: 500,
+      easing: easings.easeOutBounce
+    },
+    reset: true
+  })
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -14,10 +28,11 @@ function LogoBox ({ doNavigate = false }) {
     }, 10);
 
     return () => { clearTimeout(timeout) };
-  }, [])
+  }, []);
 
   return (
-    <Box
+    <AnimatedBox
+      style={(location.pathname === '/' && Boolean(location.state?.prevLocation)) ? animationProps : null}
       role='button'
       title='Home Page'
       sx={{
@@ -48,7 +63,7 @@ function LogoBox ({ doNavigate = false }) {
           sx={{ height: '100%', width: '100%' }}
         />
       </Box>
-    </Box>
+    </AnimatedBox>
   )
 }
 

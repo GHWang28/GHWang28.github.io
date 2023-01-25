@@ -1,14 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppBar, Box, Collapse, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
-import NavbarButton from './NavbarButton';
+import NavbarButton from './NavbarButton'; 
 import { useSelector } from 'react-redux';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
+  const [selectedDim, setSelectedDim] = useState({});
   const themeMode = useSelector(state => state.themeMode);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   // Animation
@@ -20,16 +21,32 @@ function Navbar () {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navigationOptions =  [
-    {
-      label: 'Projects',
-      loc: '/projects',
-    },
-    {
-      label: 'About',
-      loc: '/about',
+  const navigationOptions =  ['projects', 'about'];
+
+  useEffect(() => {
+    const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`);
+    if (!element) {
+      const groupDivData = document.getElementById('nav-btn-group').getBoundingClientRect();
+      setSelectedDim({
+        bottom: 0,
+        left: 0,
+        width: groupDivData.width,
+        height: 0,
+        opacity: '0'
+      });
+      return;
     }
-  ]
+
+    const divData = element.getBoundingClientRect();
+    setSelectedDim({
+      top: element.offsetTop,
+      left: element.offsetLeft,
+      width: divData.width,
+      height: divData.height,
+      opacity: '1'
+    });
+  }, [location])
+
   return (
     <AnimatedAppBar
       style={animationProps}
@@ -68,17 +85,30 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
-        {navigationOptions.map((nav, index) => (
-          <Fragment key={`navigation-btn-${index}`}>
+        <Box id='nav-btn-group' sx={{ position: 'relative' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              borderWidth: '1px',
+              borderStyle: 'solid',
+              borderRadius: '5px',
+              borderColor: 'primary.main',
+              transition: 'all 0.5s ease-out',
+              ...selectedDim
+            }}
+          />
+          {navigationOptions.map((navOption) => (
             <NavbarButton
+              key={`nav-btn-${navOption}`}
+              id={`nav-btn-${navOption}`}
               onClick={() => {
-                navigate(nav.loc, { state: { prevLocation: location.pathname } })
+                navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
               }}
-              disabled={location.pathname === nav.loc}
-              label={nav.label}
+              disabled={location.pathname === `/${navOption}`}
+              label={navOption}
             />
-          </Fragment>
-        ))}
+          ))}
+        </Box>
         <Box ml='auto'>
           <Settings />
         </Box>

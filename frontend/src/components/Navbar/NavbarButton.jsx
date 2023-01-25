@@ -21,7 +21,6 @@ function NavbarButton (props) {
       }}
       sx={{
         border: '1px solid rgba(0,0,0,0)',
-        borderColor: (props.disabled) ? 'primary.main' : '',
         fontWeight: 'bold',
         height: '100%'
       }}
