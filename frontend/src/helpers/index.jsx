@@ -75,9 +75,19 @@ export function mod (value, mod) {
 };
 
 const images = []
-export function preloadImgs(imgs) {
+export function preloadImgs (imgs) {
   for (const index in imgs) {
     images[index] = new Image();
     images[index].src = imgs[index];
   }
+}
+
+/**
+ * Capitalises the first character of a string
+ * @param {String} str 
+ * @returns {String}
+ */
+export function capitaliseString (str) {
+  str = str.trim();
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

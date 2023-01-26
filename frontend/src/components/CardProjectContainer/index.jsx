@@ -18,7 +18,7 @@ function CardProjectContainer ({ projects }) {
         <Box sx={{ width: '49.5%', m: 0 }}>
           {evenProj.map((proj, index) => (
             <CardProject
-              key={`project-${index * 2}`}
+              key={`project-${proj?.title?.toLowerCase()}`}
               index={index * 2}
               {...proj}
             />
@@ -27,7 +27,7 @@ function CardProjectContainer ({ projects }) {
         <Box sx={{ width: '49.5%', m: 0  }}>
           {oddProj.map((proj, index) => (
             <CardProject
-              key={`project-${index * 2 + 1}`}
+              key={`project-${proj?.title?.toLowerCase()}`}
               index={index * 2 + 1}
               {...proj}
             />
@@ -41,7 +41,7 @@ function CardProjectContainer ({ projects }) {
     <Fragment>
       {projects.map((proj, index) => (
         <CardProject
-          key={`project-${index}`}
+          key={`project-${proj?.title?.toLowerCase()}`}
           index={index}
           {...proj}
         />

@@ -30,7 +30,8 @@ function ProjectHub () {
   ]);
 
   const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
-  const projects = generateProjects(navigate, location).filter((project) => {
+  const allProjs = generateProjects(navigate, location);
+  const projects = allProjs.filter((project) => {
     for (const filterObj of filterEnabled) {
       if (!project.type.includes(filterObj.type)) return false;
     }
@@ -42,10 +43,13 @@ function ProjectHub () {
       <AnimatedTitle title='Projects' subtitle={'My proud creations, big and small'}/>
       <Box component='hr' mb={1}/>
       {/* Filter Button */}
-      <Box sx={{ width: '100%', display: 'flex' }}>
-        <ButtonDropDown sx={{ ml: 'auto', mb: 2 }} title='Filter' icon={<FilterAltIcon />}>
+      <Box my={1.5} sx={{ width: '100%', display: 'flex', alignItems: 'center' }}>
+        <Typography sx={{ opacity: 0.5 }}>
+          {`Showing ${projects.length}/${allProjs.length} projects.`}
+        </Typography>
+        <ButtonDropDown sx={{ ml: 'auto' }} title='Filter' icon={<FilterAltIcon />}>
           <Typography align='center' m={1} sx={{ width: '250px' }}>
-            Filters
+            {'Filters'}
           </Typography>
           <hr />
           {filter.map((item, index) => (
@@ -92,9 +96,9 @@ function ProjectHub () {
               opacity: 0.75
             }}
           >
-            There's nothing here...
+            {'There\'s nothing here...'}
             <br/>
-            ...except for a mysterious block!
+            {'...except for a mysterious block!'}
             <br/>
             <Box component='span' sx={{ opacity: 0.5 }}>{'(Try changing the filters to get some results.)'}</Box>
           </Typography>

@@ -33,7 +33,7 @@ const funfactPool = [
     </Sparklez>
     {'.'}
   </Fragment>,
-  'I have a tiny piece of led stuck in my index finger since first grade.'
+  // 'I have a tiny piece of led stuck in my index finger since first grade.'
 ]
 
 export default function FunFactSection () {

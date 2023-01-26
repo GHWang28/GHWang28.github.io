@@ -1,26 +1,15 @@
-import { Box } from "@mui/system"
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { animated, easings, useSpring } from "react-spring";
+import { Box } from '@mui/material'
+import React, { useEffect, useState, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+
 
 function LogoBox () {
   const navigate = useNavigate();
   const location = useLocation();
   const doNavigate = location.pathname !== '/';
+  const ref = useRef(null);
 
-  const [hover, setHover] = useState(false);
   const [src, setSrc] = useState('url(/images/transparent-img.png)');
-
-  const AnimatedBox = animated(Box);
-  const animationProps = useSpring({
-    from: { scale: 0.75 },
-    to: { scale: 1.0 },
-    config: {
-      duration: 500,
-      easing: easings.easeOutBounce
-    },
-    reset: true
-  })
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -30,11 +19,21 @@ function LogoBox () {
     return () => { clearTimeout(timeout) };
   }, []);
 
+  useEffect(() => {
+    if (location.pathname === '/' && Boolean(location.state?.prevLocation)) {
+      const element = ref.current;
+      element.classList.remove('logo-anim');
+      void element.offsetWidth;
+      element.classList.add('logo-anim');
+    }
+  }, [location])
+
   return (
-    <AnimatedBox
-      style={(location.pathname === '/' && Boolean(location.state?.prevLocation)) ? animationProps : null}
+    <Box
+      ref={ref}
       role='button'
       title='Home Page'
+      className='logo-anim'
       sx={{
         width: '40px',
         height: '40px',
@@ -42,10 +41,11 @@ function LogoBox () {
         overflow: 'hidden',
         cursor: 'pointer',
         transition: 'scale 0.3s ease-in-out',
-        scale: (hover) ? '1.1' : '1',
+        scale: '1.0',
+        '&:hover': {
+          scale: '1.05'
+        },
       }}
-      onMouseEnter={() => { setHover(true) }}
-      onMouseLeave={() => { setHover(false) }}
       onClick={() => { if (doNavigate) navigate('/', { state: { prevLocation: location.pathname } }) }}
     >
       <Box
@@ -63,7 +63,7 @@ function LogoBox () {
           sx={{ height: '100%', width: '100%' }}
         />
       </Box>
-    </AnimatedBox>
+    </Box>
   )
 }
 

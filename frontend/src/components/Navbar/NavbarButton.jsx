@@ -22,6 +22,7 @@ function NavbarButton (props) {
       sx={{
         border: '1px solid rgba(0,0,0,0)',
         fontWeight: 'bold',
+        borderRadius: '15px',
         height: '100%'
       }}
       disableRipple

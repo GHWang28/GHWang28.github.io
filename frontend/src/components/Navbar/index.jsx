@@ -6,6 +6,7 @@ import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton'; 
 import { useSelector } from 'react-redux';
+import { capitaliseString } from '../../helpers';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
@@ -26,12 +27,13 @@ function Navbar () {
   useEffect(() => {
     const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`);
     if (!element) {
-      const groupDivData = document.getElementById('nav-btn-group').getBoundingClientRect();
+      const prevElement = document.getElementById('nav-btn-projects');
+      const prevDivData = prevElement.getBoundingClientRect();
       setSelectedDim({
-        bottom: 0,
-        left: 0,
-        width: groupDivData.width,
-        height: 0,
+        top: prevElement.offsetTop,
+        left: prevElement.offsetLeft,
+        width: prevDivData.width,
+        height: prevDivData.height,
         opacity: '0'
       });
       return;
@@ -86,14 +88,14 @@ function Navbar () {
           </Box>
         </Collapse>
         <Box id='nav-btn-group' sx={{ position: 'relative' }}>
+          {/* Border around selector */}
           <Box
+            className={'border-gradient'}
             sx={{
               position: 'absolute',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderRadius: '5px',
-              borderColor: 'primary.main',
-              transition: 'all 0.5s ease-out',
+              pointerEvents: 'none',
+              transition: 'all 0.5s ease-in-out',
+              zIndex: 2,
               ...selectedDim
             }}
           />
@@ -105,7 +107,7 @@ function Navbar () {
                 navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
               }}
               disabled={location.pathname === `/${navOption}`}
-              label={navOption}
+              label={capitaliseString(navOption)}
             />
           ))}
         </Box>

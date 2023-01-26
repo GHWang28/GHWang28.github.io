@@ -371,7 +371,7 @@ const generateProjects = (navigate, location) => {
           <Box component='span' sx={{ color: 'green.main' }}>
             {'Firebase'}
           </Box>
-          {'.'}.
+          {'.'}
         </Fragment>,
         'Currently has a plethora of features, including channel creation, channel customisation, infinite scrolling, image sharing and messages that can be edited and reacted to.',
         'More features are planned.'
