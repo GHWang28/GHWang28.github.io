@@ -109,6 +109,7 @@ export default function App() {
   }, [themeMode]);
 
   const { ref: documentRef } = useSwipeable({
+    delta: 50,
     onSwipedLeft: () => {
       if (location.pathname === '/') {
         navigate('/projects', { state: { prevLocation: location.pathname } });

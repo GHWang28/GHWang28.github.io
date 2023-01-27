@@ -25,9 +25,15 @@ function ImageGallery ({ imgArray = [] }) {
 
   // Handles swiping for mobile
   const swipeHandler = useSwipeable({
-    onSwipedLeft: () => cycleImg(imgIndex + 1),
-    onSwipedRight: () => cycleImg(imgIndex - 1),
-    trackMouse: true
+    delta: 50,
+    onSwipedLeft: ({ event }) => {
+      event.stopPropagation();
+      cycleImg(imgIndex + 1);
+    },
+    onSwipedRight: ({ event }) => {
+      event.stopPropagation();
+      cycleImg(imgIndex - 1);
+    }
   });
 
   // Spring Animation
