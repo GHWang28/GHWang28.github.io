@@ -37,6 +37,7 @@ export default function ImageZoomer () {
           alignItems: 'center',
           cursor: 'pointer',
           zIndex: 1100,
+          WebkitTapHighlightColor: 'transparent'
         }}
         onLoad={() => {
           // Disable body scroll

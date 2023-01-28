@@ -21,7 +21,8 @@ function ImageLoader ({ src, alt }) {
           borderStyle: 'solid',
           borderColor: 'borderColor.main',
           pointerEvents: (loaded) ? 'auto' : 'none',
-          opacity: (loaded) ? 1 : 0
+          opacity: (loaded) ? 1 : 0,
+          WebkitTapHighlightColor: 'transparent',
         }}
         onClick={() => {
           dispatch(setImageZoom(src));

@@ -110,6 +110,7 @@ export default function App() {
 
   const { ref: documentRef } = useSwipeable({
     delta: 50,
+    preventScrollOnSwipe: true,
     onSwipedLeft: () => {
       if (location.pathname === '/') {
         navigate('/projects', { state: { prevLocation: location.pathname } });

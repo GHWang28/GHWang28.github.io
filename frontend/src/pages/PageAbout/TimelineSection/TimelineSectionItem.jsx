@@ -27,6 +27,7 @@ export default function TimelineSectionItem ({ data, index, end }) {
         <TimelineDot
           sx={{
             overflow: 'clip',
+            WebkitTapHighlightColor: 'transparent',
             bgcolor: data.timelineDotColor,
             borderWidth: '2px',
             borderStlye: 'solid',

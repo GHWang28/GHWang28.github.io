@@ -141,7 +141,7 @@ function ImageGallery ({ imgArray = [] }) {
                 <Box
                   component={'img'}
                   alt={`Gallery Item #${imgIndex}`}
-                  sx={{ height: galleryHeight(), cursor: 'pointer' }}
+                  sx={{ height: galleryHeight(), cursor: 'pointer', WebkitTapHighlightColor: 'transparent', }}
                   onContextMenu={(event) => { event.preventDefault() }}
                   title={`Gallery Item #${imgIndex}`}
                   src={imgArray[imgIndex]}
@@ -220,6 +220,7 @@ function ImageGallery ({ imgArray = [] }) {
                 transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
                 scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
                 opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',
+                WebkitTapHighlightColor: 'transparent',
               }}
               onClick={() => { switchImg(imgSrcNo) }}
               src={getYouTubeThumbnailImg(imgSrc)}

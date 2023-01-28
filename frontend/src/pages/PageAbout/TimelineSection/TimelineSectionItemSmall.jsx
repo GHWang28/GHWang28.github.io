@@ -42,7 +42,8 @@ export default function TimelineSectionItemSmall ({ data, index }) {
               rotate: (hide) ? '360deg' : '0deg',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              WebkitTapHighlightColor: 'transparent',
             }}
             onClick={() => { setHide(!hide) }}
           >

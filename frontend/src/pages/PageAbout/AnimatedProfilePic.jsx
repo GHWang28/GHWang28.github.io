@@ -40,7 +40,8 @@ export default function AnimatedProfilePic () {
         borderRadius: '15px',
         cursor: 'pointer',
         transition: 'scale 0.2s ease-in-out',
-        scale: (hover) ? '1.05' : '1.0'
+        scale: (hover) ? '1.05' : '1.0',
+        WebkitTapHighlightColor: 'transparent'
       }}
     />
   )

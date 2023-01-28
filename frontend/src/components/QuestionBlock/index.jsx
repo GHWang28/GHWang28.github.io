@@ -69,6 +69,7 @@ function QuestionBlock () {
             cursor: 'pointer',
             width: '75px',
             height: '75px',
+            WebkitTapHighlightColor: 'transparent',
           }}
         >
           <Box

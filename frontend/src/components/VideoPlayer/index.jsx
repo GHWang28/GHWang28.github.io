@@ -77,6 +77,7 @@ function VideoPlayer (props) {
           cursor: 'pointer',
           opacity: (hoverButtonState) ? '100%' : '80%',
           width: '25%',
+          WebkitTapHighlightColor: 'transparent',
           zIndex: 2
         }}
       />

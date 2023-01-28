@@ -45,6 +45,7 @@ function LogoBox () {
         '&:hover': {
           scale: '1.05'
         },
+        WebkitTapHighlightColor: 'transparent'
       }}
       onClick={() => { if (doNavigate) navigate('/', { state: { prevLocation: location.pathname } }) }}
     >
