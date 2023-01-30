@@ -36,6 +36,12 @@ function ImageGallery ({ imgArray = [] }) {
     }
   });
 
+  const preventSwipeHandler = useSwipeable({
+    onSwiped: ({ event }) => {
+      event.stopPropagation();
+    }
+  })
+
   // Spring Animation
   const animationProps = useSpring({
     from: { opacity: 0 },
@@ -181,6 +187,7 @@ function ImageGallery ({ imgArray = [] }) {
       </Grid>
       {/* Display other images on the bottom */}
       <Box
+        {...preventSwipeHandler}
         name='image-container'
         sx={{
           display: 'flex',

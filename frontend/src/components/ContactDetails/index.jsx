@@ -10,8 +10,7 @@ import { easings } from '@react-spring/web'
 const OutlinedButton = styled(IconButton)(() => {
   const theme = useTheme();
   return {
-    border: `1px solid ${theme.palette.borderColor.main}`,
-    marginLeft: '5px'
+    border: `1px solid ${theme.palette.borderColor.main}`
   }
 });
 
@@ -68,7 +67,8 @@ function ContactDetails () {
         right: '10px',
         bottom: '0px',
         display: 'flex',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        gap: 0.5
       }}
     >
       {allLinks.map((link, index) => (

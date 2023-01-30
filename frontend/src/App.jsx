@@ -11,6 +11,7 @@ import { preloadImgs } from './helpers';
 import Navbar from './components/Navbar';
 import ImageZoomer from './components/ImageZoomer';
 import PageRouter from './pages/PageRouter';
+import SwipeTutorial from './components/SwipeTutorial';
 
 export default function App() {
   const location = useLocation();
@@ -132,9 +133,9 @@ export default function App() {
     documentRef(document);
   }, [documentRef]);
 
-
   return (
     <ThemeProvider theme={darkTheme}>
+      <SwipeTutorial />
       <Navbar />
       <PageRouter />
       <ImageZoomer />
