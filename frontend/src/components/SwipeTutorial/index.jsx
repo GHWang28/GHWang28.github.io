@@ -55,7 +55,7 @@ export default function SwipeTutorial () {
             filter: lightMode ? '' : 'invert(100%)'
           }}
         />
-        <Typography align='center' fontSize='25px'>
+        <Typography align='center' fontSize='25px' fontWeight='bold'>
           {'Navigate by swiping or using the above navigation bar.'}
         </Typography>
         <Typography align='center' fontSize='15px' sx={{ opacity: 0.75 }}>
