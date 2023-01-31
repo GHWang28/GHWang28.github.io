@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, keyframes } from '@mui/material';
-import { useState } from 'react';
-import { v4 } from 'uuid';
 import config from '../../config.json';
 import useSound from 'use-sound';
 import SMBCoinSFX from '../../sfx/smb-coin.ogg';
 import SMB1upSFX from '../../sfx/smb-1up.ogg';
 import Sparklez from '../Sparklez';
 import { animated, useSpring } from 'react-spring';
+import { easings } from '@react-spring/web'
 
 const coinAnimation = keyframes`
   0% {
@@ -40,18 +39,30 @@ function QuestionBlock () {
     void coinMaskElement.offsetWidth;
     coinMaskElement.classList.add('coin-clip-anim');
 
-    setCoins([...coins, v4()]);
-
+    const epoch = Date.now();
     if (coinCount + 1 >= config.MARIO_EASTER_EGG_LIMIT) {
       play1up();
       setCoinCount(0);
-      setCoins([...coins, `1up-${v4()}`]);
+      setCoins([...coins, `1up-${epoch}`]);
     } else {
       playCoin();
       setCoinCount(coinCount + 1);
-      setCoins([...coins, `coin-${v4()}`]);
+      setCoins([...coins, `coin-${epoch}`]);
     }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const currEpoch = Date.now();
+      setCoins(coins.filter((key) => {
+        // Filter out expired coins
+        const keyEpoch = Number(key.split('-')[1]);
+        return (currEpoch - keyEpoch) <= 650;
+      }));
+    }, 650);
+  
+    return () => { clearTimeout(timeout) };
+  });
 
   return (
     <Box sx={{ position: 'relative' }} name='coin-block-easter-egg-container'>
@@ -59,9 +70,14 @@ function QuestionBlock () {
         <AnimatedBox
           id='coin-block'
           role='button'
+          title='??? Block'
           style={useSpring({
             from: { opacity: 0, y: -500 },
-            to: { opacity: 1, y: 0 }
+            to: { opacity: 1, y: 0 },
+            config: {
+              duration: 1000,
+              easing: easings.easeOutBounce
+            }
           })}
           onContextMenu={(event) => { event.preventDefault() }}
           onClick={onClick}
@@ -102,12 +118,8 @@ function QuestionBlock () {
         {coins.map((coinKey) => (
           <Box
             key={coinKey}
+            name={coinKey}
             onContextMenu={(event) => { event.preventDefault() }}
-            onAnimationEnd={() => {
-              const newCoins = [...coins];
-              newCoins.splice(coins.indexOf(coinKey), 1);
-              setCoins([...newCoins]);
-            }}
             sx={{
               animation: `${coinAnimation} 0.65s ease-in-out 1`,
               width: (coinKey.startsWith('coin')) ? '50px' : '75px',

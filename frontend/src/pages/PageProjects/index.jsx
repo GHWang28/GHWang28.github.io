@@ -9,7 +9,6 @@ import ProjectSlackr from './UniversityProjs/ProjectSlackr';
 import ProjectMinecraftScreensaver from './UniversityProjs/ProjectMinecraftScreensaver';
 
 export default function PageProjects () {
-
   return (
     <Routes>
       <Route path='' element={<ProjectHub />}/>

@@ -236,7 +236,7 @@ const generateProjects = (navigate, location) => {
       ]
     },
     {
-      title: 'Minecraft Screensaver',
+      title: 'Minecraft Screensaver (Unofficial)',
       date: '(20/9/2021)',
       type: ['OpenGL', 'University Project', 'C++'],
       imgs: [

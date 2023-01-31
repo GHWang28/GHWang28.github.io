@@ -31,9 +31,7 @@ export default function ProjectIFrameShowCase () {
           component='iframe'
           onLoad={() => { setLoaded(true) }}
           title={'project-showcase'}
-          sx={{
-            opacity: (loaded) ? '1.0' : '0.0'
-          }}
+          sx={{ opacity: (loaded) ? '1.0' : '0.0' }}
           width={(isXenoYova) ? 'min(714px, 100vw)' : '100%'}
           height={(isXenoYova) ? '546px' : '99%'}
           src={`https://ghwang28.github.io/${projectName}`}

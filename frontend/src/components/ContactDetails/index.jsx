@@ -74,10 +74,7 @@ function ContactDetails () {
       {allLinks.map((link, index) => (
         <AnimatedBox style={link.style} sx={{ mb: 1 }} key={`link-icon-${index}`}>
           <BootstrapTooltip title={link.title} arrow>
-            <OutlinedButton
-              href={link.href}
-              target='_blank'
-            >
+            <OutlinedButton href={link.href} target='_blank'>
               {link.icon}
             </OutlinedButton>
           </BootstrapTooltip>

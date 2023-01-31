@@ -11,6 +11,11 @@ export function rng(min, max) {
   return Math.round(Math.random() * (max - min)) + min
 }
 
+/**
+ * Returns the formatted date from an ISO string
+ * @param {String} iso 
+ * @returns {String}
+ */
 export function ISOToDateStr (iso) {
   const date = new Date(iso);
   return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -49,13 +54,18 @@ export function getYouTubeThumbnailImg (url) {
 /**
  * Checks if the given url starts with the pre-decided
  * video prefix
- * @param {string} url
- * @returns
+ * @param {String} url
+ * @returns {Boolean}
  */
 export function isYouTubeURL (url) {
   return (getVideoId(url).service === 'youtube')
 }
 
+/**
+ * Gets the low res variation of the given image file name
+ * @param {String} filename 
+ * @returns {String}
+ */
 export function getLowResImg (filename) {
   const extensionIndex = getFileExtension(filename).index - 1;
   return filename.slice(0, extensionIndex) + "_lowres" + filename.slice(extensionIndex);

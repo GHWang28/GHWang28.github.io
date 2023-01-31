@@ -1,6 +1,6 @@
 
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getLowResImg } from '../../helpers';
 import { setImageZoom } from '../../redux/actions';
