@@ -87,7 +87,7 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
-        <Box id='nav-btn-group' sx={{ position: 'relative' }} pl={2}>
+        <Box id='nav-btn-group' sx={{ position: 'relative' }}>
           {/* Border around selector */}
           <Box
             className={'border-gradient'}
