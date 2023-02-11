@@ -87,12 +87,13 @@ function Navbar () {
             </Typography>
           </Box>
         </Collapse>
-        <Box id='nav-btn-group' sx={{ position: 'relative' }}>
+        <Box id='nav-btn-group' sx={{ position: 'relative' }} pl={2}>
           {/* Border around selector */}
           <Box
             className={'border-gradient'}
             sx={{
               position: 'absolute',
+              display: 'flex',
               pointerEvents: 'none',
               transition: 'all 0.5s ease-in-out',
               zIndex: 2,

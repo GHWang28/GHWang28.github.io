@@ -188,9 +188,9 @@ export default function PageLanding () {
       >
         {'Hi, my name is '}
         <Box component='span' color={(themeMode === 'light') ? 'black.main' : ''}>
-          {'Gordon Wang'}
+          {'Gordon Wang.'}
         </Box>
-        {' and welcome to my GitHub page!'}
+        {' Welcome to my GitHub page!'}
       </AnimatedTypography>
       <AnimatedTypography
         mt={4}
