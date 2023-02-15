@@ -1,11 +1,12 @@
 import React from 'react';
-import { Grid, Typography, useMediaQuery } from '@mui/material';
+import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 
 export default function HobbiesItem ({ odd, data }) {
   const [ref, inView] = useInView();
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const theme = useTheme();
+  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
   
   return (
     <Grid
@@ -27,7 +28,8 @@ export default function HobbiesItem ({ odd, data }) {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          color: theme.palette.mode === 'light' ? 'black' : 'whitesmoke'
         }}
       >
         {data.icon}

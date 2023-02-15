@@ -102,7 +102,7 @@ export default function CardProject ({
               }}
             >
               {body.map((dotpoint, index) => (
-                <Box key={`dotpoint-${index}`} component='li'>
+                <Box key={`dotpoint-${index}`} component='li' sx={{ color: theme.palette.mode === 'light' ? 'black' : 'whitesmoke' }}>
                   <Typography pr={1}>
                     {dotpoint}
                   </Typography>
