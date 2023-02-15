@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { animated } from 'react-spring';
 import PropTypes from 'prop-types';
-// import Footer from '../../components/Footer';
+import Footer from '../../components/Footer';
 
 function AnimatedAbsoluteWrapper ({ children, style, pb, pt, px }) {
   const AnimatedBox = animated(Box);
@@ -12,6 +12,7 @@ function AnimatedAbsoluteWrapper ({ children, style, pb, pt, px }) {
       <Box pt={pt} pb={pb} px={px} sx={{ height: 'fit-content' }}>
         {children}
       </Box>
+      <Footer />
     </AnimatedBox>
   )
 }
