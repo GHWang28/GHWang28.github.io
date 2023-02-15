@@ -8,17 +8,15 @@ import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
 import WavyBackdrop from './WavyBackdrop';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
 const TransluscentTypography = styled(Typography)(() => {
   const theme = useTheme();
-  const themeMode = useSelector(state => state.themeMode);
   return {
-    border: `1px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
+    border: `1px solid ${(theme.palette.mode === 'dark') ? 'whitesmoke' : 'black'}`,
     borderRadius: '15px',
     margin: '5px 0px',
     padding: '0px 10px',
-    backgroundColor: (themeMode === 'dark') ? theme.palette.darkgray.translucent : 'rgba(255,255,255,0.5)'
+    backgroundColor: (theme.palette.mode === 'dark') ? theme.palette.darkgray.translucent : 'rgba(255,255,255,0.5)'
   }
 });
 
@@ -32,12 +30,12 @@ export default function CardProject ({
   buttons = []
 }) {
   const [ref, inView] = useInView();
-  const themeMode = useSelector(state => state.themeMode);
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const theme = useTheme();
+  const themeMode = theme.palette.mode;
   const [hover, setHover] = useState(false);
 
   return (
@@ -45,14 +43,14 @@ export default function CardProject ({
       ref={ref}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
-      className={'border-gradient'}
+      className='border-gradient'
       sx={{
         position: 'relative',
         scale: (hover) ? '1' : '0.975',
         boxShadow: (hover) ? '0 4px 16px 0 rgba(255,255,255,0.2)' : '0 4px 8px 0 rgba(255,255,255,0.2)',
         opacity: (inView) ? '1' : '0',
-        translate: (inView) ? '0px' : ((index % 2) ? '200px' : '-200px'),
-        transition: 'scale 0.2s ease-in-out, box-shadow 0.2s ease-in-out, translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
+        transition: 'scale 0.5s ease-in-out, box-shadow 0.5s ease-in-out, translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
         borderRadius: '15px',
         overflow: 'hidden',
         mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),

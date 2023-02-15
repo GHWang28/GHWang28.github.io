@@ -72,7 +72,7 @@ function ProjectEarthEphemeris () {
         ref={ref}
         sx={{
           opacity: (inView) ? '1' : '0',
-          transition: 'opacity 0.3s ease-in-out',
+          transition: 'opacity 0.5s ease-in-out',
           transitionDelay: '0.2s'
         }}
       >

@@ -25,7 +25,7 @@ export default function ContactMeIcon ({ contact }) {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        transition: 'scale 0.2s ease-in-out',
+        transition: 'scale 0.5s ease-in-out',
         scale: (inView) ? '1' : '0'
       }}
     >

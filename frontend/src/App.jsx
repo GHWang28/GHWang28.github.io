@@ -84,7 +84,10 @@ export default function App() {
       mode: themeMode,
     },
     typography: {
-      'fontFamily': '"Inter", "my-handwriting"'
+      'fontFamily': '"Inter", "my-handwriting"',
+      allVariants: {
+        color: (themeMode === 'light') ? 'black' : 'whitesmoke'
+      },
     }
   });
 
@@ -135,10 +138,10 @@ export default function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <ImageZoomer />
       <SwipeTutorial />
       <Navbar />
       <PageRouter />
-      <ImageZoomer />
     </ThemeProvider>
   );
 }

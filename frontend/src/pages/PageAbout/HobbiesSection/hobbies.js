@@ -23,7 +23,7 @@ const generateHobbies = () => {
       icon: <SportsEsportsIcon {...props} />
     },
     {
-      text: 'I have a passion for teaching. It is deeply satisfying to watch others learn and grow, and I take great pleasure in providing guidance and support to help them achieve their goals. Currently, I offer private tutoring services to friends and family members.',
+      text: 'I have a passion for teaching. It is deeply satisfying to watch others learn and grow, and I take great pleasure in providing guidance and support to help them achieve their goals. Currently, I offer private tutoring services to friends and family members. In addition, I am also a tutor for Frontend Programming at UNSW.',
       icon: <SchoolIcon {...props} />
     }
   ]

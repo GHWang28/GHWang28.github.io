@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Collapse, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Collapse, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton'; 
-import { useSelector } from 'react-redux';
 import { capitaliseString } from '../../helpers';
 
 function Navbar () {
   const [logoHover, setLogoHover] = useState(false);
   const [selectedDim, setSelectedDim] = useState({});
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   // Animation
   const animationProps = useSpring({
@@ -90,7 +89,7 @@ function Navbar () {
         <Box id='nav-btn-group' sx={{ position: 'relative' }}>
           {/* Border around selector */}
           <Box
-            className={'border-gradient'}
+            className='border-gradient'
             sx={{
               position: 'absolute',
               display: 'flex',

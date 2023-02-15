@@ -1,12 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { Box, Grid, IconButton, keyframes, Typography, useMediaQuery } from '@mui/material';
+import { Box, Grid, IconButton, keyframes, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
 import { rng } from '../../../helpers';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { animated, useTransition } from 'react-spring';
 import BootstrapTooltip from '../../../components/BootstrapTooltip';
-import { useSelector } from 'react-redux';
 
 const rotateAnim = keyframes`
   0% {
@@ -18,9 +17,9 @@ const rotateAnim = keyframes`
 `
 
 const funfactPool = [
-  'I used to play the piano frequently.',
+  'I can play the piano!',
   // 'There\'s a mole with a raidus of 6cm on my arm.',
-  'I enjoy binging anime/manga in my spare time.',
+  // 'I enjoy binging anime/manga in my spare time.',
   'I\'ve been taking care of a potted bamboo since starting my University degree.',
   'Penguins are my favourite animals 🐧.',
   'I can speak English and Mandarin. 你好!',
@@ -38,7 +37,7 @@ const funfactPool = [
 
 export default function FunFactSection () {
   const [ref, inView] = useInView();
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [playRefreshAnim, setPlayRefreshAnim] = useState(false);
   const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);
@@ -57,7 +56,7 @@ export default function FunFactSection () {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : '-50px',
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>

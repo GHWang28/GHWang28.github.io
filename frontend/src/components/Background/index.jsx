@@ -4,10 +4,10 @@ import BackgroundBlock from './BackgroundBlock';
 import BackgroundWave from './BackgroundWave';
 import config from '../../config.json';
 import BackgroundParticles from './BackgroundParticles';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 
 function Background () {
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   return (
     <Box
       sx={{

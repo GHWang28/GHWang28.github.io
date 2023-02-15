@@ -61,7 +61,7 @@ function ImageRow ({ src, title, body, rowNo }) {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0%' : ((isOdd) ? '-100%' : '100%'),
-        transition: 'translate 0.4s ease-in-out, opacity 0.4s ease-in-out',
+        transition: 'translate 1.0s ease-in-out, opacity 1.0s ease-in-out',
       }}
     >
       {row.map((col, index) => (

@@ -36,7 +36,7 @@ export default function WavyBackdrop ({ bgColor, speed, yPos, direction, inView 
         top: (direction === 'up') ? '0px' : '-240px',
         left: yPos,
         translate: (inView) ? '-50%' : '15%',
-        transition: 'translate 0.8s ease-out',
+        transition: 'translate 2.0s ease-out',
         userSelect: 'none',
         zIndex: -1
       }}

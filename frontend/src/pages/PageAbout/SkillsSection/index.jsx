@@ -12,7 +12,8 @@ export default function SkillsSection () {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : '50px',
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
+        overflow: 'hidden'
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>
@@ -34,6 +35,18 @@ export default function SkillsSection () {
           '/images/about/skills/psql.svg',
           '/images/about/skills/python.svg',
           '/images/about/skills/react.svg'
+        ]}
+        tooltips={[
+          'C++',
+          'CSS',
+          'Firebase',
+          'HTML',
+          'Java',
+          'Javascript',
+          'OpenGL',
+          'PSQL',
+          'Python',
+          'React'
         ]}
       />
     </Box>

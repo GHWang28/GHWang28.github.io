@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItemIcon, MenuItem, Typography } from '@mui/material';
+import { ListItemIcon, MenuItem, Typography, useTheme } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AbcIcon from '@mui/icons-material/Abc';
 import WavesIcon from '@mui/icons-material/Waves';
@@ -20,7 +20,7 @@ function Settings () {
   const dispatch = useDispatch();
   const backgroundIndex = useSelector(state => state.background);
   const splashState = useSelector(state => state.splash);
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
 
   const backgroundOptions = [
     {

@@ -13,11 +13,11 @@ export default function HobbiesItem ({ odd, data }) {
       container
       p={2}
       sx={{
-        bgcolor: (odd) ? 'rgba(0,0,0,0.25)' : '',
+        bgcolor: (odd) ? '' : 'rgba(0,0,0,0.25)',
         borderRadius: '15px',
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((odd) ? '200px' : '-200px'),
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
       <Grid

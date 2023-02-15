@@ -44,8 +44,7 @@ export default function ContactMeSection () {
       ref={ref}
       sx={{
         opacity: (inView) ? '1' : '0',
-        translate: (inView) ? '0px' : '-200px',
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
       <Typography mt={5} variant='h4' fontWeight='bold' align='center'>

@@ -16,7 +16,7 @@ export default function TimelineSection ({ timelineItems, title, subtitle, odd }
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((odd) ? '-200px' : '200px'),
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
         position: 'sticky',
         top: '94px'
       }}

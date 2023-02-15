@@ -6,8 +6,12 @@ import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
 
 export default function TimelineSectionItemSmall ({ data, index }) {
-  const [hide, setHide] = useState(false);
+  const [show, setShow] = useState(false);
   const [ref, inView] = useInView();
+
+  const onClick = () => {
+    setShow(!show);
+  }
 
   return (
     <Box
@@ -15,7 +19,7 @@ export default function TimelineSectionItemSmall ({ data, index }) {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
-        transition: 'translate 0.2s ease-in-out, opacity 0.2s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
       <Grid container mb={1.5} sx={{ flexDirection: (index % 2) ? 'row-reverse' : 'row' }}>
@@ -39,13 +43,13 @@ export default function TimelineSectionItemSmall ({ data, index }) {
               bgcolor: data.timelineDotColor,
               cursor: 'pointer',
               transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
-              rotate: (hide) ? '360deg' : '0deg',
+              rotate: (show) ? '360deg' : '0deg',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               WebkitTapHighlightColor: 'transparent',
             }}
-            onClick={() => { setHide(!hide) }}
+            onClick={onClick}
           >
             {(data.timelineDotImg) ? (
               <Box
@@ -69,7 +73,7 @@ export default function TimelineSectionItemSmall ({ data, index }) {
         </Grid>
       </Grid>
       
-      <Collapse in={hide} sx={{ border: '2px solid whitesmoke', mb: 1.5, mx: 3, borderRadius: '15px' }}>
+      <Collapse in={show} sx={{ border: '2px solid whitesmoke', mb: 1.5, mx: 3, borderRadius: '15px' }}>
         {data.timelineContent.map((dotpoint, dotpointIndex) => (
           <Typography
             key={`dotpoint-key-${index}-${dotpointIndex}`}

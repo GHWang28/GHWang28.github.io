@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import packageJson from '../../../package.json';
-import { Box, Collapse, IconButton, Typography } from "@mui/material";
+import { Box, Collapse, IconButton, Typography, useTheme } from "@mui/material";
 import GitInfo from 'react-git-info/macro'
 import { ISOToDateStr } from '../../helpers';
 import { useSpring, animated } from 'react-spring';
@@ -8,12 +8,11 @@ import { easings } from '@react-spring/web'
 import CodeIcon from '@mui/icons-material/Code';
 import BootstrapTooltip from '../BootstrapTooltip';
 import Ticker from '../Ticker';
-import { useSelector } from 'react-redux';
 
 function VersionNumber () {
   const gitInfo = GitInfo();
   const [hover, setHover] = useState(false);
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   const AnimatedTypography = animated(Typography);
   const animationProps = useSpring({
     from: { y: 50 },

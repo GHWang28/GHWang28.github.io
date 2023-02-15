@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
 import { easings } from '@react-spring/web'
 import Blob from '../../components/Blob';
@@ -7,11 +7,10 @@ import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
-import { useSelector } from 'react-redux';
 
 export default function PageLanding () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
   const [splashMsg, setSplashMsg] = useState('');

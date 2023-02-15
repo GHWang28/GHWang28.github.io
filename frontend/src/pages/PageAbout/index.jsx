@@ -20,8 +20,8 @@ export default function PageAbout () {
   const AnimatedTypography = animated(Typography);
 
   const skillAndFunFactSection = (
-    <Grid container sx={{ border: (xLargeMq) ? '1px solid whitesmoke' : '', borderRadius: (xLargeMq) ? '15px' : '0px' }}>
-      <Grid item md={5.9} xs={12} my={3}>
+    <Grid container>
+      <Grid item md={5.9} xs={12} my={3} sx={{ overflow: 'hidden' }}>
         <FunFactSection />
       </Grid>
       {(mediumMq) ? (
@@ -31,7 +31,7 @@ export default function PageAbout () {
       ) : (
         <Box component='hr' width='100%' sx={{ my: 0 }}/>
       )}
-      <Grid item md={5.9} xs={12} my={3}>
+      <Grid item md={5.9} xs={12} my={3} sx={{ overflow: 'hidden' }}>
         <SkillsSection />
       </Grid>
     </Grid>
@@ -111,17 +111,6 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={(xLargeMq) ? 3 : 0}
         >
-          {'I completed my primary and secondary education at '}
-          <Box component='span' color='purple.main'>
-            {'Saint Joachim\'s Primary School'}
-          </Box>
-          {' and '}
-          <Box component='span' color='purple.main'>
-            {'Sefton High School'}
-          </Box>
-          {' respectively.'}
-          <br/>
-          <br/>
           {'As a highly motivated individual, I am always looking to push the limits of my creativity with every project I undertake. As such, I am always seeking out new skills and knowledge to help me achieve my goals.'}
         </AnimatedTypography>
         {(xLargeMq) && (skillAndFunFactSection)}

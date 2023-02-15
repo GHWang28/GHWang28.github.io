@@ -1,8 +1,8 @@
-import { SvgIcon } from '@mui/material';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { SvgIcon, useTheme } from '@mui/material';
 
 export default function ReactIcon ({ sx }) {
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useTheme().palette.mode;
   return (
     <SvgIcon sx={sx} viewBox='-11.5 -10.23174 23 20.46348'>
       <circle xmlns='http://www.w3.org/2000/svg' cx='0' cy='0' r='2.05'/>
