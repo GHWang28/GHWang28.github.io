@@ -33,6 +33,7 @@ export default function Footer () {
           component='img'
           src={logoSrc}
           onClick={onLogoClick}
+          alt='Website Logo'
           sx={{
             height: '30%',
             '&:hover': {
