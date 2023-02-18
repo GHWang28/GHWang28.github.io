@@ -138,9 +138,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <ImageZoomer />
       <SwipeTutorial />
       <Navbar />
+      <ImageZoomer />
       <PageRouter />
     </ThemeProvider>
   );

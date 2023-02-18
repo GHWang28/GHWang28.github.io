@@ -14,7 +14,6 @@ const onClick = keyframes`
 
 export default function ContactMeIcon ({ contact }) {
   const [clicked, setClicked] = useState(false);
-  const [hover, setHover] = useState(false);
   const [ref, inView] = useInView();
 
   return (
@@ -31,15 +30,16 @@ export default function ContactMeIcon ({ contact }) {
     >
       <BootstrapTooltip title={contact.tooltip} placement='top'>
         <IconButton
-          onMouseEnter={() => { setHover(true) }}
-          onMouseLeave={() => { setHover(false) }}
           onClick={() => { contact.onClick(); setClicked(true); }}
           sx={{
             borderWidth: '2px',
             borderStyle: 'solid',
             borderColor: 'borderColor.main',
             transition: 'rotate 0.5s ease-in-out',
-            rotate: (hover) ? '360deg' : '0deg'
+            rotate: '0deg',
+            '&:hover': {
+              rotate: '360deg'
+            }
           }}
         >
           {contact.icon}

@@ -6,6 +6,7 @@ import DeviantArtIcon from '../../icons/DeviantArtIcon';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useSpring, animated } from 'react-spring';
 import { easings } from '@react-spring/web'
+import config from '../../config.json';
 
 const OutlinedButton = styled(IconButton)(() => {
   const theme = useTheme();
@@ -18,7 +19,7 @@ function ContactDetails () {
   const AnimatedBox = animated(Box);
   const allLinks = [
     {
-      href: 'https://deviantart.com/valnorth1001',
+      href: config.DEVIANT_ART,
       title: 'Go to my DeviantArt',
       icon: <DeviantArtIcon />,
       style: useSpring({
@@ -32,7 +33,7 @@ function ContactDetails () {
       })
     },
     {
-      href: 'https://www.github.com/GHWang28',
+      href: config.GITHUB,
       title: 'Go to my GitHub',
       icon: <GitHubIcon />,
       style: useSpring({
@@ -46,7 +47,7 @@ function ContactDetails () {
       })
     },
     {
-      href: 'https://www.linkedin.com/in/gordon-wang-6b9403232',
+      href: config.LINKED_IN,
       title: 'Go to my LinkedIn',
       icon: <LinkedInIcon />,
       style: useSpring({
