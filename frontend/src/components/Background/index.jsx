@@ -1,13 +1,13 @@
 import React from 'react';
+import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 import BackgroundBlock from './BackgroundBlock';
 import BackgroundWave from './BackgroundWave';
 import config from '../../config.json';
 import BackgroundParticles from './BackgroundParticles';
-import { Box, useTheme } from '@mui/material';
 
 function Background () {
-  const themeMode = useTheme().palette.mode;
+  const themeMode = useSelector(state => state.themeMode);
   return (
     <Box
       sx={{
