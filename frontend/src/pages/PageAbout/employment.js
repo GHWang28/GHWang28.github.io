@@ -33,7 +33,9 @@ const generateEmploymentTimeline = () => {
       timelineDotImg: '/images/timeline/unsw.jpg',
       timelineTitle: 'UNSW COMP6080 Web Front-End Programming Tutor',
       timelineContent: [
-        'Employment at this role has not commenced yet'
+        'Held a tutoring role in a Front-End course at UNSW',
+        'Maintained a strong bond with a classroom of 32 students',
+        'Involved guiding and nurturing the growth of university students with limited experience in Front-End development, empowering them to comprehend the intricacies and possibilities of the React library.'
       ]
     },
     {
