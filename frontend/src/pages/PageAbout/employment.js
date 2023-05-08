@@ -20,7 +20,7 @@ const generateEmploymentTimeline = () => {
       timelineDotImg: '/images/timeline/abc.jpg',
       timelineTitle: 'Australia ABC College Tutor',
       timelineContent: [
-        'Maintained a tutoring and administrative role at Australia ABC College, specialising in providing support to primary and high school students. This strengthened my ability to thrive in a teaching environment',
+        'Currently holding a tutoring and administrative role at Australia ABC College, specialising in providing support to primary and high school students. This strengthened my ability to thrive in a teaching environment',
         'Established and maintained long-term positive relationships with colleagues, students and parents through effective ongoing communication and friendly interactions',
         'Acquired experience working as part of a team, which helped me to understand and address the concerns and needs of my colleagues',
         'Taught Mathematics, English, General Abiltiy, Spelling and Vocabulary to a variety of cohorts with class sizes of 10 to 15 students',
@@ -33,7 +33,7 @@ const generateEmploymentTimeline = () => {
       timelineDotImg: '/images/timeline/unsw.jpg',
       timelineTitle: 'UNSW COMP6080 Web Front-End Programming Tutor',
       timelineContent: [
-        'Held a tutoring role in a Front-End course at UNSW',
+        'Currently holding a tutoring role in a Front-End course at UNSW',
         'Maintained a strong bond with a classroom of 32 students',
         'Involved guiding and nurturing the growth of university students with limited experience in Front-End development, empowering them to comprehend the intricacies and possibilities of the React library.'
       ]
@@ -43,7 +43,7 @@ const generateEmploymentTimeline = () => {
       timelineDotColor: 'rgb(0,0,0)',
       timelineTitle: 'Present Time',
       timelineContent: [
-        'Currently employed at ABC College and have applied for a tutoring position at UNSW'
+        'Currently employed at ABC College and a Frontend Tutor at UNSW'
       ]
     }
   ]
