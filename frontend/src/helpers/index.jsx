@@ -118,3 +118,19 @@ export function isMobileOrTablet () {
   };
   return regexTest((navigator.userAgent || navigator.vendor || window.opera));
 }
+
+/**
+ * Checks if the array of numbers is sorted in ascending order
+ * @param {Array} array 
+ * @returns 
+ */
+export function isSorted (array) {
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i + 1] < array[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+

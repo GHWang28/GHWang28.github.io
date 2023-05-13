@@ -8,6 +8,7 @@ import AnimatedAbsoluteWrapper from '../wrappers/AnimatedAbsoluteWrapper';
 import PageAbout from './PageAbout';
 import PageLanding from './PageLanding';
 import PageProjects from './PageProjects';
+import PageError from './PageError';
 
 export default function PageRouter () {
   const location = useLocation();
@@ -30,6 +31,7 @@ export default function PageRouter () {
       {transitions((styles, item) => (
         <AnimatedAbsoluteWrapper style={styles} pb={pb} px={px()} pt={pt}>
           <Routes location={item}>
+            <Route path='*' element={<PageError />}/>
             <Route path='/' element={<PageLanding />}/>
             <Route path='/projects/*' element={<PageProjects />}/>
             <Route path='/about' element={<PageAbout />}/>
