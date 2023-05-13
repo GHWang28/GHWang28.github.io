@@ -1,17 +1,20 @@
 {
   "files": {
     "main.css": "/static/css/main.4565904a.css",
-    "main.js": "/static/js/main.b50c9cf0.js",
+    "main.js": "/static/js/main.62547ebe.js",
     "static/js/845.e0f73c4c.chunk.js": "/static/js/845.e0f73c4c.chunk.js",
+    "static/media/victory.ogg": "/static/media/victory.18a37ebeb88325ba1a89.ogg",
+    "static/media/error.ogg": "/static/media/error.c15f7a347a85e75971e5.ogg",
     "static/media/smb-1up.ogg": "/static/media/smb-1up.e8097445aec853546b56.ogg",
     "static/media/smb-coin.ogg": "/static/media/smb-coin.55ad339c69ad2126350b.ogg",
+    "static/media/card.ogg": "/static/media/card.b6ed321ee178bd550349.ogg",
     "index.html": "/index.html",
     "main.4565904a.css.map": "/static/css/main.4565904a.css.map",
-    "main.b50c9cf0.js.map": "/static/js/main.b50c9cf0.js.map",
+    "main.62547ebe.js.map": "/static/js/main.62547ebe.js.map",
     "845.e0f73c4c.chunk.js.map": "/static/js/845.e0f73c4c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4565904a.css",
-    "static/js/main.b50c9cf0.js"
+    "static/js/main.62547ebe.js"
   ]
 }
