@@ -11,6 +11,7 @@ import generateExtraCurricularTimeline from './extracurricular';
 import { useLocation, useNavigate } from 'react-router';
 import SkillsSection from './SkillsSection';
 import FunFactSection from './FunFactSection';
+import ButtonDownload from '../../components/ButtonDownload';
 
 export default function PageAbout () {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -147,8 +148,25 @@ export default function PageAbout () {
         <HobbiesSection />
       </Grid>
       <Box component='hr' width='100%' my={0}/>
-      <Grid item xs={12} >
+      <Grid item xs={12} mb={2}>
         <ContactMeSection />
+      </Grid>
+      <Box component='hr' width='100%' my={0}/>
+      <Grid item xs={12} >
+        <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
+          {'Download Curriculum Vitae'}
+        </Typography>
+        <Typography mb={2} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+          {'The .PDF version of this website'}
+        </Typography>
+
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <ButtonDownload
+            downloadLink='https://drive.google.com/u/1/uc?id=1Z2aTNAyOGgdrdTAvrThoSaRD48OtatcV&export=download'
+            fileName={'Gordon Wang\'s CV'}
+            title='Download CV'
+          />
+        </Box>
       </Grid>
     </Grid>
   )
