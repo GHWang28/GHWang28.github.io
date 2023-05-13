@@ -50,7 +50,7 @@ const generateExtraCurricularTimeline = (navigate, location) => {
       timelineDotImg: '/images/timeline/trachack.jpg',
       timelineTitle: 'TracHack 22.2',
       timelineContent: [
-        'Participated in a global competition that involved working as a team and creating a Machine Learning model that was able to predict the eligibility of customers for the Emergency Broadband Benifit Program',
+        'Participated in a global competition that involved working as a team and creating a Machine Learning model that was able to predict the eligibility of customers for the Emergency Broadband Benefit Program',
         'Unsupervised machine learning algorithms were used to train the models',
         'Taught me skills in Python regarding the manipulation of big data, data cleaning and the many Machine Learning algorithms and its benefits',
         'Developed stronger team-oriented skills'

@@ -31,11 +31,14 @@ const generateEmploymentTimeline = () => {
       oppContent: '(13th February 2023) → (Present Time)',
       timelineDotColor: 'rgb(254,230,0)',
       timelineDotImg: '/images/timeline/unsw.jpg',
-      timelineTitle: 'UNSW COMP6080 Web Front-End Programming Tutor',
+      timelineTitle: 'UNSW COMP6080 Web Frontend Programming Tutor',
       timelineContent: [
-        'Currently holding a tutoring role in a Front-End course at UNSW',
-        'Maintained a strong bond with a classroom of 32 students',
-        'Involved guiding and nurturing the growth of university students with limited experience in Front-End development, empowering them to comprehend the intricacies and possibilities of the React library.'
+        'Currently holding a tutoring role in a Frontend course at UNSW',
+        'Maintained a strong bond with a classroom of 32 students, as well as preparing lesson materials for them',
+        'Involved guiding and nurturing the growth of university students with limited experience in Frontend development, empowering them to comprehend the intricacies and possibilities of the React library.',
+        'Assisted and guided students in Help Sessions with Frontend related queries by exchanging ideas and listening to their problems',
+        'Consistently answering and monitoring the course forum questions from students',
+        'Graded student’s assignments and exams',
       ]
     },
     {
