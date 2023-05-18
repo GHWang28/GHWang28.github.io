@@ -107,7 +107,9 @@ export default function Hanoi () {
               height: '400px',
               width: '30vw',
               maxWidth: '300px',
-              border: '2px solid black',
+              border: '2px solid',
+              borderColor: 'borderColor.main',
+              borderRadius: '15px',
               position: 'relative',
               bgcolor: (prevTowerIndex === index) ? 'rgb(0,0,0,0.25)' : '',
               cursor: 'pointer'

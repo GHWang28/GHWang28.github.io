@@ -9,10 +9,10 @@ export default function PageError () {
         <Box component='span' fontWeight='bold' sx={{ color: 'lightcoral' }}>
           {'Error 404'}
         </Box>
-        {' - Page not found'}
+        {' - Page Not Found'}
       </Typography>
       <Typography align='center' variant='subtitle1' mb={2} sx={{ opacity: 0.7 }}>
-        {'Instead, here\'s a game of "Tower of Hanoi"'}
+        {'But you found this secret game of "Tower of Hanoi"!'}
       </Typography>
       <Hanoi />
     </Fragment>
