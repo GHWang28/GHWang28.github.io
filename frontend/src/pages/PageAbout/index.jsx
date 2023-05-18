@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from 'react-router';
 import SkillsSection from './SkillsSection';
 import FunFactSection from './FunFactSection';
 import ButtonDownload from '../../components/ButtonDownload';
+import EducationSection from './EducationSection';
 
 export default function PageAbout () {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -87,7 +88,7 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={3}
         >
-          {'I am currently in the final year of my '}
+          {'I am a  '}
           <Box
             component='code'
             px={1}
@@ -95,9 +96,11 @@ export default function PageAbout () {
           >
             Computer&nbsp;Science
           </Box>
-          {' degree at '}
+          {' graduate from '}
           <Box component='span' color='yellow.main'>{'UNSW '}</Box>
           <Box component='span' className='ozzie-text'>{'Australia'}</Box>
+          {' and currently am a Frontend Programming Tutor at '}
+          <Box component='span' color='yellow.main'>{'UNSW'}</Box>
           {'.'}
         </AnimatedTypography>
         <AnimatedTypography
@@ -112,7 +115,7 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={(xLargeMq) ? 3 : 0}
         >
-          {'As a highly motivated individual, I am always looking to push the limits of my creativity with every project I undertake. As such, I am always seeking out new skills and knowledge to help me achieve my goals.'}
+          {'I am equipped with an extensive grasp of Frontend principles and a thorough understanding of the development cycle involved. I am also a highly motivated individual with a keen eye for design and always looking to learn new skills.'}
         </AnimatedTypography>
         {(xLargeMq) && (skillAndFunFactSection)}
       </Grid>
@@ -122,13 +125,17 @@ export default function PageAbout () {
           {skillAndFunFactSection}
         </Grid>
       )}
+      <Box component='hr' width='100%' sx={{ my: 0 }}/>
+      <Grid item xs={12} >
+        <EducationSection />
+      </Grid>
       {/* Timeline */}
       <Box component='hr' width='100%' sx={{ my: 0 }}/>
       <Grid item xl={6} xs={12} >
         <TimelineSection
-          timelineItems={generateEmploymentTimeline()}
-          title={'Employment History'}
-          subtitle={'Positions I have held in the workforce'}
+          timelineItems={generateExtraCurricularTimeline(useNavigate(), useLocation())}
+          title={'Extra-Curricular History'}
+          subtitle={'Notable activities outside of academics that I have participated in'}
           odd
         />
       </Grid>
@@ -138,9 +145,9 @@ export default function PageAbout () {
       }
       <Grid item xl={6} xs={12} >
         <TimelineSection
-          timelineItems={generateExtraCurricularTimeline(useNavigate(), useLocation())}
-          title={'Extra-Curricular History'}
-          subtitle={'Notable activities outside of academics that I have participated in'}
+          timelineItems={generateEmploymentTimeline()}
+          title={'Employment History'}
+          subtitle={'Positions I have held in the workforce'}
         />
       </Grid>
       <Box component='hr' width='100%' my={0}/>

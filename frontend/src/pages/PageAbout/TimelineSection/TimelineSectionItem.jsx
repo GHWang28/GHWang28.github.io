@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 
 export default function TimelineSectionItem ({ data, index, end }) {
   const [show, setShow] = useState(false);
-  const [hover, setHover] = useState(false);
   const [ref, inView] = useInView();
 
   const onClick = () => {
@@ -39,15 +38,15 @@ export default function TimelineSectionItem ({ data, index, end }) {
               WebkitTapHighlightColor: 'transparent',
               bgcolor: data.timelineDotColor,
               borderWidth: '2px',
-              borderStlye: 'solid',
+              borderStyle: 'solid',
               borderColor: 'borderColor.main',
               cursor: 'pointer',
-              scale: (hover) ? '1.25' : '1.0',
+              '&:hover': {
+                scale: '1.25'
+              },
               transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
               rotate: (show) ? '360deg' : '0deg'
             }}
-            onMouseEnter={() => { setHover(true) }}
-            onMouseLeave={() => { setHover(false) }}
             onClick={onClick}
           >
             {(data.timelineDotImg) ? (
