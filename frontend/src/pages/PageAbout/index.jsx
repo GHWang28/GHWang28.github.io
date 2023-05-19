@@ -115,7 +115,7 @@ export default function PageAbout () {
           color='#a9a9a9'
           mb={(xLargeMq) ? 3 : 0}
         >
-          {'I am equipped with an extensive grasp of Frontend principles and a thorough understanding of the development cycle involved. I am also a highly motivated individual with a keen eye for design and always looking to learn new skills.'}
+          {'I am a highly motivated individual who is passionate about design and always looking to learn new skills.'}
         </AnimatedTypography>
         {(xLargeMq) && (skillAndFunFactSection)}
       </Grid>
