@@ -30,7 +30,8 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
         transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
         position: 'sticky',
         height: 'fit-content',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        WebkitTapHighlightColor: 'transparent'
       }}
       onClick={() => {
         setShow(!show)
