@@ -68,7 +68,6 @@ export default function PageLanding () {
             translate: '0px -10%',
             zIndex: -1,
             userSelect: 'none',
-
           }}
         />
         {/* Blobs */}

@@ -57,9 +57,7 @@ function ProjectEarthEphemeris () {
             </Typography>
             <Typography fontWeight='bold' fontSize={20}>
               {`
-                Earth's Ephemeris represents an alternate reality where
-                abandoning Earth was essential. The narrative follows a rover
-                named CT-320 which was created to survey various planets.
+                Earth's Ephemeris shows an alternative reality where depicting where Earth has become uninhabitable. The narrative revolves around CT-320, a rover designed with the purpose of surveying planets as an Earth's replacement.
               `}
             </Typography>
           </AnimatedBox>
@@ -83,6 +81,8 @@ function ProjectEarthEphemeris () {
           imgArray={[
             '/images/newsletter/nsw-art-gallery.jpg',
             '/images/newsletter/cabramatta-article.jpg',
+            '/images/sketch/artexpress-artgallery.webp',
+            '/images/sketch/robot-conception.webp',
             '/images/sketch/ryoko.jpg',
             '/images/sketch/ct320.jpg',
           ]}
