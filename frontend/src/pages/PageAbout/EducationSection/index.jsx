@@ -40,7 +40,7 @@ export default function EducationSection () {
             'Made it to Dean\'s Honours List every year studying the degree.',
             'Graduated with a High Disctinction WAM, awarding me with the prestigious Dean\'s Award.',
             'Degree consisted of Frontend centered electives.',
-            'Currently employed here as a Frontend Tutor.'
+            'Currently employed here as a Casual Frontend Tutor.'
           ]}
           odd
         />
