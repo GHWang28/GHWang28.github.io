@@ -34,7 +34,8 @@ export default function SkillsSection () {
           '/images/about/skills/opengl.svg',
           '/images/about/skills/psql.svg',
           '/images/about/skills/python.svg',
-          '/images/about/skills/react.svg'
+          '/images/about/skills/react.svg',
+          '/images/about/skills/ts.svg',
         ]}
         tooltips={[
           'C++',
@@ -46,7 +47,8 @@ export default function SkillsSection () {
           'OpenGL',
           'PSQL',
           'Python',
-          'React'
+          'React',
+          'Typescript'
         ]}
       />
     </Box>
