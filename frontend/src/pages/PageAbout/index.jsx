@@ -11,7 +11,7 @@ import generateExtraCurricularTimeline from './extracurricular';
 import { useLocation, useNavigate } from 'react-router';
 import SkillsSection from './SkillsSection';
 import FunFactSection from './FunFactSection';
-import ButtonDownload from '../../components/ButtonDownload';
+// import ButtonDownload from '../../components/ButtonDownload';
 import EducationSection from './EducationSection';
 
 export default function PageAbout () {
@@ -158,6 +158,7 @@ export default function PageAbout () {
       <Grid item xs={12} mb={2}>
         <ContactMeSection />
       </Grid>
+      {/*
       <Box component='hr' width='100%' my={0}/>
       <Grid item xs={12} >
         <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
@@ -175,6 +176,7 @@ export default function PageAbout () {
           />
         </Box>
       </Grid>
+      */}
     </Grid>
   )
 }

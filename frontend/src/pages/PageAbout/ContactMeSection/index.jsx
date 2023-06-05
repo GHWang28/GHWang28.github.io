@@ -51,7 +51,7 @@ export default function ContactMeSection () {
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Contact me for any inquiries (or if you just want to chat)'}
+        {'Want to talk to me or see my CV? Contact me for any inquiries'}
       </Typography>
       <Grid container rowSpacing={2}>
         {contacts.map((contact, index) => (
