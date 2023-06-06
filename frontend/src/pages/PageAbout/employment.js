@@ -46,7 +46,7 @@ const generateEmploymentTimeline = () => {
       timelineDotColor: 'rgb(0,0,0)',
       timelineTitle: 'Present Time',
       timelineContent: [
-        'Currently employed at ABC College and a Frontend Tutor at UNSW'
+        'I am currently employed at Australia ABC College Tutoring and also work as a Frontend Tutor at UNSW.'
       ]
     }
   ]
