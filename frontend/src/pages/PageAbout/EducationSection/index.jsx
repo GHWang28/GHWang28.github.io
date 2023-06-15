@@ -38,7 +38,7 @@ export default function EducationSection () {
           description={[
             'Graduated with a degree in Computer Science.',
             'Made it to Dean\'s Honours List every year studying the degree.',
-            'Graduated with a High Disctinction WAM, awarding me with the prestigious Dean\'s Award.',
+            'Graduated with a High Distinction WAM, awarding me with the prestigious Dean\'s Award.',
             'Degree consisted of Frontend centered electives.',
             'Currently employed here as a Casual Frontend Tutor.'
           ]}
