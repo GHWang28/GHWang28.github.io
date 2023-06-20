@@ -27,7 +27,7 @@ export default function AnimatedProfilePic () {
     if (currImg === 0) {
       dispatch(setImageZoom('images/about/profile-pic.jpg'));
     } else {
-      dispatch(imgs[currImg]);
+      dispatch(setImageZoom(imgs[currImg]));
     }
   }
 
