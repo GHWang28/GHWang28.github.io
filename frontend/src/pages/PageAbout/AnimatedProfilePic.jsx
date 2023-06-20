@@ -6,11 +6,14 @@ import { setImageZoom } from '../../redux/actions';
 import { executeWithCooldown } from '../../helpers';
 
 export default function AnimatedProfilePic () {
+  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
   const AnimatedBox = animated(Box);
   const dispatch = useDispatch();
   const [lastClicked, setLastClicked] = useState(Date.now());
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const [currImg, setCurrImg] = useState(0);
+
+  // Available images to choose from
   const imgs = [
     'images/about/profile-pic-zoom.jpg',
     'images/about/tutor-pic.jpg'
@@ -34,8 +37,9 @@ export default function AnimatedProfilePic () {
   const avatarSX = {
     cursor: 'pointer',
     transition: 'scale 0.2s ease-in-out',
+    userSelect: 'none',
     '&:hover': {
-      scale: '1.05'
+      scale: '1.1'
     }
   }
 
@@ -55,8 +59,8 @@ export default function AnimatedProfilePic () {
     <Fragment>
       <Box
         sx={{
-          maxWidth: (mediumMq) ? '100%' : '50%',
-          maxHeight: (mediumMq) ? 'none' : '350px',
+          maxWidth: (mediumMq) ? '100%' : '75%',
+          width: (mediumMq) ? '400px' : '300px',
           position: 'relative'
         }}
       >
@@ -64,7 +68,6 @@ export default function AnimatedProfilePic () {
           <AnimatedBox
             className='border-gradient round'
             sx={{
-              height: 'fit-content',
               overflow: 'hidden',
               borderRadius: '50%',
               transition: 'scale 0.2s ease-in-out',
@@ -92,7 +95,7 @@ export default function AnimatedProfilePic () {
         ))}
       </Box>
       <Box
-        mt={2}
+        mt={1}
         sx={{
           width: '100%',
           display: 'flex',
@@ -104,11 +107,13 @@ export default function AnimatedProfilePic () {
           src={imgs[0]}
           onClick={() => { switchImg(0) }}
           sx={avatarSX}
+          alt='Work Alternate'
         />
         <Avatar
           src={imgs[1]}
           onClick={() => { switchImg(1) }}
           sx={avatarSX}
+          alt='Tutor Alternate'
         />
       </Box>
     </Fragment>

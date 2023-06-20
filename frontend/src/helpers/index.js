@@ -141,8 +141,13 @@ export function isSorted (array) {
  * @returns 
  */
 export function executeWithCooldown (action, lastClicked) {
-  if (Date.now() - lastClicked <= config.COOL_DOWN) return;
+  const timeElapsed = Date.now() - lastClicked - config.COOL_DOWN;
 
-  action();
+  if (timeElapsed <= 0) {
+    // After timeout, perform action
+    setTimeout(action, Math.abs(timeElapsed));
+  } else {
+    action();
+  }
 }
 
