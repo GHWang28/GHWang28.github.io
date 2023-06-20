@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setImageZoom } from '../../redux/actions';
 import { animated, useTransition } from 'react-spring';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 export default function ImageZoomer () {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function ImageZoomer () {
     leave: { backgroundColor: 'rgba(0,0,0,0)', backdropFilter: 'blur(0px)', y: '25%', opacity: 0  },
   });
   const AnimatedBox = animated(Box);
+  const AnimatedIconButton = animated(IconButton);
 
   return transitions((style, itemSrc) => (
     itemSrc ?
@@ -35,7 +37,6 @@ export default function ImageZoomer () {
           justifyContent: 'center',
           flexDirection: 'column',
           alignItems: 'center',
-          cursor: 'pointer',
           zIndex: 1100,
           WebkitTapHighlightColor: 'transparent'
         }}
@@ -43,12 +44,27 @@ export default function ImageZoomer () {
           // Disable body scroll
           disableBodyScroll(ref.current);
         }}
-        onClick={() => {
-          // Enable body scroll
-          enableBodyScroll(ref.current);
-          dispatch(setImageZoom(null));
-        }}
       >
+        <AnimatedIconButton
+          sx={{
+            position: 'absolute',
+            top: '0px',
+            right: '0px',
+            zIndex: 99
+          }}
+          style={{
+            y: style.y,
+            opacity: style.opacity
+          }}
+          size='large'
+          onClick={() => {
+            // Enable body scroll
+            enableBodyScroll(ref.current);
+            dispatch(setImageZoom(null));
+          }}
+        >
+          <HighlightOffIcon fontSize='inherit' />
+        </AnimatedIconButton>
         <AnimatedBox
           component='img'
           alt='zoomed-in-image'

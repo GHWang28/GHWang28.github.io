@@ -56,6 +56,10 @@
   position: relative;
 }
 
+.border-gradient.round::before {
+  border-radius: 50%;
+}
+
 .border-gradient::before {
   /* Wiping animation */
   --angle: 0deg;
@@ -63,7 +67,7 @@
 
   /* Border */
   border-radius: 15px;
-  border: 2px solid transparent;
+  border: 4px solid transparent;
   background: linear-gradient(var(--angle), #EE7752,#E73C7E,#23A6D5,#23D5AB) border-box;
 
   /* Prevent inner content from being masked */

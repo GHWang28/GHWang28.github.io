@@ -15,7 +15,6 @@ import FunFactSection from './FunFactSection';
 import EducationSection from './EducationSection';
 
 export default function PageAbout () {
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
@@ -45,12 +44,12 @@ export default function PageAbout () {
         <AnimatedTitle title='About Me' subtitle='My README.md'/>
         <hr />
       </Grid>
-      <Grid my={2.5} item lg={3.5} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <Grid my={2.5} item md={4} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <AnimatedProfilePic />
       </Grid>
       <Grid
         item
-        lg={8.5}
+        md={8}
         xs={12}
         sx={{
           display: 'flex',
@@ -58,9 +57,9 @@ export default function PageAbout () {
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        pt={(smallMq) ? 5 : 0}
-        pb={(smallMq) ? 5 : 3}
-        px={(smallMq) ? 5 : 2}
+        pt={(mediumMq) ? 5 : 0}
+        pb={(mediumMq) ? 5 : 3}
+        px={(mediumMq) ? 5 : 2}
       >
         {/* Section containing introduction */}
         <AnimatedTypography
