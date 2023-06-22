@@ -15,8 +15,8 @@ export default function AnimatedProfilePic () {
 
   // Available images to choose from
   const imgs = [
-    'images/about/profile-pic-zoom.jpg',
-    'images/about/tutor-pic.jpg'
+    '/images/about/profile-pic-zoom.jpg',
+    '/images/about/tutor-pic.jpg'
   ]
 
   const switchImg = (imgIndex) => {
@@ -28,7 +28,7 @@ export default function AnimatedProfilePic () {
 
   const onZoom = () => {
     if (currImg === 0) {
-      dispatch(setImageZoom('images/about/profile-pic.jpg'));
+      dispatch(setImageZoom('/images/about/profile-pic.jpg'));
     } else {
       dispatch(setImageZoom(imgs[currImg]));
     }
@@ -38,6 +38,7 @@ export default function AnimatedProfilePic () {
     cursor: 'pointer',
     transition: 'scale 0.2s ease-in-out',
     userSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
     '&:hover': {
       scale: '1.1'
     }

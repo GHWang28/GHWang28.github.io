@@ -100,7 +100,11 @@ export default function App() {
       '/images/hscbow/rabureta.jpg',
       '/images/hscbow/ruiji.jpg',
       '/images/hscbow/homecoming.jpg',
-      '/images/about/profile-pic.jpg'
+      '/images/about/profile-pic.jpg',
+      '/images/about/profile-pic-zoom.jpg',
+      '/images/about/tutor-pic.jpg',
+      '/images/about/education/shs.jpg',
+      '/images/about/education/unsw.jpg'
     ]);
   }, []);
 

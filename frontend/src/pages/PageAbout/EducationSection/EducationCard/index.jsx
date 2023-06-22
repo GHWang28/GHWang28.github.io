@@ -3,7 +3,7 @@ import { Avatar, Box, Collapse, Typography, useMediaQuery, useTheme } from '@mui
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
 
-export default function EducationCard ({title, subtitle, color, src, date = ['', ''], description = [], odd}) {
+export default function EducationCard ({title, subtitle, color, src, date = ['', ''], description = [], odd, backgroundSrc}) {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [show, setShow] = useState(false);
   const [ref, inView] = useInView();
@@ -31,7 +31,22 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
         position: 'sticky',
         height: 'fit-content',
         cursor: 'pointer',
-        WebkitTapHighlightColor: 'transparent'
+        WebkitTapHighlightColor: 'transparent',
+        '::before': {
+          // Background image
+          width: '100%',
+          height: '100%',
+          content: '""',
+          backgroundImage: `url("${backgroundSrc}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          position: 'absolute',
+          bottom: '0%',
+          right: '0%',
+          opacity: (show) ? 0.1 : 0.2,
+          transition: 'opacity 0.2s ease-in-out',
+          borderRadius: '15px',
+        }
       }}
       onClick={() => {
         setShow(!show)
@@ -52,13 +67,13 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
           transition: 'scale 0.2s ease-in-out',
         }}
       />
-      <Typography variant='h5' color={`${color}.main`} align={'center'}>
+      <Typography variant='h5' color={`${color}.main`} align={'center'} fontWeight='bold'>
         {title}
       </Typography>
-      <Typography variant='subtitle1' color={`${color}.main`} sx={{ opacity: 0.75 }} align={'center'}>
+      <Typography variant='subtitle1' color={`${color}.main`} align={'center'}>
         {subtitle}
       </Typography>
-      <Typography variant='subtitle2' color={`${color}.main`} sx={{ opacity: 0.5 }} align={'center'}>
+      <Typography variant='subtitle2' color={`${color}.main`} align={'center'}>
         {`${date[0]} → ${date[1]}`}
       </Typography>
       <Collapse in={show} component='ul' sx={{ width: '100%' }}>

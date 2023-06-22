@@ -12,6 +12,7 @@ function Navbar () {
   const [selectedDim, setSelectedDim] = useState({});
   const themeMode = useTheme().palette.mode;
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
   // Animation
   const animationProps = useSpring({
     from: { y: -50 },
@@ -21,7 +22,7 @@ function Navbar () {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navigationOptions =  ['projects', 'about'];
+  const navigationOptions =  ['projects', 'blog', 'about'];
 
   useEffect(() => {
     const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`);
@@ -46,7 +47,7 @@ function Navbar () {
       height: divData.height,
       opacity: '1'
     });
-  }, [location])
+  }, [location]);
 
   return (
     <AnimatedAppBar

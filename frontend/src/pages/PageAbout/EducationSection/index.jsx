@@ -26,6 +26,7 @@ export default function EducationSection () {
           subtitle={'High School Certificate'}
           color={'blue'}
           src={'/images/timeline/sefton-hs.jpg'}
+          backgroundSrc={'/images/about/education/shs.jpg'}
           date={[2014, 2019]}
           description={['Graduated with a 90+ ATAR.', 'Participated in a number of extra-curricular activities.']}
         />
@@ -34,6 +35,7 @@ export default function EducationSection () {
           subtitle={'Undergraduate Degree'}
           color={'yellow'}
           src={'/images/timeline/unsw.jpg'}
+          backgroundSrc={'/images/about/education/unsw.jpg'}
           date={[2020, 2023]}
           description={[
             'Graduated with a degree in Computer Science.',

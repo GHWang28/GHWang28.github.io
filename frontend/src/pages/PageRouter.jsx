@@ -9,6 +9,7 @@ import PageAbout from './PageAbout';
 import PageLanding from './PageLanding';
 import PageProjects from './PageProjects';
 import PageError from './PageError';
+import PageBlog from './PageBlog';
 
 export default function PageRouter () {
   const location = useLocation();
@@ -34,6 +35,7 @@ export default function PageRouter () {
             <Route path='*' element={<PageError />}/>
             <Route path='/' element={<PageLanding />}/>
             <Route path='/projects/*' element={<PageProjects />}/>
+            <Route path='/blog/*' element={<PageBlog />}/>
             <Route path='/about' element={<PageAbout />}/>
           </Routes>
         </AnimatedAbsoluteWrapper>
@@ -53,18 +55,21 @@ export default function PageRouter () {
  */
 const getTransitionEffect = (currLoc, prevLoc) => {
   if (
-    (currLoc === '/' && (prevLoc === '/projects' || prevLoc === '/about'))
-    || (currLoc === '/projects' && prevLoc === '/about')
+    (currLoc === '/' && ['/projects', '/about', '/blog'].includes(prevLoc))
+    || (currLoc === '/projects' &&  ['/about', '/blog'].includes(prevLoc))
+    || (currLoc === '/blog' && '/about' === prevLoc)
   ) {
     // left to right
+    console.log('okie')
     return {
       from: { opacity: 0, x: '-50%', y: '0px' },
       enter: { opacity: 1, x: '0%', y: '0px' },
       leave: { opacity: 0,  x: '25%', y: '0px' },
     }
   } else if (
-    (currLoc === '/about' && (prevLoc === '/projects' || prevLoc === '/'))
-    || (currLoc === '/projects' && prevLoc === '/')
+    (currLoc === '/about' && ['/projects', '/', '/blog'].includes(prevLoc))
+    || (currLoc === '/projects' && '/' === prevLoc)
+    || (currLoc === '/blog' && ['/', '/projects'].includes(prevLoc))
   ) {
     // right to left
     return {
