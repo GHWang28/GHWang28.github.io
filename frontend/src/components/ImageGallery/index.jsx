@@ -204,8 +204,7 @@ function ImageGallery ({ imgArray = [] }) {
           <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative' }}>
             {(isYouTubeURL(imgSrc)) && (
               <Box
-                component={LazyLoadImage}
-                effect='opacity'
+                component={'img'}
                 sx={{
                   position: 'absolute',
                   width: '50%',

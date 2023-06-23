@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setImageZoom } from '../../redux/actions';
@@ -7,7 +7,6 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function ImageZoomer () {
   const dispatch = useDispatch();
@@ -20,6 +19,31 @@ export default function ImageZoomer () {
   });
   const AnimatedBox = animated(Box);
   const AnimatedIconButton = animated(IconButton);
+
+  const onClose = (event) => {
+    event.stopPropagation();
+    // Enable body scroll
+    enableBodyScroll(ref.current);
+    dispatch(setImageZoom(null));
+  }
+
+  // Adds pressing esc button functionality to close iamge
+  useEffect(() => {
+    if (!src) return;
+
+    const escButtonClose = (event) => {
+      if (event.key === 'Escape') {
+        enableBodyScroll(ref.current);
+        dispatch(setImageZoom(null));
+      }
+    }
+
+    window.addEventListener('keyup', escButtonClose);
+
+    return () => {
+      window.removeEventListener('keyup', escButtonClose);
+    }
+  }, [dispatch, src])
 
   return transitions((style, itemSrc) => (
     itemSrc ?
@@ -45,6 +69,7 @@ export default function ImageZoomer () {
           // Disable body scroll
           disableBodyScroll(ref.current);
         }}
+        onClick={(event) => { onClose(event) }}
       >
         <AnimatedIconButton
           sx={{
@@ -58,17 +83,12 @@ export default function ImageZoomer () {
             opacity: style.opacity
           }}
           size='large'
-          onClick={() => {
-            // Enable body scroll
-            enableBodyScroll(ref.current);
-            dispatch(setImageZoom(null));
-          }}
+          onClick={(event) => { onClose(event) }}
         >
           <HighlightOffIcon fontSize='inherit' />
         </AnimatedIconButton>
         <AnimatedBox
-          component={LazyLoadImage}
-          effect='opacity'
+          component='img'
           alt='Zoomed in Image'
           onContextMenu={(event) => { event.preventDefault() }}
           src={itemSrc}
@@ -80,6 +100,9 @@ export default function ImageZoomer () {
             userSelect: 'none',
             maxHeight: '98%',
             maxWidth: '98%'
+          }}
+          onClick={(event) => {
+            event.stopPropagation();
           }}
         />
       </AnimatedBox>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Grid, Toolbar, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Box, Divider, Grid, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
@@ -127,6 +127,7 @@ function Navbar () {
 
         {/* Display settings button here if the screen becomes tiny */}
         {!smallMq && settingsComponent}
+        {!smallMq && <Divider orientation="horizontal" flexItem sx={{ width: '100%', mb: 1, bgcolor: 'whitesmoke' }}/>}
   
         <Grid item xs={12} sm={5} id='nav-btn-group' sx={{ position: 'relative', display: 'flex', justifyContent: smallMq ? 'left' : 'space-between' }}>
           {/* Border around selector */}

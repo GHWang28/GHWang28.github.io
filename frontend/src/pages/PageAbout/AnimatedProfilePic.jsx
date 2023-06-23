@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { animated, useSpring, useTransition } from 'react-spring';
 import { setImageZoom } from '../../redux/actions';
 import { executeWithCooldown } from '../../helpers';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function AnimatedProfilePic () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -29,6 +28,7 @@ export default function AnimatedProfilePic () {
     }, lastClicked);
   }
 
+  // Handling on click
   const onZoom = () => {
     if (currImg === 0) {
       dispatch(setImageZoom('/images/about/profile-pic.jpg'));
@@ -47,10 +47,11 @@ export default function AnimatedProfilePic () {
     }
   }
 
+  // Flipping animation
   const transitions = useTransition(currImg, {
-    from: { opacity: '0%', position: 'static' },
-    enter: { opacity: '100%', position: 'static' },
-    leave: { opacity: '0%', position: 'absolute' },
+    from: { rotateY: '180deg', position: 'static' },
+    enter: { rotateY: '0deg', position: 'static' },
+    leave: { rotateY: '-180deg', position: 'absolute' },
   });
 
   const profilePicSpring = useSpring({
@@ -65,8 +66,9 @@ export default function AnimatedProfilePic () {
         sx={{
           maxWidth: (mediumMq) ? '100%' : '75%',
           width: (mediumMq) ? '400px' : '300px',
-          height: (mediumMq) ? '400px' : '300px',
-          position: 'relative'
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center'
         }}
       >
         {transitions((style, imgIndex) => (
@@ -78,7 +80,8 @@ export default function AnimatedProfilePic () {
               transition: 'scale 0.2s ease-in-out',
               '&:hover': {
                 scale: '1.05'
-              }
+              },
+              backfaceVisibility: 'hidden'
             }}
             style={{...profilePicSpring, ...style}}
           >
@@ -86,8 +89,7 @@ export default function AnimatedProfilePic () {
               onContextMenu={(event) => { event.preventDefault() }}
               style={style}
               onClick={onZoom}
-              component={LazyLoadImage}
-              effect='opacity'
+              component='img'
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
               sx={{

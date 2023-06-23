@@ -115,17 +115,16 @@ export default function CardProject ({
         <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
           <Box
             component='span'
-            sx={{
+            sx={!smallMq && {
               display: 'flex',
-              justifyContent: (smallMq) ? 'left' : 'center',
-              width: '100%'
+              justifyContent: 'center'
             }}
           >
             <Button
               startIcon={button.icon}
               variant='contained'
               onClick={button?.onClick}
-              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: (smallMq) ? 'fit-content' : '75%', minWidth: '200px' }}
+              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: (smallMq) ? 'fit-content' : '75%', minWidth: '180px' }}
               disabled={(button?.disabled) !== undefined}
             >
               {button.text}
