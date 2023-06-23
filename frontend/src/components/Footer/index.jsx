@@ -12,6 +12,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import config from '../../config.json';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useInView } from 'react-intersection-observer';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Footer () {
   const [ref, inView] = useInView();
@@ -105,7 +106,8 @@ export default function Footer () {
         }}
       >
         <Box
-          component='img'
+          component={LazyLoadImage}
+          effect='opacity'
           src={logoSrc}
           onClick={onLogoClick}
           alt='Website Logo'

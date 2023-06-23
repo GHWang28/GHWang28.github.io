@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
 import { useDispatch } from 'react-redux';
 import { setImageZoom } from '../../redux/actions';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 /**
  * A gallery/carousel that is responsive and can be navigated with
@@ -203,7 +204,8 @@ function ImageGallery ({ imgArray = [] }) {
           <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative' }}>
             {(isYouTubeURL(imgSrc)) && (
               <Box
-                component='img'
+                component={LazyLoadImage}
+                effect='opacity'
                 sx={{
                   position: 'absolute',
                   width: '50%',
@@ -219,7 +221,8 @@ function ImageGallery ({ imgArray = [] }) {
               />
             )}
             <Box
-              component='img'
+              component={LazyLoadImage}
+              effect='opacity'
               name={(imgIndex === imgSrcNo) ? 'img-selected' : 'img-unselected'}
               sx={{
                 cursor: 'pointer',

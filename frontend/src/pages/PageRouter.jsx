@@ -25,7 +25,7 @@ export default function PageRouter () {
     return 0;
   }
   const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
-  const pt = 8;
+  const pt = 8 + (smallMq ? 0 : 4);
 
   return (
     <Fragment>

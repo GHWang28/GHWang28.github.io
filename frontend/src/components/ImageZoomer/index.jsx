@@ -7,6 +7,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function ImageZoomer () {
   const dispatch = useDispatch();
@@ -66,8 +67,9 @@ export default function ImageZoomer () {
           <HighlightOffIcon fontSize='inherit' />
         </AnimatedIconButton>
         <AnimatedBox
-          component='img'
-          alt='zoomed-in-image'
+          component={LazyLoadImage}
+          effect='opacity'
+          alt='Zoomed in Image'
           onContextMenu={(event) => { event.preventDefault() }}
           src={itemSrc}
           style={{

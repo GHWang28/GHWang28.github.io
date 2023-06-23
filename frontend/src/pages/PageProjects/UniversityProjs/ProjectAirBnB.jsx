@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import ButtonGoBack from '../../../components/ButtonGoBack';
 import ImageGallery from '../../../components/ImageGallery';
 import BoxInfo from '../../../components/BoxInfo';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function ProjectAirBnB () {
 
@@ -19,7 +20,8 @@ export default function ProjectAirBnB () {
             scale: (hover) ? '1.05' : '1.0',
             transition: 'scale 0.5s ease-in-out'
           }}
-          component='img'
+          component={LazyLoadImage}
+          effect='opacity'
           src='/images/comp6080/airbnb-logo.png'
           width='min(75%, 600px)'
         />

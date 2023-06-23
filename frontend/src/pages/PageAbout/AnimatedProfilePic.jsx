@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux';
 import { animated, useSpring, useTransition } from 'react-spring';
 import { setImageZoom } from '../../redux/actions';
 import { executeWithCooldown } from '../../helpers';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function AnimatedProfilePic () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const AnimatedBox = animated(Box);
+  const AnimatedAvatar = animated(Avatar);
+
   const dispatch = useDispatch();
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [currImg, setCurrImg] = useState(0);
@@ -50,10 +53,10 @@ export default function AnimatedProfilePic () {
     leave: { opacity: '0%', position: 'absolute' },
   });
 
-  const sprintStyle = useSpring({
-    from: { y: '-25%', x: '-50%', opacity: 0, rotate: '-22.5deg', filter: 'blur(5px)' },
-    to: { y: '0%', x: '0%', opacity: 1, rotate: '0deg', filter: 'blur(0px)' },
-    delay: 500
+  const profilePicSpring = useSpring({
+    from: { rotateY: '90deg', filter: 'blur(5px)' },
+    to: { rotateY: '0deg', filter: 'blur(0px)' },
+    delay: 1000
   })
 
   return (
@@ -62,6 +65,7 @@ export default function AnimatedProfilePic () {
         sx={{
           maxWidth: (mediumMq) ? '100%' : '75%',
           width: (mediumMq) ? '400px' : '300px',
+          height: (mediumMq) ? '400px' : '300px',
           position: 'relative'
         }}
       >
@@ -76,13 +80,14 @@ export default function AnimatedProfilePic () {
                 scale: '1.05'
               }
             }}
-            style={{...sprintStyle, ...style}}
+            style={{...profilePicSpring, ...style}}
           >
             <Box
               onContextMenu={(event) => { event.preventDefault() }}
               style={style}
               onClick={onZoom}
-              component='img'
+              component={LazyLoadImage}
+              effect='opacity'
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
               sx={{
@@ -104,18 +109,16 @@ export default function AnimatedProfilePic () {
           gap: '20px'
         }}
       >
-        <Avatar
-          src={imgs[0]}
-          onClick={() => { switchImg(0) }}
-          sx={avatarSX}
-          alt='Work Alternate'
-        />
-        <Avatar
-          src={imgs[1]}
-          onClick={() => { switchImg(1) }}
-          sx={avatarSX}
-          alt='Tutor Alternate'
-        />
+        {imgs.map((src, index) => (
+          <AnimatedAvatar
+            style={profilePicSpring}
+            key={src}
+            src={src}
+            onClick={() => { switchImg(index) }}
+            sx={avatarSX}
+            alt={(index === 0) ? 'Work Alternate' : 'Tutor Alternate'}
+          />
+        ))}
       </Box>
     </Fragment>
   )

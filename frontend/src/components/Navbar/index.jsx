@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Collapse, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Box, Grid, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton'; 
-import { capitaliseString } from '../../helpers';
+import config from '../../config.json';
+import { isMobileOrTablet } from '../../helpers';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 function Navbar () {
-  const [logoHover, setLogoHover] = useState(false);
   const [selectedDim, setSelectedDim] = useState({});
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   const themeMode = useTheme().palette.mode;
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
@@ -22,8 +28,17 @@ function Navbar () {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navigationOptions =  ['projects', 'blog', 'about'];
+  const navigationOptions = config.PAGES.slice(1).map((navigationOption) => (
+    navigationOption.slice(1)
+  ));
 
+  const iconArray = [
+    <SmartToyIcon />,
+    <LightbulbIcon />,
+    <EmojiPeopleIcon />
+  ]
+
+  // Moving the border around
   useEffect(() => {
     const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`);
     if (!element) {
@@ -49,6 +64,36 @@ function Navbar () {
     });
   }, [location]);
 
+
+  useEffect(() => {
+    // Don't hide toolbar if not on mobile
+    if (!isMobileOrTablet() || window == null) return;
+  
+    const hideOrShowNav = () => {
+      if (window == null) return;
+
+      // Show navbar if the scroll has gone up
+      setShowNavbar(window.scrollY < lastScrollY); 
+
+      // take note of where the previous scroll was
+      setLastScrollY(window.scrollY); 
+    };
+
+    window.addEventListener('scroll', hideOrShowNav);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('scroll', hideOrShowNav);
+    };
+  }, [lastScrollY]);
+
+
+  const settingsComponent = (
+    <Box ml='auto'>
+      <Settings />
+    </Box>
+  )
+
   return (
     <AnimatedAppBar
       style={animationProps}
@@ -63,31 +108,27 @@ function Navbar () {
               <feDisplacementMap scale="12" in="SourceGraphic"></feDisplacementMap>\
             </filter>\
           </svg>#turbulence')
-        `
+        `,
+        width: '100vw',
+        transition: 'translate 0.2s ease-in-out',
+        translate: `0% ${showNavbar ? '0%' : '-100%'}`,
+        top: 0,
+        left: 0,
+        pb: 0.5
       }}
     >
-      <Toolbar>
-        <Box
-          m={1}
-          onMouseEnter={() => { setLogoHover(true) }}
-          onMouseLeave={() => { setLogoHover(false) }}
+      <Grid container component={Toolbar}>
+        <Grid
+          item
+          sx={{ display: 'flex', alignItems: 'center' }}
         >
           <LogoBox doNavigate={(location.pathname !== '/')} />
-        </Box>
-        <Collapse orientation='horizontal' in={logoHover && smallMq}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', mx: 1 }}>
-            <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
-              {'Gordon Wang\'s'}
-            </Typography>
-            <Typography fontFamily='my-handwriting' fontSize={16} lineHeight='15px' noWrap>
-              <Box component='span' className='gradient-text' sx={{ fontWeight: 'bold' }}>
-                {'Portfolio'}
-              </Box>
-              {' Website'}
-            </Typography>
-          </Box>
-        </Collapse>
-        <Box id='nav-btn-group' sx={{ position: 'relative' }}>
+        </Grid>
+
+        {/* Display settings button here if the screen becomes tiny */}
+        {!smallMq && settingsComponent}
+  
+        <Grid item xs={12} sm={5} id='nav-btn-group' sx={{ position: 'relative', display: 'flex', justifyContent: smallMq ? 'left' : 'space-between' }}>
           {/* Border around selector */}
           <Box
             className='border-gradient'
@@ -100,7 +141,7 @@ function Navbar () {
               ...selectedDim
             }}
           />
-          {navigationOptions.map((navOption) => (
+          {navigationOptions.map((navOption, index) => (
             <NavbarButton
               key={`nav-btn-${navOption}`}
               id={`nav-btn-${navOption}`}
@@ -108,14 +149,15 @@ function Navbar () {
                 navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
               }}
               disabled={location.pathname === `/${navOption}`}
-              label={capitaliseString(navOption)}
+              label={navOption}
+              startIcon={iconArray[index]}
             />
           ))}
-        </Box>
-        <Box ml='auto'>
-          <Settings />
-        </Box>
-      </Toolbar>
+        </Grid>
+
+        {/* Display settings button here if the screen becomes large enough */}
+        {smallMq && settingsComponent}
+      </Grid>
     </AnimatedAppBar>
   )
 }

@@ -2,6 +2,7 @@ import { Box, Typography, useTheme } from '@mui/material';
 import React, { useState } from 'react';
 import { animated, useTransition } from 'react-spring';
 import { isMobileOrTablet } from '../../helpers';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function SwipeTutorial () {
   const [hide, setHide] = useState(localStorage.getItem('hideSwipeTut') === 'true');
@@ -47,7 +48,8 @@ export default function SwipeTutorial () {
         }}
       >
         <Box
-          component='img'
+          component={LazyLoadImage}
+          effect='opacity'
           src='/images/swipe.svg'
           alt='Swipe icon'
           sx={{

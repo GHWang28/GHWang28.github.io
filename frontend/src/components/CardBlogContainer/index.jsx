@@ -26,7 +26,7 @@ export default function CardBlogContainer ({ blogs }) {
           </Typography>
         </Box>
       ))*/}
-      <Typography color='salmon' fontWeight='bold' my={10}>
+      <Typography color='salmon' fontWeight='bold' my={10} align='center'>
         {'This page is still in a work-in-progress state. Stay tuned!'}
       </Typography>
     </Box>

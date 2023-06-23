@@ -7,8 +7,10 @@
     "GITHUB": "https://www.github.com/GHWang28",
     "EMAIL": "gordon.wang280801@gmail.com",
     "COOL_DOWN": 750,
+    "PAGES": ["/", "/projects", "/blog", "/about"],
     "SPLASH_TEXT": [
         "Welcome!",
+        "This website holds a few secrets of its own...",
         "Aloha!",
         "Greetings!",
         "Salutations!",

@@ -37,12 +37,7 @@ function ButtonDropDown ({
       name={name}
       title={title}
       aria-label={title}
-      sx={{
-        ...sx,
-        borderWidth: '2px',
-        borderStyle: 'solid',
-        borderColor: 'borderColor.main'
-      }}
+      sx={sx}
       id={id}
       aria-controls={dropDownListingMenu ? 'dropdown-menu' : undefined}
       aria-haspopup='true'

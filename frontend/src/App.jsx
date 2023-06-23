@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import ImageZoomer from './components/ImageZoomer';
 import PageRouter from './pages/PageRouter';
 import SwipeTutorial from './components/SwipeTutorial';
+import config from './config.json';
 
 export default function App() {
   const location = useLocation();
@@ -119,18 +120,22 @@ export default function App() {
   const { ref: documentRef } = useSwipeable({
     delta: 50,
     preventScrollOnSwipe: true,
-    onSwipedLeft: () => {
-      if (location.pathname === '/') {
-        navigate('/projects', { state: { prevLocation: location.pathname } });
-      } else if (location.pathname.startsWith('/projects')) {
-        navigate('/about', { state: { prevLocation: location.pathname } });
+    onSwipedRight: () => {
+      const currIndex = config.PAGES.findIndex((element) => ( element.startsWith(location.pathname) ))
+      const newIndex = currIndex - 1;
+
+      if (newIndex >= 0) {
+        navigate(config.PAGES[newIndex], { state: { prevLocation: location.pathname } });
       }
     },
-    onSwipedRight: () => {
-      if (location.pathname === '/about') {
-        navigate('/projects', { state: { prevLocation: location.pathname } });
-      } else if (location.pathname.startsWith('/projects')) {
-        navigate('/', { state: { prevLocation: location.pathname } });
+    onSwipedLeft: () => {
+      const currIndex = config.PAGES.findIndex((element) => ( element.startsWith(location.pathname) ))
+      const newIndex = currIndex + 1;
+
+      console.log(currIndex)
+
+      if (newIndex < config.PAGES.length) {
+        navigate(config.PAGES[newIndex], { state: { prevLocation: location.pathname } });
       }
     }
   });

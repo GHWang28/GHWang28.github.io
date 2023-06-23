@@ -1,31 +1,35 @@
 import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
-import ImageLoader from '../ImageLoader';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
-  const [hover, setHover] = useState(false);
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const isOdd = (rowNo % 2);
 
   const imgCol = (
     <Grid item xs={12} md={8.7}>
       <Box
-        onMouseEnter={() => { setHover(true) }}
-        onMouseLeave={() => { setHover(false) }}
+        component={LazyLoadImage}
+        useIntersectionObserver={false}
+        effect='opacity'
+        src={src}
+        alt={'Artwork'}
         sx={{
           cursor: 'pointer',
           transition: 'scale 0.2s ease-in-out',
-          scale: (hover) ? '1.025' : '1',
+          '&:hover': {
+            scale: '1.025'
+          },
+          borderRadius: '2%',
+          borderWidth: '2px',
+          borderStyle: 'solid',
+          borderColor: 'borderColor.main',
+          width: '100%'
         }}
-      >
-        <ImageLoader
-          src={src}
-          alt={`${title}-artwork`}
-        />
-      </Box>
+      />
     </Grid>
   )
   const textCol = (

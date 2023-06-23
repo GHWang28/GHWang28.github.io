@@ -44,6 +44,7 @@ export default function CardProject ({
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
       className='border-gradient'
+      p={2}
       sx={{
         position: 'relative',
         scale: (hover) ? '1' : '0.975',
@@ -58,75 +59,80 @@ export default function CardProject ({
         bgcolor: 'bgColor.main'
       }}
     >
-      <Box p={2}>
-        <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
-          <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
-            <TransluscentTypography variant='h4'>
-              {title}
-            </TransluscentTypography>
-          </BootstrapTooltip>
-          {(type) && (
-            <BootstrapTooltip title='Tags' placement={(smallMq) ? 'left' : 'top-start'}>
-              <Box sx={{ display: 'flex' }}>
-                <ChipContainer>
-                  {type.sort().map((label, index) => (
-                    <Chip
-                      icon={<TagIcon label={label} sx={{ ml: 0.6 }}/>}
-                      variant='outlined'
-                      sx={{
-                        mr: (index === type.length - 1) ? 0 : 1,
-                        borderColor: 'borderColor.main'
-                      }}
-                      key={`label-${index}`}
-                      label={label}
-                    />
-                  ))}
-                </ChipContainer>
-              </Box>
-            </BootstrapTooltip>
-          )}
-          {(date) && (
-            <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
-              <Chip label={date} variant='outlined' sx={{ borderColor: 'borderColor.main', bgcolor: 'bgColor.main' }}/>
-            </BootstrapTooltip>
-          )}
-          <Box component='hr' />
-          {(body) && (
-            <Box
-              component='ul'
-              sx={{
-                py: 3,
-                border: `1px solid ${theme.palette.borderColor.main}`,
-                borderRadius: '15px',
-                bgcolor: 'bgColor.main'
-              }}
-            >
-              {body.map((dotpoint, index) => (
-                <Box key={`dotpoint-${index}`} component='li' sx={{ color: theme.palette.mode === 'light' ? 'black' : 'whitesmoke' }}>
-                  <Typography pr={1}>
-                    {dotpoint}
-                  </Typography>
-                </Box>
-              ))}
+      <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
+        <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
+          <TransluscentTypography variant='h4'>
+            {title}
+          </TransluscentTypography>
+        </BootstrapTooltip>
+        {(type) && (
+          <BootstrapTooltip title='Tags' placement={(smallMq) ? 'left' : 'top-start'}>
+            <Box sx={{ display: 'flex' }}>
+              <ChipContainer>
+                {type.sort().map((label, index) => (
+                  <Chip
+                    icon={<TagIcon label={label} sx={{ ml: 0.6 }}/>}
+                    variant='outlined'
+                    sx={{
+                      mr: (index === type.length - 1) ? 0 : 1,
+                      borderColor: 'borderColor.main'
+                    }}
+                    key={`label-${index}`}
+                    label={label}
+                  />
+                ))}
+              </ChipContainer>
             </Box>
-          )}
-        </Box>
-        {buttons.map((button, buttonIndex) => (
-          <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
-            <span>
-              <Button
-                startIcon={button.icon}
-                variant='contained'
-                onClick={button?.onClick}
-                sx={{ mr: 1, border: `1px solid ${theme.palette.borderColor.main}` }}
-                disabled={(button?.disabled) !== undefined}
-              >
-                {button.text}
-              </Button>
-            </span>
           </BootstrapTooltip>
-        ))}
+        )}
+        {(date) && (
+          <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
+            <Chip label={date} variant='outlined' sx={{ borderColor: 'borderColor.main', bgcolor: 'bgColor.main' }}/>
+          </BootstrapTooltip>
+        )}
+        <Box component='hr' />
+        {(body) && (
+          <Box
+            component='ul'
+            sx={{
+              py: 3,
+              border: `1px solid ${theme.palette.borderColor.main}`,
+              borderRadius: '15px',
+              bgcolor: 'bgColor.main'
+            }}
+          >
+            {body.map((dotpoint, index) => (
+              <Box key={`dotpoint-${index}`} component='li' sx={{ color: theme.palette.mode === 'light' ? 'black' : 'whitesmoke' }}>
+                <Typography pr={1}>
+                  {dotpoint}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
+      {buttons.map((button, buttonIndex) => (
+        <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
+          <Box
+            component='span'
+            sx={{
+              display: 'flex',
+              justifyContent: (smallMq) ? 'left' : 'center',
+              width: '100%'
+            }}
+          >
+            <Button
+              startIcon={button.icon}
+              variant='contained'
+              onClick={button?.onClick}
+              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: (smallMq) ? 'fit-content' : '75%', minWidth: '200px' }}
+              disabled={(button?.disabled) !== undefined}
+            >
+              {button.text}
+            </Button>
+          </Box>
+        </BootstrapTooltip>
+      ))}
       {/* Wavy Backdrop displayed behind text */}
       <WavyBackdrop
         bgColor={(themeMode === 'dark') ? theme.palette.gray.main : 'white'}

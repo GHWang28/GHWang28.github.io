@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function ImageSlideShow ({ imgs }) {
   const [imageIndex, setImageIndex] = useState(0);
@@ -20,7 +20,8 @@ function ImageSlideShow ({ imgs }) {
       {imgs.map((img, index) => (
         <Box
           key={`card-bg-${index}`}
-          component='img'
+          component={LazyLoadImage}
+          effect='opacity'
           alt={`image-background-${index}`}
           title={`Background Image #${index}`}
           src={img}

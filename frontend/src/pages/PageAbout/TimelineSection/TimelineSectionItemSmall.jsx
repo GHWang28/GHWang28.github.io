@@ -4,6 +4,7 @@ import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function TimelineSectionItemSmall ({ data, index }) {
   const [show, setShow] = useState(false);
@@ -53,7 +54,8 @@ export default function TimelineSectionItemSmall ({ data, index }) {
           >
             {(data.timelineDotImg) ? (
               <Box
-                component='img'
+                component={LazyLoadImage}
+                effect='opacity'
                 alt='employment-timeline-icon'
                 src={data.timelineDotImg}
                 sx={{ width: '45px', height: '45px' }}

@@ -93,16 +93,6 @@ export function preloadImgs (imgs) {
 }
 
 /**
- * Capitalises the first character of a string
- * @param {String} str 
- * @returns {String}
- */
-export function capitaliseString (str) {
-  str = str.trim();
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-/**
  * Checks if browser is on mobile or tablet. Regex by mktgdept
  * http://detectmobilebrowsers.com/
  * @returns {Boolean}

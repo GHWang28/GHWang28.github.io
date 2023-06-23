@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getYouTubeThumbnailImg, convertToEmbedYoutubeVid } from '../../helpers';
 import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 /**
  * A video player that is customised to be different
@@ -59,7 +60,8 @@ function VideoPlayer (props) {
       }}
     >
       <Box
-        component='img'
+        component={LazyLoadImage}
+        effect='opacity'
         role='button'
         title='Play Video'
         name='play-video-btn'
@@ -82,7 +84,8 @@ function VideoPlayer (props) {
         }}
       />
       <Box
-        component='img'
+        component={LazyLoadImage}
+        effect='opacity'
         name='video-thumbnail'
         alt='Video Thumbnail'
         src={thumbnailImg}

@@ -7,6 +7,7 @@ import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function PageLanding () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -52,12 +53,13 @@ export default function PageLanding () {
         />
         {/* Background image */}
         <AnimatedBox
+          component={LazyLoadImage}
+          effect='opacity'
           style={useSpring({
             from: { opacity: 0 },
             to: { opacity: 1 },
             delay: 0.5 * delay
           })}
-          component='img'
           alt='Landing page background'
           title='Landing page background'
           src='images/title-bg.png'
