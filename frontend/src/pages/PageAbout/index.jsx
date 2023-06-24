@@ -22,7 +22,7 @@ export default function PageAbout () {
 
   const skillAndFunFactSection = (
     <Grid container>
-      <Grid item md={5.9} xs={12} my={3}>
+      <Grid item md={5.9} xs={12} my={3}g>
         <FunFactSection />
       </Grid>
       {(mediumMq) ? (

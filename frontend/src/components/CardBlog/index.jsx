@@ -1,19 +1,27 @@
 import React from 'react';
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useInView } from "react-intersection-observer";
-
+import { Box, Chip, Typography, useMediaQuery } from '@mui/material';
+import { useInView } from 'react-intersection-observer';
+import TransluscentTypography from '../TranslucentTypography';
+import BootstrapTooltip from '../BootstrapTooltip';
+import { ISOToDateStr } from '../../helpers';
+import AvTimerIcon from '@mui/icons-material/AvTimer';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 export default function CardBlog ({ data, index = 0 }) {
   const [ref, inView] = useInView();
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const theme = useTheme();
-  const themeMode = theme.palette.mode;
+  // const theme = useTheme();
+  // const themeMode = theme.palette.mode;
 
   const {
-    id,
-    title
+    // id,
+    title,
+    subtitle,
+    thumbnail,
+    created,
+    estimatedReadingTime
   } = data;
 
   return (
@@ -39,12 +47,36 @@ export default function CardBlog ({ data, index = 0 }) {
         }
       }}
     >
-      <Typography>
-        {id}
+      {(thumbnail != null) && (
+        <Box
+          component='img'
+          src={thumbnail}
+          alt={title}
+          sx={{
+            width: '100%',
+            maxHeight: '250px',
+            borderRadius: '15px',
+            objectFit: 'cover',
+            objectPosition: 'bottom'
+          }}
+        />
+      )}
+      <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
+        <TransluscentTypography variant='h4'>
+          {title}
+        </TransluscentTypography>
+      </BootstrapTooltip>
+      <Typography align='center' my={2}>
+        {subtitle}
       </Typography>
-      <Typography>
-        {title}
-      </Typography>
+      <Box sx={{ display: 'flex' }}>
+        <BootstrapTooltip  title='Creation Date' placement={(smallMq) ? 'left' : 'top-start'}>
+          <Chip sx={{ flex: 1, mx: 1 }} icon={<CalendarTodayIcon />} label={ISOToDateStr(created)} variant='outlined' />
+        </BootstrapTooltip>
+        <BootstrapTooltip title='Estimated Time to Read' placement={(smallMq) ? 'left' : 'top-start'}>
+          <Chip sx={{ flex: 1, mx: 1 }} icon={<AvTimerIcon />} label={`~${estimatedReadingTime} minutes`} variant='outlined' />
+        </BootstrapTooltip>
+      </Box>
     </Box>
   )
 }

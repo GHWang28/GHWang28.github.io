@@ -1,10 +1,17 @@
 [
   {
     "id": 1,
-    "title": "This is a work in progress, stay tuned!"
+    "title": "Polling in ReactJS",
+    "subtitle": "A guide on how to request data from the backend in set intervals.",
+    "thumbnail": "/images/blog/thumbnail_polling.jpg",
+    "created": "2023-06-24T04:31:51.316Z",
+    "estimatedReadingTime": "5"
   },
   {
     "id": 2,
-    "title": "This is a work in progress, stay tuned!"
+    "title": "Placeholder Title",
+    "subtitle": "This blog page is in WIP state.",
+    "created": "2023-06-24T04:31:51.316Z",
+    "estimatedReadingTime": "5"
   }
 ]

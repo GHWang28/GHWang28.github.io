@@ -7,6 +7,7 @@ import { animated, easings, useTransition } from 'react-spring';
 
 const funfactPool = [
   'I can play the piano!',
+  'Inter is my favourite font.',
   'My favourite colour is blue 🔵.',
   'Penguins are my favourite animals 🐧.',
   'I can speak English and Mandarin. 你好!',

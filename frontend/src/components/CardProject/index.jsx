@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Chip, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Chip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
@@ -8,17 +8,8 @@ import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
 import WavyBackdrop from './WavyBackdrop';
 import PropTypes from 'prop-types';
+import TransluscentTypography from '../TranslucentTypography';
 
-const TransluscentTypography = styled(Typography)(() => {
-  const theme = useTheme();
-  return {
-    border: `1px solid ${(theme.palette.mode === 'dark') ? 'whitesmoke' : 'black'}`,
-    borderRadius: '15px',
-    margin: '5px 0px',
-    padding: '0px 10px',
-    backgroundColor: (theme.palette.mode === 'dark') ? theme.palette.darkgray.translucent : 'rgba(255,255,255,0.5)'
-  }
-});
 
 export default function CardProject ({ data, index = 0 }) {
   const [ref, inView] = useInView();
