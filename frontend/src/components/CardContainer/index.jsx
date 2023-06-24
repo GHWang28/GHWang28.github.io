@@ -1,15 +1,14 @@
 import React, { Fragment } from 'react';
 import { Box, useMediaQuery } from "@mui/material";
-import CardProject from "../CardProject";
 
-function CardProjectContainer ({ projects }) {
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
+function CardContainer ({ cardData, component: Component }) {
+  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
-  if (xLargeMq) {
-    const evenProj = projects.filter((_, index) => (
+  if (largeMq) {
+    const evenProj = cardData.filter((_, index) => (
       !(index % 2)
     ))
-    const oddProj = projects.filter((_, index) => (
+    const oddProj = cardData.filter((_, index) => (
       (index % 2)
     ))
 
@@ -17,19 +16,19 @@ function CardProjectContainer ({ projects }) {
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ width: '49.5%', m: 0 }}>
           {evenProj.map((proj, index) => (
-            <CardProject
+            <Component
               key={`project-${proj?.title?.toLowerCase()}`}
               index={index * 2}
-              {...proj}
+              data={proj}
             />
           ))}
         </Box>
         <Box sx={{ width: '49.5%', m: 0  }}>
           {oddProj.map((proj, index) => (
-            <CardProject
+            <Component
               key={`project-${proj?.title?.toLowerCase()}`}
               index={index * 2 + 1}
-              {...proj}
+              data={proj}
             />
           ))}
         </Box>
@@ -39,15 +38,15 @@ function CardProjectContainer ({ projects }) {
 
   return (
     <Fragment>
-      {projects.map((proj, index) => (
-        <CardProject
+      {cardData.map((proj, index) => (
+        <Component
           key={`project-${proj?.title?.toLowerCase()}`}
           index={index}
-          {...proj}
+          data={proj}
         />
       ))}
     </Fragment>
   )
 }
 
-export default CardProjectContainer;
+export default CardContainer;

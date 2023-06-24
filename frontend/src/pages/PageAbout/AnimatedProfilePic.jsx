@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Avatar, Box, useMediaQuery } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { animated, useSpring, useTransition } from 'react-spring';
+import { animated, easings, useSpring, useTransition } from 'react-spring';
 import { setImageZoom } from '../../redux/actions';
 import { executeWithCooldown } from '../../helpers';
 
@@ -52,12 +52,16 @@ export default function AnimatedProfilePic () {
     from: { rotateY: '180deg', position: 'static' },
     enter: { rotateY: '0deg', position: 'static' },
     leave: { rotateY: '-180deg', position: 'absolute' },
+    config: {
+      duration: 1000,
+      easing: easings.easeOutBounce
+    }
   });
 
   const profilePicSpring = useSpring({
-    from: { rotateY: '90deg', filter: 'blur(5px)' },
-    to: { rotateY: '0deg', filter: 'blur(0px)' },
-    delay: 1000
+    from: { rotateY: '90deg' },
+    to: { rotateY: '0deg' },
+    delay: 500
   })
 
   return (

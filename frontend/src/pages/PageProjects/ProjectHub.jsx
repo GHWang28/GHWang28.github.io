@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
-import CardProjectContainer from '../../components/CardProjectContainer';
 import generateProjects from './projects';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -10,6 +9,8 @@ import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
 import TagIcon from '../../icons/TagIcon';
 import AnimatedTitle from './AnimatedTitle';
+import CardContainer from '../../components/CardContainer';
+import CardProject from '../../components/CardProject';
 
 function ProjectHub () {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ function ProjectHub () {
           </Typography>
         </Box>
       ) : (
-        <CardProjectContainer projects={projects} />
+        <CardContainer cardData={projects} component={CardProject} />
       )}
     </Fragment>
   )

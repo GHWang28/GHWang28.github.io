@@ -22,7 +22,7 @@ export default function PageAbout () {
 
   const skillAndFunFactSection = (
     <Grid container>
-      <Grid item md={5.9} xs={12} my={3} sx={{ overflow: 'hidden' }}>
+      <Grid item md={5.9} xs={12} my={3}>
         <FunFactSection />
       </Grid>
       {(mediumMq) ? (
@@ -32,7 +32,7 @@ export default function PageAbout () {
       ) : (
         <Box component='hr' width='100%' sx={{ my: 0 }}/>
       )}
-      <Grid item md={5.9} xs={12} my={3} sx={{ overflow: 'hidden' }}>
+      <Grid item md={5.9} xs={12} my={3}>
         <SkillsSection />
       </Grid>
     </Grid>

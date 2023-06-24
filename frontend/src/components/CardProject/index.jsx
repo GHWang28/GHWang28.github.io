@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Chip, styled, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
@@ -20,43 +20,44 @@ const TransluscentTypography = styled(Typography)(() => {
   }
 });
 
-export default function CardProject ({
-  title,
-  date,
-  type,
-  body,
-  imgs,
-  index = 0,
-  buttons = []
-}) {
+export default function CardProject ({ data, index = 0 }) {
   const [ref, inView] = useInView();
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const theme = useTheme();
   const themeMode = theme.palette.mode;
-  const [hover, setHover] = useState(false);
+
+  const {
+    title,
+    date,
+    type,
+    body,
+    imgs,
+    buttons
+  } = data;
 
   return (
     <Box
       ref={ref}
-      onMouseEnter={() => { setHover(true) }}
-      onMouseLeave={() => { setHover(false) }}
       className='border-gradient'
       p={2}
       sx={{
         position: 'relative',
-        scale: (hover) ? '1' : '0.975',
-        boxShadow: (hover) ? '0 4px 16px 0 rgba(255,255,255,0.2)' : '0 4px 8px 0 rgba(255,255,255,0.2)',
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
         transition: 'scale 0.5s ease-in-out, box-shadow 0.5s ease-in-out, translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
         borderRadius: '15px',
         overflow: 'hidden',
-        mx: (xLargeMq) ? 0 : ((largeMq) ? 10 : ((mediumMq) ? 5 : 0)),
+        mx: (largeMq) ? 0 : (mediumMq) ? 5 : 0,
         mb: (mediumMq) ? 5 : 2,
-        bgcolor: 'bgColor.main'
+        bgcolor: 'bgColor.main',
+        scale: '0.975',
+        boxShadow: '0 4px 8px 0 rgba(255,255,255,0.2)',
+        '&:hover': {
+          boxShadow: '0 4px 16px 0 rgba(255,255,255,0.2)',
+          scale: '1'
+        }
       }}
     >
       <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
@@ -111,7 +112,7 @@ export default function CardProject ({
           </Box>
         )}
       </Box>
-      {buttons.map((button, buttonIndex) => (
+      {buttons && buttons.map((button, buttonIndex) => (
         <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
           <Box
             component='span'

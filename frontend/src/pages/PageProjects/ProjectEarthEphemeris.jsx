@@ -11,17 +11,17 @@ function ProjectEarthEphemeris () {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
+  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   return (
     <Fragment>
       <ButtonGoBack destination={'/projects'} />
       <AnimatedTitle title={'Earth\'s Ephemeris'} />
 
-      <Grid container p={(smallMq) ? 4 : 2} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!xLargeMq) ? 'column-reverse' : '' }}>
+      <Grid container p={(smallMq) ? 4 : 2} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!largeMq) ? 'column-reverse' : '' }}>
 
         {/* Cotaining the images */}
-        <Grid item xs={12} xl={9.5}>
+        <Grid item xs={12} lg={9.5}>
           <Grid container p={(smallMq) ? 4 : 0} rowSpacing={1} rowGap={{ xs: 8 }} >
             <ImageRow src='/images/hscbow/homesweethome.jpg' title='Home Sweet Home' body='Artwork #1' rowNo={1} />
             <ImageRow src='/images/hscbow/leaving.jpg' title='Exiting W/O Leaving' body='Artwork #2' rowNo={2} />
@@ -33,7 +33,7 @@ function ProjectEarthEphemeris () {
         </Grid>
         
         {/* Containing the side message */}
-        <Grid item xs={12} xl={2.5} >
+        <Grid item xs={12} lg={2.5} >
           <AnimatedBox
             style={useSpring({
               from: { opacity: 0, y: '-100%' },

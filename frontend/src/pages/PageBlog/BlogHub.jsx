@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import { Box } from '@mui/material';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
 import blogs from './blogs.json';
-import CardBlogContainer from '../../components/CardBlogContainer';
+import CardContainer from '../../components/CardContainer';
+import CardBlog from '../../components/CardBlog';
 
 export default function BlogHub () {
   return (
@@ -10,7 +11,7 @@ export default function BlogHub () {
       <AnimatedTitle title='Blog Posts' subtitle='Resources for students (and other shenanigans)'/>
       <Box component='hr' mb={1}/>
 
-      <CardBlogContainer blogs={blogs} />
+      <CardContainer cardData={blogs} component={CardBlog} />
     </Fragment>
   )
 }

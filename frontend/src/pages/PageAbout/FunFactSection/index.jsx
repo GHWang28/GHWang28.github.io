@@ -3,7 +3,7 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
 import { executeWithCooldown, rng } from '../../../helpers';
-import { animated, useTransition } from 'react-spring';
+import { animated, easings, useTransition } from 'react-spring';
 
 const funfactPool = [
   'I can play the piano!',
@@ -32,6 +32,10 @@ export default function FunFactSection () {
     from: { rotateY: '-180deg', position: 'static' },
     enter: { rotateY: '0deg', position: 'static' },
     leave: { rotateY: '180deg', position: 'absolute' },
+    config: {
+      duration: 1000,
+      easing: easings.easeOutBounce
+    }
   });
   const AnimatedBox = animated(Box);
 
@@ -55,7 +59,7 @@ export default function FunFactSection () {
       sx={{
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : '-50px',
-        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
+        transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out'
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>
