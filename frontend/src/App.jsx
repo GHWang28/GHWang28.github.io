@@ -37,15 +37,11 @@ export default function App() {
         transparent: 'rgba(240,128,128,0.15)'
       },
       blue: {
-        main: 'rgb(150,246,246)',
-        transparent: 'rgba(150,246,246,0.15)'
-      },
-      darkblue: {
-        main: 'rgb(22,34,56)',
-        transparent: 'rgba(22,34,56,0.15)'
+        main: (themeMode === 'light') ? 'rgb(22,34,56)' : 'rgb(150,246,246)',
+        transparent: (themeMode === 'light') ? 'rgba(22,34,56,0.15)' : 'rgba(150,246,246,0.15)'
       },
       yellow: {
-        main: (themeMode === 'light') ? 'rgb(238,183,40)' : 'rgb(255,255,92)',
+        main: (themeMode === 'light') ? '#483800' : 'rgb(255,255,92)',
         transparent: 'rgba(255,255,92,0.15)'
       },
       white: {
@@ -79,8 +75,8 @@ export default function App() {
         textColor: (themeMode === 'light') ? 'whitesmoke' : 'black'
       },
       bgColor: {
-        main: (themeMode === 'light') ? 'rgba(245,245,245,0.6)' : 'rgba(40,40,40,0.7)',
-        darker: (themeMode === 'light') ? 'rgba(205,205,205,0.6)' : 'rgba(0,0,0,0.7)',
+        main: (themeMode === 'light') ? 'rgb(245,245,245)' : 'rgb(40,40,40)',
+        darker: (themeMode === 'light') ? 'rgb(205,205,205)' : 'rgb(0,0,0)',
       },
       mode: themeMode,
     },

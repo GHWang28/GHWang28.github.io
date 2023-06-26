@@ -16,7 +16,7 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        bgcolor: 'rgb(32,32,32)',
+        bgcolor: (theme.palette.mode === 'dark') ? 'bgColor.main' : 'rgb(150,150,150)',
         borderColor: `${color}.main`,
         borderStyle: 'solid',
         borderWidth: '2px',
@@ -49,6 +49,7 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
           opacity: (show) ? 0.1 : 0.2,
           transition: 'opacity 0.2s ease-in-out',
           borderRadius: '15px',
+          zIndex: -1
         }
       }}
       onClick={() => {
@@ -97,7 +98,7 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
           </Box>
         ))}
       </Collapse>
-      <Collapse in={!show} component={Typography} variant='subtitle2' sx={{ opacity: 0.25 }} color={`${color}.main`} align={'center'}>
+      <Collapse in={!show} component={Typography} variant='subtitle2' color={`${color}.main`} align={'center'}>
         {'Click to show more information.'}
       </Collapse>
     </Box>
