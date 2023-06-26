@@ -3,8 +3,6 @@ import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import GitInfo from 'react-git-info/macro';
 import { useLocation } from 'react-router';
 import { ISOToDateStr } from '../../helpers';
-import { useDispatch } from 'react-redux';
-import { setImageZoom } from '../../redux/actions';
 import DeviantArtIcon from '../../icons/DeviantArtIcon';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -12,19 +10,15 @@ import MailIcon from '@mui/icons-material/Mail';
 import config from '../../config.json';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useInView } from 'react-intersection-observer';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageZoomable from '../ImageZoomable';
 
 export default function Footer () {
   const [ref, inView] = useInView();
   const location = useLocation();
   const gitInfo = GitInfo();
   const lightMode = (useTheme().palette.mode === 'light');
-  const dispatch = useDispatch();
   const [copiedAddress, setCopiedAddress] = useState(false);
   const logoSrc = (lightMode) ? '/images/gw-logo.png' : '/images/gw-logo-light.png';
-  const onLogoClick = () => {
-    dispatch(setImageZoom(logoSrc))
-  }
 
   if (location.pathname === '/') return null;
 
@@ -105,11 +99,8 @@ export default function Footer () {
           bgcolor: (lightMode) ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.06)'
         }}
       >
-        <Box
-          component={LazyLoadImage}
-          effect='opacity'
+        <ImageZoomable
           src={logoSrc}
-          onClick={onLogoClick}
           alt='Website Logo'
           sx={{
             height: '32px',

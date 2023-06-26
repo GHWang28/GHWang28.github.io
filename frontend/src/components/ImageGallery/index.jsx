@@ -8,9 +8,8 @@ import { animated, useSpring, useTransition } from 'react-spring';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { useSwipeable } from 'react-swipeable';
-import { useDispatch } from 'react-redux';
-import { setImageZoom } from '../../redux/actions';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageZoomable from '../ImageZoomable';
 
 /**
  * A gallery/carousel that is responsive and can be navigated with
@@ -22,7 +21,6 @@ function ImageGallery ({ imgArray = [] }) {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const [imgIndex, setImgIndex] = useState(0);
   const [prevImgIndex, setPrevImgIndex] = useState(0);
-  const dispatch = useDispatch();
 
   // Handles swiping for mobile
   const swipeHandler = useSwipeable({
@@ -145,14 +143,12 @@ function ImageGallery ({ imgArray = [] }) {
                   width='100%'
                 />
               ) : (
-                <Box
-                  component={'img'}
+                <ImageZoomable
                   alt={`Gallery Item #${imgIndex}`}
                   sx={{ height: galleryHeight(), cursor: 'pointer', WebkitTapHighlightColor: 'transparent', }}
                   onContextMenu={(event) => { event.preventDefault() }}
                   title={`Gallery Item #${imgIndex}`}
                   src={imgArray[imgIndex]}
-                  onClick={() => { dispatch(setImageZoom(imgArray[imgIndex])) }}
                 />
               ))}
             </AnimatedBox>
@@ -204,7 +200,7 @@ function ImageGallery ({ imgArray = [] }) {
           <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative' }}>
             {(isYouTubeURL(imgSrc)) && (
               <Box
-                component={'img'}
+                component='img'
                 sx={{
                   position: 'absolute',
                   width: '50%',
@@ -225,7 +221,7 @@ function ImageGallery ({ imgArray = [] }) {
               name={(imgIndex === imgSrcNo) ? 'img-selected' : 'img-unselected'}
               sx={{
                 cursor: 'pointer',
-                height: '100%',
+                height: '100px',
                 transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
                 scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
                 opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',

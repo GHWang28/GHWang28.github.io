@@ -6,9 +6,11 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import { ISOToDateStr } from '../../helpers';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { useNavigate } from 'react-router';
 
 export default function CardBlog ({ data, index = 0 }) {
   const [ref, inView] = useInView();
+  const navigate = useNavigate();
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -16,7 +18,7 @@ export default function CardBlog ({ data, index = 0 }) {
   // const themeMode = theme.palette.mode;
 
   const {
-    // id,
+    id,
     title,
     subtitle,
     thumbnail,
@@ -44,7 +46,12 @@ export default function CardBlog ({ data, index = 0 }) {
         '&:hover': {
           boxShadow: '0 4px 16px 0 rgba(255,255,255,0.2)',
           scale: '1'
-        }
+        },
+        WebkitTapHighlightColor: 'transparent',
+        cursor: 'pointer'
+      }}
+      onClick={() => {
+        navigate(`${id}`);
       }}
     >
       {(thumbnail != null) && (

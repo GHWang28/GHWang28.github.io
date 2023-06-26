@@ -146,19 +146,21 @@ export default function CardProject ({ data, index = 0 }) {
 }
 
 CardProject.propTypes = {
-  title: PropTypes.string.isRequired,
-  imgs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  index: PropTypes.number,
-  date: PropTypes.string,
-  type: PropTypes.arrayOf(PropTypes.string),
-  body: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  buttons: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    icon: PropTypes.node.isRequired,
-    disabled: PropTypes.string,
-    onClick: PropTypes.func
-  })),
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    imgs: PropTypes.arrayOf(PropTypes.string).isRequired,
+    date: PropTypes.string,
+    type: PropTypes.arrayOf(PropTypes.string),
+    body: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ]),
+    buttons: PropTypes.arrayOf(PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      icon: PropTypes.node.isRequired,
+      disabled: PropTypes.string,
+      onClick: PropTypes.func
+    })),
+  }),
+  index: PropTypes.number
 };

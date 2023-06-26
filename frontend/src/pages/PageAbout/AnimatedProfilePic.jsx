@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Avatar, Box, useMediaQuery } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import { animated, easings, useSpring, useTransition } from 'react-spring';
-import { setImageZoom } from '../../redux/actions';
 import { executeWithCooldown } from '../../helpers';
+import ImageZoomable from '../../components/ImageZoomable';
 
 export default function AnimatedProfilePic () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -11,7 +10,6 @@ export default function AnimatedProfilePic () {
   const AnimatedBox = animated(Box);
   const AnimatedAvatar = animated(Avatar);
 
-  const dispatch = useDispatch();
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [currImg, setCurrImg] = useState(0);
 
@@ -26,15 +24,6 @@ export default function AnimatedProfilePic () {
       setCurrImg(imgIndex);
       setLastClicked(Date.now());
     }, lastClicked);
-  }
-
-  // Handling on click
-  const onZoom = () => {
-    if (currImg === 0) {
-      dispatch(setImageZoom('/images/about/profile-pic.jpg'));
-    } else {
-      dispatch(setImageZoom(imgs[currImg]));
-    }
   }
 
   const avatarSX = {
@@ -89,13 +78,11 @@ export default function AnimatedProfilePic () {
             }}
             style={{...profilePicSpring, ...style}}
           >
-            <Box
-              onContextMenu={(event) => { event.preventDefault() }}
+            <ImageZoomable
               style={style}
-              onClick={onZoom}
-              component='img'
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
+              alternateSrc={currImg ? '/images/about/profile-pic.jpg' : imgs[currImg]}
               sx={{
                 width: '100%',
                 height: '100%',

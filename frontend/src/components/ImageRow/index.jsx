@@ -2,7 +2,7 @@ import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
 import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ImageZoomable from '../ImageZoomable';
 
 function ImageRow ({ src, title, body, rowNo }) {
   const [ref, inView] = useInView();
@@ -11,10 +11,7 @@ function ImageRow ({ src, title, body, rowNo }) {
 
   const imgCol = (
     <Grid item xs={12} md={8.7}>
-      <Box
-        component={LazyLoadImage}
-        useIntersectionObserver={false}
-        effect='opacity'
+      <ImageZoomable
         src={src}
         alt={'Artwork'}
         sx={{

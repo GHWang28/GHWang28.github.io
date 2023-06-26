@@ -61,7 +61,6 @@ export default function PageLanding () {
             delay: 0.5 * delay
           })}
           alt='Landing page background'
-          title='Landing page background'
           src='images/title-bg.png'
           sx={{
             position: 'absolute',
@@ -80,7 +79,7 @@ export default function PageLanding () {
           speed={300}
           sx={{
             position: 'absolute',
-            scale: '4.2 1.6',
+            scale: '3.8 1.6',
             zIndex: -2,
             translate: '0px -22.5%'
           }}
@@ -92,7 +91,7 @@ export default function PageLanding () {
           speed={400}
           sx={{
             position: 'absolute',
-            scale: '3.8 2.0',
+            scale: '3.6 1.8',
             zIndex: -2,
             translate: '0px -22.5%'
           }}
@@ -104,7 +103,7 @@ export default function PageLanding () {
           speed={500}
           sx={{
             position: 'absolute',
-            scale: '3.4 2.4',
+            scale: '3.4 2.2',
             zIndex: -2,
             translate: '0px -22.5%'
           }}

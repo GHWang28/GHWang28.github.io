@@ -60,7 +60,6 @@ const getTransitionEffect = (currLoc, prevLoc) => {
     || (currLoc === '/blog' && '/about' === prevLoc)
   ) {
     // left to right
-    console.log('okie')
     return {
       from: { opacity: 0, x: '-50%', y: '0px' },
       enter: { opacity: 1, x: '0%', y: '0px' },
