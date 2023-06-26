@@ -130,7 +130,7 @@ export default function PageAbout () {
       </Grid>
       {/* Timeline */}
       <Box component='hr' width='100%' sx={{ my: 0 }}/>
-      <Grid item xl={6} xs={12} >
+      <Grid item lg={6} xs={12} >
         <TimelineSection
           timelineItems={generateExtraCurricularTimeline(useNavigate(), useLocation())}
           title={'Extra-Curricular History'}
@@ -138,11 +138,11 @@ export default function PageAbout () {
           odd
         />
       </Grid>
-      {(xLargeMq)
+      {(largeMq)
         ? <Divider orientation="vertical" flexItem sx={{ mr: -1, bgcolor: 'whitesmoke' }}/>
         : <Box component='hr' width='100%' my={0}/>
       }
-      <Grid item xl={6} xs={12} >
+      <Grid item lg={6} xs={12} >
         <TimelineSection
           timelineItems={generateEmploymentTimeline()}
           title={'Employment History'}

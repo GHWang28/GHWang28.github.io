@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { useInView } from 'react-spring';
 import EducationCard from './EducationCard';
 
@@ -20,33 +20,37 @@ export default function EducationSection () {
       <Typography mb={4} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary' sx={titleAnimation}>
         {'Where I\'ve studied'}
       </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-evenly' , flexWrap: 'wrap', rowGap: '16px' }}>
-        <EducationCard
-          title={'Sefton High\xa0School'}
-          subtitle={'High School Certificate'}
-          color={'blue'}
-          src={'/images/timeline/sefton-hs.jpg'}
-          backgroundSrc={'/images/about/education/shs.jpg'}
-          date={[2014, 2019]}
-          description={['Graduated with a 90+ ATAR.', 'Participated in a number of extra-curricular activities.']}
-        />
-        <EducationCard
-          title={'University of New\xa0South\xa0Wales'}
-          subtitle={'Undergraduate Degree'}
-          color={'yellow'}
-          src={'/images/timeline/unsw.jpg'}
-          backgroundSrc={'/images/about/education/unsw.jpg'}
-          date={[2020, 2023]}
-          description={[
-            'Graduated with a degree in Computer Science.',
-            'Made it to Dean\'s Honours List every year studying the degree.',
-            'Graduated with a High Distinction WAM, awarding me with the prestigious Dean\'s Award.',
-            'Degree consisted of Frontend centered electives.',
-            'Currently employed here as a Casual Frontend Tutor.'
-          ]}
-          odd
-        />
-      </Box>
+      <Grid container rowGap={2}>
+        <Grid item xs={12} sm={6}>
+          <EducationCard
+            title={'Sefton High\xa0School'}
+            subtitle={'High School Certificate'}
+            color={'blue'}
+            src={'/images/timeline/sefton-hs.jpg'}
+            backgroundSrc={'/images/about/education/shs.jpg'}
+            date={[2014, 2019]}
+            description={['Graduated with a 90+ ATAR.', 'Participated in a number of extra-curricular activities.']}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <EducationCard
+            title={'University of New\xa0South\xa0Wales'}
+            subtitle={'Undergraduate Degree'}
+            color={'yellow'}
+            src={'/images/timeline/unsw.jpg'}
+            backgroundSrc={'/images/about/education/unsw.jpg'}
+            date={[2020, 2023]}
+            description={[
+              'Graduated with a degree in Computer Science.',
+              'Made it to Dean\'s Honours List every year studying the degree.',
+              'Graduated with a High Distinction WAM, awarding me with the prestigious Dean\'s Award.',
+              'Degree consisted of Frontend centered electives.',
+              'Currently employed here as a Casual Frontend Tutor.'
+            ]}
+            odd
+          />
+        </Grid>
+      </Grid>
     </Box>
   )
 }
