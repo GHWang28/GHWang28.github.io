@@ -87,9 +87,7 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
             component='li'
             sx={{
               color: theme.palette.mode === 'light' ? 'black' : 'whitesmoke',
-              '&::marker': {
-                color: `${color}.main`
-              }
+              '&::marker': { color: `${color}.main` }
             }}
           >
             <Typography pr={1}>

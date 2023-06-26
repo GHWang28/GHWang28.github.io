@@ -12,9 +12,12 @@ function Background () {
     <Box
       sx={{
         position: 'fixed',
+        top: '0px',
+        left: '0px',
         filter: (themeMode === 'light') ? 'invert(100%)' : '',
         width: '100vw',
         height: '100vh',
+        maxHeight: '100vh',
         zIndex: -999
       }}
     >
@@ -29,7 +32,7 @@ function BackgroundInner () {
     case 1: return (
       <Box
         sx={{
-          position: 'fixed',
+          position: 'relative',
           opacity: 0.25,
           width: '100%',
           height: '100%',

@@ -86,7 +86,6 @@ export default function AnimatedProfilePic () {
               sx={{
                 width: '100%',
                 height: '100%',
-                cursor: 'pointer',
                 WebkitTapHighlightColor: 'transparent'
               }}
             />

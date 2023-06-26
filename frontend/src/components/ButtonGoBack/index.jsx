@@ -16,7 +16,7 @@ function ButtonGoBack ({ destination }) {
         onMouseLeave={() => { setHoverState(false) }}
         onClick={() => { navigate(location.state?.prevLocation || destination, { state: { prevLocation: location.pathname } }) }}
         sx={{
-          mt: 3,
+          mt: 2,
           borderWidth: '2px',
           borderStyle: 'solid',
           borderColor: 'borderColor.main',

@@ -22,7 +22,7 @@ export default function PageAbout () {
 
   const skillAndFunFactSection = (
     <Grid container>
-      <Grid item md={5.9} xs={12} my={3}g>
+      <Grid item md={5.9} xs={12} my={3}>
         <FunFactSection />
       </Grid>
       {(mediumMq) ? (
@@ -42,7 +42,6 @@ export default function PageAbout () {
     <Grid container>
       <Grid item xs={12}>
         <AnimatedTitle title='About Me' subtitle='My README.md'/>
-        <hr />
       </Grid>
       <Grid my={2.5} item md={4} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <AnimatedProfilePic />

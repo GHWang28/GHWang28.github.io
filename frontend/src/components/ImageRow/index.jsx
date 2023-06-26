@@ -15,7 +15,6 @@ function ImageRow ({ src, title, body, rowNo }) {
         src={src}
         alt={'Artwork'}
         sx={{
-          cursor: 'pointer',
           transition: 'scale 0.2s ease-in-out',
           '&:hover': {
             scale: '1.025'

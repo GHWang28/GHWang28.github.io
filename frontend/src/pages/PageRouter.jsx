@@ -61,9 +61,9 @@ const getTransitionEffect = (currLoc, prevLoc) => {
   ) {
     // left to right
     return {
-      from: { opacity: 0, x: '-50%', y: '0px' },
-      enter: { opacity: 1, x: '0%', y: '0px' },
-      leave: { opacity: 0,  x: '25%', y: '0px' },
+      from: { opacity: 0, x: '-50%', y: '0px', position: 'absolute' },
+      enter: { opacity: 1, x: '0%', y: '0px', position: 'absolute' },
+      leave: { opacity: 0,  x: '25%', y: '0px', position: 'static' },
     }
   } else if (
     (currLoc === '/about' && ['/projects', '/', '/blog'].includes(prevLoc))
@@ -72,22 +72,22 @@ const getTransitionEffect = (currLoc, prevLoc) => {
   ) {
     // right to left
     return {
-      from: { opacity: 0, x: '50%', y: '0px' },
-      enter: { opacity: 1, x: '0%', y: '0px' },
-      leave: { opacity: 0, x: '-25%', y: '0px' },
+      from: { opacity: 0, x: '50%', y: '0px', position: 'static' },
+      enter: { opacity: 1, x: '0%', y: '0px', position: 'static' },
+      leave: { opacity: 0, x: '-25%', y: '0px', position: 'absolute' },
     };
   } else if (prevLoc && prevLoc.startsWith('/projects/')) {
     // bottom to top
     return {
-      from: { opacity: 0, x: '0%', y: '200px' },
-      enter: { opacity: 1,  x: '0%', y: '0px' },
-      leave: { opacity: 0,  x: '0%', y: '-100px' },
+      from: { opacity: 0, x: '0%', y: '200px', position: 'absolute' },
+      enter: { opacity: 1,  x: '0%', y: '0px', position: 'absolute' },
+      leave: { opacity: 0,  x: '0%', y: '-100px', position: 'static' },
     };
   }
   // top to bottom
   return {
-    from: { opacity: 0, x: '0%', y: '-200px' },
-    enter: { opacity: 1,  x: '0%', y: '0px' },
-    leave: { opacity: 0,  x: '0%', y: '100px' },
+    from: { opacity: 0, x: '0%', y: '-200px', position: 'static' },
+    enter: { opacity: 1,  x: '0%', y: '0px', position: 'static' },
+    leave: { opacity: 0,  x: '0%', y: '100px', position: 'absolute' },
   };
 }

@@ -25,3 +25,10 @@ export const setThemeMode = (theme) => {
     value: theme
   };
 }
+
+export const setNavbarLock = (lock) => {
+  return {
+    type: 'TOGGLE_NAVBAR_LOCK',
+    value: lock
+  }
+}

@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import { useDispatch } from "react-redux"
 import { setImageZoom } from "../../redux/actions";
 
-export default function ImageZoomable ({ src, ...props }) {
+export default function ImageZoomable ({ src, sx, alternateSrc = '', ...props }) {
   const dispatch = useDispatch();
 
   return (
@@ -10,7 +10,11 @@ export default function ImageZoomable ({ src, ...props }) {
       component='img'
       src={src}
       {...props}
-      onClick={() => { dispatch(setImageZoom(src)) }}
+      sx={{
+        ...sx,
+        cursor: 'pointer'
+      }}
+      onClick={() => { dispatch(alternateSrc || setImageZoom(src)) }}
     />
   )
 }

@@ -28,7 +28,7 @@ function BackgroundWave () {
   }
 
   return (
-    <Box sx={{ position: 'fixed', width: '100vw', height: '100vh', bottom: '0px', zIndex: -1 }}>
+    <Box sx={{ width: '100vw', height: '100vh', bottom: '0px', zIndex: -1 }}>
       <Box sx={{ opacity: 0.025, position: 'absolute', width: '100vw', height: '40vh', bottom: '0px'}}>
         <Wave fill='url(#wave-gradient)' options={options}>
           <WaveGradient />

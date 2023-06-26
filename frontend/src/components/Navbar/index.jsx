@@ -6,15 +6,16 @@ import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton'; 
 import config from '../../config.json';
-import { isMobileOrTablet } from '../../helpers';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import { useSelector } from 'react-redux';
 
 function Navbar () {
   const [selectedDim, setSelectedDim] = useState({});
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navbarLockState = useSelector(state => state.navbarLock);
 
   const themeMode = useTheme().palette.mode;
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -65,9 +66,12 @@ function Navbar () {
   }, [location]);
 
 
-  useEffect(() => {
+  useEffect(() => {  
     // Don't hide toolbar if not on mobile
-    if (!isMobileOrTablet() || window == null) return;
+    if (navbarLockState || window == null) {
+      setShowNavbar(true);
+      return;
+    };
   
     const hideOrShowNav = () => {
       if (window == null) return;
@@ -85,7 +89,7 @@ function Navbar () {
     return () => {
       window.removeEventListener('scroll', hideOrShowNav);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, navbarLockState]);
 
 
   const settingsComponent = (
@@ -97,7 +101,6 @@ function Navbar () {
   return (
     <AnimatedAppBar
       style={animationProps}
-      position='fixed'
       sx={{
         backgroundColor: (themeMode === 'dark') ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)',
         backdropFilter: `blur(1px)
@@ -110,18 +113,16 @@ function Navbar () {
           </svg>#turbulence')
         `,
         width: '100vw',
-        transition: 'translate 0.2s ease-in-out',
+        transition: 'translate 0.4s ease-in-out',
         translate: `0% ${showNavbar ? '0%' : '-100%'}`,
         top: 0,
         left: 0,
-        pb: 0.5
+        pb: 0.5,
+        position: 'fixed'
       }}
     >
       <Grid container component={Toolbar}>
-        <Grid
-          item
-          sx={{ display: 'flex', alignItems: 'center' }}
-        >
+        <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
           <LogoBox doNavigate={(location.pathname !== '/')} />
         </Grid>
 

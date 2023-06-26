@@ -145,7 +145,7 @@ function ImageGallery ({ imgArray = [] }) {
               ) : (
                 <ImageZoomable
                   alt={`Gallery Item #${imgIndex}`}
-                  sx={{ height: galleryHeight(), cursor: 'pointer', WebkitTapHighlightColor: 'transparent', }}
+                  sx={{ height: galleryHeight(), WebkitTapHighlightColor: 'transparent', }}
                   onContextMenu={(event) => { event.preventDefault() }}
                   title={`Gallery Item #${imgIndex}`}
                   src={imgArray[imgIndex]}

@@ -42,7 +42,6 @@ function ProjectHub () {
   return (
     <Fragment>
       <AnimatedTitle title='Projects' subtitle={'My proud creations, big and small'}/>
-      <Box component='hr' mb={1}/>
       {/* Filter Button */}
       <Box my={1.5} px={2} sx={{ width: '100%', display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
         <Typography sx={{ opacity: 0.5 }}>

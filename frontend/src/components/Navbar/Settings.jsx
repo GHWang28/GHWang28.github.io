@@ -13,13 +13,16 @@ import SquareIcon from '@mui/icons-material/Square';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBackground, setThemeMode, setToggleSplash } from '../../redux/actions';
+import { setBackground, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
 import ButtonDropDown from '../ButtonDropDown';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 function Settings () {
   const dispatch = useDispatch();
   const backgroundIndex = useSelector(state => state.background);
   const splashState = useSelector(state => state.splash);
+  const navbarLockState = useSelector(state => state.navbarLock);
   const themeMode = useTheme().palette.mode;
 
   const backgroundOptions = [
@@ -60,42 +63,52 @@ function Settings () {
       label: 'Blocks x32'
     }
   ];
+
+  const settingOptions = [
+    {
+      key: 'background',
+      icon: backgroundOptions[backgroundIndex].icon,
+      text: `Background: ${backgroundOptions[backgroundIndex].label}`,
+      onClick: () => { dispatch(setBackground(backgroundIndex + 1)) }
+    },
+    {
+      key: 'splash',
+      icon: <AbcIcon />,
+      text: `Splash Text ${(splashState) ? 'enabled': 'disabled'}`,
+      onClick: () => { dispatch(setToggleSplash(!splashState)) }
+    },
+    {
+      key: 'theme',
+      icon: (themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>,
+      text: `${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()}`,
+      onClick: () => { dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark')) }
+    },
+    {
+      key: 'lock',
+      icon: (navbarLockState) ? <LockIcon/> : <LockOpenIcon/>,
+      text: `Navbar ${navbarLockState ? 'locked' : 'unlocked'}`,
+      onClick: () => { dispatch(setNavbarLock(!navbarLockState)) }
+    }
+  ];
+
   return (
     <ButtonDropDown title='Settings' icon={<SettingsIcon />}>
       <Typography align='center' m={1} sx={{ width: '250px' }}>
         {'Settings'}
       </Typography>
       <hr />
-      <MenuItem
-        name='change-background-btn'
-        onClick={(event) => {
-          event.stopPropagation();
-          dispatch(setBackground(backgroundIndex + 1));
-        }}
-      >
-        <ListItemIcon>{backgroundOptions[backgroundIndex].icon}</ListItemIcon>
-        <Typography>{`Background: ${backgroundOptions[backgroundIndex].label}`}</Typography>
-      </MenuItem>
-      <MenuItem
-        name='change-splash-btn'
-        onClick={(event) => {
-          event.stopPropagation();
-          dispatch(setToggleSplash(!splashState))
-        }}
-      >
-        <ListItemIcon><AbcIcon /></ListItemIcon>
-        <Typography>{`Splash Text ${(splashState) ? 'enabled': 'disabled'}`}</Typography>
-      </MenuItem>
-      <MenuItem
-        name='change-theme-btn'
-        onClick={(event) => {
-          event.stopPropagation();
-          dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark'))
-        }}
-      >
-        <ListItemIcon>{(themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>}</ListItemIcon>
-        <Typography>{`${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()}`}</Typography>
-      </MenuItem>
+      {settingOptions.map((settingOption) => (
+        <MenuItem
+          key={settingOption.key}
+          onClick={(event) => {
+            event.stopPropagation();
+            settingOption.onClick();
+          }}
+        >
+          <ListItemIcon>{settingOption.icon}</ListItemIcon>
+          <Typography>{settingOption.text}</Typography>
+        </MenuItem>
+      ))}
     </ButtonDropDown>
   )
 }

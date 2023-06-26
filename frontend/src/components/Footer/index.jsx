@@ -107,7 +107,6 @@ export default function Footer () {
             '&:hover': {
               scale: '1.2'
             },
-            cursor: 'pointer',
             transition: 'scale 0.2s ease-in-out'
           }}
         />
