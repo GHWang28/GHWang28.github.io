@@ -1,7 +1,6 @@
-import { Typography, styled, useTheme } from '@mui/material';
+import { Typography, styled } from '@mui/material';
 
-const TransluscentTypography = styled(Typography)(() => {
-  const theme = useTheme();
+const TransluscentTypography = styled(Typography)(({ theme }) => {
   return {
     border: `1px solid ${(theme.palette.mode === 'dark') ? 'whitesmoke' : 'black'}`,
     borderRadius: '15px',

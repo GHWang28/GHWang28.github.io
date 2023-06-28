@@ -1,6 +1,6 @@
 
 import React, { Fragment } from 'react';
-import { Box, Chip, Typography } from '@mui/material';
+import { Box, Chip, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
@@ -11,9 +11,13 @@ import { ISOToDateStr } from '../../helpers';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import blogs from './blogs';
+import { Code, a11yDark, a11yLight } from 'react-code-blocks';
+import TransluscentTypography from '../../components/TranslucentTypography';
 
 export default function BlogShowcase () {
+  const lightMode = useTheme().palette.mode === 'light';
   const blogID = Number(useParams().blogID);
+  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   const blogData = blogs.find((blogEntry) => ( blogEntry.id === blogID ));
 
@@ -58,15 +62,31 @@ export default function BlogShowcase () {
             flexDirection: 'column'
           }}
         >
-          {blogData.elements.map((elementData) => {
+          {blogData?.elements && blogData.elements.map((elementData) => {
             switch(elementData.type) {
               default: return (
-                <Typography fontSize={20} my={2}>{elementData.children}</Typography>
+                <Typography textAlign='justify' sx={{ textIndent: '50px' }} fontSize={20} my={2}>{elementData.children}</Typography>
               );
-              case 'h1':
+              case 'h4':
+              case 'h3':
               case 'h2':
-              case 'h3': return (
-                <Typography fontWeight='bold' my={2} variant={elementData.type}>{elementData.children}</Typography>
+              case 'h1': return (
+                <TransluscentTypography
+                  textAlign={(smallMq) ? 'left' : 'center'}
+                  fontWeight='bold'
+                  my={2}
+                  variant={elementData.type}
+                >
+                  {elementData.children}
+                </TransluscentTypography>
+              )
+              case 'code': return (
+                <Code
+                  language={elementData.language}
+                  text={elementData.children}
+                  showLineNumbers
+                  theme={lightMode ? a11yLight : a11yDark}
+                />
               )
             }
           })}

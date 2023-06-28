@@ -13,6 +13,7 @@ import SkillsSection from './SkillsSection';
 import FunFactSection from './FunFactSection';
 // import ButtonDownload from '../../components/ButtonDownload';
 import EducationSection from './EducationSection';
+import InlineCode from '../../components/InlineCode';
 
 export default function PageAbout () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
@@ -87,13 +88,9 @@ export default function PageAbout () {
           mb={3}
         >
           {'I am a  '}
-          <Box
-            component='code'
-            px={1}
-            sx={{ bgcolor: 'rgba(10,10,10,0.5)', borderRadius: '10px' }}
-          >
+          <InlineCode>
             Computer&nbsp;Science
-          </Box>
+          </InlineCode>
           {' graduate from '}
           <Box component='span' color='yellow.main'>{'UNSW '}</Box>
           <Box component='span' className='ozzie-text'>{'Australia'}</Box>
