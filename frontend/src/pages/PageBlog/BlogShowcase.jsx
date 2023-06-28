@@ -1,16 +1,16 @@
 
 import React, { Fragment } from 'react';
-import { Box, Chip, Grid } from '@mui/material';
+import { Box, Chip, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
-import blogs from './blogs.json';
 import PageError from '../PageError';
 import ImageZoomable from '../../components/ImageZoomable';
 import BootstrapTooltip from '../../components/BootstrapTooltip';
 import { ISOToDateStr } from '../../helpers';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import blogs from './blogs';
 
 export default function BlogShowcase () {
   const blogID = Number(useParams().blogID);
@@ -38,19 +38,39 @@ export default function BlogShowcase () {
         </Box>
       </AnimatedTitle>
 
-      <Grid mt={3} container>
-        <Grid item xs={12} display={'flex'} justifyContent={'center'}>
+        <Box display='flex' justifyContent='center'>
           <ImageZoomable
             src={blogData.thumbnail}
             sx={{
-              width: '100%',
+              width: '90%',
               maxWidth: '500px',
               borderRadius: '15px'
             }}
           />
-        </Grid>
-      
-      </Grid>
+        </Box>
+
+        <Box
+          mx='auto'
+          p={2}
+          sx={{
+            maxWidth: '750px',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          {blogData.elements.map((elementData) => {
+            switch(elementData.type) {
+              default: return (
+                <Typography fontSize={20} my={2}>{elementData.children}</Typography>
+              );
+              case 'h1':
+              case 'h2':
+              case 'h3': return (
+                <Typography fontWeight='bold' my={2} variant={elementData.type}>{elementData.children}</Typography>
+              )
+            }
+          })}
+        </Box>
       
     </Fragment>
   )

@@ -11,7 +11,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function PageLanding () {
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  const themeMode = useTheme().palette.mode;
+  const lightMode = useTheme().palette.mode === 'light';
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
   const [splashMsg, setSplashMsg] = useState('');
@@ -73,7 +73,7 @@ export default function PageLanding () {
         />
         {/* Blobs */}
         <Blob
-          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={2}
           speed={300}
@@ -85,7 +85,7 @@ export default function PageLanding () {
           }}
         />
         <Blob
-          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={2}
           speed={400}
@@ -97,7 +97,7 @@ export default function PageLanding () {
           }}
         />
         <Blob
-          color={(themeMode === 'light') ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
           fill='none'
           strokeWidth={3}
           speed={500}
@@ -176,19 +176,12 @@ export default function PageLanding () {
           to: { opacity: 1 },
           delay: 5 * delay,
         })}
-        sx={{
-          color: (themeMode === 'light') ? 'rgb(86,86,86)' : ''
-        }}
         mt={(mediumMq) ? 15 : 7}
-        color='#a9a9a9'
         fontWeight='bold'
         fontSize={35}
         lineHeight={1.0}
       >
-        {'Hi, my name is '}
-        <Box component='span' color={(themeMode === 'light') ? 'black.main' : ''}>
-          {'Gordon Wang.'}
-        </Box>
+        Hi, my name is Gordon&nbsp;Wang.
         <br/>
         {' Welcome to my GitHub page!'}
       </AnimatedTypography>
@@ -200,9 +193,9 @@ export default function PageLanding () {
           to: { opacity: 1 },
           delay: 6 * delay,
         })}
-        color='#808080'
+        color={(lightMode) ? '#5A5A5A' : '#D3D3D3' }
         fontWeight='bold'
-        fontSize={28}
+        fontSize={24}
         lineHeight={1.0}
       >
         {'Feel free to look around using the navigation at the top.'}

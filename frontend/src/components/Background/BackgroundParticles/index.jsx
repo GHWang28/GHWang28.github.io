@@ -24,10 +24,8 @@ function BackgroundParticles ({ bgIndex }) {
 
   const getPreset = () => {
     switch (bgIndex) {
-      case 3: return 'links';
-      case 4: return 'snow';
-      case 5: return 'triangles';
-      case 6: return 'stars';
+      case 3: return 'snow';
+      case 4: return 'stars';
       default: return '';
     }
   }

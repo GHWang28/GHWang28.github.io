@@ -5,9 +5,7 @@ import AbcIcon from '@mui/icons-material/Abc';
 import WavesIcon from '@mui/icons-material/Waves';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import MemoryIcon from '@mui/icons-material/Memory';
-import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SquareIcon from '@mui/icons-material/Square';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -39,16 +37,8 @@ function Settings () {
       label: 'Waves'
     },
     {
-      icon: <PlayArrowOutlinedIcon />,
-      label: 'Links'
-    },
-    {
       icon: <AcUnitIcon />,
       label: 'Snow'
-    },
-    {
-      icon: <PlayArrowIcon />,
-      label: 'Triangles'
     },
     {
       icon: <StarOutlineIcon />,
@@ -80,7 +70,7 @@ function Settings () {
     {
       key: 'theme',
       icon: (themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>,
-      text: `${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()}`,
+      text: `${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()} mode`,
       onClick: () => { dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark')) }
     },
     {

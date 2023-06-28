@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
-import blogs from './blogs.json';
 import CardContainer from '../../components/CardContainer';
 import CardBlog from '../../components/CardBlog';
+import blogs from './blogs';
 
 export default function BlogHub () {
   return (

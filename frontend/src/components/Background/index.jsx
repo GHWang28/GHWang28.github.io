@@ -51,11 +51,9 @@ function BackgroundInner () {
     )
     case 2: return <BackgroundWave />;
     case 3:
-    case 4:
-    case 5:
-    case 6: return <BackgroundParticles bgIndex={backgroundIndex} />;
-    case 7: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />;
-    case 8: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />;
+    case 4: return <BackgroundParticles bgIndex={backgroundIndex} />;
+    case 5: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />;
+    case 6: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />;
     default: return null;
   }
 }
