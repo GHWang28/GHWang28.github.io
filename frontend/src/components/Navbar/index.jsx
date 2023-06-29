@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Divider, Grid, Toolbar, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
 import LogoBox from '../LogoBox';
@@ -39,33 +39,21 @@ function Navbar () {
     <EmojiPeopleIcon />
   ]
 
-  // Moving the border around
+  // Moving the selected border around with each click
   useEffect(() => {
-    const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`);
-    if (!element) {
-      const prevElement = document.getElementById('nav-btn-projects');
-      const prevDivData = prevElement.getBoundingClientRect();
-      setSelectedDim({
-        top: prevElement.offsetTop,
-        left: prevElement.offsetLeft,
-        width: prevDivData.width,
-        height: prevDivData.height,
-        opacity: '0'
-      });
-      return;
-    }
-
+    // Fallback onto projects if the current button could not be found
+    const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`) || document.getElementById('nav-btn-projects');
     const divData = element.getBoundingClientRect();
     setSelectedDim({
-      top: element.offsetTop,
+      bottom: element.offsetTop + 3,
       left: element.offsetLeft,
       width: divData.width,
-      height: divData.height,
-      opacity: '1'
+      height: 0,
+      opacity: (location.pathname === '/') ? '0' : '1'
     });
   }, [location]);
 
-
+  // Manages hiding the navbar when scrolling
   useEffect(() => {  
     // Don't hide toolbar if not on mobile
     if (navbarLockState || window == null) {
@@ -92,11 +80,35 @@ function Navbar () {
   }, [lastScrollY, navbarLockState]);
 
 
+  // Contains the settings button
   const settingsComponent = (
-    <Box ml='auto'>
+    <Box ml='auto' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Settings />
     </Box>
   )
+
+  // Adds a divider at the start and between each navigation option
+  const navigationElements = navigationOptions.map((navOption, index) => (
+    <NavbarButton
+      key={`nav-btn-${navOption}`}
+      id={`nav-btn-${navOption}`}
+      onClick={() => {
+        navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
+      }}
+      disabled={location.pathname === `/${navOption}`}
+      label={navOption}
+      startIcon={iconArray[index]}
+    />
+  )).flatMap((element, index) => ((index === 0) ? (
+    // Insert the dividers
+    [
+      <Divider orientation='vertical' flexItem key={`divider-${index}`} />,
+      element,
+      <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
+    ]
+  ) : (
+    [element, <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />]
+  )));
 
   return (
     <AnimatedAppBar
@@ -117,23 +129,35 @@ function Navbar () {
         translate: `0% ${showNavbar ? '0%' : '-100%'}`,
         top: 0,
         left: 0,
-        pb: 0.5,
         position: 'fixed'
       }}
     >
-      <Grid container component={Toolbar}>
+      <Grid container sx={{ pb: 0, px: (smallMq) ? 5 : 1 }}>
         <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
           <LogoBox doNavigate={(location.pathname !== '/')} />
         </Grid>
 
         {/* Display settings button here if the screen becomes tiny */}
         {!smallMq && settingsComponent}
-        {!smallMq && <Divider orientation="horizontal" flexItem sx={{ width: '100%', mb: 1, bgcolor: 'whitesmoke' }}/>}
+        {!smallMq && <Divider orientation="horizontal" flexItem sx={{ width: '100%', bgcolor: 'whitesmoke' }}/>}
   
-        <Grid item xs={12} sm={5} id='nav-btn-group' sx={{ position: 'relative', display: 'flex', justifyContent: smallMq ? 'left' : 'space-between' }}>
+        <Grid
+          item
+          id='nav-btn-group'
+          xs={12}
+          sm={7}
+          md={5}
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: smallMq ? 'left' : 'space-between',
+            ml: smallMq ? 2 : 0,
+            minHeight: '50px'
+          }}
+        >
           {/* Border around selector */}
           <Box
-            className='border-gradient'
+            className='border-gradient marker'
             sx={{
               position: 'absolute',
               display: 'flex',
@@ -143,18 +167,7 @@ function Navbar () {
               ...selectedDim
             }}
           />
-          {navigationOptions.map((navOption, index) => (
-            <NavbarButton
-              key={`nav-btn-${navOption}`}
-              id={`nav-btn-${navOption}`}
-              onClick={() => {
-                navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
-              }}
-              disabled={location.pathname === `/${navOption}`}
-              label={navOption}
-              startIcon={iconArray[index]}
-            />
-          ))}
+          {navigationElements}
         </Grid>
 
         {/* Display settings button here if the screen becomes large enough */}

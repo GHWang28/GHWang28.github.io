@@ -3,44 +3,47 @@ import PropTypes from 'prop-types';
 import { Button, useMediaQuery } from "@mui/material";
 import Sparklez from '../Sparklez';
 
-function NavbarButton (props) {
+function NavbarButton ({ label, onClick, disabled, ...props }) {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [hover, setHover] = useState(false);
-  const prunedProps = {...props};
-  delete prunedProps.label;
-  delete prunedProps.onClick;
+
+  const handleOnClick = () => {
+    setHover(false);
+    onClick();
+  }
 
   return (
     <Button
       title={props.label}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
-      {...prunedProps}
-      onClick={() => {
-        setHover(false);
-        props.onClick();
-      }}
+      {...props}
+      disabled={disabled}
+      onClick={handleOnClick}
       sx={[
         {
-          border: '1px solid rgba(0,0,0,0)',
           fontWeight: 'bold',
-          borderRadius: '15px',
+          borderRadius: '0px',
           height: '100%',
-          mx: 1
+          width: '33.33%',
+          borderBottom: '3px solid rgba(0,0,0,0.5)',
+          transition: 'background-color 0.5s ease-in-out'
         },
         (!smallMq) && {
-          width: '33.33%',
           fontSize: '12px',
+        },
+        (disabled) && {
+          bgcolor: 'rgba(0,0,0,0.5)'
         }
       ]}
       disableRipple
     >
       {(hover) ? (
         <Sparklez frequency={1.5} sizeRange={[10, 15]}>
-          {props.label}
+          {label}
         </Sparklez>
       ) : (
-        props.label
+        label
       )}
     </Button>
   )

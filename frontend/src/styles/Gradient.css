@@ -60,6 +60,11 @@
   border-radius: 50%;
 }
 
+.border-gradient.marker::before {
+  border-radius: 0px;
+  border: 2px solid transparent;
+}
+
 .border-gradient::before {
   /* Wiping animation */
   --angle: 0deg;
