@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.786afd3c.css",
-    "main.js": "/static/js/main.81729ebf.js",
+    "main.css": "/static/css/main.daf72cdf.css",
+    "main.js": "/static/js/main.ea071c5f.js",
     "static/js/1845.5b7e46da.chunk.js": "/static/js/1845.5b7e46da.chunk.js",
     "react-syntax-highlighter/refractor-core-import.js": "/static/js/react-syntax-highlighter/refractor-core-import.e3c4272b.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/static/js/react-syntax-highlighter_languages_refractor_abap.f8594501.chunk.js",
@@ -161,8 +161,8 @@
     "static/media/smb-coin.ogg": "/static/media/smb-coin.55ad339c69ad2126350b.ogg",
     "static/media/card.ogg": "/static/media/card.b6ed321ee178bd550349.ogg",
     "index.html": "/index.html",
-    "main.786afd3c.css.map": "/static/css/main.786afd3c.css.map",
-    "main.81729ebf.js.map": "/static/js/main.81729ebf.js.map",
+    "main.daf72cdf.css.map": "/static/css/main.daf72cdf.css.map",
+    "main.ea071c5f.js.map": "/static/js/main.ea071c5f.js.map",
     "1845.5b7e46da.chunk.js.map": "/static/js/1845.5b7e46da.chunk.js.map",
     "refractor-core-import.e3c4272b.chunk.js.map": "/static/js/react-syntax-highlighter/refractor-core-import.e3c4272b.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.f8594501.chunk.js.map": "/static/js/react-syntax-highlighter_languages_refractor_abap.f8594501.chunk.js.map",
@@ -318,7 +318,7 @@
     "react-syntax-highlighter_languages_refractor_yaml.ef528295.chunk.js.map": "/static/js/react-syntax-highlighter_languages_refractor_yaml.ef528295.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.786afd3c.css",
-    "static/js/main.81729ebf.js"
+    "static/css/main.daf72cdf.css",
+    "static/js/main.ea071c5f.js"
   ]
 }
