@@ -50,12 +50,8 @@ const blogs = [
       },
       {
         type: 'p',
-        children: 'Say you have a button counter that keeps track of how many people have clicked on it. Now, let\'s be real, it could be minutes or even hours till the next button click, and nobody\'s going to nitpick about how precise or perfectly synchronised that counter is.'
-      },
-      {
-        type: 'p',
-        children:  <Fragment>
-        {'So, to keep things simple and practical, you\'ve opted for '}
+        children: <Fragment>
+        {'Say you have a button counter that keeps track of how many people have clicked on it. Now, let\'s be real, it could be minutes or even hours till the next button click, and nobody\'s going to nitpick about how precise or perfectly synchronised that counter is. So, to keep things simple and practical, you\'ve opted for '}
         <Box component='span' sx={{ color: 'blue.main' }}>
           {'polling'}
         </Box>

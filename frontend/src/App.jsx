@@ -60,7 +60,7 @@ export default function App() {
         transparent: 'rgba(40,40,40,0.2)'
       },
       gray: {
-        main: 'rgb(65,70,80)',
+        main: (themeMode === 'light') ? 'rgb(40,40,40)' : 'rgb(65,70,80)',
         transparent: 'rgba(65,70,80,0.2)'
       },
       orange: {

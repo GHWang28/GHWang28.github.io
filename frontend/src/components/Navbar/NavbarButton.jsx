@@ -27,7 +27,12 @@ function NavbarButton ({ label, onClick, disabled, ...props }) {
           height: '100%',
           width: '33.33%',
           borderBottom: '3px solid rgba(0,0,0,0.5)',
-          transition: 'background-color 0.5s ease-in-out'
+          transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out',
+          "&:hover": {
+            // Remove highlight color
+            backgroundColor: 'rgba(0,0,0,0)',
+            color: 'borderColor.main'
+          }
         },
         (!smallMq) && {
           fontSize: '12px',

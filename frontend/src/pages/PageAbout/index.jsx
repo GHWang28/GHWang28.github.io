@@ -84,7 +84,7 @@ export default function PageAbout () {
           align='center'
           fontSize={28}
           fontWeight='bold'
-          color='#a9a9a9'
+          color='text.secondary'
           mb={3}
         >
           {'I am a  '}
@@ -107,7 +107,7 @@ export default function PageAbout () {
           align='center'
           fontSize={16}
           fontWeight='bold'
-          color='#a9a9a9'
+          color='text.secondary'
           mb={(xLargeMq) ? 3 : 0}
         >
           {'I am a highly motivated individual who is passionate about design and always looking to learn new skills.'}
