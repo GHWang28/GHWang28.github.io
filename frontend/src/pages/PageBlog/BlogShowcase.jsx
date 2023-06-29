@@ -8,16 +8,21 @@ import PageError from '../PageError';
 import ImageZoomable from '../../components/ImageZoomable';
 import BootstrapTooltip from '../../components/BootstrapTooltip';
 import { ISOToDateStr } from '../../helpers';
+import blogs from './blogs';
+import TransluscentTypography from '../../components/TranslucentTypography';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import light from 'react-syntax-highlighter/dist/esm/styles/prism/one-light';
+import dark from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
+import CardQuiz from '../../components/CardQuiz';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import blogs from './blogs';
-import { Code, a11yDark, a11yLight } from 'react-code-blocks';
-import TransluscentTypography from '../../components/TranslucentTypography';
+import QuizIcon from '@mui/icons-material/Quiz';
 
 export default function BlogShowcase () {
   const lightMode = useTheme().palette.mode === 'light';
   const blogID = Number(useParams().blogID);
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const theme = useTheme();
 
   const blogData = blogs.find((blogEntry) => ( blogEntry.id === blogID ));
 
@@ -38,6 +43,13 @@ export default function BlogShowcase () {
           </BootstrapTooltip>
           <BootstrapTooltip title='Estimated Time to Read' placement={'top'}>
             <Chip sx={{ flex: 1, mx: 1 }} icon={<AvTimerIcon />} label={`~${blogData.estimatedReadingTime} minutes`} variant='outlined' />
+          </BootstrapTooltip>
+          <BootstrapTooltip title={(blogData.quizIncluded) ? 'This blog contains quizzes' : 'This blog does not contain quizzes'} placement={'top'}>
+            <Chip
+              sx={{ flex: 1, mx: 1, color: (blogData.quizIncluded) ? 'green.main' : 'red.main' }}
+              icon={<QuizIcon style={{ color: (blogData.quizIncluded) ? theme.palette.green.main : theme.palette.red.main }} />}
+              label={(blogData.quizIncluded) ? `Quiz Included` : 'Quiz Not Included'} variant='outlined' 
+            />
           </BootstrapTooltip>
         </Box>
       </AnimatedTitle>
@@ -81,17 +93,20 @@ export default function BlogShowcase () {
                 </TransluscentTypography>
               )
               case 'code': return (
-                <Code
-                  language={elementData.language}
-                  text={elementData.children}
-                  showLineNumbers
-                  theme={lightMode ? a11yLight : a11yDark}
+                <SyntaxHighlighter showLineNumbers language={elementData.language} style={lightMode ? light : dark}>
+                  {elementData.children}
+                </SyntaxHighlighter>
+              )
+              case 'quiz': return (
+                <CardQuiz
+                  question={elementData.question}
+                  options={elementData.options}
+                  explanation={elementData.children}
                 />
               )
             }
           })}
         </Box>
-      
     </Fragment>
   )
 }

@@ -33,7 +33,7 @@ export default function App() {
         transparent: 'rgba(185,239,164,0.15)'
       },
       red: {
-        main: 'rgb(240,128,128)',
+        main: (themeMode === 'light') ? 'rgb(150,0,0)' : 'rgb(240,128,128)',
         transparent: 'rgba(240,128,128,0.15)'
       },
       blue: {
@@ -75,7 +75,7 @@ export default function App() {
         textColor: (themeMode === 'light') ? 'whitesmoke' : 'black'
       },
       bgColor: {
-        main: (themeMode === 'light') ? 'rgb(245,245,245)' : 'rgb(40,40,40)',
+        main: (themeMode === 'light') ? 'rgb(225,225,225)' : 'rgb(40,40,40)',
         darker: (themeMode === 'light') ? 'rgb(205,205,205)' : 'rgb(0,0,0)',
       },
       mode: themeMode,

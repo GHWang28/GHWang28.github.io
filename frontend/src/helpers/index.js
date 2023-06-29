@@ -12,6 +12,22 @@ export function rng(min, max) {
 }
 
 /**
+ * Randomises the given array
+ * @param {Array} array 
+ * @returns 
+ */
+export function randomiseArray(array) {
+  const newArray = [...array];
+
+  for (let index = array.length - 1; index > 0; index--) {
+    const swapIndex = rng(0, array.length - 1);
+    [newArray[index], newArray[swapIndex]] = [newArray[swapIndex], newArray[index]];
+  }
+
+  return newArray;
+}
+
+/**
  * Returns the formatted date from an ISO string
  * @param {String} iso 
  * @returns {String}
