@@ -32,9 +32,15 @@ export function randomiseArray(array) {
  * @param {String} iso 
  * @returns {String}
  */
-export function ISOToDateStr (iso) {
+export function ISOToDateStr (iso, shorten = false) {
   const date = new Date(iso);
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+  let fullYear = date.getFullYear().toString();
+
+  if (shorten) {
+    fullYear = fullYear.slice(-2);
+  }
+
+  return `${date.getDate()}/${date.getMonth() + 1}/${fullYear}`
 }
 
 /**

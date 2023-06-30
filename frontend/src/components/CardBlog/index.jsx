@@ -1,18 +1,15 @@
 import React from 'react';
-import { Box, Chip, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { useTheme, Box, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
-import TransluscentTypography from '../TranslucentTypography';
+import TypographyBorder from '../TypographyBorder';
 import BootstrapTooltip from '../BootstrapTooltip';
-import { ISOToDateStr } from '../../helpers';
 import { useNavigate } from 'react-router';
-import AvTimerIcon from '@mui/icons-material/AvTimer';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import QuizIcon from '@mui/icons-material/Quiz';
+import BlogTags from '../BlogTags';
 
 export default function CardBlog ({ data, index = 0 }) {
   const [ref, inView] = useInView();
   const navigate = useNavigate();
-  const theme = useTheme();
+  const lightMode = useTheme().palette.mode === 'light';
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -26,6 +23,36 @@ export default function CardBlog ({ data, index = 0 }) {
     estimatedReadingTime,
     quizIncluded
   } = data;
+
+  if (id < 0) {
+    return (
+      <Box
+        ref={ref}
+        p={2}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          opacity: (inView) ? '0.8' : '0',
+          translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
+          transition: 'scale 0.5s ease-in-out, box-shadow 0.5s ease-in-out, translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
+          borderRadius: '15px',
+          overflow: 'hidden',
+          mx: (largeMq) ? 0 : (mediumMq) ? 5 : 0,
+          mb: (mediumMq) ? 5 : 2,
+          bgcolor: 'bgColor.main',
+          height: '300px',
+          scale: '0.975',
+          backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='${lightMode ? 'black' : 'whitesmoke'}' stroke-width='10' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
+        }}
+      >
+        <Typography fontSize={18}>
+          {' More posts coming soon...'}
+        </Typography>
+      </Box>
+    )
+  }
 
   return (
     <Box
@@ -70,27 +97,15 @@ export default function CardBlog ({ data, index = 0 }) {
         />
       )}
       <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
-        <TransluscentTypography variant='h4'>
+        <TypographyBorder variant='h4'>
           {title}
-        </TransluscentTypography>
+        </TypographyBorder>
       </BootstrapTooltip>
       <Typography align='center' my={2}>
         {subtitle}
       </Typography>
       <Box sx={{ display: 'flex' }}>
-        <BootstrapTooltip  title='Creation Date' placement={(smallMq) ? 'left' : 'top-start'}>
-          <Chip sx={{ flex: 1, mx: 1 }} icon={<CalendarTodayIcon />} label={ISOToDateStr(created)} variant='outlined' />
-        </BootstrapTooltip>
-        <BootstrapTooltip title='Estimated Time to Read' placement={(smallMq) ? 'left' : 'top-start'}>
-          <Chip sx={{ flex: 1, mx: 1 }} icon={<AvTimerIcon />} label={`~${estimatedReadingTime} minutes`} variant='outlined' />
-        </BootstrapTooltip>
-        <BootstrapTooltip title={(quizIncluded) ? 'This blog contains quizzes' : 'This blog does not contain quizzes'} placement={(smallMq) ? 'left' : 'top-start'}>
-          <Chip
-            sx={{ flex: 1, mx: 1, color: (quizIncluded) ? 'green.main' : 'red.main' }}
-            icon={<QuizIcon style={{ color: (quizIncluded) ? theme.palette.green.main : theme.palette.red.main }} />}
-            label={(quizIncluded) ? `Quiz Included` : 'Quiz Not Included'} variant='outlined' 
-          />
-        </BootstrapTooltip>
+        <BlogTags {...{ created, estimatedReadingTime, quizIncluded }} />
       </Box>
     </Box>
   )

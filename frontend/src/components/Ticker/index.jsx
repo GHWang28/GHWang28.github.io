@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, keyframes } from '@mui/system';
 import { Typography, useTheme } from '@mui/material';
+import PropTypes from 'prop-types';
 
 const moveAnimation = keyframes`
   from {

@@ -9,7 +9,7 @@ export default function BlogHub () {
     <Fragment>
       <AnimatedTitle title='Blog Posts' subtitle='Resources for students (and other shenanigans)'/>
 
-      <CardContainer cardData={blogs} component={CardBlog} />
+      <CardContainer cardData={[...blogs, { id: -999 }]} component={CardBlog} />
     </Fragment>
   )
 }

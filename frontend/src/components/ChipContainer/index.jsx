@@ -1,12 +1,11 @@
 import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
 /**
  * A div that contains Material UI chips
  */
 function ChipContainer ({ children, width, maxHeight, style }) {
-  const theme = useTheme();
   const chipContainerStyle = {
     display: 'flex',
     flexWrap: 'wrap',
@@ -17,11 +16,8 @@ function ChipContainer ({ children, width, maxHeight, style }) {
     maxHeight,
     overflowY: (maxHeight) ? 'auto' : '',
     m: '5px 0px',
-    p: '5px',
     borderRadius: '20px',
     rowGap: '8px',
-    border: `1px solid ${theme.palette.borderColor.main}`,
-    bgcolor: 'bgColor.main'
   }
 
   return (

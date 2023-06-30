@@ -8,7 +8,7 @@ import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
 import WavyBackdrop from './WavyBackdrop';
 import PropTypes from 'prop-types';
-import TransluscentTypography from '../TranslucentTypography';
+import TypographyBorder from '../TypographyBorder';
 
 
 export default function CardProject ({ data, index = 0 }) {
@@ -53,13 +53,13 @@ export default function CardProject ({ data, index = 0 }) {
     >
       <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
         <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
-          <TransluscentTypography variant='h4'>
+          <TypographyBorder variant='h4'>
             {title}
-          </TransluscentTypography>
+          </TypographyBorder>
         </BootstrapTooltip>
         {(type) && (
           <BootstrapTooltip title='Tags' placement={(smallMq) ? 'left' : 'top-start'}>
-            <Box sx={{ display: 'flex' }}>
+            <div>
               <ChipContainer>
                 {type.sort().map((label, index) => (
                   <Chip
@@ -67,19 +67,20 @@ export default function CardProject ({ data, index = 0 }) {
                     variant='outlined'
                     sx={{
                       mr: (index === type.length - 1) ? 0 : 1,
-                      borderColor: 'borderColor.main'
+                      borderColor: 'borderColor.main',
+                      bgcolor: 'bgColor.main'
                     }}
                     key={`label-${index}`}
                     label={label}
                   />
                 ))}
               </ChipContainer>
-            </Box>
+            </div>
           </BootstrapTooltip>
         )}
         {(date) && (
           <BootstrapTooltip title='Date Finished' placement={(smallMq) ? 'left' : 'top-start'}>
-            <Chip label={date} variant='outlined' sx={{ borderColor: 'borderColor.main', bgcolor: 'bgColor.main' }}/>
+            <Chip label={date} variant='outlined' />
           </BootstrapTooltip>
         )}
         <Box component='hr' />
