@@ -1,6 +1,6 @@
 
 import React, { Fragment } from 'react';
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import AnimatedTitle from '../PageProjects/AnimatedTitle';
@@ -58,6 +58,8 @@ export default function BlogShowcase () {
         {blogData?.elements && blogData.elements.map((elementData, index) => {
           // Convert type to React components
           switch(elementData.type) {
+            case 'h6':
+            case 'h5':
             case 'h4':
             case 'h3':
             case 'h2':
@@ -66,7 +68,7 @@ export default function BlogShowcase () {
                 key={`page-item-${index}`}
                 textAlign={(smallMq) ? 'left' : 'center'}
                 fontWeight='bold'
-                sx={{ my: 5 }}
+                sx={{ mt: (elementData.type === 'h6') ? 0.5 : 6, mb: (elementData.type === 'h6') ? 0.5 : 1  }}
                 variant={elementData.type}
               >
                 {`${blogData.emoji} ${elementData.children}`}
@@ -86,6 +88,27 @@ export default function BlogShowcase () {
                 question={elementData.question}
                 options={elementData.options}
               />
+            )
+            case 'feedback': return (
+              <Fragment key={`page-item-${index}`}>
+                <Box component='hr' width='100%' mt={4} />
+                <TypographyBorder
+                  key={`page-item-${index}`}
+                  textAlign={(smallMq) ? 'left' : 'center'}
+                  fontWeight='bold'
+                  sx={{ mt: 6, mb: 1 }}
+                  variant='h4'
+                >
+                  {`${blogData.emoji} Feedback`}
+                </TypographyBorder>
+                <Typography key={`page-item-${index}`} textAlign='justify' sx={{ textIndent: '25px' }} fontSize={20} my={2}>
+                  {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
+                  <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
+                    {'here'}
+                  </Link>
+                  {'!'}
+                </Typography>
+              </Fragment>
             )
             case 'signoff': return (
               <Typography key={`page-item-${index}`} align='right'>

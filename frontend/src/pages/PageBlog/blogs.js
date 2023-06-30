@@ -26,11 +26,11 @@ const blogs = [
       },
       {
         type: 'p',
-        children: 'While polling is not as efficient as Websocket connections, it serves as a extremely simple choice for situations where data that are infrequently updated and that synchronisation is not too important.'
+        children: 'While polling is not as efficient as Websocket connections, its simplicity makes it a better choice for live data that are infrequently updated and when synchronisation is not too important.'
       },
       {
         type: 'p',
-        children: 'For instance, you wouldn\'t use polling for a live message feed, whereas it becomes more appropriate for scenarios like retrieving weather forecast updates.'
+        children: 'For instance, you wouldn\'t use polling for a live message feed, whereas you would for scenarios like retrieving weather forecast updates.'
       },
       {
         type: 'h4',
@@ -38,7 +38,7 @@ const blogs = [
       },
       {
         type: 'p',
-        children: 'Say you have a button counter that keeps track of how many people have clicked on it. Now, let\'s be real, it could be minutes or even hours till the next button click, and nobody\'s going to nitpick about how precise or perfectly synchronised that counter is. So, to keep things simple and practical, you\'ve opted for polling.'
+        children: 'Say you have a button counter that keeps track of how many people have clicked on it. It could be minutes or even hours till the next button click, and nobody\'s going to nitpick about how precise or perfectly synchronised that counter is. So, to keep things simple and practical, you\'ve opted for polling.'
       },
       {
         type: 'p',
@@ -116,7 +116,7 @@ export default CounterButton;
         question: 'What is wrong with the above naïve polling?',
         options: [
           {
-            text: 'You risk creating multiple and parallel timers for the same function.',
+            text: 'You risk creating multiple parallel timers for the same function.',
             correct: true,
             explanation: <Fragment>
               {'Every time the component function is invoked (i.e., from a state update), a new interval schedule will be created concurrently with the original one. The overlapping of the same interval function will create excessive API requests and may bottleneck in the backend. The more updates your component goes through, the more excessive API requests will be made.'}
@@ -139,7 +139,16 @@ export default CounterButton;
               <InlineCode>{'setInterval'}</InlineCode>
               {' with a '}
               <InlineCode>{'useEffect'}</InlineCode>
-              {' hook is not viable, since you would not have a way to set how often the polling will occur. Removing the dependency array will cause the polling to occur every millisecond, leading to loads of server traffic. Including the dependency array will cause the polling to occur only when a state changes, making the polling a manual process. We want the polling to be automatic and occur in longer intervals.'}
+              {' hook is not viable, since you would not have a way to set how often the polling will occur.'}
+              <br />
+              <br />
+              {'Removing the dependency array will cause the polling to occur every millisecond, leading to loads of server traffic. '}
+              <br />
+              <br />
+              {'Including the dependency array will cause the polling to occur only when a state changes, turning it into a manual process.'}
+              <br />
+              <br />
+              {'We want the polling to be automatic and occur in longer intervals.'}
             </Fragment>,
           },
           {
@@ -173,6 +182,10 @@ export default CounterButton;
       {
         type: 'h4',
         children: '4. The Better Approach'
+      },
+      {
+        type: 'h6',
+        children: '4.1 The useEffect Hook'
       },
       {
         type: 'p',
@@ -241,7 +254,7 @@ export default CounterButton;
           <InlineCode>{'setInterval'}</InlineCode>
           {' into a '}
           <InlineCode>{'useEffect'}</InlineCode>
-          {', we ensured that it will only be called once in the lifecyle, rather than each time the component re-renders or has a state change.'}
+          {', we ensured that it will only be called once in the lifecycle, rather than each time the component re-renders or has a state change.'}
         </Fragment>
       },
       {
@@ -253,6 +266,10 @@ export default CounterButton;
           <b>{'cleanup'}</b>
           {' function.'}
         </Fragment>
+      },
+      {
+        type: 'h6',
+        children: '4.2 The Cleanup Function'
       },
       {
         type: 'p',
@@ -338,7 +355,8 @@ export default CounterButton;
         type: 'p',
         children: 'And that\'s it from me. Hope you\'ve learnt something new from this blog post and can master polling in ReactJS if you ever need it.'
       },
-      { type: 'signoff' }
+      { type: 'signoff' },
+      { type: 'feedback' }
     ]
   },
   /*
