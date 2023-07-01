@@ -1,5 +1,15 @@
 import React, { Fragment } from 'react';
 import InlineCode from '../../components/InlineCode';
+import Sparklez from '../../components/Sparklez';
+import { Box } from '@mui/material';
+
+const SparkleText = ({ text }) => (
+  <Sparklez>
+    <Box component='span' className='gradient-text'>
+      {text}
+    </Box>
+  </Sparklez>
+)
 
 const blogs = [
   {
@@ -195,7 +205,7 @@ export default CounterButton;
         type: 'p',
         children: <Fragment>
           {'Luckily, we have the perfect hook for these kinds of problems - The '}
-          <InlineCode>{'useEffect'}</InlineCode>
+          <SparkleText text='useEffect' />
           {' hook. We will use it by wrapping it around our '}
           <InlineCode>{'setInterval'}</InlineCode>
           {'.'}
@@ -204,7 +214,7 @@ export default CounterButton;
       {
         type: 'code',
         language: 'jsx',
-        title: 'Better polling',
+        title: 'Wrapping our setInterval into a useEffect',
         children: `import React, { useState, useEffect } from 'react';
 
 const CounterButton = () => {
@@ -218,6 +228,7 @@ const CounterButton = () => {
   // Wrap the setInterval in a useEffect so that it will only be executed once
   // in the component's lifecycle
   useEffect(() => {
+
     // Setting up polling
     const invervalID = setInterval(() => {
       fetch('.../api/database')
@@ -230,11 +241,6 @@ const CounterButton = () => {
         });
     }, 5000);
 
-    // The cleanup function - explanation below!
-    return () => {
-      // Gets rid of the interval associated with the invervalID
-      clearInterval(invervalID);
-    }
   }, [/* Include any dependencies you need, in this case it's nothing */]);
 
   return (
@@ -260,11 +266,11 @@ export default CounterButton;
       {
         type: 'p',
         children: <Fragment>
-          {'Furthermore, you have have also noticed that we\'re now keeping track of the ID of the polling interval we made. One often overlooked feature of the'}
+          {'Furthermore, you may have also noticed that we\'re now keeping track of the ID of the polling interval we made. This is so we can get rid of that interval if we don\'t need it anymore by using '}
+          <InlineCode>{'clearInterval'}</InlineCode>
+          {'. But where in our '}
           <InlineCode>{'useEffect'}</InlineCode>
-          {' hook is the function that gets returned in it: the '}
-          <b>{'cleanup'}</b>
-          {' function.'}
+          {' should we use this?'}
         </Fragment>
       },
       {
@@ -273,30 +279,104 @@ export default CounterButton;
       },
       {
         type: 'p',
-        children: 'This cleanup function is called when the component is unmounted. We wouldn\'t want to continue polling the backend when our button is no longer in the DOM right? As such, our cleanup function will get rid of the polling interval that we\'ve created.'
-      },
-      {
-        type: 'p',
         children: <Fragment>
-          {'The cleanup function will also be called whenever the dependency array changes. In addition, it will '}
-          <b>{'also'}</b>
-          {' re-run the function that was passed into the '}
+          {'One often overlooked feature of the '}
           <InlineCode>{'useEffect'}</InlineCode>
-          {', so there will be a fresh new polling interval to replace the old one that was just cleaned up.'}
-        </Fragment>
-      },
-      {
-        type: 'p',
-        children: <Fragment>
-          {'This is extremely useful when our polling relies on some state variable since we can kill the old polling interval that still uses the outdated variables. For example, if we want to let the users adjust how frequent the the application polls the backend, we can introduce a '}
-          <InlineCode>{'pollingFrequency'}</InlineCode>
-          {' state variable that manages this.'}
+          {' hook is its '}
+          <SparkleText text='cleanup' />
+          {' function, which is the function that gets returned from the '}
+          <InlineCode>{'useEffect'}</InlineCode>
+          {'.'}
         </Fragment>
       },
       {
         type: 'code',
+        language: 'js',
+        title: 'Where is cleanup located in useEffect?',
+        children: `useEffect(() => {
+  // Do the effect
+
+  return () => {
+    // Do the cleanup of the effect
+  }
+})`
+      },
+      {
+        type: 'p',
+        children: <Fragment>
+          {'This cleanup function is called when the component is unmounted. We can use this to our advantage by placing our '}
+          <InlineCode>{'clearInterval'}</InlineCode>
+          {' in here.'}
+        </Fragment>
+      },
+      {
+        type: 'p',
+        children: 'This way, if our button gets unmounted from the DOM, our application will no longer poll the backend unnecessarily.'
+      },
+      {
+        type: 'code',
+        language: 'js',
+        title: 'Adding a cleanup function to our useEffect',
+        children: `useEffect(() => {
+  // Setting up polling
+  const invervalID = setInterval(() => {
+    fetch('.../api/database')
+      .then((res) => res.json())
+      .then((data) => {
+        setCounter(data.totalClicked);
+      })
+      .catch((error) => {
+        // Error handling...
+      });
+  }, 5000);
+
+  /** The cleanup function that is called whenever the component is unmounted **/
+  return () => {
+    // Gets rid of the interval associated with the invervalID
+    clearInterval(invervalID);
+  }
+}, [/* Include any dependencies you need, in this case it's nothing */]);`
+      },
+      {
+        type: 'p',
+        children: 'The cleanup function will also be called whenever the dependency array changes. Additionally, it will re-run the function passed into useEffect, effectively replacing the old polling interval that was just cleaned up. '
+      },
+      {
+        type: 'p',
+        children: 'This is extremely useful when our polling relies on some state variable since we can kill the old polling interval that still uses the outdated variables. For example, if we want to let the users adjust how frequent the the application polls the backend, we can introduce a state variable to manages this.'
+      },
+      {
+        type: 'code',
+        language: 'js',
+        title: 'Adding a way to adjust how frequent we poll the backend',
+        children: `useEffect(() => {
+  // Setting up polling
+  const invervalID = setInterval(() => {
+    fetch('.../api/database')
+      .then((res) => res.json())
+      .then((data) => {
+        setCounter(data.totalClicked);
+      })
+      .catch((error) => {
+        // Error handling...
+      });
+  }, pollingFrequency); // <-- How often to poll is now determined by a variable
+
+  /** The cleanup function that is called whenever the component is unmounted **/
+  return () => {
+    // Gets rid of the interval associated with the invervalID
+    clearInterval(invervalID);
+  }
+}, [pollingFrequency]); // <-- This useEffect is now dependent on pollingFrequency`
+      },
+      {
+        type: 'p',
+        children: 'That\'s about it. Our full completed functional component that polls the backend and allows the user to change the polling frequency would look something like this:'
+      },
+      {
+        type: 'code',
         language: 'jsx',
-        title: 'Better polling with dependencies',
+        title: 'Complete Polling Code',
         children: `import React, { Fragment, useState, useEffect } from 'react';
 
 const CounterButton = () => {
@@ -348,12 +428,11 @@ const CounterButton = () => {
   );
 };
 
-export default CounterButton;
-`
+export default CounterButton;`
       },
       {
         type: 'p',
-        children: 'And that\'s it from me. Hope you\'ve learnt something new from this blog post and can master polling in ReactJS if you ever need it.'
+        children: 'Hope you\'ve learnt something new from this blog post and can master polling in ReactJS if you ever need it.'
       },
       { type: 'signoff' },
       { type: 'feedback' }

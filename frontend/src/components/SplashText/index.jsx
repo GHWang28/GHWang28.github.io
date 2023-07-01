@@ -31,10 +31,10 @@ function SplashText ({ message, position, fontSize, rotate = '15deg', style }) {
         width: 'min(25vw, 250px)',
         fontSize,
         fontWeight: 'bold',
-        color: 'yellow.main',
+        color: '#f7d800',
         animation: `${splashAnimation} ease-in-out 1.5s infinite`,
         position: 'absolute',
-        textShadow: '4px 3px 0 black',
+        textShadow: '2px 2px 0 black',
         rotate,
         zIndex: 3,
         ...position

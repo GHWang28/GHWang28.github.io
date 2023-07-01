@@ -3,7 +3,7 @@ import { useSwipeable } from 'react-swipeable';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PropTypes from 'prop-types';
 
-export default function AccordionWrapper ({ children, title }) {
+export default function AccordionWrapper ({ children, title, bgcolor }) {
 
   const preventSwipeHandler = useSwipeable({
     onSwiped: ({ event }) => {
@@ -15,10 +15,11 @@ export default function AccordionWrapper ({ children, title }) {
     <Accordion {...preventSwipeHandler} >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
+        sx={{ bgcolor }}
       >
         <Typography fontWeight='bold'>{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{ bgcolor }}>
         {children}
       </AccordionDetails>
     </Accordion>

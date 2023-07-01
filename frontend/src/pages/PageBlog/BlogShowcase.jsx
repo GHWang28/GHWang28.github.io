@@ -122,7 +122,7 @@ export default function BlogShowcase () {
               </Typography>
             )
             default: return (
-              <Typography key={`page-item-${index}`} textAlign='justify' sx={{ textIndent: '25px' }} fontSize={20} my={2}>{elementData.children}</Typography>
+              <Typography key={`page-item-${index}`} textAlign='justify' fontSize={20} my={2}>{elementData.children}</Typography>
             );
           }
         })}

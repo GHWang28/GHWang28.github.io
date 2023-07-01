@@ -11,6 +11,7 @@ import AccordionWrapper from '../AccordionWrapper';
 
 export default function CardQuiz ({ question, options }) {
   const theme = useTheme();
+  const lightMode = theme.palette.mode === 'light';
 
   const [answered, setAnswered] = useState(false);
   const [answerMessage, setAnswerMessage] = useState('');
@@ -55,7 +56,7 @@ export default function CardQuiz ({ question, options }) {
   }
   
   return (
-    <AccordionWrapper title={`🧩 Quiz - Try to complete me before continuing.`}>
+    <AccordionWrapper bgcolor={(lightMode) ? '#6f8ead' : '#234553'} title={`🧩 Quiz - Try to complete me before continuing.`}>
       <Box
         sx={{
           borderRadius: '15px',
@@ -65,6 +66,7 @@ export default function CardQuiz ({ question, options }) {
           boxShadow: '0 8px 6px -6px black'
         }}
         p={2}
+        pt={3}
         my={2}
       >
         <BootstrapTooltip title={(answered) ? 'Restart' : 'Reveal Answer'}>
@@ -76,11 +78,7 @@ export default function CardQuiz ({ question, options }) {
         <Typography mb={2} variant='h5' align='center'>{question}</Typography>
         <Grid container rowSpacing={{ xs: 1, sm: 2, md: 3 }} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {randomisedOptions.map((option, index) => (
-            <Grid
-              key={`option-${index}`}
-              item xs={12}
-              md={6}
-            >
+            <Grid key={`option-${index}`} item xs={12} md={6}>
               <Button
                 sx={{
                   p: 2,

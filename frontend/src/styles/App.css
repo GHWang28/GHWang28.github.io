@@ -8,6 +8,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .light-mode-bg {
