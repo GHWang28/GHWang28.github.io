@@ -50,7 +50,7 @@ export default function PageAbout () {
           bgcolor: (lightMode) ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
           borderRadius: '15px'
         }}
-        px={2}
+        px={{ xs: 0.5, sm: 2 }}
       >
         <Grid my={2.5} item md={4} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <AnimatedProfilePic />

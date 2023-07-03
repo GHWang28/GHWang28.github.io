@@ -12,7 +12,7 @@ const tickScroll = keyframes`
   }
 `;
 
-export default function ImageScroller ({ images, height, length = '10s', bgcolor, tooltips = [] }) {
+export default function ImageScroller ({ images, height, length = '10s', bgcolor, tooltips = [], onClick }) {
   const themeMode = useTheme().palette.mode;
   const [hover, setHover] = useState(false);
 
@@ -22,10 +22,12 @@ export default function ImageScroller ({ images, height, length = '10s', bgcolor
         overflowX: 'hidden',
         bgcolor,
         border: `2px solid ${(themeMode === 'dark') ? 'whitesmoke' : 'black'}`,
-        borderRadius: '15px'
+        borderRadius: '15px',
+        cursor: (onClick != null) ? 'pointer' : 'default'
       }}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
+      onClick={onClick}
     >
       <Box
         sx={{
@@ -67,5 +69,6 @@ ImageScroller.propTypes = {
   itemGap: PropTypes.string,
   length: PropTypes.string,
   bgcolor: PropTypes.string,
-  tooltips: PropTypes.arrayOf(PropTypes.string)
+  tooltips: PropTypes.arrayOf(PropTypes.string),
+  onClick: PropTypes.func
 };

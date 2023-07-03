@@ -16,6 +16,7 @@ export default function PageSkills () {
     'Game Development',
     'Project Management',
     'Administrative Tools',
+    'Other'
   ]
 
   const allSkills = [
@@ -58,7 +59,13 @@ export default function PageSkills () {
     {
       name: 'Java',
       src: 'java.svg',
-      tags: ['Programming Languages']
+      tags: ['Programming Languages', 'Backend Technology']
+    },
+    {
+      name: 'Spring Boot',
+      src: 'spring-boot.svg',
+      whitebg: true,
+      tags: ['Backend Technology']
     },
     {
       name: 'JavaScript',
@@ -181,7 +188,7 @@ export default function PageSkills () {
     {
       name: 'Camtasia',
       src: 'camtasia.jpg',
-      tags: ['Administrative Tools']
+      tags: ['Other']
     },
     {
       name: 'Git',
@@ -213,7 +220,7 @@ export default function PageSkills () {
 
         <Box
           mx='auto'
-          p={2}
+          px={{ xs: 0.5, sm: 2 }}
           sx={{
             maxWidth: '750px',
             display: 'flex',
