@@ -1,9 +1,13 @@
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import { useInView } from "react-intersection-observer";
-import ImageScroller from "../../../components/ImageScroller";
+import React from 'react';
+import { Box, Link, Typography, useMediaQuery } from '@mui/material';
+import { Link as RouterLink } from "react-router-dom";
+import { useInView } from 'react-intersection-observer';
+import ImageScroller from '../../../components/ImageScroller';
 
 export default function SkillsSection () {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
@@ -13,15 +17,19 @@ export default function SkillsSection () {
         opacity: (inView) ? '1' : '0',
         translate: (inView) ? '0px' : '50px',
         transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>
         {'Skills'}
       </Typography>
-      <Typography mb={(smallMq) ? 1 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'I possess skills in...'}
-      </Typography>
+
+      <Link component={RouterLink} variant='subtitle1' fontWeight='bold' to={'skills'} align='center' mb={(smallMq) ? 1 : 3}>
+        {'✨ Click here to see more ✨'}
+      </Link>
+      
       <ImageScroller
         height='75px'
         images={[

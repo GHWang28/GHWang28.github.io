@@ -8,7 +8,9 @@ import PropTypes from 'prop-types';
 
 export default function TimelineSection ({ timelineItems, title, subtitle, odd }) {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm')); 
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
 
   return (
     <Box

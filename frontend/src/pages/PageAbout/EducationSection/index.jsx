@@ -4,7 +4,9 @@ import { useInView } from 'react-spring';
 import EducationCard from './EducationCard';
 
 export default function EducationSection () {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
 
   const titleAnimation = {
     opacity: (inView) ? '1' : '0',

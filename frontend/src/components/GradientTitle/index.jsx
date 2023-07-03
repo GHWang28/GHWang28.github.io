@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Box, Typography } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
-import Sparklez from '../../components/Sparklez';
+import Sparklez from '../Sparklez';
 import PropTypes from 'prop-types';
 
-function AnimatedTitle ({ title, subtitle, children, mt = 1 }) {
+function GradientTitle ({ title, subtitle, children, mt = 1 }) {
   const AnimatedBox = animated(Box);
 
   return (
@@ -38,7 +38,7 @@ function AnimatedTitle ({ title, subtitle, children, mt = 1 }) {
   )
 }
 
-AnimatedTitle.propTypes = {
+GradientTitle.propTypes = {
   mt: PropTypes.number,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
@@ -48,4 +48,4 @@ AnimatedTitle.propTypes = {
   ])
 };
 
-export default AnimatedTitle;
+export default GradientTitle;

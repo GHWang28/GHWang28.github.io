@@ -2,7 +2,6 @@ import React from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Box, IconButton, styled, useTheme } from '@mui/material';
-import DeviantArtIcon from '../../icons/DeviantArtIcon';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useSpring, animated } from 'react-spring';
 import { easings } from '@react-spring/web'
@@ -18,6 +17,7 @@ const OutlinedButton = styled(IconButton)(() => {
 function ContactDetails () {
   const AnimatedBox = animated(Box);
   const allLinks = [
+    /*
     {
       href: config.DEVIANT_ART,
       title: 'Go to my DeviantArt',
@@ -32,6 +32,7 @@ function ContactDetails () {
         }
       })
     },
+    */
     {
       href: config.GITHUB,
       title: 'Go to my GitHub',

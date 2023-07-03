@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
 
 export default function HobbiesItem ({ odd, data }) {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const theme = useTheme();
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
   

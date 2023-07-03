@@ -14,7 +14,9 @@ const onClick = keyframes`
 
 export default function ContactMeIcon ({ contact }) {
   const [clicked, setClicked] = useState(false);
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
 
   return (
     <Box

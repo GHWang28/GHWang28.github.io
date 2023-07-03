@@ -8,7 +8,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function TimelineSectionItemSmall ({ data, index }) {
   const [show, setShow] = useState(false);
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
 
   const onClick = () => {
     setShow(!show);

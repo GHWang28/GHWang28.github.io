@@ -23,7 +23,9 @@ const funfactPool = [
 ]
 
 export default function FunFactSection () {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const themeMode = useTheme().palette.mode;
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);

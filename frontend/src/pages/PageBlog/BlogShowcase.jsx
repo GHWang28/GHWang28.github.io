@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
-import AnimatedTitle from '../PageProjects/AnimatedTitle';
+import GradientTitle from '../../components/GradientTitle';
 import PageError from '../PageError';
 import ImageZoomable from '../../components/ImageZoomable';
 import blogs from './blogs';
@@ -30,9 +30,9 @@ export default function BlogShowcase () {
     <Fragment>
       <ButtonGoBack destination={'/blog'} />
 
-      <AnimatedTitle title={blogData.title} mt={0} subtitle={blogData.subtitle}>
+      <GradientTitle title={blogData.title} mt={0} subtitle={blogData.subtitle}>
         <BlogTags created={blogData?.created} estimatedReadingTime={blogData?.estimatedReadingTime} quizIncluded={blogData?.quizIncluded} />
-      </AnimatedTitle>
+      </GradientTitle>
   
       <Box
         mx='auto'
@@ -65,7 +65,7 @@ export default function BlogShowcase () {
             case 'h2':
             case 'h1': return (
               <TypographyBorder
-                key={`page-item-${index}`}
+                key={`page-item-${elementData.type}-${index}`}
                 textAlign={(smallMq) ? 'left' : 'center'}
                 fontWeight='bold'
                 sx={{ mt: (elementData.type === 'h6') ? 0.5 : 6, mb: (elementData.type === 'h6') ? 0.5 : 1  }}
@@ -76,7 +76,7 @@ export default function BlogShowcase () {
             )
             case 'code': return (
               <CodeSnippet
-                key={`page-item-${index}`}
+                key={`page-item-${elementData.type}-${index}`}
                 language={elementData.language}
                 snippet={elementData.children}
                 title={elementData.title}
@@ -84,16 +84,15 @@ export default function BlogShowcase () {
             )
             case 'quiz': return (
               <CardQuiz
-                key={`page-item-${index}`}
+                key={`page-item-${elementData.type}-${index}`}
                 question={elementData.question}
                 options={elementData.options}
               />
             )
             case 'feedback': return (
-              <Fragment key={`page-item-${index}`}>
+              <Fragment key={`page-item-${elementData.type}-${index}`}>
                 <Box component='hr' width='100%' mt={4} />
                 <TypographyBorder
-                  key={`page-item-${index}`}
                   textAlign={(smallMq) ? 'left' : 'center'}
                   fontWeight='bold'
                   sx={{ mt: 6, mb: 1 }}
@@ -101,7 +100,7 @@ export default function BlogShowcase () {
                 >
                   {`${blogData.emoji} Feedback`}
                 </TypographyBorder>
-                <Typography key={`page-item-${index}`} textAlign='justify' sx={{ textIndent: '25px' }} fontSize={20} my={2}>
+                <Typography textAlign='justify' sx={{ textIndent: '25px' }} fontSize={20} my={2}>
                   {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
                   <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
                     {'here'}
@@ -111,7 +110,7 @@ export default function BlogShowcase () {
               </Fragment>
             )
             case 'signoff': return (
-              <Typography key={`page-item-${index}`} align='right'>
+              <Typography key={`page-item-${elementData.type}-${index}`} align='right'>
                 {'- '}
                 <Box component='span' fontWeight='bold' color={'blue.main'}>{'Gordon Wang'}</Box>
                 <br />
@@ -122,7 +121,7 @@ export default function BlogShowcase () {
               </Typography>
             )
             default: return (
-              <Typography key={`page-item-${index}`} textAlign='justify' fontSize={20} my={2}>{elementData.children}</Typography>
+              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={20} my={2}>{elementData.children}</Typography>
             );
           }
         })}

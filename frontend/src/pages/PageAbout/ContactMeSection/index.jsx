@@ -7,7 +7,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactMeIcon from './ContactMeIcon';
 
 export default function ContactMeSection () {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
 
   const contacts = [
     {

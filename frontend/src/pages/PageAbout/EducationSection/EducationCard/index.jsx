@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 export default function EducationCard ({title, subtitle, color, src, date = ['', ''], description = [], odd, backgroundSrc}) {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [show, setShow] = useState(false);
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const theme = useTheme();
   
   return (

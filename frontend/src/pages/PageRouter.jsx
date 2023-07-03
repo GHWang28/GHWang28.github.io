@@ -10,6 +10,7 @@ import PageLanding from './PageLanding';
 import PageProjects from './PageProjects';
 import PageError from './PageError';
 import PageBlog from './PageBlog';
+import PageSkills from './PageSkills';
 
 export default function PageRouter () {
   const location = useLocation();
@@ -37,6 +38,7 @@ export default function PageRouter () {
             <Route path='/projects/*' element={<PageProjects />}/>
             <Route path='/blog/*' element={<PageBlog />}/>
             <Route path='/about' element={<PageAbout />}/>
+            <Route path='/about/skills' element={<PageSkills />}/>
           </Routes>
         </AnimatedAbsoluteWrapper>
       ))}

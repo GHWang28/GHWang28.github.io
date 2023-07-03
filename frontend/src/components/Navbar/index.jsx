@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AppBar, Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import { useLocation, useNavigate } from 'react-router';
@@ -15,6 +15,7 @@ function Navbar () {
   const [selectedDim, setSelectedDim] = useState({});
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navOptionRefArray = useRef([]);
   const navbarLockState = useSelector(state => state.navbarLock);
 
   const themeMode = useTheme().palette.mode;
@@ -41,15 +42,26 @@ function Navbar () {
 
   // Moving the selected border around with each click
   useEffect(() => {
-    // Fallback onto projects if the current button could not be found
-    const element = document.getElementById(`nav-btn-${location.pathname.substring(1)}`) || document.getElementById('nav-btn-projects');
+    // Find which tab to highlight by getting the correct ref
+    // rootPath is here to ensure that the highlight fades if not on one of the root pages
+    let rootPath = false;
+    const currPathIndex = config.PAGES.slice(1).map((navigationOption) => (
+      navigationOption.slice(1)
+    )).findIndex((option) => {
+      const currPath = location.pathname.substring(1);
+      rootPath = option === currPath;
+      return currPath.startsWith(option);
+    });
+
+    const element = navOptionRefArray.current[Math.max(currPathIndex, 0)];
+
     const divData = element.getBoundingClientRect();
     setSelectedDim({
       bottom: element.offsetTop + 3,
       left: element.offsetLeft,
       width: divData.width,
       height: 0,
-      opacity: (location.pathname === '/') ? '0' : '1'
+      opacity: (currPathIndex < 0 || !rootPath) ? '0' : '1'
     });
   }, [location]);
 
@@ -91,7 +103,7 @@ function Navbar () {
   const navigationElements = navigationOptions.map((navOption, index) => (
     <NavbarButton
       key={`nav-btn-${navOption}`}
-      id={`nav-btn-${navOption}`}
+      ref={(e) => { navOptionRefArray.current[index] = e }}
       onClick={() => {
         navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
       }}

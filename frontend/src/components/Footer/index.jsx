@@ -3,7 +3,7 @@ import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import GitInfo from 'react-git-info/macro';
 import { useLocation } from 'react-router';
 import { ISOToDateStr } from '../../helpers';
-import DeviantArtIcon from '../../icons/DeviantArtIcon';
+// import DeviantArtIcon from '../../icons/DeviantArtIcon';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
@@ -23,6 +23,7 @@ export default function Footer () {
   if (location.pathname === '/') return null;
 
   const allContacts = [
+    /*
     {
       onClick: () => {
         window.open(config.DEVIANT_ART, '_blank').focus();
@@ -30,6 +31,7 @@ export default function Footer () {
       title: 'Go to my DeviantArt',
       icon: <DeviantArtIcon />,
     },
+    */
     {
       onClick: () => {
         window.open(config.GITHUB, '_blank').focus();

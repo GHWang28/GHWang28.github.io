@@ -8,9 +8,9 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
 import TagIcon from '../../icons/TagIcon';
-import AnimatedTitle from './AnimatedTitle';
 import CardContainer from '../../components/CardContainer';
 import CardProject from '../../components/CardProject';
+import GradientTitle from '../../components/GradientTitle';
 
 function ProjectHub () {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function ProjectHub () {
 
   return (
     <Fragment>
-      <AnimatedTitle title='Projects' subtitle={'My proud creations, big and small'}/>
+      <GradientTitle title='Projects' subtitle={'My proud creations, big and small'}/>
       {/* Filter Button */}
       <Box my={1.5} px={2} sx={{ width: '100%', display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
         <Typography sx={{ opacity: 0.5 }}>

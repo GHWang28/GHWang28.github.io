@@ -2,15 +2,15 @@ import React, { Fragment } from 'react';
 import { Box, Link } from '@mui/material';
 import ButtonGoBack from '../../../components/ButtonGoBack';
 import ImageGallery from '../../../components/ImageGallery';
-import AnimatedTitle from '../AnimatedTitle';
 import BoxInfo from '../../../components/BoxInfo';
+import GradientTitle from '../../../components/GradientTitle';
 
 export default function ProjectMinecraftScreensaver () {
 
   return (
     <Fragment>
       <ButtonGoBack destination={'/projects'} />
-      <AnimatedTitle title={'Minecraft Screensaver'} />
+      <GradientTitle title={'Minecraft Screensaver'} />
       <ImageGallery
         imgArray={[
           'https://youtu.be/dCYTLbNl_to',

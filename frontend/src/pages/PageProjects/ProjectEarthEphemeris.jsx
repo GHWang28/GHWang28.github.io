@@ -5,7 +5,7 @@ import { animated, useSpring } from 'react-spring';
 import ImageGallery from '../../components/ImageGallery';
 import ImageRow from '../../components/ImageRow';
 import ButtonGoBack from '../../components/ButtonGoBack';
-import AnimatedTitle from './AnimatedTitle';
+import GradientTitle from '../../components/GradientTitle';
 
 function ProjectEarthEphemeris () {
   const [ref, inView] = useInView();
@@ -16,7 +16,7 @@ function ProjectEarthEphemeris () {
   return (
     <Fragment>
       <ButtonGoBack destination={'/projects'} />
-      <AnimatedTitle title={'Earth\'s Ephemeris'} />
+      <GradientTitle title={'Earth\'s Ephemeris'} />
 
       <Grid container p={(smallMq) ? 4 : 2} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!largeMq) ? 'column-reverse' : '' }}>
 

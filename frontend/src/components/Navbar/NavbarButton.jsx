@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, useMediaQuery } from "@mui/material";
 import Sparklez from '../Sparklez';
+import { isMobileOrTablet } from '../../helpers';
 
-function NavbarButton ({ label, onClick, disabled, ...props }) {
+const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) => {
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [hover, setHover] = useState(false);
 
@@ -15,6 +16,7 @@ function NavbarButton ({ label, onClick, disabled, ...props }) {
   return (
     <Button
       title={props.label}
+      ref={ref}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
       {...props}
@@ -28,17 +30,19 @@ function NavbarButton ({ label, onClick, disabled, ...props }) {
           width: '33.33%',
           borderBottom: '3px solid rgba(0,0,0,0.5)',
           transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out',
-          "&:hover": {
-            // Remove highlight color
-            backgroundColor: 'rgba(0,0,0,0)',
-            color: 'borderColor.main'
-          }
         },
         (!smallMq) && {
           fontSize: '12px',
         },
         (disabled) && {
-          bgcolor: 'rgba(0,0,0,0.5)'
+          bgcolor: 'rgba(0,0,0,0.5)',
+        },
+        (!isMobileOrTablet()) && {
+          '&:hover': {
+            // Remove highlight color
+            backgroundColor: 'rgba(0,0,0,0)',
+            color: 'borderColor.main'
+          }
         }
       ]}
       disableRipple
@@ -52,7 +56,7 @@ function NavbarButton ({ label, onClick, disabled, ...props }) {
       )}
     </Button>
   )
-}
+})
 
 NavbarButton.propTypes = {
   label: PropTypes.string.isRequired

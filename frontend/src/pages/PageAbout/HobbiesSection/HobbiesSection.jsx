@@ -5,7 +5,9 @@ import generateHobbies from './hobbies';
 import HobbiesItem from './HobbiesItem';
 
 export default function HobbiesSection () {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const listOfHobbies = generateHobbies();
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
