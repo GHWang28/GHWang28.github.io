@@ -218,18 +218,17 @@ export default function PageSkills () {
 
       <GradientTitle title='Skills' subtitle='I possess skills in...' />
 
-        <Box
-          mx='auto'
-          px={{ xs: 0.5, sm: 2 }}
-          sx={{
-            maxWidth: '750px',
-            display: 'flex',
-            flexDirection: 'column',
-            bgcolor: (lightMode) ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
-            borderRadius: '15px'
-          }}
-        >
-
+      <Box
+        mx='auto'
+        px={{ xs: 0.5, sm: 2 }}
+        sx={{
+          maxWidth: '750px',
+          display: 'flex',
+          flexDirection: 'column',
+          bgcolor: (lightMode) ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
+          borderRadius: '15px'
+        }}
+      >
         {categorisedSkills.map((category) => (
           <Fragment key={`category-${category.heading}`}>
             <Divider sx={{
