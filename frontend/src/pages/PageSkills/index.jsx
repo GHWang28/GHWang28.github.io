@@ -16,6 +16,7 @@ export default function PageSkills () {
     'Game Development',
     'Project Management',
     'Administrative Tools',
+    'Languages',
     'Other'
   ]
 
@@ -204,6 +205,18 @@ export default function PageSkills () {
       name: 'Lucid Charts',
       src: 'lucid-charts.png',
       tags: ['Project Management']
+    },
+    {
+      name: 'English',
+      src: 'english.svg',
+      whitebg: true,
+      tags: ['Languages']
+    },
+    {
+      name: 'Mandarin Chinese',
+      src: 'chinese.svg',
+      whitebg: true,
+      tags: ['Languages']
     }
   ].sort((skillA, skillB) => ( skillA.name.localeCompare(skillB.name) ));
 
