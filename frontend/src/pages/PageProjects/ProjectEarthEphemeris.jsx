@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { animated, useSpring } from 'react-spring';
@@ -10,19 +10,17 @@ import GradientTitle from '../../components/GradientTitle';
 function ProjectEarthEphemeris () {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   return (
     <Fragment>
       <ButtonGoBack destination={'/projects'} />
       <GradientTitle title={'Earth\'s Ephemeris'} />
 
-      <Grid container p={(smallMq) ? 4 : 2} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: (!largeMq) ? 'column-reverse' : '' }}>
+      <Grid container p={{ xs: 1, sm: 3 }} rowSpacing={1} rowGap={{ xs: 4 }} sx={{ flexDirection: { xs: 'column-reverse', lg: 'row' } }}>
 
         {/* Cotaining the images */}
-        <Grid item xs={12} lg={9.5}>
-          <Grid container p={(smallMq) ? 4 : 0} rowSpacing={1} rowGap={{ xs: 8 }} >
+        <Grid item xs={12} lg={8} xl={9}>
+          <Grid container p={{ xs: 0, sm: 3 }} rowSpacing={1} rowGap={{ xs: 8 }} >
             <ImageRow src='/images/hscbow/homesweethome.jpg' title='Home Sweet Home' body='Artwork #1' rowNo={1} />
             <ImageRow src='/images/hscbow/leaving.jpg' title='Exiting W/O Leaving' body='Artwork #2' rowNo={2} />
             <ImageRow src='/images/hscbow/bonvoyage.jpg' title='Bon Voyage' body='Artwork #3' rowNo={3} />
@@ -33,7 +31,7 @@ function ProjectEarthEphemeris () {
         </Grid>
         
         {/* Containing the side message */}
-        <Grid item xs={12} lg={2.5} >
+        <Grid item xs={12} lg={4} xl={3}>
           <AnimatedBox
             style={useSpring({
               from: { opacity: 0, y: '-100%' },
@@ -56,9 +54,7 @@ function ProjectEarthEphemeris () {
               {'Body of Work Description'}
             </Typography>
             <Typography fontWeight='bold' fontSize={20}>
-              {`
-                Earth's Ephemeris shows an alternative reality where depicting where Earth has become uninhabitable. The narrative revolves around CT-320, a rover designed with the purpose of surveying planets as an Earth's replacement.
-              `}
+              {'Earth\'s Ephemeris shows an alternative reality where depicting where Earth has become uninhabitable. The narrative revolves around CT-320, a rover designed with the purpose of surveying planets as an Earth\'s replacement.'}
             </Typography>
           </AnimatedBox>
         </Grid>

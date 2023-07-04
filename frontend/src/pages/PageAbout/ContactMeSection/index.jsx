@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import MailIcon from '@mui/icons-material/Mail';
@@ -6,8 +6,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactMeIcon from './ContactMeIcon';
 
-export default function ContactMeSection () {
-  const [ref, inView] = useInView({
+const ContactMeSection = forwardRef((_, ref) => {
+  const [inViewRef, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
 
@@ -43,13 +43,13 @@ export default function ContactMeSection () {
 
   return (
     <Box
-      ref={ref}
+      ref={inViewRef}
       sx={{
         opacity: (inView) ? '1' : '0',
         transition: 'translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
       }}
     >
-      <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
+      <Typography ref={ref} mt={5} variant='h4' fontWeight='bold' align='center'>
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
@@ -73,4 +73,6 @@ export default function ContactMeSection () {
       </Grid>
     </Box>
   )
-}
+});
+
+export default ContactMeSection;

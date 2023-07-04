@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { Box, Divider, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import React, { Fragment, useRef } from 'react';
+import { Box, Divider, Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import AnimatedProfilePic from './AnimatedProfilePic';
 import TimelineSection from './TimelineSection';
 import ContactMeSection from './ContactMeSection';
@@ -14,6 +14,7 @@ import FunFactSection from './FunFactSection';
 import EducationSection from './EducationSection';
 import InlineCode from '../../components/InlineCode';
 import GradientTitle from '../../components/GradientTitle';
+import SparklezText from '../../components/Sparklez/SparklezText';
 
 export default function PageAbout () {
   const lightMode = useTheme().palette.mode === 'light';
@@ -21,6 +22,13 @@ export default function PageAbout () {
   const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
   const AnimatedTypography = animated(Typography);
+  const contactRef = useRef();
+
+  // This is called when user clicks on link underneath the introduction
+  const getInContactHandler = (event) => {
+    event.preventDefault();
+    contactRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
 
   const skillAndFunFactSection = (
     <Grid container>
@@ -90,20 +98,19 @@ export default function PageAbout () {
               delay: 650
             })}
             align='center'
-            fontSize={28}
+            fontSize={24}
             fontWeight='bold'
             color='text.secondary'
             mb={3}
           >
-            {'I am a  '}
-            <InlineCode>
-              Computer&nbsp;Science
-            </InlineCode>
-            {' graduate from '}
-            <Box component='span' color='yellow.main'>{'UNSW '}</Box>
-            <Box component='span' className='ozzie-text'>{'Australia'}</Box>
-            {' and currently am a Frontend Programming Tutor at '}
-            <Box component='span' color='yellow.main'>{'UNSW'}</Box>
+            {'Thanks for checking out my portfolio website! I\'m a'}
+            <InlineCode>{'Computer Science'}</InlineCode>
+            {'Graduate with a great passion in crafting '}
+            <SparklezText gradient='rainbow'>{'visual'}</SparklezText>
+            {' experiences - whether it be through'}
+            <InlineCode>{'<programming/>'}</InlineCode>
+            {'or '}
+            <SparklezText noSparklez gradient='graphic'>{'graphic design'}</SparklezText>
             {'.'}
           </AnimatedTypography>
           <AnimatedTypography
@@ -118,7 +125,14 @@ export default function PageAbout () {
             color='text.secondary'
             mb={(xLargeMq) ? 3 : 0}
           >
-            {'I am a highly motivated individual who is passionate about design and always looking to learn new skills.'}
+            {'Currently, I\'m based in Sydney '}
+            <SparklezText noSparklez gradient='ozzie'>{'Australia'}</SparklezText>
+            {'.'}
+            <br/>
+            {'Want to get in contact? '}
+            <Link href='#' onClick={getInContactHandler}>
+              {'Click here.'}
+            </Link>
           </AnimatedTypography>
           {(xLargeMq) && (skillAndFunFactSection)}
         </Grid>
@@ -159,7 +173,7 @@ export default function PageAbout () {
         </Grid>
         <Box component='hr' width='100%' my={0}/>
         <Grid item xs={12} mb={2}>
-          <ContactMeSection />
+          <ContactMeSection ref={contactRef} />
         </Grid>
         {/*
         <Box component='hr' width='100%' my={0}/>

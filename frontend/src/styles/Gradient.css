@@ -2,28 +2,33 @@
   --linear-gradient: linear-gradient(45deg,#EE7752,#E73C7E,#23A6D5,#23D5AB,#23A6D5,#E73C7E,#EE7752);
   --linear-gradient-transparent: linear-gradient(45deg,rgba(238,119,82,0), rgba(238,119,82,0),#23A6D5,#23D5AB,#23A6D5,rgba(238,119,82,0),rgba(238,119,82,0));
   --linear-gradient-ozzie: linear-gradient(45deg, #00833D,#F8F615,#00833D,#F8F615);
+  --linear-gradient-graphic: linear-gradient(45deg, #FF0000, #FF6666, #FFCCCC);
+  --linear-gradient-rainbow: linear-gradient(45deg, #FF0000, #FF6A00, #FFD800, #00FF00, #00FFFF, #007FFF, #8B00FF);
 }
 
 .gradient-text {
   background: var(--linear-gradient);
-  background-size: 1800% auto;
+  background-size: 1800% auto !important;
 
   color: #000;
-  -webkit-background-clip: text;
+  -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  animation: shine 60s linear infinite;
+  animation: shine 60s linear infinite !important;
 }
 
-.ozzie-text {
+.gradient-text.graphic {
+  background: var(--linear-gradient-graphic);
+}
+
+.gradient-text.rainbow {
+  background: var(--linear-gradient-rainbow);
+}
+
+.gradient-text.ozzie {
   background: var(--linear-gradient-ozzie);
   background-size: 1000% auto;
-
-  color: #000;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 
   animation: shine 10s linear infinite;
 }

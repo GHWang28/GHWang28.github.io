@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Link, Typography, useMediaQuery } from '@mui/material';
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import ImageScroller from '../../../components/ImageScroller';
 

@@ -5,15 +5,13 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import GameControllerIcon from '@mui/icons-material/SportsEsports';
 import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import Sparklez from '../../components/Sparklez';
+import SparklezText from '../../components/Sparklez/SparklezText';
 
 const generateProjects = (navigate, location) => {
   const dotpoint100Percent = (
     <Fragment>
       {'Achieved '}
-      <Sparklez>
-        <Box component='span' className='gradient-text'>{'100%'}</Box>
-      </Sparklez>
+      <SparklezText>{'100%'}</SparklezText>
       {' for this Assignment.'}
     </Fragment>
   )

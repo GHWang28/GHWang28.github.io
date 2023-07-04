@@ -1,15 +1,6 @@
 import React, { Fragment } from 'react';
 import InlineCode from '../../components/InlineCode';
-import Sparklez from '../../components/Sparklez';
-import { Box } from '@mui/material';
-
-const SparkleText = ({ text }) => (
-  <Sparklez>
-    <Box component='span' className='gradient-text'>
-      {text}
-    </Box>
-  </Sparklez>
-)
+import SparklezText from '../../components/Sparklez/SparklezText';
 
 const blogs = [
   {
@@ -205,7 +196,7 @@ export default CounterButton;
         type: 'p',
         children: <Fragment>
           {'Luckily, we have the perfect hook for these kinds of problems - The '}
-          <SparkleText text='useEffect' />
+          <SparklezText>{'useEffect'}</SparklezText>
           {' hook. We will use it by wrapping it around our '}
           <InlineCode>{'setInterval'}</InlineCode>
           {'.'}
@@ -283,7 +274,7 @@ export default CounterButton;
           {'One often overlooked feature of the '}
           <InlineCode>{'useEffect'}</InlineCode>
           {' hook is its '}
-          <SparkleText text='cleanup' />
+          <SparklezText>{'cleanup'}</SparklezText>
           {' function, which is the function that gets returned from the '}
           <InlineCode>{'useEffect'}</InlineCode>
           {'.'}
