@@ -7,9 +7,9 @@ import { animated, easings, useTransition } from 'react-spring';
 
 const funfactPool = [
   'I can play the piano!',
-  'Inter is my favourite font.',
+  'Can\'t go wrong with the inter font.',
   'My favourite colour is blue 🔵.',
-  'Penguins are my favourite animals 🐧.',
+  'Penguins are very cute animals! 🐧.',
   'I can speak English and Mandarin. 你好!',
   <Fragment>
     {'I have a pomeranian dog named '}
@@ -66,7 +66,7 @@ export default function FunFactSection () {
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>
-        {'Fun Facts'}
+        {'Quirky Facts'}
       </Typography>
       <Typography mb={(smallMq) ? 1 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
         {'Mildly interesting facts about me'}

@@ -103,8 +103,8 @@ export default function PageAbout () {
             color='text.secondary'
             mb={3}
           >
-            {'Thanks for checking out my portfolio website! I\'m a'}
-            <InlineCode>{'Computer Science'}</InlineCode>
+            {'I\'m a'}
+            <InlineCode>Computer&nbsp;Science</InlineCode>
             {'Graduate with a great passion in crafting '}
             <SparklezText gradient='rainbow'>{'visual'}</SparklezText>
             {' experiences - whether it be through'}
@@ -125,7 +125,7 @@ export default function PageAbout () {
             color='text.secondary'
             mb={(xLargeMq) ? 3 : 0}
           >
-            {'Currently, I\'m based in Sydney '}
+            {'Thanks for checking out my portfolio website! Currently, I\'m based in Sydney '}
             <SparklezText noSparklez gradient='ozzie'>{'Australia'}</SparklezText>
             {'.'}
             <br/>

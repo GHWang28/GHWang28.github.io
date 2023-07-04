@@ -1,10 +1,11 @@
 import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, useMediaQuery } from "@mui/material";
+import { Button, useMediaQuery, useTheme } from "@mui/material";
 import Sparklez from '../Sparklez';
 import { isMobileOrTablet } from '../../helpers';
 
 const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) => {
+  const lightMode = useTheme().palette.mode === 'light';
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [hover, setHover] = useState(false);
 
@@ -35,7 +36,7 @@ const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) =>
           fontSize: '12px',
         },
         (disabled) && {
-          bgcolor: 'rgba(0,0,0,0.5)',
+          bgcolor: lightMode ? 'rgba(90,90,90,0.5)' : 'rgba(0,0,0,0.5)',
         },
         (!isMobileOrTablet()) && {
           '&:hover': {
