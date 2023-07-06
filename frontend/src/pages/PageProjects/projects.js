@@ -379,7 +379,7 @@ const generateProjects = (navigate, location) => {
           text: 'View Live',
           icon: <GameControllerIcon />,
           onClick: () => {
-            window.open('http://ghwang28.github.io/convo', '_blank').focus();
+            window.open('https://convo-ghwang28.netlify.app/', '_blank').focus();
           }
         },
         {
