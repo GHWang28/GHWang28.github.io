@@ -32,6 +32,17 @@ export default function PageSkills () {
       tags: ['Programming Languages']
     },
     {
+      name: 'Netlify',
+      src: 'netlify.svg',
+      tags: ['Frontend Technology', 'Backend Technology']
+    },
+    {
+      name: 'PyTorch',
+      src: 'pytorch.svg',
+      whitebg: true,
+      tags: ['Other']
+    },
+    {
       name: 'CSS',
       src: 'css.svg',
       tags: ['Frontend Technology']
