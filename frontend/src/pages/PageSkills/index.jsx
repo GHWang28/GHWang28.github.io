@@ -48,6 +48,11 @@ export default function PageSkills () {
       tags: ['Frontend Technology']
     },
     {
+      name: 'Dreamweaver',
+      src: 'dreamweaver.svg',
+      tags: ['Frontend Technology']
+    },
+    {
       name: 'Firebase',
       src:   'firebase.svg',
       tags: ['Backend Technology']
