@@ -82,7 +82,7 @@ export default function AnimatedProfilePic () {
               style={style}
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
-              alternateSrc={currImg ? '/images/about/profile-pic.jpg' : imgs[currImg]}
+              alternateSrc={(currImg === 0) ? '/images/about/profile-pic.jpg' : imgs[currImg]}
               sx={{
                 width: '100%',
                 height: '100%',
