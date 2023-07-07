@@ -51,7 +51,7 @@ export default function CardProject ({ data, index = 0 }) {
         }
       }}
     >
-      <Box sx={{ width: (smallMq) ? '60%' : '100%' }}>
+      <Box sx={{ width: { sm: '60%', xs: '100%' }}}>
         <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
           <TypographyBorder variant='h4'>
             {title}
@@ -108,9 +108,9 @@ export default function CardProject ({ data, index = 0 }) {
         <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} enterDelay={300} title={button?.disabled || button.text}>
           <Box
             component='span'
-            sx={!smallMq && {
+            sx={{
               display: 'flex',
-              justifyContent: 'center'
+              justifyContent: { xs: 'center', sm: 'left' }
             }}
           >
             <Button

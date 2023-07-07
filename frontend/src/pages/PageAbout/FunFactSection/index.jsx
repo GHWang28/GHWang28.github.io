@@ -66,7 +66,7 @@ export default function FunFactSection () {
       }}
     >
       <Typography variant='h4' fontWeight='bold' align='center'>
-        {'Quirky Facts'}
+        {'Fun Facts'}
       </Typography>
       <Typography mb={(smallMq) ? 1 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
         {'Mildly interesting facts about me'}

@@ -14,7 +14,7 @@ export default function ImageZoomable ({ src, sx, alternateSrc = '', ...props })
         ...sx,
         cursor: 'pointer'
       }}
-      onClick={() => { dispatch(alternateSrc || setImageZoom(src)) }}
+      onClick={() => { dispatch(setImageZoom(alternateSrc || src)) }}
     />
   )
 }
