@@ -114,14 +114,11 @@ export default function BlogShowcase () {
                 {'- '}
                 <Box component='span' fontWeight='bold' color={'blue.main'}>{'Gordon Wang'}</Box>
                 <br />
-                {'Casual Academic @ '}
-                <Box component='span' fontWeight='bold' color={'yellow.main'}>{'UNSW'}</Box>
-                <br />
                 {ISOToDateStr(blogData?.created)}
               </Typography>
             )
             default: return (
-              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={20} my={2}>{elementData.children}</Typography>
+              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={18} my={2}>{elementData.children}</Typography>
             );
           }
         })}
