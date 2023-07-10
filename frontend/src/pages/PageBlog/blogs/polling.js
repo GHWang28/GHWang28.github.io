@@ -284,11 +284,11 @@ export default CounterButton;
       language: 'js',
       title: 'Where is cleanup located in useEffect?',
       children: `useEffect(() => {
-// Do the effect
+  // Do the effect
 
-return () => {
-  // Do the cleanup of the effect
-}
+  return () => {
+    // Do the cleanup of the effect
+  }
 })`
     },
     {
@@ -308,23 +308,23 @@ return () => {
       language: 'js',
       title: 'Adding a cleanup function to our useEffect',
       children: `useEffect(() => {
-// Setting up polling
-const invervalID = setInterval(() => {
-  fetch('.../api/database')
-    .then((res) => res.json())
-    .then((data) => {
-      setCounter(data.totalClicked);
-    })
-    .catch((error) => {
-      // Error handling...
-    });
-}, 5000);
+  // Setting up polling
+  const invervalID = setInterval(() => {
+    fetch('.../api/database')
+      .then((res) => res.json())
+      .then((data) => {
+        setCounter(data.totalClicked);
+      })
+      .catch((error) => {
+        // Error handling...
+      });
+  }, 5000);
 
-/** The cleanup function that is called whenever the component is unmounted **/
-return () => {
-  // Gets rid of the interval associated with the invervalID
-  clearInterval(invervalID);
-}
+  /** The cleanup function that is called whenever the component is unmounted **/
+  return () => {
+    // Gets rid of the interval associated with the invervalID
+    clearInterval(invervalID);
+  }
 }, [/* Include any dependencies you need, in this case it's nothing */]);`
     },
     {

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import InlineCode from "../../../components/InlineCode";
 import SparklezText from "../../../components/Sparklez/SparklezText";
 
-const pollingBlog = {
+const pollingAllBlog = {
   id: 2,
   title: 'Promise.all',
   subtitle: 'The purpose of Promise.all',
@@ -430,4 +430,4 @@ export default CounterButton;`
 }
 
 
-export default pollingBlog;
+export default pollingAllBlog;
