@@ -99,7 +99,8 @@ export default function ImageZoomer () {
           sx={{
             userSelect: 'none',
             maxHeight: '98%',
-            maxWidth: '98%'
+            maxWidth: '98%',
+            bgcolor: 'rgb(200,200,200)'
           }}
           onClick={(event) => {
             event.stopPropagation();

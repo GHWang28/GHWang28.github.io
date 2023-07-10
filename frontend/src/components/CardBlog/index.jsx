@@ -92,7 +92,8 @@ export default function CardBlog ({ data, index = 0 }) {
             maxHeight: '250px',
             borderRadius: '15px',
             objectFit: 'cover',
-            objectPosition: 'bottom'
+            objectPosition: 'bottom',
+            bgcolor: 'rgb(200,200,200)'
           }}
         />
       )}

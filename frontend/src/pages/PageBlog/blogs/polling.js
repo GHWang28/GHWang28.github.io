@@ -54,7 +54,7 @@ const pollingBlog = {
       type: 'code',
       language: 'json',
       children:  `{
-"totalClicked": 1
+  "totalClicked": 1
 }`
     },
     {
@@ -82,30 +82,30 @@ const pollingBlog = {
       children: `import React, { useState, useEffect } from 'react';
 
 const CounterButton = () => {
-const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
 
-const handleButtonClick = () => {
-  // Send request to the backend to increase the counter
-  // ...
-};
+  const handleButtonClick = () => {
+    // Send request to the backend to increase the counter
+    // ...
+  };
 
-// Setting up polling
-setInterval(() => {
-  fetch('.../api/database')
-    .then((res) => res.json())
-    .then((data) => {
-      setCounter(data.totalClicked);
-    })
-    .catch((error) => {
-      // Error handling...
-    });
-}, 5000);
+  // Setting up polling
+  setInterval(() => {
+    fetch('.../api/database')
+      .then((res) => res.json())
+      .then((data) => {
+        setCounter(data.totalClicked);
+      })
+      .catch((error) => {
+        // Error handling...
+      });
+  }, 5000);
 
-return (
-  <button onClick={handleButtonClick}>
-    {counter}
-  </button>
-);
+  return (
+    <button onClick={handleButtonClick}>
+      {counter}
+    </button>
+  );
 };
 
 export default CounterButton;

@@ -52,7 +52,8 @@ export default function BlogShowcase () {
             maxWidth: '500px',
             borderRadius: '15px',
             border: '2px solid black',
-            mx: 'auto'
+            mx: 'auto',
+            bgcolor: 'rgb(200,200,200)'
           }}
         />
         {blogData?.elements && blogData.elements.map((elementData, index) => {
