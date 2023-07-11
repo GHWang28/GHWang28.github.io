@@ -4,7 +4,7 @@ import { Button, useMediaQuery, useTheme } from "@mui/material";
 import Sparklez from '../Sparklez';
 import { isMobileOrTablet } from '../../helpers';
 
-const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) => {
+const NavbarButton = forwardRef(({ label, onClick, disabled, startIcon }, ref) => {
   const lightMode = useTheme().palette.mode === 'light';
   const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
   const [hover, setHover] = useState(false);
@@ -16,12 +16,11 @@ const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) =>
 
   return (
     <Button
-      title={props.label}
+      title={label}
       ref={ref}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
-      {...props}
-      disabled={disabled}
+      startIcon={startIcon}
       onClick={handleOnClick}
       sx={[
         {
@@ -30,26 +29,26 @@ const NavbarButton = forwardRef(({ label, onClick, disabled, ...props }, ref) =>
           height: '100%',
           width: '33.33%',
           borderBottom: '3px solid rgba(0,0,0,0.5)',
-          transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out',
+          transition: 'background-color 0.2s ease-in-out, color 0.2s ease-in-out',
         },
         (!smallMq) && {
           fontSize: '12px',
         },
         (disabled) && {
           bgcolor: lightMode ? 'rgba(90,90,90,0.5)' : 'rgba(0,0,0,0.5)',
+          color: 'rgba(127,127,127)'
         },
         (!isMobileOrTablet()) && {
           '&:hover': {
             // Remove highlight color
-            backgroundColor: 'rgba(0,0,0,0)',
-            color: 'borderColor.main'
+            bgcolor: (disabled) ? (lightMode ? 'rgba(90,90,90,0.5)' : 'rgba(0,0,0,0.5)') : 'rgba(0,0,0,0)',
           }
         }
       ]}
       disableRipple
     >
       {(hover) ? (
-        <Sparklez frequency={1.5} sizeRange={[10, 15]}>
+        <Sparklez frequency={3} sizeRange={[10, 15]}>
           {label}
         </Sparklez>
       ) : (
