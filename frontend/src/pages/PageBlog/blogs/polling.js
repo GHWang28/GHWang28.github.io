@@ -8,7 +8,7 @@ const pollingBlog = {
   subtitle: 'A guide on how to request data from the backend in set intervals.',
   thumbnail: '/images/blog/thumbnail_polling.jpg',
   created: '2023-06-24T04:31:51.316Z',
-  estimatedReadingTime: '7',
+  estimatedReadingTime: '5',
   quizIncluded: true,
   emoji: '🎣',
   elements: [

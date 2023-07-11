@@ -69,7 +69,7 @@ export default function BlogShowcase () {
                 key={`page-item-${elementData.type}-${index}`}
                 textAlign={(smallMq) ? 'left' : 'center'}
                 fontWeight='bold'
-                sx={{ mt: (elementData.type === 'h6') ? 0.5 : 6, mb: (elementData.type === 'h6') ? 0.5 : 1  }}
+                sx={{ my: (elementData.type === 'h6') ? 2 : 4 }}
                 variant={elementData.type}
               >
                 {`${blogData.emoji} ${elementData.children}`}
@@ -101,7 +101,7 @@ export default function BlogShowcase () {
                 >
                   {`${blogData.emoji} Feedback`}
                 </TypographyBorder>
-                <Typography textAlign='justify' sx={{ textIndent: '25px' }} fontSize={20} my={2}>
+                <Typography textAlign='justify' fontSize={16} my={2}>
                   {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
                   <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
                     {'here'}
@@ -111,7 +111,7 @@ export default function BlogShowcase () {
               </Fragment>
             )
             case 'signoff': return (
-              <Typography key={`page-item-${elementData.type}-${index}`} align='right'>
+              <Typography key={`page-item-${elementData.type}-${index}`} align='right' mt={3}>
                 {'- '}
                 <Box component='span' fontWeight='bold' color={'blue.main'}>{'Gordon Wang'}</Box>
                 <br />
@@ -119,7 +119,7 @@ export default function BlogShowcase () {
               </Typography>
             )
             default: return (
-              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={18} my={2}>{elementData.children}</Typography>
+              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={16} my={2}>{elementData.children}</Typography>
             );
           }
         })}

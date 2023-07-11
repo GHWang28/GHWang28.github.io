@@ -6,9 +6,9 @@ import { Box } from "@mui/material";
 const pollingAllBlog = {
   id: 2,
   title: 'Why use Promise.all?',
-  subtitle: 'The purpose of Promise.all',
+  subtitle: 'How to make fetch requests concurrently.',
   thumbnail: '/images/blog/thumbnail_promise.png',
-  created: '2023-06-24T04:31:51.316Z',
+  created: '2023-07-11T00:00:00.000Z',
   estimatedReadingTime: '7',
   quizIncluded: false,
   emoji: '📬',
@@ -329,7 +329,7 @@ for (const foodItem of allFoodItem) {
     },
     {
       type: 'code',
-      language: 'jsx',
+      language: 'js',
       title: 'Naïve fetching with await and asyncs',
       children: `// Orders fetched from other endpoint
 const orders = [12390, 11231, 4210, 42];
@@ -379,13 +379,281 @@ for (const foodItem of allFoodItem) {
       type: 'h4',
       children: '4. The Better Approach'
     },
-    
     {
       type: 'p',
-      children: 'Blog post under construction....'
+      children: <Fragment>
+        {'As a reminder, we need to do these steps in this order:'}
+        <ul>
+          <li>
+            {'Get the array of order IDs.'}
+          </li>
+          <li>
+            {'Get the information of each order ID '}<b>{'concurrently'}</b>{'.'}
+          </li>
+          <li>
+            {'When and only when the information needed has successfully been gathered, then we display them all onto the DOM'}
+          </li>
+        </ul>
+        {'For now, we will skip the first step and focus on using'}
+        <InlineCode>
+          {'Promise.all'}
+        </InlineCode>
+        {'to get all the information concurrently by first hardcoding the array of IDs. Don\'t worry, at the end I\'ll show you how to also fetch that array without breaking the order of steps.'}
+      </Fragment>
     },
-    // { type: 'signoff' },
-    // { type: 'feedback' }
+    {
+      type: 'h6',
+      children: '4.1 Promise.all'
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'To use'}
+        <InlineCode>{'Promise.all'}</InlineCode>
+        {', we first need an array of promises. We can create this using the aforementioned'}
+        <InlineCode>{'.map'}</InlineCode>
+        {'function.'}
+      </Fragment>
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Mapping order IDs to fetches',
+      children: `// Orders fetched from other endpoint
+const orders = [12390, 11231, 4210, 42];
+
+const arrayOfPromises = orders.map((foodID) => (
+  fetch(\`goodFood.com/food/\${foodID}\`)
+  .then((res) => res.json())
+));
+
+/*
+Above code will create the following array:
+arrayOfPromises = [
+  fetch('goodFood.com/food/12390').then((res) => res.json()),
+  fetch('goodFood.com/food/11231').then((res) => res.json()),
+  fetch('goodFood.com/food/4210').then((res) => res.json()),
+  fetch('goodFood.com/food/42').then((res) => res.json())
+]
+*/`
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'Now, just need to pass in this'}
+        <InlineCode>{'arrayOfPromises'}</InlineCode>
+        {'into a'}
+        <InlineCode>{'Promise.all'}</InlineCode>
+        {'.'}
+      </Fragment>
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Introducing Promise.all',
+      children: `// Orders fetched from other endpoint
+const orders = [12390, 11231, 4210, 42];
+
+const arrayOfPromises = orders.map((foodID) => (
+  fetch(\`goodFood.com/food/\${foodID}\`)
+  .then((res) => res.json())
+));
+
+Promise.all(arrayOfPromises)
+  .then((responses) => {
+    /*
+    responses = [
+      { name: "Burger", price: 7.5 },
+      { name: "Fries", price: 2.0 },
+      { name: "Drink", price: 2.0 },
+      { name: "20pc Chicken Nuggets", price: 11.2 }
+    ]
+    */
+
+    for (const foodItem of responses) {
+      // Display the food items onto DOM
+      displayFoodCard(foodItem);
+    }
+  })
+  .catch((error) => {//...//});`
+    },
+    {
+      type: 'h6',
+      children: '4.2 Removing the hardcoded array'
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'Currently in our solution, we have hardcoded the array of order IDs. So how do we make it so that we fetch the order IDs from the API and then execute the'}
+        <InlineCode>{'Promise.all'}</InlineCode>
+        {'?'}
+      </Fragment>
+    },
+    {
+      type: 'p',
+      children: 'We can easily use Promise chaining here.'
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Removing hardcoded array of order IDs',
+      children: `fetch('goodFood.com/customer/order/5309206')
+  .then((res) => (res.json()))
+  .then((json) => {
+    const orders = JSON.parse(json);
+
+    const arrayOfPromises = orders.map((foodID) => (
+      fetch(\`goodFood.com/food/\${foodID}\`)
+        .then((res) => res.json())
+        .then((json) => JSON.parse(json))
+    ));
+
+    // To chain promises, Return the promise.all here
+    return Promise.all(arrayOfPromises);
+  })
+  .then((responses) => {
+    // This then will continue once the abovePromise.all is fulfilled
+
+    /*
+    responses = [
+      { name: "Burger", price: 7.5 },
+      { name: "Fries", price: 2.0 },
+      { name: "Drink", price: 2.0 },
+      { name: "20pc Chicken Nuggets", price: 11.2 }
+    ]
+    */
+
+    for (const foodItem of responses) {
+      // Display the food items onto DOM
+      displayFoodCard(foodItem);
+    }
+  })
+  .catch((error) => {//...//});`
+    },
+    {
+      type: 'h6',
+      children: '4.3 Modularising the code'
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'Of course, the above code can be improved '}
+        <i>{'significantly'}</i>
+        {' by extracting the'}
+        <InlineCode>
+          {'fetch'}
+        </InlineCode>
+        {'function and its'}
+        <InlineCode>
+          {'then'}
+        </InlineCode>
+        {'and'}
+        <InlineCode>
+          {'catch'}
+        </InlineCode>
+        {'into its own separate dedicated API function.'}
+      </Fragment>
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Removing hardcoded array of order IDs',
+      children: `// Preferably have this function getReq imported from another javascript file
+const getReq = (url) => (
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) throw Exception('Error');
+
+      return res.json();
+    })
+    .then((json) => {
+      return JSON.parse(json);
+    })
+    .catch((error) => {//...//});
+)
+      
+getReq('goodFood.com/customer/order/5309206')
+  .then((json) => {
+    const arrayOfPromises = orders.map((foodID) => (
+      getReq(\`goodFood.com/food/\${foodID}\`)
+    ));
+
+    // To chain promises, Return the promise.all here
+    return Promise.all(arrayOfPromises);
+  })
+  .then((responses) => {
+    // This then will continue once the abovePromise.all is fulfilled
+
+    /*
+    responses = [
+      { name: "Burger", price: 7.5 },
+      { name: "Fries", price: 2.0 },
+      { name: "Drink", price: 2.0 },
+      { name: "20pc Chicken Nuggets", price: 11.2 }
+    ]
+    */
+
+    for (const foodItem of responses) {
+      // Display the food items onto DOM
+      displayFoodCard(foodItem);
+    }
+  })`
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'Now, we have the capability to fetch the array of order IDs initially. Once that fetch is fulfilled, we can proceed to concurrently fetch additional information for each ID while ensuring that the necessary execution order is maintained.'}
+      </Fragment>
+    },
+    {
+      type: 'h6',
+      children: '4.4 Await/Async alternative'
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'If you much rather use'}
+        <InlineCode>{'awaits'}</InlineCode>
+        {'and'}
+        <InlineCode>{'asyncs'}</InlineCode>
+        {', then you can use the following snippet.'}
+      </Fragment>
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Removing hardcoded array of order IDs',
+      children: `// Preferably have this function getReq imported from another javascript file 
+const getReq = async (url) => (
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw Exception('Error');
+
+    const json = await res.json();
+    return JSON.parse();
+  } catch (err) {
+    console.error('Error: ', err);
+    return false;
+  }
+)
+
+// Gets the array of order IDs
+const orders = await getReq('goodFood.com/customer/order/5309206');
+
+// Create the array of promises to be run concurrently
+const arrayOfPromises = orders.map((foodID) => (
+  getReq(\`goodFood.com/food/\${foodID}\`)
+));
+
+const allFoodItems = await Promise.all(arrayOfPromises);
+
+// Display the food items onto DOM
+for (const foodItem of allFoodItems) {
+  displayFoodCard(foodItem);
+}`
+    },
+    { type: 'signoff' },
+    { type: 'feedback' }
   ]
 }
 
