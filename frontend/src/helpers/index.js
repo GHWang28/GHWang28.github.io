@@ -104,14 +104,6 @@ export function getFileExtension (filename) {
 
 export function mod (value, mod) {
   return ((value % mod) + mod) % mod;
-};
-
-const images = []
-export function preloadImgs (imgs) {
-  for (const index in imgs) {
-    images[index] = new Image();
-    images[index].src = imgs[index];
-  }
 }
 
 /**

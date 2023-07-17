@@ -7,41 +7,41 @@ import { useSelector } from 'react-redux';
 import { useSwipeable } from 'react-swipeable';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { preloadImgs } from './helpers';
 import Navbar from './components/Navbar';
 import ImageZoomer from './components/ImageZoomer';
 import PageRouter from './pages/PageRouter';
 import SwipeTutorial from './components/SwipeTutorial';
 import config from './config.json';
+import { useOverlayScrollbars } from 'overlayscrollbars-react';
 
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const themeMode = useSelector(state => state.themeMode);
+  const themeMode = useSelector(state => state.themeMode) === 'light';
   
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: (themeMode === 'light') ? 'rgb(15,182,182)' : 'rgb(150,246,246)'
+        main: (themeMode) ? 'rgb(15,182,182)' : 'rgb(150,246,246)'
       },
       purple: {
-        main: (themeMode === 'light') ? 'rgb(150,2,209)' : 'rgb(230,169,254)',
+        main: (themeMode) ? 'rgb(150,2,209)' : 'rgb(230,169,254)',
         transparent: 'rgba(230,169,254,0.15)'
       },
       green: {
-        main: (themeMode === 'light') ? 'rgb(73,122,21)' : 'rgb(185,239,164)',
+        main: (themeMode) ? 'rgb(73,122,21)' : 'rgb(185,239,164)',
         transparent: 'rgba(185,239,164,0.15)'
       },
       red: {
-        main: (themeMode === 'light') ? 'rgb(150,0,0)' : 'rgb(240,128,128)',
+        main: (themeMode) ? 'rgb(150,0,0)' : 'rgb(240,128,128)',
         transparent: 'rgba(240,128,128,0.15)'
       },
       blue: {
-        main: (themeMode === 'light') ? 'rgb(22,34,56)' : 'rgb(150,246,246)',
-        transparent: (themeMode === 'light') ? 'rgba(22,34,56,0.15)' : 'rgba(150,246,246,0.15)'
+        main: (themeMode) ? 'rgb(22,34,56)' : 'rgb(150,246,246)',
+        transparent: (themeMode) ? 'rgba(22,34,56,0.15)' : 'rgba(150,246,246,0.15)'
       },
       yellow: {
-        main: (themeMode === 'light') ? '#483800' : 'rgb(255,255,92)',
+        main: (themeMode) ? '#483800' : 'rgb(255,255,92)',
         transparent: 'rgba(255,255,92,0.15)'
       },
       white: {
@@ -60,7 +60,7 @@ export default function App() {
         transparent: 'rgba(40,40,40,0.2)'
       },
       gray: {
-        main: (themeMode === 'light') ? 'rgb(40,40,40)' : 'rgb(65,70,80)',
+        main: (themeMode) ? 'rgb(40,40,40)' : 'rgb(65,70,80)',
         transparent: 'rgba(65,70,80,0.2)'
       },
       orange: {
@@ -68,51 +68,32 @@ export default function App() {
         transparent: 'rgba(255,146,72,0.15)'
       },
       borderColor: {
-        main: (themeMode === 'light') ? 'black' : 'whitesmoke',
+        main: (themeMode) ? 'black' : 'whitesmoke',
       },
       tooltipColor: {
-        bgColor: (themeMode === 'light') ? 'black' : 'whitesmoke',
-        textColor: (themeMode === 'light') ? 'whitesmoke' : 'black'
+        bgColor: (themeMode) ? 'black' : 'whitesmoke',
+        textColor: (themeMode) ? 'whitesmoke' : 'black'
       },
       bgColor: {
-        main: (themeMode === 'light') ? 'rgb(225,225,225)' : 'rgb(40,40,40)',
-        darker: (themeMode === 'light') ? 'rgb(205,205,205)' : 'rgb(0,0,0)',
+        main: (themeMode) ? 'rgb(225,225,225)' : 'rgb(40,40,40)',
+        darker: (themeMode) ? 'rgb(205,205,205)' : 'rgb(0,0,0)',
       },
-      mode: themeMode,
+      mode: (themeMode) ? 'light' : 'dark',
     },
     typography: {
       'fontFamily': '"Inter", "my-handwriting"',
       allVariants: {
-        color: (themeMode === 'light') ? 'black' : 'whitesmoke'
+        color: (themeMode) ? 'black' : 'whitesmoke'
       },
     }
   });
 
+  // Changes background color based on light or dark
   useEffect(() => {
-    window.history.replaceState({}, document.title);
-    preloadImgs([
-      '/images/hscbow/homesweethome.jpg',
-      '/images/hscbow/leaving.jpg',
-      '/images/hscbow/bonvoyage.jpg',
-      '/images/hscbow/rabureta.jpg',
-      '/images/hscbow/ruiji.jpg',
-      '/images/hscbow/homecoming.jpg',
-      '/images/about/profile-pic.jpg',
-      '/images/about/profile-pic-zoom.jpg',
-      '/images/about/tutor-pic.jpg',
-      '/images/about/education/shs.jpg',
-      '/images/about/education/unsw.jpg'
-    ]);
-  }, []);
-
-  useEffect(() => {
-    if (themeMode === 'dark') {
-      document.body.className = 'dark-mode-bg'
-    } else {
-      document.body.className = 'light-mode-bg'
-    }
+    document.body.className = (themeMode) ? 'light-mode-bg' : 'dark-mode-bg'
   }, [themeMode]);
 
+  // Handlign swiping effect
   const { ref: documentRef } = useSwipeable({
     delta: 50,
     preventScrollOnSwipe: true,
@@ -128,24 +109,31 @@ export default function App() {
       const currIndex = config.PAGES.findIndex((element) => ( element.startsWith(location.pathname) ))
       const newIndex = currIndex + 1;
 
-      console.log(currIndex)
-
       if (newIndex < config.PAGES.length) {
         navigate(config.PAGES[newIndex], { state: { prevLocation: location.pathname } });
       }
     }
   });
 
+  // Adds swipeable to the document
   useEffect(() => {
-    // Adds swipeable to the document
     documentRef(document);
   }, [documentRef]);
+
+  // Handles the overlay scrollbar
+  const [initialize] = useOverlayScrollbars({
+    options: { scrollbars: { autoHide: 'scroll', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
+    defer: true
+  });
+  useEffect(() => {
+    initialize(document.body);
+  }, [initialize]);
 
   return (
     <ThemeProvider theme={darkTheme}>
       <SwipeTutorial />
-      <Navbar />
       <ImageZoomer />
+      <Navbar />
       <PageRouter />
     </ThemeProvider>
   );

@@ -8,8 +8,8 @@ function AnimatedAbsoluteWrapper ({ children, style, pb, pt, px }) {
   const AnimatedBox = animated(Box);
 
   return (
-    <AnimatedBox style={style} name='abs-wrapper' sx={{ width: '100%', height: 'fit-content', position: 'absolute', left: '0px', top: '0px', overflow: 'clip' }}>
-      <Box pt={pt} pb={pb} px={px} sx={{ height: 'fit-content' }}>
+    <AnimatedBox style={style} name='abs-wrapper' sx={{ width: '100%', position: 'absolute', left: '0px', top: '0px', overflow: 'clip' }}>
+      <Box pt={pt} pb={pb} px={px}>
         {children}
       </Box>
       <Footer />
