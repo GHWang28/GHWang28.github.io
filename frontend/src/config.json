@@ -9,7 +9,9 @@
     "COOL_DOWN": 750,
     "PAGES": ["/", "/projects", "/blog", "/about"],
     "SPLASH_TEXT": [
+        "Made with Typescript",
         "Welcome!",
+        "TypeScript > JavaScript",
         "This website holds a few secrets of its own...",
         "Aloha!",
         "Greetings!",
@@ -33,7 +35,7 @@
         "Going even further beyond!!",
         "Deja vu",
         "𝓕𝓪𝓷𝓬𝓬𝔂𝔂",
-        "Reduce, reuse and recycle!"
+        "Reduce, reuse and recycle!",
     ],
     "VID_PREFIX": "%@%VIDEO%@%",
     "MARIO_EASTER_EGG_LIMIT": 100,
