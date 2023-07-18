@@ -47,7 +47,7 @@ const ImageScroller = ({ images, height, length = '10s', bgcolor, tooltips = [],
         }}
       >
         {([...images, ...images].map((src, index) => (
-          <BootstrapTooltip key={`img-scroll-${index}`} title={tooltips.at(index % tooltips.length)}>
+          <BootstrapTooltip key={`img-scroll-${index}`} title={tooltips[index % tooltips.length]}>
             <Box
               sx={{
                 height,

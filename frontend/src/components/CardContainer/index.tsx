@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { BlogData, ProjectData } from '../../types';
-import CardBlog from '../CardBlog';
-import CardProject from '../CardProject';
 import { splitArray } from '../../helpers';
 
 type ComponentProps = {
   cardData: BlogData[] | ProjectData[],
-  component?: CardProject | CardBlog
+  component: React.ElementType
 }
 
 const CardContainer = ({ cardData, component: Component }: ComponentProps) => {
