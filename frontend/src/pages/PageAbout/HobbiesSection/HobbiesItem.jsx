@@ -52,4 +52,3 @@ HobbiesItem.propTypes = {
   }),
   odd: PropTypes.bool,
 };
-
