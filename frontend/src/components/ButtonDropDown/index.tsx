@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from 'react';
+import React, { Fragment, useState } from 'react';
 import { IconButton, Menu, SxProps } from '@mui/material';
 import BootstrapTooltip from '../BootstrapTooltip';
 
@@ -27,7 +27,6 @@ const ButtonDropDown = ({
   closeOnClick = true
 }: ComponentProps) => {
   const [dropDownListingMenu, setDropDownListingMenu] = useState<HTMLButtonElement>();
-  const ref = useRef<HTMLButtonElement>(null);
   const dropListingMenuFn = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
     setDropDownListingMenu(event.currentTarget);
@@ -38,7 +37,6 @@ const ButtonDropDown = ({
 
   const iconButton = (
     <IconButton
-      ref={ref}
       title={title}
       aria-label={title}
       sx={sx}
