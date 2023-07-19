@@ -1,8 +1,7 @@
-import { useTheme } from "@emotion/react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import React from "react";
 
-export default function Rod () {
+const Rod = () => {
   const themeMode = useTheme().palette.mode === 'light';
 
   return (
@@ -35,3 +34,5 @@ export default function Rod () {
     </Box>
   )
 }
+
+export default Rod;

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Box, Typography, keyframes } from '@mui/material';
 import { useInView } from 'react-spring';
+import { Skill } from '../../types';
+
+type ComponentProps = {
+  skill: Skill,
+  index?: number
+}
 
 const levitateKeyframes = keyframes`
   0% {
@@ -14,7 +20,14 @@ const levitateKeyframes = keyframes`
   }
 `
 
-export default function SkillIcon ({ src, name, whitebg = false, index = 0 }) {
+export default function SkillIcon ({ skill, index = 0 }: ComponentProps) {
+  
+  const {
+    src,
+    name,
+    whitebg
+  } = skill;
+  
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
@@ -38,7 +51,7 @@ export default function SkillIcon ({ src, name, whitebg = false, index = 0 }) {
     >
       <Box
         component='img'
-        src={src}
+        src={`/images/about/skills/${src}`}
         alt={name}
         sx={[
           {
@@ -46,11 +59,11 @@ export default function SkillIcon ({ src, name, whitebg = false, index = 0 }) {
             maxWidth: '256px',
             boxSizing: 'border-box'
           },
-          (whitebg) && {
+          (whitebg) ? {
             bgcolor: 'whitesmoke',
             borderRadius: '15px',
             p: 1,
-          }
+          } : {}
         ]}
       />
       <Typography variant='subtitle2' align='center'>

@@ -7,7 +7,7 @@ type ComponentProps = {
   title: string,
   subtitle?: string,
   children?: React.ReactNode,
-  mt: number
+  mt?: number
 }
 
 const GradientTitle = ({ title, subtitle, children, mt = 1 }: ComponentProps) => {

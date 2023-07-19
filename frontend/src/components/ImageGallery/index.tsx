@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Grid, useMediaQuery, Theme } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../helpers';
@@ -7,7 +7,6 @@ import VideoPlayer from '../VideoPlayer';
 import { animated, useSpring, useTransition } from 'react-spring';
 import { v4 as uuidv4 } from 'uuid';
 import { useSwipeable } from 'react-swipeable';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ImageZoomable from '../ImageZoomable';
 
 type ComponentProps = {
@@ -20,9 +19,8 @@ type ComponentProps = {
  * Not providing a mainImgSrc will display a default image.
  */
 const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
-  const theme = useTheme();
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
+  const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const [imgIndex, setImgIndex] = useState(0);
   const [prevImgIndex, setPrevImgIndex] = useState(0);
 
@@ -112,7 +110,6 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         >
           <Button
             aria-label='Previous Image'
-            name='prev-img-btn'
             title='Previous Image'
             sx={{
               borderWidth: '2px',
@@ -165,7 +162,6 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         >
           <Button
             aria-label='Next Image'
-            name='next-img-btn'
             title='Next Image'
             sx={{
               borderWidth: '2px',
@@ -216,9 +212,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
               />
             )}
             <Box
-              component={LazyLoadImage}
-              effect='opacity'
-              name={(imgIndex === imgSrcNo) ? 'img-selected' : 'img-unselected'}
+              component='img'
               sx={{
                 cursor: 'pointer',
                 height: '100px',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, useMediaQuery, useTheme, Theme } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
 import { easings } from '@react-spring/web'
 import Blob from '../../components/Blob';
@@ -7,10 +7,9 @@ import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export default function PageLanding () {
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+const PageLanding = () => {
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const lightMode = useTheme().palette.mode === 'light';
   // Setting up splash message through state so that it does
   // not change messages with every state refresh.
@@ -53,13 +52,13 @@ export default function PageLanding () {
         />
         {/* Background image */}
         <AnimatedBox
-          component={LazyLoadImage}
-          effect='opacity'
+          component='img'
           style={useSpring({
             from: { opacity: 0 },
             to: { opacity: 1 },
             delay: 0.5 * delay
           })}
+          // @ts-ignore
           alt='Landing page background'
           src='images/title-bg.png'
           sx={{
@@ -203,3 +202,5 @@ export default function PageLanding () {
     </Box>
   )
 }
+
+export default PageLanding;

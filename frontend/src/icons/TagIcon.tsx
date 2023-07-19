@@ -15,22 +15,22 @@ import { IconTypes } from '../types';
 
 type ComponentProps = {
   label: IconTypes,
-  sx: SxProps
+  sx?: SxProps
 }
 
 const TagIcon = ({ label, sx }: ComponentProps) => {
   switch (label) {
-    case 'artwork': return <PaletteIcon sx={sx}/>;
-    case 'react': return <ReactIcon sx={sx} />;
-    case 'c++': return <CppIcon sx={sx} />;
-    case 'game': return <SportsEsportsIcon sx={sx} />;
-    case 'opengl': return <CreateIcon sx={sx}/>
-    case 'javascript': return <JavascriptIcon sx={{ ...sx, scale: '2' }} />
-    case 'frontend': return <WebIcon sx={sx} />
-    case 'personal project': return <FaceIcon sx={sx} />
-    case 'university project': return <SchoolIcon sx={sx} />
-    case 'high school project': return <HighschoolIcon sx={sx} />
-    case 'firebase': return <FirebaseIcon sx={sx} />
+    case 'Artwork': return <PaletteIcon sx={sx}/>;
+    case 'React': return <ReactIcon sx={sx} />;
+    case 'C++': return <CppIcon sx={sx} />;
+    case 'Game': return <SportsEsportsIcon sx={sx} />;
+    case 'OpenGL': return <CreateIcon sx={sx}/>
+    case 'JavaScript': return <JavascriptIcon sx={{ ...sx, scale: '2' }} />
+    case 'Frontend': return <WebIcon sx={sx} />
+    case 'Personal Project': return <FaceIcon sx={sx} />
+    case 'University Project': return <SchoolIcon sx={sx} />
+    case 'High School Project': return <HighschoolIcon sx={sx} />
+    case 'Firebase': return <FirebaseIcon sx={sx} />
     default: return null;
   }
 }

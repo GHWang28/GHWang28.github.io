@@ -7,7 +7,7 @@ import { Box, SxProps } from '@mui/material';
 type ComponentProps = {
   sx: SxProps,
   color: string,
-  strokeWidth: string,
+  strokeWidth: number,
   speed: number,
   fill: string | 'none'
 }

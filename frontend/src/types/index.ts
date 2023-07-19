@@ -33,11 +33,16 @@ export type ProjectData = {
 type ProjectButtons = {
   text: string,
   icon: React.ReactNode,
-  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
   disabled?: string
 }
 
-export type IconTypes = 'artwork' | 'react' | 'c++' | 'game' | 'opengl' | 'javascript' | 'frontend' | 'personal project' | 'university project' | 'high school project' | 'firebase'
+export type ProjectFilter = {
+  type: IconTypes,
+  enabled: boolean
+}
+
+export type IconTypes = 'Artwork' | 'React' | 'C++' | 'Game' | 'OpenGL' | 'JavaScript' | 'Frontend' | 'Personal Project' | 'University Project' | 'High School Project' | 'Firebase'
 
 export type QuizOptions = {
   text: string,
@@ -55,4 +60,11 @@ export type SparklezType = {
     left: string,
     zIndex: 2,
   }
+}
+
+export type Skill = {
+  name: string,
+  src: string,
+  tags: string[],
+  whitebg?: boolean
 }

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, Theme } from '@mui/material';
 import { BlogData, ProjectData } from '../../types';
 import { splitArray } from '../../helpers';
 
@@ -9,8 +9,7 @@ type ComponentProps = {
 }
 
 const CardContainer = ({ cardData, component: Component }: ComponentProps) => {
-  const theme = useTheme();
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
+  const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
 
   if (largeMq) {
     const { odd: oddProj, even: evenProj } = splitArray(cardData);

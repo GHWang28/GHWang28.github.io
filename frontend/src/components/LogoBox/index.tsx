@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef, Fragment } from 'react';
-import { Box, Collapse, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Collapse, Typography, useMediaQuery, Theme } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router';
 
 const LogoBox = () => {
   const [logoHover, setLogoHover] = useState(false);
-  const theme = useTheme();
-  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
+  const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   const navigate = useNavigate();
   const location = useLocation();
   const doNavigate = location.pathname !== '/';

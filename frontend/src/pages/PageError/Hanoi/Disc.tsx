@@ -1,7 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-export default function Disc ({ size, maxSize }) {
+type ComponentProps = {
+  size: number,
+  maxSize: number
+}
+
+const Disc = ({ size, maxSize }: ComponentProps) => {
   const getColor = () => {
     switch (size) {
       default: return 'lightcoral'
@@ -33,3 +38,5 @@ export default function Disc ({ size, maxSize }) {
     </Box>
   )
 }
+
+export default Disc;

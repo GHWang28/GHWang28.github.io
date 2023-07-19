@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useMediaQuery, Theme } from '@mui/material';
 import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ImageZoomable from '../ImageZoomable';
@@ -12,8 +12,7 @@ type ComponentProps = {
 
 const ImageRow = ({ src, title, body, rowNo }: ComponentProps) => {
   const [ref, inView] = useInView();
-  const theme = useTheme();
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const isOdd = (rowNo % 2);
 
   const imgCol = (

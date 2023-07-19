@@ -11,12 +11,13 @@ import TagIcon from '../../icons/TagIcon';
 import CardContainer from '../../components/CardContainer';
 import CardProject from '../../components/CardProject';
 import GradientTitle from '../../components/GradientTitle';
+import { ProjectFilter } from '../../types';
 
-function ProjectHub () {
+const ProjectHub = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [filter, setFilter] = useState([
+  const [filter, setFilter] = useState<ProjectFilter[]>([
     { type: 'Artwork', enabled: false },
     { type: 'Firebase', enabled: false },
     { type: 'Frontend', enabled: false },

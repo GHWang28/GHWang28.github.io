@@ -1,18 +1,17 @@
-import { Box, LinearProgress, useMediaQuery } from '@mui/material';
 import React, { Fragment, useState } from 'react';
+import { Box, LinearProgress } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 
-export default function ProjectIFrameShowCase () {
+const ProjectIFrameShowCase = () => {
   const projectName = useParams().project;
-  const isXenoYova = (projectName.toLowerCase() === 'xeno-and-yova');
+  const isXenoYova = (projectName?.toLowerCase() === 'xeno-and-yova');
 
   const [loaded, setLoaded] = useState(false);
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
     <Fragment>
-      <Box mb={2} mt={-1} sx={{ position: (smallMq) ? 'absolute' : 'relative', left: (smallMq) ? '2%' : '' }}>
+      <Box mb={2} mt={-1} sx={{ position: { xs: 'relative', sm: 'absolute' }, left: { xs: '0%', sm: '2%' }}}>
         <ButtonGoBack destination={'/projects'} />
       </Box>
       <Box
@@ -53,3 +52,4 @@ export default function ProjectIFrameShowCase () {
   )
 }
 
+export default ProjectIFrameShowCase;

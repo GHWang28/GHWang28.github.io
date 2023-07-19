@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 import { animated, useSpring } from 'react-spring';
 
 type ComponentProps = {
-  children: React.ReactNode,
-  title: string,
-  footer: React.ReactNode,
-  plagiarism: boolean
+  children?: React.ReactNode,
+  title?: string,
+  footer?: React.ReactNode,
+  plagiarism?: boolean
 }
 
 const BoxInfo = ({ children, title, footer, plagiarism = false }: ComponentProps) => {

@@ -8,10 +8,10 @@ import victorySFX from '../../../sfx/victory.ogg'
 import cardSFX from '../../../sfx/card.ogg'
 import errorSFX from '../../../sfx/error.ogg'
 
-export default function Hanoi () {
-  const [stacks, setStacks] = useState([[],[],[]]);
-  const [totalStacks, setTotalStacks] = useState(rng(3,8));
-  const [prevTowerIndex, setPrevTower] = useState(null);
+const Hanoi = () => {
+  const [stacks, setStacks] = useState<number[][]>([[],[],[]]);
+  const [totalStacks, setTotalStacks] = useState<number>(rng(3,8));
+  const [prevTowerIndex, setPrevTower] = useState<number>(-1);
   const [gameWon, setGameWon] = useState(false);
   const [playErrorSFX] = useSound(errorSFX);
   const [playVictorySFX] = useSound(victorySFX);
@@ -19,7 +19,7 @@ export default function Hanoi () {
 
   // Setup function
   useEffect(() => {
-    const newStack = [[],[],[]];
+    const newStack: number[][] = [[],[],[]];
     for (let i = 1; i <= totalStacks; i++) {
       // Push each size onto the new stack
       newStack[0].push(i);
@@ -27,10 +27,10 @@ export default function Hanoi () {
     setStacks(newStack);
   }, [totalStacks]); // <-- this function only gets called once
 
-  const onSwap = (targetTowerIndex) => {
+  const onSwap = (targetTowerIndex: number) => {
     const newStacks = [...stacks];
 
-    if (prevTowerIndex === null) {
+    if (prevTowerIndex < 0) {
       // If a tower hasn't been selected yet, select it now
       setPrevTower(targetTowerIndex);
       return;
@@ -40,7 +40,7 @@ export default function Hanoi () {
       // If clicked on same tower as previously OR there's nothing to move
       // from previous tower, do nothing
       playErrorSFX();
-      setPrevTower(null);
+      setPrevTower(-1);
       return;
     }
 
@@ -52,8 +52,10 @@ export default function Hanoi () {
     if (isSorted([prevTower[0], ...stacks[targetTowerIndex]])) {
       // Pop disc and move it over if order is maintained
       const poppedDisc = prevTower.shift();
-      targetTower.unshift(poppedDisc);
-      playCardSFX();
+      if (poppedDisc !== undefined) {
+        targetTower.unshift(poppedDisc);
+        playCardSFX();
+      }
     } else {
       // If not sorted, play error sound effect
       playErrorSFX();
@@ -63,7 +65,7 @@ export default function Hanoi () {
     newStacks[prevTowerIndex] = prevTower;
     newStacks[targetTowerIndex] = targetTower;
     setStacks([...newStacks]);
-    setPrevTower(null);
+    setPrevTower(-1);
 
     // Check if the last stack has all the discs
     if (newStacks[newStacks.length - 1].length === totalStacks) {
@@ -140,3 +142,5 @@ export default function Hanoi () {
     </Box>
   )
 }
+
+export default Hanoi;

@@ -7,7 +7,7 @@ import ImageRow from '../../components/ImageRow';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import GradientTitle from '../../components/GradientTitle';
 
-function ProjectEarthEphemeris () {
+const ProjectEarthEphemeris = () => {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
 

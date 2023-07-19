@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Chip, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Chip, Theme, useMediaQuery, useTheme } from '@mui/material';
 import BootstrapTooltip from '../BootstrapTooltip';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -14,7 +14,7 @@ type ComponentProps = {
 
 const BlogTags = ({ created, estimatedReadingTime, quizIncluded }: ComponentProps) => {
   const theme = useTheme();
-  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
+  const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
 
   return (
     <Box sx={{ display: 'flex', width: '100%' }}>

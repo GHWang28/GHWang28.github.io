@@ -3,9 +3,8 @@ import { Box } from '@mui/material';
 import ButtonGoBack from '../../../components/ButtonGoBack';
 import ImageGallery from '../../../components/ImageGallery';
 import BoxInfo from '../../../components/BoxInfo';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export default function ProjectSlackr () {
+const ProjectSlackr = () => {
 
   const [hover, setHover] = useState(false);
 
@@ -20,8 +19,7 @@ export default function ProjectSlackr () {
             scale: (hover) ? '1.05' : '1.0',
             transition: 'scale 0.5s ease-in-out'
           }}
-          component={LazyLoadImage}
-          effect='opacity'
+          component='img'
           src='/images/comp6080/slackr-logo.png'
           width='min(75%, 600px)'
         />
@@ -69,3 +67,5 @@ export default function ProjectSlackr () {
     </Fragment>
   )
 }
+
+export default ProjectSlackr;

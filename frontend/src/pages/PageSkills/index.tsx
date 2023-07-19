@@ -1,14 +1,17 @@
+import React from 'react';
 import { Fragment } from 'react';
 import GradientTitle from '../../components/GradientTitle';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import { Box, Divider, Typography, useMediaQuery, useTheme } from '@mui/material';
 import SkillIcon from './SkillIcon';
+import { Skill } from '../../types';
 
-export default function PageSkills () {
-  const lightMode = useTheme().palette.mode === 'light';
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+const PageSkills = () => {
+  const theme =  useTheme();
+  const lightMode = theme.palette.mode === 'light';
+  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const headings = [
+  const headings: string[] = [
     'Programming Languages',
     'Frontend Technology',
     'Backend Technology',
@@ -20,7 +23,7 @@ export default function PageSkills () {
     'Other'
   ]
 
-  const allSkills = [
+  const allSkills: Skill[] = [
     {
       name: 'C',
       src: 'c.svg',
@@ -277,7 +280,7 @@ export default function PageSkills () {
             
             <Box display='flex' justifyContent='center' flexWrap='wrap' rowGap={4} my={3}>
               {category.allSkills.map((skill, index) => (
-                <SkillIcon index={index} src={`/images/about/skills/${skill.src}`} name={skill.name} key={skill.name} whitebg={skill?.whitebg}/>
+                <SkillIcon skill={skill} index={index} key={`${skill.name}-index`}/>
               ))}
             </Box>
           </Fragment>
@@ -286,3 +289,5 @@ export default function PageSkills () {
     </Fragment>
   )
 }
+
+export default PageSkills;

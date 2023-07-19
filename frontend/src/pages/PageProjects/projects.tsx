@@ -6,17 +6,19 @@ import GameControllerIcon from '@mui/icons-material/SportsEsports';
 import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import SparklezText from '../../components/Sparklez/SparklezText';
+import { Location, NavigateFunction } from 'react-router';
+import { ProjectData } from '../../types';
 
-const generateProjects = (navigate, location) => {
-  const dotpoint100Percent = (
-    <Fragment>
-      {'Achieved '}
-      <SparklezText>{'100%'}</SparklezText>
-      {' for this Assignment.'}
-    </Fragment>
-  )
+const dotpoint100Percent = (
+  <Fragment>
+    {'Achieved '}
+    <SparklezText>{'100%'}</SparklezText>
+    {' for this Assignment.'}
+  </Fragment>
+)
 
-  const projects = [
+const generateProjects = (navigate: NavigateFunction, location: Location): ProjectData[]  => {
+  const projects: ProjectData[] = [
     {
       title: 'Earth\'s Ephemeris',
       date: '(25/12/2018) → (28/08/2019)',
@@ -129,7 +131,7 @@ const generateProjects = (navigate, location) => {
           text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
-            window.open('https://github.com/GHWang28/tic-tac-toe-capture', '_blank').focus();
+            window.open('https://github.com/GHWang28/tic-tac-toe-capture', '_blank')?.focus();
           }
         }
       ]
@@ -159,7 +161,7 @@ const generateProjects = (navigate, location) => {
           text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
-            window.open('https://github.com/GHWang28/spotter', '_blank').focus();
+            window.open('https://github.com/GHWang28/spotter', '_blank')?.focus();
           }
         }
       ]
@@ -188,7 +190,7 @@ const generateProjects = (navigate, location) => {
           text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
-            window.open('https://github.com/GHWang28/xeno-and-yova', '_blank').focus();
+            window.open('https://github.com/GHWang28/xeno-and-yova', '_blank')?.focus();
           }
         }
       ]
@@ -338,7 +340,7 @@ const generateProjects = (navigate, location) => {
           text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
-            window.open('https://github.com/GHWang28/minesweeper', '_blank').focus();
+            window.open('https://github.com/GHWang28/minesweeper', '_blank')?.focus();
           }
         }
       ]
@@ -379,14 +381,14 @@ const generateProjects = (navigate, location) => {
           text: 'View Live',
           icon: <GameControllerIcon />,
           onClick: () => {
-            window.open('https://convo-ghwang28.netlify.app/', '_blank').focus();
+            window.open('https://convo-ghwang28.netlify.app/', '_blank')?.focus();
           }
         },
         {
           text: 'View Source',
           icon: <CodeIcon />,
           onClick: () => {
-            window.open('https://github.com/GHWang28/convo', '_blank').focus();
+            window.open('https://github.com/GHWang28/convo', '_blank')?.focus();
           }
         }
       ]

@@ -3,11 +3,11 @@ import Sparklez from '.';
 
 type ComponentProps = {
   children: React.ReactNode,
-  gradient: string,
+  gradient?: string,
   noSparklez?: boolean
 }
 
-const SparklezText = ({ children, gradient, noSparklez = false }: ComponentProps) => (
+const SparklezText = ({ children, gradient = '', noSparklez = false }: ComponentProps) => (
   (noSparklez) ? (
     <span className={`gradient-text ${gradient}`}>
       {children}

@@ -4,16 +4,16 @@ import ProjectAirBnB from './UniversityProjs/ProjectAirBnB';
 import ProjectEarthEphemeris from './ProjectEarthEphemeris';
 import ProjectHub from './ProjectHub';
 import ProjectIFrameShowCase from './ProjectIFrameShowCase';
-import ProjectMinecraft from './UniversityProjs/ProjectMinecraft';
+import ProjectMinecraftRecreation from './UniversityProjs/ProjectMinecraftRecreation';
 import ProjectSlackr from './UniversityProjs/ProjectSlackr';
 import ProjectMinecraftScreensaver from './UniversityProjs/ProjectMinecraftScreensaver';
 
-export default function PageProjects () {
+const PageProjects = () => {
   return (
     <Routes>
       <Route path='' element={<ProjectHub />}/>
       <Route path='earth-ephemeris/' element={<ProjectEarthEphemeris />}/>
-      <Route path='minecraft-recreation/' element={<ProjectMinecraft />}/>
+      <Route path='minecraft-recreation/' element={<ProjectMinecraftRecreation />}/>
       <Route path='minecraft-screensaver/' element={<ProjectMinecraftScreensaver />}/>
       <Route path='slackr/' element={<ProjectSlackr />}/>
       <Route path='airbnb/' element={<ProjectAirBnB />}/>
@@ -21,3 +21,5 @@ export default function PageProjects () {
     </Routes> 
   )
 }
+
+export default PageProjects;

@@ -2,7 +2,7 @@ import React from 'react';
 import { SvgIcon, SxProps } from '@mui/material';
 
 type ComponentProps = {
-  sx: SxProps
+  sx?: SxProps
 }
 
 const FirebaseIcon = ({ sx }: ComponentProps) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery, Theme } from '@mui/material';
 import { loadLinksPreset } from 'tsparticles-preset-links';
 import { loadTrianglesPreset } from 'tsparticles-preset-triangles';
 import { loadSnowPreset } from 'tsparticles-preset-snow';
@@ -14,10 +14,9 @@ type ComponentProps = {
  * The background particle option
  */
 const BackgroundParticles = ({ bgIndex } : ComponentProps) => {
-  const theme = useTheme();
-  const xLargeMq = useMediaQuery(theme.breakpoints.up('xl'));
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
+  const xLargeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('xl'));
+  const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
 
   const totalParticles = () => {
     if (xLargeMq) return 200;
