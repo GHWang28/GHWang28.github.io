@@ -1,13 +1,20 @@
 import React from 'react';
 import { Timeline } from "@mui/lab";
 import TimelineSectionItem from './TimelineSectionItem';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Theme, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import TimelineSectionItemSmall from './TimelineSectionItemSmall';
-import PropTypes from 'prop-types';
+import { TimelineData } from '../../../types';
 
-export default function TimelineSection ({ timelineItems, title, subtitle, odd }) {
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm')); 
+type ComponentProps = {
+  timelineItems: TimelineData[],
+  title: string,
+  subtitle: string,
+  odd?: boolean
+}
+
+const TimelineSection = ({ timelineItems, title, subtitle, odd }: ComponentProps) => {
+  const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm')); 
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
@@ -49,10 +56,4 @@ export default function TimelineSection ({ timelineItems, title, subtitle, odd }
   )
 }
 
-TimelineSection.propTypes = {
-  timelineItems: PropTypes.array,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  odd: PropTypes.bool
-};
-
+export default TimelineSection;

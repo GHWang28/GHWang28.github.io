@@ -1,15 +1,14 @@
 import React from 'react';
-import { Box, Link, Typography, useMediaQuery } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import ImageScroller from '../../../components/ImageScroller';
 
-export default function SkillsSection () {
+const SkillsSection = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
     <Box
@@ -27,7 +26,7 @@ export default function SkillsSection () {
         {'Skills'}
       </Typography>
 
-      <Link component={RouterLink} variant='subtitle1' fontWeight='bold' to={'skills'} align='center' mb={(smallMq) ? 1 : 3}>
+      <Link component={RouterLink} variant='subtitle1' fontWeight='bold' to={'skills'} align='center' mb={{ sm: 1, xs: 3 }}>
         {'✨ Click here to see the full list ✨'}
       </Link>
       
@@ -64,3 +63,5 @@ export default function SkillsSection () {
     </Box>
   )
 }
+
+export default SkillsSection;

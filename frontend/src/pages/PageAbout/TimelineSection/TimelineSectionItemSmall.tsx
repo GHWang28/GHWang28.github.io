@@ -3,9 +3,14 @@ import { Box, Collapse, Grid, Typography } from '@mui/material';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import PropTypes from 'prop-types';
+import { TimelineData } from '../../../types';
 
-export default function TimelineSectionItemSmall ({ data, index }) {
+type ComponentProps = {
+  data: TimelineData,
+  index: number,
+}
+
+const TimelineSectionItemSmall = ({ data, index }: ComponentProps) => {
   const [show, setShow] = useState(false);
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
@@ -93,13 +98,4 @@ export default function TimelineSectionItemSmall ({ data, index }) {
   )
 }
 
-TimelineSectionItemSmall.propTypes = {
-  data: PropTypes.shape({
-    oppContent: PropTypes.string,
-    timelineDotColor: PropTypes.string,
-    timelineDotImg: PropTypes.string,
-    timelineTitle: PropTypes.string,
-    timelineContent: PropTypes.array
-  }),
-  index: PropTypes.number,
-};
+export default TimelineSectionItemSmall;

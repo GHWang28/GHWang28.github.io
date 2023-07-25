@@ -4,11 +4,11 @@ import BootstrapTooltip from '../BootstrapTooltip';
 
 type ComponentProps = {
   images: string[],
-  height: string,
+  height?: string,
   length?: string,
-  bgcolor: string,
+  bgcolor?: string,
   tooltips?: string[],
-  onClick: React.MouseEventHandler<HTMLDivElement>
+  onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
 const tickScroll = keyframes`

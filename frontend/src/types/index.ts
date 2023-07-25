@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogElement from './blogElementTypes';
 
 export type Action<T> = {
   type: string,
@@ -18,7 +19,9 @@ export type BlogData = {
   thumbnail: string,
   created: string,
   estimatedReadingTime: number,
-  quizIncluded: boolean
+  quizIncluded: boolean,
+  emoji: string,
+  elements: BlogElement[]
 }
 
 export type ProjectData = {
@@ -45,9 +48,9 @@ export type ProjectFilter = {
 export type IconTypes = 'Artwork' | 'React' | 'C++' | 'Game' | 'OpenGL' | 'JavaScript' | 'Frontend' | 'Personal Project' | 'University Project' | 'High School Project' | 'Firebase'
 
 export type QuizOptions = {
-  text: string,
+  text: React.ReactNode | string,
   correct: boolean,
-  explanation: (React.ReactNode | string)[]
+  explanation: React.ReactNode | string
 }
 
 export type SparklezType = {
@@ -67,4 +70,26 @@ export type Skill = {
   src: string,
   tags: string[],
   whitebg?: boolean
+}
+
+export type TimelineData = {
+  oppContent: string,
+  timelineDotColor: string,
+  timelineDotImg?: string,
+  timelineTitle: string,
+  timelineContent: (React.ReactNode | string)[]
+}
+
+export type HobbyData = {
+  icon: React.ReactNode,
+  text: string,
+}
+
+export type ContactData = {
+  label: string,
+  info?: string,
+  extraInfo?: string,
+  icon: React.ReactNode,
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  tooltip: string,
 }

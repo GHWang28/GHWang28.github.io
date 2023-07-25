@@ -1,15 +1,16 @@
-import { Fragment } from "react";
-import InlineCode from "../../../components/InlineCode";
-import SparklezText from "../../../components/Sparklez/SparklezText";
-import { Box } from "@mui/material";
+import React, { Fragment } from 'react';
+import InlineCode from '../../../components/InlineCode';
+import SparklezText from '../../../components/Sparklez/SparklezText';
+import { Box } from '@mui/material';
+import { BlogData } from '../../../types';
 
-const pollingAllBlog = {
+const pollingAllBlog: BlogData = {
   id: 2,
   title: 'Why use Promise.all?',
   subtitle: 'How to make fetch requests concurrently.',
   thumbnail: '/images/blog/thumbnail_promise.png',
   created: '2023-07-11T00:00:00.000Z',
-  estimatedReadingTime: '7',
+  estimatedReadingTime: 7,
   quizIncluded: false,
   emoji: '📬',
   elements: [

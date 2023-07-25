@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import { useInView } from 'react-spring';
 import EducationCard from './EducationCard';
 
-export default function EducationSection () {
+const EducationSection = () => {
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
@@ -56,3 +56,5 @@ export default function EducationSection () {
     </Box>
   )
 }
+
+export default EducationSection;

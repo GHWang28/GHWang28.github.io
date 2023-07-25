@@ -1,15 +1,14 @@
 import React from 'react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import generateHobbies from './hobbies';
 import HobbiesItem from './HobbiesItem';
 
-export default function HobbiesSection () {
+const HobbiesSection = () => {
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
   const listOfHobbies = generateHobbies();
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   return (
     <Box
@@ -22,7 +21,7 @@ export default function HobbiesSection () {
       <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
         {'Hobbies & Interests'}
       </Typography>
-      <Typography mb={(smallMq) ? 0 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+      <Typography mb={{ sm: 0, xs: 3 }} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
         {'My areas of interest'}
       </Typography>
       {listOfHobbies.map((hobby, index) => (
@@ -31,3 +30,5 @@ export default function HobbiesSection () {
     </Box>
   )
 }
+
+export default HobbiesSection;

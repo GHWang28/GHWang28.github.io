@@ -1,24 +1,26 @@
 
 import React, { Fragment } from 'react';
-import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Link, Typography, useMediaQuery, useTheme, Theme } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import GradientTitle from '../../components/GradientTitle';
 import PageError from '../PageError';
 import ImageZoomable from '../../components/ImageZoomable';
-import blogs from './blogs';
 import TypographyBorder from '../../components/TypographyBorder';
 import CardQuiz from '../../components/CardQuiz';
 import CodeSnippet from '../../components/CodeSnippet';
 import BlogTags from '../../components/BlogTags';
 import { ISOToDateStr } from '../../helpers';
+import { BlogData } from '../../types';
+import BlogElement from '../../types/blogElementTypes';
+import blogs from './blogs';
 
-export default function BlogShowcase () {
+const BlogShowcase = () => {
   const blogID = Number(useParams().blogID);
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+  const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   const lightMode = useTheme().palette.mode === 'light';
 
-  const blogData = blogs.find((blogEntry) => ( blogEntry.id === blogID ));
+  const blogData = blogs.find((blogEntry: BlogData) => ( blogEntry.id === blogID ));
 
   if (blogData == null) {
     return (
@@ -56,7 +58,7 @@ export default function BlogShowcase () {
             bgcolor: 'rgb(200,200,200)'
           }}
         />
-        {blogData?.elements && blogData.elements.map((elementData, index) => {
+        {blogData?.elements && blogData.elements.map((elementData: BlogElement, index: number) => {
           // Convert type to React components
           switch(elementData.type) {
             case 'h6':
@@ -128,3 +130,4 @@ export default function BlogShowcase () {
   )
 }
 
+export default BlogShowcase;

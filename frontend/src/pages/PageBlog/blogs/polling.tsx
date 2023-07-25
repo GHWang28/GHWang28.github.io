@@ -1,14 +1,15 @@
-import { Fragment } from "react";
-import InlineCode from "../../../components/InlineCode";
-import SparklezText from "../../../components/Sparklez/SparklezText";
+import React, { Fragment } from 'react';
+import InlineCode from '../../../components/InlineCode';
+import SparklezText from '../../../components/Sparklez/SparklezText';
+import { BlogData } from '../../../types';
 
-const pollingBlog = {
+const pollingBlog: BlogData = {
   id: 1,
   title: 'Polling in ReactJS',
   subtitle: 'A guide on how to request data from the backend in set intervals.',
   thumbnail: '/images/blog/thumbnail_polling.jpg',
   created: '2023-06-24T04:31:51.316Z',
-  estimatedReadingTime: '5',
+  estimatedReadingTime: 5,
   quizIncluded: true,
   emoji: '🎣',
   elements: [

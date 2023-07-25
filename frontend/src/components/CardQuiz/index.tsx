@@ -43,7 +43,7 @@ const CardQuiz = ({ question, options }: ComponentProps) => {
   }
 
   // This funciton is called when one of the answer options is clicked on
-  const handleOptionClick = (isCorrect: boolean, explanation: (React.ReactNode | string)[]) => {
+  const handleOptionClick = (isCorrect: boolean, explanation: React.ReactNode | string) => {
     const responseTitleElement = responseTitleRef.current;
     responseTitleElement?.classList.remove('logo-anim');
     void responseTitleElement?.offsetWidth;
@@ -56,7 +56,6 @@ const CardQuiz = ({ question, options }: ComponentProps) => {
       setAnswerMessage(`✅ ${randomiseArray(['Correct!', 'Well Done!', 'Fantastic!'])[0]}`);
     } else {
       setAnswerMessage(`❌ ${randomiseArray(['Incorrect!', 'Try Again!', 'Not Quite!'])[0]}`);
-      
     }
   }
   

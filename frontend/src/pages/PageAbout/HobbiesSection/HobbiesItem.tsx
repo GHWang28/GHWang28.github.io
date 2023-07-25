@@ -1,9 +1,14 @@
 import React from 'react';
 import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
-import PropTypes from 'prop-types';
 import { useInView } from 'react-intersection-observer';
+import { HobbyData } from '../../../types';
 
-export default function HobbiesItem ({ odd, data }) {
+type ComponentProps = {
+  odd?: boolean,
+  data: HobbyData
+}
+
+const HobbiesItem = ({ odd = false, data }: ComponentProps) => {
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
@@ -45,10 +50,4 @@ export default function HobbiesItem ({ odd, data }) {
   )
 }
 
-HobbiesItem.propTypes = {
-  data: PropTypes.shape({
-    icon: PropTypes.element,
-    text: PropTypes.string,
-  }),
-  odd: PropTypes.bool,
-};
+export default HobbiesItem;

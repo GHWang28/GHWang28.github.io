@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { Avatar, Box, useMediaQuery } from '@mui/material';
+import { Avatar, Box, useMediaQuery, Theme } from '@mui/material';
 import { animated, easings, useSpring, useTransition } from 'react-spring';
 import { executeWithCooldown } from '../../helpers';
 import ImageZoomable from '../../components/ImageZoomable';
 
-export default function AnimatedProfilePic () {
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
+const AnimatedProfilePic = () => {
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
 
   const AnimatedBox = animated(Box);
   const AnimatedAvatar = animated(Avatar);
@@ -19,7 +19,7 @@ export default function AnimatedProfilePic () {
     '/images/about/tutor-pic.jpg'
   ]
 
-  const switchImg = (imgIndex) => {
+  const switchImg = (imgIndex: number) => {
     executeWithCooldown(() => { 
       setCurrImg(imgIndex);
       setLastClicked(Date.now());
@@ -76,10 +76,11 @@ export default function AnimatedProfilePic () {
               },
               backfaceVisibility: 'hidden'
             }}
+            // @ts-ignore
             style={{...profilePicSpring, ...style}}
           >
             <ImageZoomable
-              style={style}
+              springStyle={style}
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
               alternateSrc={(currImg === 0) ? '/images/about/profile-pic.jpg' : imgs[currImg]}
@@ -115,3 +116,5 @@ export default function AnimatedProfilePic () {
     </Fragment>
   )
 }
+
+export default AnimatedProfilePic;

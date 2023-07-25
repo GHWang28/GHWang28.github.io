@@ -1,5 +1,5 @@
 import React, { Fragment, useRef } from 'react';
-import { Box, Divider, Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Divider, Grid, Link, Theme, Typography, useMediaQuery, useTheme } from '@mui/material';
 import AnimatedProfilePic from './AnimatedProfilePic';
 import TimelineSection from './TimelineSection';
 import ContactMeSection from './ContactMeSection';
@@ -10,43 +10,24 @@ import generateExtraCurricularTimeline from './extracurricular';
 import { useLocation, useNavigate } from 'react-router';
 import SkillsSection from './SkillsSection';
 import FunFactSection from './FunFactSection';
-// import ButtonDownload from '../../components/ButtonDownload';
 import EducationSection from './EducationSection';
 import InlineCode from '../../components/InlineCode';
 import GradientTitle from '../../components/GradientTitle';
 import SparklezText from '../../components/Sparklez/SparklezText';
 
-export default function PageAbout () {
+const PageAbout = () => {
   const lightMode = useTheme().palette.mode === 'light';
-  const mediumMq = useMediaQuery((theme) => theme.breakpoints.up('md'));
-  const largeMq = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const xLargeMq = useMediaQuery((theme) => theme.breakpoints.up('xl'));
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
+  const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
+  const xLargeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('xl'));
   const AnimatedTypography = animated(Typography);
-  const contactRef = useRef();
+  const contactRef: React.Ref<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
   // This is called when user clicks on link underneath the introduction
-  const getInContactHandler = (event) => {
+  const getInContactHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    contactRef.current.scrollIntoView({ behavior: 'smooth' });
+    (contactRef.current as HTMLDivElement).scrollIntoView({ behavior: 'smooth' });
   }
-
-  const skillAndFunFactSection = (
-    <Grid container>
-      <Grid item md={5.9} xs={12} my={3}>
-        <FunFactSection />
-      </Grid>
-      {(mediumMq) ? (
-        <Grid item md={0.2} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Divider orientation='vertical' flexItem sx={{ bgcolor: 'whitesmoke' }}/>
-        </Grid>
-      ) : (
-        <Box component='hr' width='100%' sx={{ my: 0 }}/>
-      )}
-      <Grid item md={5.9} xs={12} my={3}>
-        <SkillsSection />
-      </Grid>
-    </Grid>
-  )
 
   return (
     <Fragment>
@@ -134,12 +115,12 @@ export default function PageAbout () {
               {'Click here.'}
             </Link>
           </AnimatedTypography>
-          {(xLargeMq) && (skillAndFunFactSection)}
+          {(xLargeMq) && <SkillAndFunFactSection />}
         </Grid>
         {(!xLargeMq) && (
           <Grid item xs={12}>
             <Box component='hr' width='100%' sx={{ my: 0 }}/>
-            {skillAndFunFactSection}
+            <SkillAndFunFactSection />
           </Grid>
         )}
         <Box component='hr' width='100%' sx={{ my: 0 }}/>
@@ -175,26 +156,31 @@ export default function PageAbout () {
         <Grid item xs={12} mb={2}>
           <ContactMeSection ref={contactRef} />
         </Grid>
-        {/*
-        <Box component='hr' width='100%' my={0}/>
-        <Grid item xs={12} >
-          <Typography mt={5} variant='h4' fontWeight='bold' align='center'>
-            {'Download Curriculum Vitae'}
-          </Typography>
-          <Typography mb={2} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-            {'The .PDF version of this website'}
-          </Typography>
-
-          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <ButtonDownload
-              downloadLink='https://drive.google.com/u/1/uc?id=1Z2aTNAyOGgdrdTAvrThoSaRD48OtatcV&export=download'
-              fileName={'Gordon Wang\'s CV'}
-              title='Download CV'
-            />
-          </Box>
-        </Grid>
-        */}
       </Grid>
     </Fragment>
   )
 }
+
+const SkillAndFunFactSection = () => {
+  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
+
+  return (
+    <Grid container>
+      <Grid item md={5.9} xs={12} my={3}>
+        <FunFactSection />
+      </Grid>
+      {(mediumMq) ? (
+        <Grid item md={0.2} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Divider orientation='vertical' flexItem sx={{ bgcolor: 'whitesmoke' }}/>
+        </Grid>
+      ) : (
+        <Box component='hr' width='100%' sx={{ my: 0 }}/>
+      )}
+      <Grid item md={5.9} xs={12} my={3}>
+        <SkillsSection />
+      </Grid>
+    </Grid>
+  )
+}
+
+export default PageAbout;

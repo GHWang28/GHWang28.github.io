@@ -3,12 +3,14 @@ import { Box } from '@mui/material';
 import { setImageZoom } from '../../redux/actions';
 import { BoxProps } from '@mui/material';
 import { useAppDispatch } from '../../hooks';
+import { SpringValue } from 'react-spring';
 
 type ComponentProps = BoxProps<'img'> & {
-  alternateSrc?: string
+  alternateSrc?: string,
+  springStyle?: { rotateY: SpringValue<string>; position: SpringValue<string>; }
 }
 
-const ImageZoomable = ({ src = '', sx, alternateSrc = '', ...props }: ComponentProps) => {
+const ImageZoomable = ({ src = '', sx, alternateSrc = '', springStyle, style, ...props }: ComponentProps) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -16,6 +18,7 @@ const ImageZoomable = ({ src = '', sx, alternateSrc = '', ...props }: ComponentP
       component='img'
       src={src}
       {...props}
+      style={{ ...style, ...springStyle }}
       sx={{
         ...sx,
         cursor: 'pointer'

@@ -1,6 +1,7 @@
-import moment from "moment/moment";
+import moment from 'moment/moment';
+import { TimelineData } from '../../types';
 
-const generateEmploymentTimeline = () => {
+const generateEmploymentTimeline = (): TimelineData[] => {
   return [
     {
       oppContent: '(February 2018)',

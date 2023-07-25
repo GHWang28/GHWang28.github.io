@@ -4,10 +4,16 @@ import { Box, ClickAwayListener, Collapse, Typography } from '@mui/material';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import PropTypes from 'prop-types';
+import { TimelineData } from '../../../types';
 
-export default function TimelineSectionItem ({ data, index, end }) {
-  const [show, setShow] = useState(false);
+type ComponentProps = {
+  data: TimelineData,
+  index: number,
+  end?: boolean
+}
+
+const TimelineSectionItem = ({ data, index, end = false }: ComponentProps) => {
+  const [show, setShow] = useState<boolean>(false);
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
@@ -55,7 +61,6 @@ export default function TimelineSectionItem ({ data, index, end }) {
               <Box
                 alt='Employment Timeline Icon'
                 component='img'
-                effect='opacity'
                 sx={{ width: '45px', height: '45px' }}
                 src={data.timelineDotImg}
               />
@@ -94,14 +99,4 @@ export default function TimelineSectionItem ({ data, index, end }) {
   )
 }
 
-TimelineSectionItem.propTypes = {
-  data: PropTypes.shape({
-    oppContent: PropTypes.string,
-    timelineDotColor: PropTypes.string,
-    timelineDotImg: PropTypes.string,
-    timelineTitle: PropTypes.string,
-    timelineContent: PropTypes.array
-  }),
-  index: PropTypes.number,
-  end: PropTypes.bool,
-};
+export default TimelineSectionItem;

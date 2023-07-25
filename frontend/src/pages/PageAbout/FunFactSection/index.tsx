@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
 import { executeWithCooldown, rng } from '../../../helpers';
@@ -29,7 +29,6 @@ export default function FunFactSection () {
   const themeMode = useTheme().palette.mode;
   const [lastClicked, setLastClicked] = useState(Date.now());
   const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
   const transitions = useTransition(funfact, {
     from: { rotateY: '-180deg', position: 'static' },
@@ -68,7 +67,7 @@ export default function FunFactSection () {
       <Typography variant='h4' fontWeight='bold' align='center'>
         {'Fun Facts'}
       </Typography>
-      <Typography mb={(smallMq) ? 1 : 3} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+      <Typography mb={{ sm: 1, xs: 3 }} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
         {'Mildly interesting facts about me'}
       </Typography>
       <Grid container>
@@ -84,9 +83,10 @@ export default function FunFactSection () {
         >
           {transitions((style, funfactItem) => (
             <AnimatedBox
+              // @ts-ignore
               style={style}
-              p={1}
               sx={{
+                p: 1,
                 width: '100%',
                 backfaceVisibility: 'hidden',
                 bgcolor: (themeMode === 'dark') ? 'black.main' : 'white.main',

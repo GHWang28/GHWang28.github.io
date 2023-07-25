@@ -1,6 +1,9 @@
+import React from 'react';
 import { Link } from '@mui/material';
+import { NavigateFunction, Location } from 'react-router';
+import { TimelineData } from '../../types';
 
-const generateExtraCurricularTimeline = (navigate, location) => {
+const generateExtraCurricularTimeline = (navigate: NavigateFunction, location: Location): TimelineData[] => {
 
   return [
     {

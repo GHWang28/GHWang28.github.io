@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Collapse, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Avatar, Box, Collapse, Typography, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
-import PropTypes from 'prop-types';
 
-export default function EducationCard ({title, subtitle, color, src, date = ['', ''], description = [], odd, backgroundSrc}) {
-  const smallMq = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+type ComponentProps = {
+  title: string,
+  subtitle: string,
+  color: string,
+  src: string,
+  backgroundSrc: string,
+  date: [number, number],
+  description: string[],
+  odd?: boolean
+}
+
+const EducationCard = ({title, subtitle, color, src, date = [0, 0], description = [], odd, backgroundSrc}: ComponentProps) => {
   const [show, setShow] = useState(false);
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
@@ -26,7 +35,7 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
         width: '90%',
         maxWidth: '600px',
         mx: 'auto',
-        py: (smallMq) ? 2 : 1,
+        py: { sm: 2, xs: 1 },
         px: 4,
         boxSizing: 'border-box',
         opacity: (inView) ? '1' : '0',
@@ -98,19 +107,13 @@ export default function EducationCard ({title, subtitle, color, src, date = ['',
           </Box>
         ))}
       </Collapse>
-      <Collapse in={!show} component={Typography} variant='subtitle2' color={`${color}.main`} align={'center'}>
-        {'Click to show more information.'}
+      <Collapse in={!show}>
+        <Typography variant='subtitle2' color={`${color}.main`} align={'center'}>
+          {'Click to show more information.'}
+        </Typography>
       </Collapse>
     </Box>
   )
 }
 
-EducationCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  date: PropTypes.arrayOf(PropTypes.number).isRequired,
-  description: PropTypes.arrayOf(PropTypes.string).isRequired,
-  odd: PropTypes.bool
-};
+export default EducationCard;

@@ -1,7 +1,13 @@
+import React from 'react';
 import { Box, IconButton, keyframes, Typography } from "@mui/material";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import BootstrapTooltip from "../../../components/BootstrapTooltip";
+import { ContactData } from "../../../types";
+
+type ComponentProps = {
+  contact: ContactData
+}
 
 const onClick = keyframes`
   0% {
@@ -12,7 +18,7 @@ const onClick = keyframes`
   }
 `
 
-export default function ContactMeIcon ({ contact }) {
+const ContactMeIcon = ({ contact }: ComponentProps) => {
   const [clicked, setClicked] = useState(false);
   const [ref, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
@@ -32,7 +38,10 @@ export default function ContactMeIcon ({ contact }) {
     >
       <BootstrapTooltip title={contact.tooltip} placement='top'>
         <IconButton
-          onClick={() => { contact.onClick(); setClicked(true); }}
+          onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+            contact?.onClick(event);
+            setClicked(true);
+          }}
           sx={{
             borderWidth: '2px',
             borderStyle: 'solid',
@@ -63,3 +72,5 @@ export default function ContactMeIcon ({ contact }) {
     </Box>
   )
 }
+
+export default ContactMeIcon;

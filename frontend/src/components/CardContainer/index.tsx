@@ -4,7 +4,7 @@ import { BlogData, ProjectData } from '../../types';
 import { splitArray } from '../../helpers';
 
 type ComponentProps = {
-  cardData: BlogData[] | ProjectData[],
+  cardData: (BlogData | { id: -999 })[] | ProjectData[],
   component: React.ElementType
 }
 
@@ -42,7 +42,7 @@ const CardContainer = ({ cardData, component: Component }: ComponentProps) => {
     <Fragment>
       {cardData.map((proj, index) => (
         <Component
-          key={`project-${proj?.title?.toLowerCase()}`}
+          key={`project-${index}`}
           index={index}
           data={proj}
         />

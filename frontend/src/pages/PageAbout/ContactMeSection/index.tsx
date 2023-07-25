@@ -5,13 +5,14 @@ import MailIcon from '@mui/icons-material/Mail';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactMeIcon from './ContactMeIcon';
+import { ContactData } from '../../../types';
 
-const ContactMeSection = forwardRef((_, ref) => {
+const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
   const [inViewRef, inView] = useInView({
     rootMargin: '9999999px 0px 0px 0px'
   });
 
-  const contacts = [
+  const contacts: ContactData[] = [
     {
       label: 'E-mail',
       info: 'gordon.wang280801@gmail.com',
@@ -26,7 +27,7 @@ const ContactMeSection = forwardRef((_, ref) => {
       label: 'LinkedIn',
       icon: <LinkedInIcon fontSize='large' />,
       onClick: () => {
-        window.open('https://www.linkedin.com/in/gordon-wang-6b9403232', '_blank').focus();
+        window?.open('https://www.linkedin.com/in/gordon-wang-6b9403232', '_blank')?.focus();
       },
       tooltip: 'Go to my LinkedIn'
     },
@@ -35,7 +36,7 @@ const ContactMeSection = forwardRef((_, ref) => {
       info: 'github.com/GHWang28',
       icon: <GitHubIcon fontSize='large' />,
       onClick: () => {
-        window.open('https://github.com/GHWang28', '_blank').focus();
+        window?.open('https://github.com/GHWang28', '_blank')?.focus();
       },
       tooltip: 'Go to my GitHub'
     },
