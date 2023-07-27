@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import BackgroundBlock from './BackgroundBlock';
 import BackgroundWave from './BackgroundWave';
-import config from '../../config.json';
-import BackgroundParticles from './BackgroundParticles';
 import { useAppSelector } from '../../hooks';
+import Canvas from './Canvas';
+import blockPulsateAnim from './Canvas/Animators/blockPulsateAnim';
+import rippleAnim from './Canvas/Animators/rippleAnim';
 
 const Background = () => {
   const themeMode = useAppSelector(state => state.themeMode);
@@ -26,10 +26,33 @@ const Background = () => {
   )
 }
 
-function BackgroundInner () {
+const BackgroundInner = () => {
   const backgroundIndex = useAppSelector(state => state.background);
+  const [hidden, setHidden] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setHidden(document.hidden);
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
+  }, []);
+
+  // If the page is hidden, then return null as background
+  if (hidden) {
+    return null;
+  }
+
   switch (backgroundIndex) {
-    case 1: return (
+    case 1: return <BackgroundWave />
+    case 2: return <Canvas anim={rippleAnim} />;
+    case 3: return <Canvas anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(c, 200)}/>;
+    case 4: return <Canvas anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(c, 75)}/>;
+    case 5: return (
       <Box
         sx={{
           position: 'relative',
@@ -48,12 +71,7 @@ function BackgroundInner () {
           sx={{ height: '100%', width: '100%' }}
         />
       </Box>
-    )
-    case 2: return <BackgroundWave />;
-    case 3:
-    case 4: return <BackgroundParticles bgIndex={backgroundIndex} />;
-    case 5: return <BackgroundBlock dim={config.BLOCK_BG_DIM_SMALL} />;
-    case 6: return <BackgroundBlock dim={config.BLOCK_BG_DIM_LARGE} />;
+    );
     default: return null;
   }
 }

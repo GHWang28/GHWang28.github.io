@@ -93,3 +93,8 @@ export type ContactData = {
   onClick: React.MouseEventHandler<HTMLButtonElement>,
   tooltip: string,
 }
+
+export type Position = {
+  x: number,
+  y: number
+}

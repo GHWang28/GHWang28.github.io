@@ -1,5 +1,6 @@
 import getVideoId from 'get-video-id';
 import config from '../config.json'
+import { Position } from '../types';
 
 declare global {
   interface Window {
@@ -143,3 +144,18 @@ export const splitArray = (array: any[]): { odd: any[]; even: any[] } => {
   return { odd, even };
 }
 
+/**
+ * Converts the given degree to radian value
+ */
+export const convertDegToRad = (deg: number): number => (
+  deg * Math.PI / 180
+)
+
+export const calcDistance2D = (posA: Position | null, posB: Position | null): number => {
+  if (posA == null || posB == null) return Infinity;
+
+  return Math.sqrt(
+    Math.pow(posA.x - posB.x, 2) +
+    Math.pow(posA.y - posB.y, 2)
+  )
+}

@@ -4,9 +4,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import AbcIcon from '@mui/icons-material/Abc';
 import WavesIcon from '@mui/icons-material/Waves';
 import CancelIcon from '@mui/icons-material/Cancel';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
 import MemoryIcon from '@mui/icons-material/Memory';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
 import SquareIcon from '@mui/icons-material/Square';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -29,28 +28,24 @@ function Settings () {
       label: 'None'
     },
     {
-      icon: <MemoryIcon />,
-      label: 'Circuitry'
-    },
-    {
       icon: <WavesIcon />,
       label: 'Waves'
     },
     {
-      icon: <AcUnitIcon />,
-      label: 'Snow'
-    },
-    {
-      icon: <StarOutlineIcon />,
-      label: 'Stars'
+      icon: <ModeStandbyIcon />,
+      label: 'Ripples'
     },
     {
       icon: <SquareIcon sx={{ scale: '1.0' }}/>,
-      label: 'Blocks x16'
+      label: 'Blocks LG'
     },
     {
       icon: <SquareIcon sx={{ scale: '0.66' }}/>,
-      label: 'Blocks x32'
+      label: 'Blocks SM'
+    },
+    {
+      icon: <MemoryIcon />,
+      label: 'Circuitry'
     }
   ];
 
