@@ -9,6 +9,7 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import SquareIcon from '@mui/icons-material/Square';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 import { setBackground, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
 import ButtonDropDown from '../ButtonDropDown';
 import LockIcon from '@mui/icons-material/Lock';
@@ -30,6 +31,10 @@ function Settings () {
     {
       icon: <WavesIcon />,
       label: 'Waves'
+    },
+    {
+      icon: <LandscapeIcon />,
+      label: 'Mountains'
     },
     {
       icon: <ModeStandbyIcon />,

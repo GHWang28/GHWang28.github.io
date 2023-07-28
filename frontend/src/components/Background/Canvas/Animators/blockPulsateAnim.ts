@@ -1,7 +1,7 @@
-import PulsatingSquare from '../Shapes/PulsatingSquare';
+import PulsatingSquare from '../Shapes/AnimatedShapes/PulsatingSquare';
 import { renderAndAnimateShapes } from '../canvasRenderer';
 
-const blockPulsateAnim = (context: CanvasRenderingContext2D, dim: number) => {
+const blockPulsateAnim = (context: CanvasRenderingContext2D, dim: number): Function => {
   let lastTime = performance.now(), deltaTime = 0;
   let animationFrameID: number;
   let arrayOfShapes: PulsatingSquare[] = []
@@ -23,6 +23,7 @@ const blockPulsateAnim = (context: CanvasRenderingContext2D, dim: number) => {
 
   window.addEventListener('resize', generateShapes);
 
+  // Render loop
   const render = (currentTime: number) => {
     // Calculate the delta time in seconds
     deltaTime = (currentTime - lastTime) / 1000;

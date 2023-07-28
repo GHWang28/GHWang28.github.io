@@ -1,9 +1,9 @@
 import { calcDistance2D } from '../../../../helpers';
 import { Position } from '../../../../types';
-import RippleArc from '../Shapes/RippleArc';
+import RippleArc from '../Shapes/AnimatedShapes/RippleArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';
 
-const rippleAnim = (context: CanvasRenderingContext2D) => {
+const rippleAnim = (context: CanvasRenderingContext2D): Function => {
   let lastTime = performance.now(), deltaTime = 0;
   let lastPos: Position | null = null; 
   let animationFrameID: number;
@@ -19,6 +19,7 @@ const rippleAnim = (context: CanvasRenderingContext2D) => {
     )
   }, 5);
 
+  // Pushes the new shape at the given position into the array
   const genNewShape = (pos: Position) => {
     arrayOfShapes.push(
       new RippleArc({
@@ -28,6 +29,7 @@ const rippleAnim = (context: CanvasRenderingContext2D) => {
     )
   }
 
+  // Generates the new shape via mouse movement
   const generateNewShapesByMovement = (event: MouseEvent) => {
     const currPos: Position = {
       x: event.x,
@@ -39,6 +41,7 @@ const rippleAnim = (context: CanvasRenderingContext2D) => {
     }
   }
 
+  // Generate new shapes via mouse clicking
   const generateNewShapesByClick = (event: MouseEvent) => {
     genNewShape({ x: event.x, y: event.y });
   }
@@ -46,6 +49,7 @@ const rippleAnim = (context: CanvasRenderingContext2D) => {
   window.addEventListener('mousemove', generateNewShapesByMovement);
   window.addEventListener('mousedown', generateNewShapesByClick);
 
+  // Render loop
   const render = (currentTime: number) => {
     // Calculate the delta time in seconds
     deltaTime = (currentTime - lastTime) / 1000;

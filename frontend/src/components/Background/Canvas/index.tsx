@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box } from '@mui/material';
 import blockPulsateAnim from './Animators/blockPulsateAnim';
 
 type ComponentProps = {
@@ -13,9 +12,7 @@ const Canvas = ({ anim = (c: CanvasRenderingContext2D) => blockPulsateAnim(c, 10
   // Setup
   useEffect(() => {
     // Sets context
-    if (ref.current) {
-      setContext(ref.current.getContext('2d'));
-    }
+    if (ref.current) setContext(ref.current.getContext('2d'));
 
     // Adds resizer listener
     const resizeCanvas = () => {
@@ -40,10 +37,7 @@ const Canvas = ({ anim = (c: CanvasRenderingContext2D) => blockPulsateAnim(c, 10
 
 
   return (
-    <Box
-      component='canvas'
-      ref={ref}
-    />
+    <canvas ref={ref} />
   )
 }
 

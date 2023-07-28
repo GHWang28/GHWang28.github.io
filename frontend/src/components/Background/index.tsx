@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Theme, useMediaQuery, useTheme } from '@mui/material';
 import BackgroundWave from './BackgroundWave';
 import { useAppSelector } from '../../hooks';
 import Canvas from './Canvas';
 import blockPulsateAnim from './Canvas/Animators/blockPulsateAnim';
 import rippleAnim from './Canvas/Animators/rippleAnim';
+import mountainAnim from './Canvas/Animators/mountainAnim';
 
 const Background = () => {
   const themeMode = useAppSelector(state => state.themeMode);
@@ -30,6 +31,12 @@ const BackgroundInner = () => {
   const backgroundIndex = useAppSelector(state => state.background);
   const [hidden, setHidden] = useState<boolean>(false);
 
+  const theme = useTheme();
+  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
+  const mediumMq = useMediaQuery(theme.breakpoints.up('sm'));
+  const largeMq = useMediaQuery(theme.breakpoints.up('sm'));
+
+  // Handling when the document can be visible or not
   useEffect(() => {
     const handleVisibilityChange = () => {
       setHidden(document.hidden);
@@ -48,11 +55,38 @@ const BackgroundInner = () => {
   }
 
   switch (backgroundIndex) {
-    case 1: return <BackgroundWave />
-    case 2: return <Canvas anim={rippleAnim} />;
-    case 3: return <Canvas anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(c, 200)}/>;
-    case 4: return <Canvas anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(c, 75)}/>;
+    case 1: return <BackgroundWave />;
+    case 2: return <Canvas anim={mountainAnim} />
+    case 3: return <Canvas anim={rippleAnim} />;
+    case 4: return (
+      <Canvas
+        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
+          c,
+          (largeMq) ? (
+            200
+          ) : (mediumMq) ? (
+            175
+          ) : (smallMq) ? (
+            150
+          ) : (125)
+        )}
+      />
+    );
     case 5: return (
+      <Canvas
+        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
+          c,
+          (largeMq) ? (
+            100
+          ) : (mediumMq) ? (
+            75
+          ) : (smallMq) ? (
+            50
+          ) : (25)
+        )}
+      />
+    );
+    case 6: return (
       <Box
         sx={{
           position: 'relative',

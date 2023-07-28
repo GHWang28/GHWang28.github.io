@@ -1,5 +1,5 @@
-import Shape from "./Shapes/Shape";
-import AnimatedShape from "./Shapes/AnimatedShape";
+import Shape from './Shapes/Shape';
+import AnimatedShape from './Shapes/AnimatedShapes/AnimatedShape';
 
 export const renderShapes = (arrayOfShapes: Shape[]) => {
   arrayOfShapes.forEach((shape: Shape) => {

@@ -1,6 +1,6 @@
-import { rng } from '../../../../helpers';
+import { rng } from '../../../../../helpers';
 import AnimatedShape from './AnimatedShape';
-import Rectangle from './Rectangle';
+import Rectangle from '../Rectangle';
 
 type ClassConstructor = {
   x: number,

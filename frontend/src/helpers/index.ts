@@ -1,6 +1,7 @@
 import getVideoId from 'get-video-id';
 import config from '../config.json'
 import { Position } from '../types';
+import colorConvert from 'color-convert';
 
 declare global {
   interface Window {
@@ -158,4 +159,32 @@ export const calcDistance2D = (posA: Position | null, posB: Position | null): nu
     Math.pow(posA.x - posB.x, 2) +
     Math.pow(posA.y - posB.y, 2)
   )
+}
+
+function extractNumbers(inputString: string): [number, number, number] {
+  const numbersMatch = inputString.match(/-?\d+(\.\d+)?/g);
+
+  if (!numbersMatch) {
+    return [0, 0, 0];
+  }
+
+  return [parseFloat(numbersMatch[0]), parseFloat(numbersMatch[1]), parseFloat(numbersMatch[2])];
+}
+
+export const colorToRGBA = (color: string, opacity: number): string => {
+  let rgbValues: [number, number, number] = [0, 0, 0];
+
+  if (color.startsWith('rgba')) {
+    return color;
+  } else if (color.startsWith('#')) {
+    rgbValues = colorConvert.hex.rgb(color.slice(1));
+  } else if (color.startsWith('hsl')) {
+    rgbValues = colorConvert.hsl.rgb(extractNumbers(color));
+  } else if (color.startsWith('rgb')) {
+    rgbValues = extractNumbers(color);
+  } else {
+    // @ts-ignore
+    rgbValues = colorConvert.keyword.rgb(color);
+  }
+  return `rgba(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]},${Math.max(0, Math.min(1, opacity))})`;
 }

@@ -1,5 +1,5 @@
-import { convertDegToRad } from "../../../../helpers";
-import Shape from "./Shape";
+import { convertDegToRad } from '../../../../helpers';
+import Shape from './Shape';
 
 type ClassConstructor = {
   x: number,
@@ -14,8 +14,8 @@ type ClassConstructor = {
 
 class Arc extends Shape {
   protected radius: number;
-  private startDegree: number;
-  private endDegree: number;  
+  protected startDegree: number;
+  protected endDegree: number;  
 
   constructor({ x, y, fillColor = '', strokeColor = 'whitesmoke', radius, startDegree = 0, endDegree, context}: ClassConstructor) {
     super(x, y, fillColor, strokeColor, context);
@@ -29,7 +29,7 @@ class Arc extends Shape {
     this.context.fillStyle = this.fillColor || 'rgba(0,0,0,0)';
 
     this.context.beginPath();
-    this.context.arc(this.x, this.y, this.radius, this.startDegree, this.endDegree);
+    this.context.arc(this.getX(), this.getY(), this.radius, this.startDegree, this.endDegree);
     this.context.fill();
     this.context.stroke();
 

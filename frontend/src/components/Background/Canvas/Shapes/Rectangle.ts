@@ -21,7 +21,7 @@ class Rectangle extends Shape {
 
   render(): void {
     this.context.fillStyle = this.fillColor;
-    this.context.fillRect(this.x, this.y, this.width, this.height);
+    this.context.fillRect(this.getX(), this.getY(), this.width, this.height);
   }
 }
 
