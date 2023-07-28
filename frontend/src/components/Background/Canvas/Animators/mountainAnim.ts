@@ -18,7 +18,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     const radius = (isMobileOrTablet()) ? 80 : 150;
     const moonPos = {
       x: Math.max(window.innerWidth * 0.1, radius),
-      y: (isMobileOrTablet()) ? 150 : 250
+      y: (isMobileOrTablet()) ? 180 : 250
     }
 
     // Creating moon
