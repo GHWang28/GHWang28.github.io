@@ -1,4 +1,4 @@
-import { calcDistance2D } from '../../../../helpers';
+import { calcDistance2D, isMobileOrTablet } from '../../../../helpers';
 import MountainShape from '../Shapes/AnimatedShapes/MountainShape';
 import RadiantArc from '../Shapes/RadiantArc';
 import { renderShapes } from '../canvasRenderer';
@@ -98,8 +98,8 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
 
   // Parallax via device movement
   const onDeviceMotion = (event: DeviceOrientationEvent) => {
-    const yDistance = Math.max(-1, Math.min(1, event.gamma || 0 / 90));
-    const xDistance = Math.max(-1, Math.min(1, event.alpha || 0 / 90));
+    const yDistance = Math.max(-1, Math.min(1, (event.beta || 0) / 90));
+    const xDistance = Math.max(-1, Math.min(1, (event.gamma || 0) / 90));
 
     for (let i = 0; i < arrayOfMountains.length; ++i) {
       const amplification = (i + 1) / arrayOfMountains.length;
@@ -108,8 +108,11 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     }
   }
 
-  window.addEventListener('mousemove', onMouseMove);
-  window.addEventListener('deviceorientation', onDeviceMotion);
+  if (isMobileOrTablet()) {
+    window.addEventListener('deviceorientation', onDeviceMotion);
+  } else {
+    window.addEventListener('mousemove', onMouseMove);
+  }
 
   // Render loop
   const render = (currentTime: number) => {
@@ -139,9 +142,12 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
   animationFrameID = window.requestAnimationFrame(render);
 
   return () => {
+    if (isMobileOrTablet()) {
+      window.removeEventListener('deviceorientation', onDeviceMotion);
+    } else {
+      window.removeEventListener('mousemove', onMouseMove);
+    }
     window.removeEventListener('resize', generateScene);
-    window.removeEventListener('mousemove', onMouseMove);
-    window.removeEventListener('deviceorientation', onDeviceMotion);
     window.cancelAnimationFrame(animationFrameID);
   }
 }
