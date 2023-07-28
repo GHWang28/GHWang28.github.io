@@ -25,17 +25,13 @@ function Settings () {
 
   const backgroundOptions = [
     {
-      icon: <CancelIcon />,
-      label: 'None'
+      icon: <LandscapeIcon />,
+      label: 'Mountains'
     },
     {
       icon: <WavesIcon />,
       label: 'Waves'
-    },
-    {
-      icon: <LandscapeIcon />,
-      label: 'Mountains'
-    },
+    },    
     {
       icon: <ModeStandbyIcon />,
       label: 'Ripples'
@@ -51,6 +47,10 @@ function Settings () {
     {
       icon: <MemoryIcon />,
       label: 'Circuitry'
+    },
+    {
+      icon: <CancelIcon />,
+      label: 'None'
     }
   ];
 

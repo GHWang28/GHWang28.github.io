@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import BackgroundWave from './BackgroundWave';
 import { useAppSelector } from '../../hooks';
 import Canvas from './Canvas';
@@ -55,38 +55,38 @@ const BackgroundInner = () => {
   }
 
   switch (backgroundIndex) {
+    case 0: return <Canvas anim={mountainAnim} />;
     case 1: return <BackgroundWave />;
-    case 2: return <Canvas anim={mountainAnim} />
-    case 3: return <Canvas anim={rippleAnim} />;
+    case 2: return <Canvas anim={rippleAnim} />;
+    case 3: return (
+      <Canvas
+        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
+          c,
+          (largeMq) ? (
+            250
+          ) : (mediumMq) ? (
+            200
+          ) : (smallMq) ? (
+            150
+          ) : (100)
+        )}
+      />
+    );
     case 4: return (
       <Canvas
         anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
           c,
           (largeMq) ? (
-            200
+            125
           ) : (mediumMq) ? (
-            175
+            100
           ) : (smallMq) ? (
-            150
-          ) : (125)
+            75
+          ) : (50)
         )}
       />
     );
     case 5: return (
-      <Canvas
-        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
-          c,
-          (largeMq) ? (
-            100
-          ) : (mediumMq) ? (
-            75
-          ) : (smallMq) ? (
-            50
-          ) : (25)
-        )}
-      />
-    );
-    case 6: return (
       <Box
         sx={{
           position: 'relative',

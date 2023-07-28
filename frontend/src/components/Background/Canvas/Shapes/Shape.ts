@@ -36,7 +36,9 @@ abstract class Shape {
     return this.yOffset + this.y;
   }
 
-  abstract render():void;
+  abstract render(): void;
+
+  abstract createPath(): void;
 }
 
 export default Shape;

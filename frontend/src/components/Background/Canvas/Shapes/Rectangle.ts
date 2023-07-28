@@ -23,6 +23,16 @@ class Rectangle extends Shape {
     this.context.fillStyle = this.fillColor;
     this.context.fillRect(this.getX(), this.getY(), this.width, this.height);
   }
+
+  createPath(): void {
+    this.context.beginPath();
+    this.context.moveTo(this.getX(), this.getY());
+    this.context.lineTo(this.getX() + this.width, this.getY());
+    this.context.lineTo(this.getX() + this.width, this.getY() + this.height);
+    this.context.lineTo(this.getX(), this.getY()  + this.height);
+    this.context.lineTo(this.getX(), this.getY());
+    this.context.closePath();
+  }
 }
 
 export default Rectangle;

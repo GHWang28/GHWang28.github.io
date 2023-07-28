@@ -1,29 +1,37 @@
-import { calcDistance2D, isMobileOrTablet } from '../../../../helpers';
+import { calcDistance2D, isMobileOrTablet, rng } from '../../../../helpers';
 import MountainShape from '../Shapes/AnimatedShapes/MountainShape';
+import PulsatingArc from '../Shapes/AnimatedShapes/PulsatingArc';
 import RadiantArc from '../Shapes/RadiantArc';
-import { renderShapes } from '../canvasRenderer';
+import { renderAndAnimateShapes, renderShapes } from '../canvasRenderer';
 
 const mountainAnim = (context: CanvasRenderingContext2D): Function => {
   let lastTime = performance.now(), deltaTime = 0;
   let animationFrameID: number;
   let arrayOfMountains: MountainShape[] = [];
   let moon: RadiantArc[] = [];
+  let stars: PulsatingArc[] = [];
 
   const middleY = { x: 0, y: window.innerHeight / 2 }
   const middleX = { x: window.innerWidth / 2, y: 0 }
 
   const generateScene = () => {
+    const radius = (isMobileOrTablet()) ? 80 : 150;
+    const moonPos = {
+      x: Math.max(window.innerWidth * 0.1, radius),
+      y: (isMobileOrTablet()) ? 150 : 250
+    }
 
+    // Creating moon
     moon = [new RadiantArc({
-      x: Math.max(window.innerWidth * 0.1, 150),
-      y: 250,
-      radius: 150,
+      ...moonPos,
+      radius,
       endDegree: 360,
       stopColor: 'whitesmoke',
       opacity: 0.25,
       context
     })];
 
+    // Creating mountains
     arrayOfMountains = [
       new MountainShape({
         x: window.innerWidth / 2,
@@ -33,7 +41,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
         heightRatio: 0.85,
         opacity: 0.05,
         context,
-        points: Math.ceil(window.innerWidth / 85),
+        points: Math.ceil(window.innerWidth / 50),
         amplification: 0.6
       }),
       new MountainShape({
@@ -44,7 +52,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
         heightRatio: 0.6,
         opacity: 0.1,
         context,
-        points: Math.ceil(window.innerWidth / 50),
+        points: Math.ceil(window.innerWidth / 60),
         amplification: 0.4
       }),
       new MountainShape({
@@ -52,10 +60,10 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
         y: window.innerHeight / 2,
         width: window.innerWidth + 2 * MountainShape.OFFSET,
         height: window.innerHeight + 2 * MountainShape.OFFSET,
-        heightRatio: 0.35,
+        heightRatio: 0.5,
         opacity: 0.15,
         context,
-        points: Math.ceil(window.innerWidth / 150),
+        points: Math.ceil(window.innerWidth / 70),
         amplification: 0.5
       }),
       new MountainShape({
@@ -63,16 +71,28 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
         y: window.innerHeight / 2,
         width: window.innerWidth + 2 * MountainShape.OFFSET,
         height: window.innerHeight + 2 * MountainShape.OFFSET,
-        heightRatio: 0.3,
+        heightRatio: 0.35,
         opacity: 0.2,
         context,
-        points: Math.ceil(window.innerWidth / 150),
+        points: Math.ceil(window.innerWidth / 80),
         amplification: 0.8
       })
-    ]
+    ];
+
+    // Creating stars
+    stars = Array.from({ length: Math.ceil((window.innerWidth / 400 + 1) * 50) }, () => {
+      let x = rng(0, window.innerWidth), y = rng(0, window.innerHeight / 2);
+
+      // Regenerating position if it is too close to the moon
+      while (calcDistance2D({ x, y }, moonPos) < radius) {
+        x = rng(0, window.innerWidth);
+        y = rng(0, window.innerHeight / 2);
+      }
+
+      return new PulsatingArc({ x, y, radius: 5, context })
+    })
   }
   generateScene();
-
   window.addEventListener('resize', generateScene);
 
   // Parallax via mouse
@@ -98,8 +118,8 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
 
   // Parallax via device movement
   const onDeviceMotion = (event: DeviceOrientationEvent) => {
-    const yDistance = Math.max(-1, Math.min(1, (event.beta || 0) / 90));
-    const xDistance = Math.max(-1, Math.min(1, (event.gamma || 0) / 90));
+    const yDistance = Math.max(-1, Math.min(1, (event.beta || 0) / 60));
+    const xDistance = Math.max(-1, Math.min(1, (event.gamma || 0) / 60));
 
     for (let i = 0; i < arrayOfMountains.length; ++i) {
       const amplification = (i + 1) / arrayOfMountains.length;
@@ -122,7 +142,17 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
 
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    // Rendering Sun
+    // Render stars
+    renderAndAnimateShapes(stars, deltaTime);
+
+    // Remove stars behind the moon
+    context.globalCompositeOperation = 'destination-out';
+    context.fillStyle = 'black'
+    moon[0].createPath();
+    context.fill();
+
+    // Rendering Moon normally
+    context.globalCompositeOperation = 'source-over';
     renderShapes(moon);
 
     // Rendering mountain
@@ -135,8 +165,6 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
       arrayOfMountains[i].render();
     }
 
-
-    // Clearing
     animationFrameID = window.requestAnimationFrame(render);
   }
   animationFrameID = window.requestAnimationFrame(render);

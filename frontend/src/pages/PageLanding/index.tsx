@@ -180,8 +180,6 @@ const PageLanding = () => {
         fontSize={35}
         lineHeight={1.0}
       >
-        Hi, my name is Gordon&nbsp;Wang.
-        <br/>
         {' Welcome to my GitHub page!'}
       </AnimatedTypography>
       <AnimatedTypography

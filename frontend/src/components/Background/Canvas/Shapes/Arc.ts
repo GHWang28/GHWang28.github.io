@@ -28,11 +28,15 @@ class Arc extends Shape {
     this.context.strokeStyle = this.strokeColor || 'rgba(0,0,0,0)';
     this.context.fillStyle = this.fillColor || 'rgba(0,0,0,0)';
 
-    this.context.beginPath();
-    this.context.arc(this.getX(), this.getY(), this.radius, this.startDegree, this.endDegree);
+    this.createPath();
+
     this.context.fill();
     this.context.stroke();
+  }
 
+  createPath(): void {
+    this.context.beginPath();
+    this.context.arc(this.getX(), this.getY(), this.radius, this.startDegree, this.endDegree);
     this.context.closePath();
   }
 }
