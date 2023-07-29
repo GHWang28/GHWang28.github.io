@@ -9,7 +9,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
   let animationFrameID: number;
   let arrayOfMountains: MountainShape[] = [];
   let moon: RadiantArc[] = [];
-  let stars: PulsatingArc[] = [];
+  let arrayOfStars: PulsatingArc[] = [];
 
   const middleY = { x: 0, y: window.innerHeight / 2 }
   const middleX = { x: window.innerWidth / 2, y: 0 }
@@ -80,7 +80,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     ];
 
     // Creating stars
-    stars = Array.from({ length: Math.ceil((window.innerWidth / 400 + 1) * 50) }, () => {
+    arrayOfStars = Array.from({ length: Math.ceil((window.innerWidth / 400 + 1) * 50) }, () => {
       let x = rng(0, window.innerWidth), y = rng(0, window.innerHeight / 2);
 
       // Regenerating position if it is too close to the moon
@@ -107,13 +107,9 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     ) / (window.innerHeight / 2);
 
     const left = (event.x < (window.innerWidth / 2)) ? 1 : -1;
-    const up = event.y < (window.innerHeight / 2) ? 1 : -1;
+    const up = (event.y < (window.innerHeight / 2)) ? 1 : -1;
 
-    for (let i = 0; i < arrayOfMountains.length; ++i) {
-      const amplification = (i + 1) / arrayOfMountains.length;
-      arrayOfMountains[i].setXOffset(left * xDistance * MountainShape.OFFSET * amplification);
-      arrayOfMountains[i].setYOffset(up * yDistance * MountainShape.OFFSET * amplification);
-    }
+    setParallax(left * xDistance, up * yDistance);
   }
 
   // Parallax via device movement
@@ -121,11 +117,16 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     const yDistance = Math.max(-1, Math.min(1, (event.beta || 0) / 60));
     const xDistance = Math.max(-1, Math.min(1, (event.gamma || 0) / 60));
 
-    for (let i = 0; i < arrayOfMountains.length; ++i) {
-      const amplification = (i + 1) / arrayOfMountains.length;
-      arrayOfMountains[i].setXOffset(xDistance * MountainShape.OFFSET * amplification);
-      arrayOfMountains[i].setYOffset(yDistance * MountainShape.OFFSET * amplification);
-    }
+    setParallax(xDistance, yDistance);
+  }
+
+  // The central function that controls the parallax
+  const setParallax = (xDistance: number, yDistance: number) => {
+    arrayOfMountains.forEach((mountain, index) => {
+      const amplification = (index + 1) / arrayOfMountains.length;
+      mountain.setXOffset(xDistance * MountainShape.OFFSET * amplification);
+      mountain.setYOffset(yDistance * MountainShape.OFFSET * amplification);
+    });
   }
 
   if (isMobileOrTablet()) {
@@ -143,7 +144,7 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     // Render stars
-    renderAndAnimateShapes(stars, deltaTime);
+    renderAndAnimateShapes(arrayOfStars, deltaTime);
 
     // Remove stars behind the moon
     context.globalCompositeOperation = 'destination-out';
