@@ -51,6 +51,11 @@ const PageSkills = () => {
       tags: ['Frontend Technology']
     },
     {
+      name: 'Canvas',
+      src: 'canvas.png',
+      tags: ['Frontend Technology']
+    },
+    {
       name: 'Dreamweaver',
       src: 'dreamweaver.svg',
       tags: ['Frontend Technology']
@@ -62,7 +67,7 @@ const PageSkills = () => {
     },
     {
       name: 'HTML',
-      src: 'html.svg',
+      src: 'html.png',
       tags: ['Frontend Technology']
     },
     {
