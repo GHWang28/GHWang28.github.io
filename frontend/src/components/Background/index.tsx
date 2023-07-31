@@ -62,12 +62,12 @@ const BackgroundInner = () => {
         anim={(c: CanvasRenderingContext2D) => rainAnim(
           c,
           (largeMq) ? (
-            600
+            Math.floor(window.innerWidth / 3)
           ) : (mediumMq) ? (
             500
           ) : (smallMq) ? (
-            400
-          ) : (300)
+            250
+          ) : (100)
         )}
       />
     );

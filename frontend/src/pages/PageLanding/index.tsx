@@ -183,7 +183,7 @@ const PageLanding = () => {
         fontSize={35}
         lineHeight={1.0}
       >
-        {' Welcome to my GitHub page!'}
+        Welcome to my GitHub&nbsp;Page!
       </AnimatedTypography>
       <AnimatedTypography
         mt={4}
