@@ -24,6 +24,18 @@ abstract class Shape {
     return this.xOffset + this.x;
   }
 
+  protected getY(): number {
+    return this.yOffset + this.y;
+  }
+
+  protected setX(x: number) {
+    this.x = x;
+  }
+
+  protected setY(y: number) {
+    this.y = y;
+  }
+
   setXOffset(offset: number): void {
     this.xOffset = offset;
   }
@@ -32,9 +44,7 @@ abstract class Shape {
     this.yOffset = offset;
   }
 
-  protected getY(): number {
-    return this.yOffset + this.y;
-  }
+  
 
   abstract render(): void;
 

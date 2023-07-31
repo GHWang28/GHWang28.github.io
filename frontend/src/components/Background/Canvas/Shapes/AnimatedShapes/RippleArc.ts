@@ -5,6 +5,7 @@ import AnimatedShape from './AnimatedShape'
 type ClassConstructor = {
   x: number,
   y: number,
+  strokeColor?: string,
   context: CanvasRenderingContext2D
 }
 
@@ -16,23 +17,24 @@ class RippleArc extends Arc implements AnimatedShape {
 
   private lifeSpan: number;
   private lifeLeft: number;
-
   private maxRadius: number;
-
+  private lineWidth: number;
   private opacity: number;
 
-  constructor({ x, y, context}: ClassConstructor) {
+  constructor({ x, y, strokeColor, context }: ClassConstructor) {
     super({
       x: x + rng(-RippleArc.OFFSET, RippleArc.OFFSET),
       y: y + rng(-RippleArc.OFFSET, RippleArc.OFFSET),
+      strokeColor,
       radius: 0,
       endDegree: 360,
       context
     });
-    this.lifeSpan = rng(1, 4) / 2;
+    this.lifeSpan = rng(50, 200) / 100;
     this.lifeLeft = this.lifeSpan;
-    this.maxRadius = rng(RippleArc.MIN_RADIUS, RippleArc.MAX_RADIUS);
+    this.maxRadius = rng(RippleArc.MIN_RADIUS * 100, RippleArc.MAX_RADIUS * 100) / 100;
     this.opacity = 1;
+    this.lineWidth = rng(50, 200) / 10
   }
 
   isExpired(): boolean { return this.lifeLeft <= 0 };
@@ -45,8 +47,10 @@ class RippleArc extends Arc implements AnimatedShape {
 
   render():void {
     this.context.globalAlpha = this.opacity;
+    this.context.lineWidth = this.lineWidth;
     super.render();
     this.context.globalAlpha = 0;
+    this.context.lineWidth = 1;
   }
 }
 

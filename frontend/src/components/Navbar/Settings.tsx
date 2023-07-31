@@ -1,5 +1,9 @@
 import React from 'react';
 import { ListItemIcon, MenuItem, Typography, useTheme } from '@mui/material';
+import { setBackground, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
+import ButtonDropDown from '../ButtonDropDown';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+
 import SettingsIcon from '@mui/icons-material/Settings';
 import AbcIcon from '@mui/icons-material/Abc';
 import WavesIcon from '@mui/icons-material/Waves';
@@ -10,11 +14,9 @@ import SquareIcon from '@mui/icons-material/Square';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LandscapeIcon from '@mui/icons-material/Landscape';
-import { setBackground, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
-import ButtonDropDown from '../ButtonDropDown';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 
 function Settings () {
   const dispatch = useAppDispatch();
@@ -29,9 +31,13 @@ function Settings () {
       label: 'Mountains'
     },
     {
+      icon: <WaterDropIcon />,
+      label: 'Rain'
+    },
+    {
       icon: <WavesIcon />,
       label: 'Waves'
-    },    
+    },
     {
       icon: <ModeStandbyIcon />,
       label: 'Ripples'

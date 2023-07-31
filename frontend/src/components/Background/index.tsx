@@ -6,6 +6,7 @@ import Canvas from './Canvas';
 import blockPulsateAnim from './Canvas/Animators/blockPulsateAnim';
 import rippleAnim from './Canvas/Animators/rippleAnim';
 import mountainAnim from './Canvas/Animators/mountainAnim';
+import rainAnim from './Canvas/Animators/rainAnim';
 
 const Background = () => {
   const themeMode = useAppSelector(state => state.themeMode);
@@ -56,9 +57,23 @@ const BackgroundInner = () => {
 
   switch (backgroundIndex) {
     case 0: return <Canvas anim={mountainAnim} />;
-    case 1: return <BackgroundWave />;
-    case 2: return <Canvas anim={rippleAnim} />;
-    case 3: return (
+    case 1: return (
+      <Canvas
+        anim={(c: CanvasRenderingContext2D) => rainAnim(
+          c,
+          (largeMq) ? (
+            600
+          ) : (mediumMq) ? (
+            500
+          ) : (smallMq) ? (
+            400
+          ) : (300)
+        )}
+      />
+    );
+    case 2: return <BackgroundWave />;
+    case 3: return <Canvas anim={rippleAnim} />;
+    case 4: return (
       <Canvas
         anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
           c,
@@ -72,7 +87,7 @@ const BackgroundInner = () => {
         )}
       />
     );
-    case 4: return (
+    case 5: return (
       <Canvas
         anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
           c,
@@ -86,7 +101,7 @@ const BackgroundInner = () => {
         )}
       />
     );
-    case 5: return (
+    case 6: return (
       <Box
         sx={{
           position: 'relative',

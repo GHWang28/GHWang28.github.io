@@ -72,36 +72,39 @@ const PageLanding = () => {
         />
         {/* Blobs */}
         <Blob
-          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
           fill='none'
           strokeWidth={2}
           speed={300}
           sx={{
             position: 'absolute',
+            opacity: 0.25,
             scale: '3.8 1.6',
             zIndex: -2,
             translate: '0px -22.5%'
           }}
         />
         <Blob
-          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
           fill='none'
           strokeWidth={2}
           speed={400}
           sx={{
             position: 'absolute',
+            opacity: 0.25,
             scale: '3.6 1.8',
             zIndex: -2,
             translate: '0px -22.5%'
           }}
         />
         <Blob
-          color={(lightMode) ? 'rgba(30,30,30,0.1)' : 'rgba(150,246,246,0.1)'}
+          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
           fill='none'
           strokeWidth={3}
           speed={500}
           sx={{
             position: 'absolute',
+            opacity: 0.25,
             scale: '3.4 2.2',
             zIndex: -2,
             translate: '0px -22.5%'

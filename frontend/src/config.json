@@ -1,11 +1,17 @@
 {
-    "TOTAL_BGS": 7,
+    "TOTAL_BGS": 8,
     "LINKED_IN": "https://www.linkedin.com/in/gordon-wang-6b9403232",
     "DEVIANT_ART": "https://www.deviantart.com/valnorth1001",
     "GITHUB": "https://www.github.com/GHWang28",
     "EMAIL": "gordon.wang280801@gmail.com",
     "COOL_DOWN": 750,
     "PAGES": ["/", "/projects", "/blog", "/about"],
+    "POSSIBLE_COLORS": [
+        "#EE7752",
+        "#E73C7E",
+        "#23A6D5",
+        "#23D5AB"
+    ],
     "SPLASH_TEXT": [
         "Made with Typescript",
         "Welcome!",

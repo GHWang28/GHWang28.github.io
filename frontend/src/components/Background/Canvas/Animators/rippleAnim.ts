@@ -1,7 +1,8 @@
-import { calcDistance2D } from '../../../../helpers';
+import { calcDistance2D, rng } from '../../../../helpers';
 import { Position } from '../../../../types';
 import RippleArc from '../Shapes/AnimatedShapes/RippleArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';
+import config from '../../../../config.json';
 
 const rippleAnim = (context: CanvasRenderingContext2D): Function => {
   let lastTime = performance.now(), deltaTime = 0;
@@ -9,25 +10,23 @@ const rippleAnim = (context: CanvasRenderingContext2D): Function => {
   let animationFrameID: number;
   let arrayOfShapes: RippleArc[] = [];
 
-  setTimeout(() => {
-    arrayOfShapes.push(
-      new RippleArc({
-        x: Math.ceil(window.innerWidth / 2),
-        y: Math.ceil(window.innerHeight / 2),
-        context
-      })
-    )
-  }, 5);
-
-  // Pushes the new shape at the given position into the array
-  const genNewShape = (pos: Position) => {
-    arrayOfShapes.push(
-      new RippleArc({
-        ...pos,
-        context
-      })
-    )
+  const genRipple = (pos: Position[] = []) => {
+    for (const p of pos) {
+      arrayOfShapes.push(
+        new RippleArc({
+          ...p,
+          strokeColor: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
+          context
+        })
+      )
+    }
   }
+
+  const interval = setInterval(() => {
+    genRipple(Array.from({ length: rng(1,2) }, () => (
+      { x: rng(0, context.canvas.width), y: rng(0, context.canvas.height) }
+    )));
+  }, 1000);
 
   // Generates the new shape via mouse movement
   const generateNewShapesByMovement = (event: MouseEvent) => {
@@ -36,14 +35,14 @@ const rippleAnim = (context: CanvasRenderingContext2D): Function => {
       y: event.y
     }
     if (calcDistance2D(currPos, lastPos) > RippleArc.MAX_DISTANCE) {
-      genNewShape(currPos);
+      genRipple([currPos]);
       lastPos = currPos;
     }
   }
 
   // Generate new shapes via mouse clicking
   const generateNewShapesByClick = (event: MouseEvent) => {
-    genNewShape({ x: event.x, y: event.y });
+    genRipple([{ x: event.x, y: event.y }]);
   }
 
   window.addEventListener('mousemove', generateNewShapesByMovement);
@@ -69,6 +68,7 @@ const rippleAnim = (context: CanvasRenderingContext2D): Function => {
     window.cancelAnimationFrame(animationFrameID);
     window.removeEventListener('mousemove', generateNewShapesByMovement);
     window.removeEventListener('mousedown', generateNewShapesByClick);
+    clearInterval(interval);
   }
 }
 
