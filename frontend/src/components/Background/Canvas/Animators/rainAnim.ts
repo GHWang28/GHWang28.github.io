@@ -16,7 +16,7 @@ const rainAnim = (context: CanvasRenderingContext2D, maxRainDrop: number = 500):
         new RainDropArc({
           x: rng(0, context.canvas.width),
           y: rng(0, -context.canvas.height / 2),
-          radius: rng(5, 15),
+          radius: rng(5, 20),
           strokeColor: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
           context
         })
