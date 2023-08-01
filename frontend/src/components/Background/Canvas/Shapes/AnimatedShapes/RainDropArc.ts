@@ -15,6 +15,7 @@ type ClassConstructor = {
 
 class RainDropArc extends Arc implements AnimatedShape {
   static readonly GRAVITY = -980;
+  static readonly GENERATE_INTERVAL_LENGTH = 0.3;
 
   private velocityX: number;
   private velocityY: number;
@@ -43,7 +44,7 @@ class RainDropArc extends Arc implements AnimatedShape {
         y: this.context.canvas.height - newRadius,
         radius: newRadius,
         velocityY: -this.velocityY * (rng(10, 130) / 100) / 2,
-        velocityX: rng(-14, 14) / 5,
+        velocityX: rng(-400, 400) / 100,
         strokeColor: this.strokeColor,
         fillColor: this.fillColor,
         context: this.context

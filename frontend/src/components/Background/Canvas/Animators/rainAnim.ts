@@ -4,26 +4,9 @@ import { renderAndAnimateShapes } from '../canvasRenderer';
 import config from '../../../../config.json';
 
 const rainAnim = (context: CanvasRenderingContext2D, maxRainDrop: number = 500): Function => {
-  let lastTime = performance.now(), deltaTime = 0;
+  let lastTime = performance.now(), deltaTime = 0, createRainDropTimer = 0;
   let animationFrameID: number;
-  let mainRainDrops: RainDropArc[] = [];
-  let littleRainDrops: RainDropArc[] = [];
-
-  // Every 250 ms, create new rain
-  const interval = setInterval(() => {
-    if (mainRainDrops.length < maxRainDrop) {
-      mainRainDrops.push(...Array.from({ length: Math.ceil(maxRainDrop / 100) }, () => (
-        new RainDropArc({
-          x: rng(0, context.canvas.width),
-          y: rng(0, -context.canvas.height / 2),
-          radius: rng(5, 20),
-          strokeColor: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
-          context
-        })
-      )))
-    }
-  }, 250)
-
+  let rainDrops: RainDropArc[] = [];
 
   // Render loop
   const render = (currentTime: number) => {
@@ -33,44 +16,47 @@ const rainAnim = (context: CanvasRenderingContext2D, maxRainDrop: number = 500):
 
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    // Rendering main rain drops
-    renderAndAnimateShapes(mainRainDrops, deltaTime);
+    // Generate new raindrops if needed
+    if (rainDrops.length < maxRainDrop && createRainDropTimer < 0) {
+      createRainDropTimer = RainDropArc.GENERATE_INTERVAL_LENGTH;
+      rainDrops.push(
+        ...Array.from({ length: 2 + rng(0, Math.ceil(maxRainDrop / 100)) }, () => (
+          new RainDropArc({
+            x: rng(0, context.canvas.width),
+            y: rng(0, -context.canvas.height / 2),
+            radius: rng(200, 2500) / 100,
+            strokeColor: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
+            context
+          })
+        ))
+      );
+    } else if (createRainDropTimer >= 0) {
+      createRainDropTimer -= deltaTime
+    }
 
-    mainRainDrops = mainRainDrops.filter((raindrop) => {
-      const isOnFloor = raindrop.isOnFloor();
-
-      if (isOnFloor) {
-        littleRainDrops.push(...raindrop.createSplash());
-      }
-
-      return !isOnFloor;
-    });
-
-    renderAndAnimateShapes(littleRainDrops, deltaTime);
-
+    // Filter and render raindrops
     const newRainDrops: RainDropArc[] = [];
-
-    littleRainDrops = littleRainDrops.filter((raindrop) => {
+    rainDrops = rainDrops.filter((raindrop) => {
       const isOnFloor = raindrop.isOnFloor();
-
       if (isOnFloor) {
         newRainDrops.push(...raindrop.createSplash());
       }
-
       return !isOnFloor;
-    })
+    });
 
-    littleRainDrops.push(...newRainDrops);
+    rainDrops.push(...newRainDrops);
 
+    // Render and animate raindrops
+    renderAndAnimateShapes(rainDrops, deltaTime);
 
     animationFrameID = window.requestAnimationFrame(render);
-  }
+  };
+
   animationFrameID = window.requestAnimationFrame(render);
 
   return () => {
     window.cancelAnimationFrame(animationFrameID);
-    clearInterval(interval);
-  }
-}
+  };
+};
 
 export default rainAnim;
