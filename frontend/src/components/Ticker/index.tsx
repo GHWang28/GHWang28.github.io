@@ -9,10 +9,10 @@ type ComponentProps = {
 
 const moveAnimation = keyframes`
   from {
-    transform: translate(100%);
+    left: 100%;
   }
   to {
-    transform: translate(-100%);
+    left: -100%;
   }
 `;
 
@@ -20,12 +20,12 @@ const Ticker = ({ width, children }: ComponentProps) => {
   const themeMode = useTheme().palette.mode;
 
   return (
-    <Box sx={{ overflow: 'hidden', width, bgcolor: 'black', border: `1px solid ${(themeMode === 'light') ? 'rgb(79,89,91)' : 'whitesmoke'}`, borderRadius: '5px', }}>
+    <Box py={1} sx={{ position: 'relative', overflow: 'hidden', width, height: '25px', bgcolor: 'black', border: `1px solid ${(themeMode === 'light') ? 'rgb(79,89,91)' : 'whitesmoke'}`, borderRadius: '5px' }}>
       <Typography
         fontWeight='bold'
-        p={1}
         sx={{
-          animation: `${moveAnimation} linear 15s infinite`,
+          position: 'absolute',
+          animation: `${moveAnimation} linear 12s infinite`,
           width: 'fit-content'
         }}
       >

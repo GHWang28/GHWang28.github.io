@@ -15,7 +15,7 @@ const VersionNumber = () => {
   const themeMode = useTheme().palette.mode;
   const AnimatedTypography = animated(Typography);
   const animationProps = useSpring({
-    from: { y: 50 },
+    from: { y: 100 },
     to: { y: 0 },
     delay: 2250,
     config: {
