@@ -139,7 +139,7 @@ const Navbar = () => {
         `,
         width: '100vw',
         transition: 'translate 0.4s ease-in-out',
-        translate: `0% ${showNavbar ? '0%' : '-100%'}`,
+        translate: `0% ${showNavbar ? '0%' : '-150%'}`,
         top: 0,
         left: 0,
         position: 'fixed'
