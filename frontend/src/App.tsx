@@ -187,7 +187,7 @@ export default function App() {
       <SwipeTutorial />
       <ImageZoomer />
       <Navbar />
-      <PageRouter />
+      {(!useAppSelector(state => state.hideWebsite)) && <PageRouter />}
     </ThemeProvider>
   );
 }

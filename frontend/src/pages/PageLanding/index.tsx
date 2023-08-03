@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, useMediaQuery, useTheme, Theme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
 import { easings } from '@react-spring/web'
 import Blob from '../../components/Blob';
@@ -7,15 +7,36 @@ import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
 import { rng } from '../../helpers';
+import { BlobData } from '../../types';
 
 const PageLanding = () => {
-  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const lightMode = useTheme().palette.mode === 'light';
-  // Setting up splash message through state so that it does
-  // not change messages with every state refresh.
-  const [splashMsg, setSplashMsg] = useState('');
+
+  // Setting up splash message and blob through state so that it does not change with every state refresh.
+  const [splashMsg, setSplashMsg] = useState<string>('');
+  const [blobColors, setBlobColors] = useState<[ BlobData, BlobData, BlobData ] | null>(null);
   useEffect(() => {
     setSplashMsg(config.SPLASH_TEXT[rng(0, config.SPLASH_TEXT.length - 1)]);
+    setBlobColors([
+      {
+        scale: '3.8 1.6',
+        color: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
+        width: 2,
+        speed: 300
+      },
+      {
+        scale: '3.6 1.8',
+        color: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
+        width: 2,
+        speed: 400
+      },
+      {
+        scale: '3.4 2.2',
+        color: config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)],
+        width: 3,
+        speed: 500
+      }
+    ]);
   }, []);
 
   // Defining animations
@@ -46,7 +67,7 @@ const PageLanding = () => {
           message={splashMsg}
           fontSize={'min(4.5vw, 30px)'}
           position={{
-            left: (mediumMq) ? '12%' : '17%',
+            left: { md: '12%', xs: '17%' },
             bottom: '5%'
           }}
         />
@@ -70,46 +91,25 @@ const PageLanding = () => {
             userSelect: 'none',
           }}
         />
-        {/* Blobs */}
-        <Blob
-          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
-          fill='none'
-          strokeWidth={2}
-          speed={300}
-          sx={{
-            position: 'absolute',
-            opacity: 0.25,
-            scale: '3.8 1.6',
-            zIndex: -2,
-            translate: '0px -22.5%'
-          }}
-        />
-        <Blob
-          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
-          fill='none'
-          strokeWidth={2}
-          speed={400}
-          sx={{
-            position: 'absolute',
-            opacity: 0.25,
-            scale: '3.6 1.8',
-            zIndex: -2,
-            translate: '0px -22.5%'
-          }}
-        />
-        <Blob
-          color={config.POSSIBLE_COLORS[rng(0, config.POSSIBLE_COLORS.length - 1)]}
-          fill='none'
-          strokeWidth={3}
-          speed={500}
-          sx={{
-            position: 'absolute',
-            opacity: 0.25,
-            scale: '3.4 2.2',
-            zIndex: -2,
-            translate: '0px -22.5%'
-          }}
-        />
+        {
+          /* Blobs */
+          blobColors?.map(({ color, speed, scale, width }: BlobData, index: number) => (
+            <Blob
+              key={`blob-${index}`}
+              color={color}
+              fill='none'
+              strokeWidth={width}
+              speed={speed}
+              sx={{
+                position: 'absolute',
+                opacity: 0.25,
+                zIndex: -2,
+                translate: '0px -22.5%',
+                scale
+              }}
+            />
+          ))
+        }
         {/* Top text */}
         <AnimatedTypography
           style={useSpring({
@@ -178,7 +178,7 @@ const PageLanding = () => {
           to: { opacity: 1 },
           delay: 5 * delay,
         })}
-        mt={(mediumMq) ? 15 : 7}
+        mt={{ md: 15, xs: 7 }}
         fontWeight='bold'
         fontSize={35}
         lineHeight={1.0}

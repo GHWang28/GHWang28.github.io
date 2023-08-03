@@ -1,36 +1,43 @@
 import { Action } from '../../types'
 
-export const setBackground = (backgroundIndex: number): Action<number> => {
+export const setBackground = (value: number): Action<number> => {
   return {
     type: 'CHANGE_BACKGROUND',
-    value: backgroundIndex
+    value
   }
 }
 
-export const setToggleSplash = (boolean: boolean): Action<boolean> => {
+export const setToggleSplash = (value: boolean): Action<boolean> => {
   return {
     type: 'TOGGLE_SPLASH',
-    value: boolean
+    value
   }
 }
 
-export const setImageZoom = (src: string): Action<string> => {
+export const setImageZoom = (value: string): Action<string> => {
   return {
     type: 'SET_IMAGE_ZOOM',
-    value: src
+    value
   };
 }
 
-export const setThemeMode = (theme: string): Action<string> => {
+export const setThemeMode = (value: 'light' | 'dark'): Action<'light' | 'dark'> => {
   return {
     type: 'SET_THEME',
-    value: theme
+    value
   };
 }
 
-export const setNavbarLock = (lock: boolean): Action<boolean> => {
+export const setNavbarLock = (value: boolean): Action<boolean> => {
   return {
     type: 'TOGGLE_NAVBAR_LOCK',
-    value: lock
+    value
+  }
+}
+
+export const setHideWebsite = (value: boolean): Action<boolean> => {
+  return {
+    type: 'TOGGLE_HIDE_WEBSITE',
+    value
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListItemIcon, MenuItem, Typography, useTheme } from '@mui/material';
-import { setBackground, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
+import { setBackground, setHideWebsite, setNavbarLock, setThemeMode, setToggleSplash } from '../../redux/actions';
 import ButtonDropDown from '../ButtonDropDown';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -17,12 +17,15 @@ import LandscapeIcon from '@mui/icons-material/Landscape';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Settings () {
   const dispatch = useAppDispatch();
   const backgroundIndex = useAppSelector(state => state.background);
   const splashState = useAppSelector(state => state.splash);
   const navbarLockState = useAppSelector(state => state.navbarLock);
+  const websiteHiddenState = useAppSelector(state => state.hideWebsite);
   const themeMode = useTheme().palette.mode;
 
   const backgroundOptions = [
@@ -84,13 +87,19 @@ function Settings () {
       icon: (navbarLockState) ? <LockIcon/> : <LockOpenIcon/>,
       text: `Navbar ${navbarLockState ? 'locked' : 'unlocked'}`,
       onClick: () => { dispatch(setNavbarLock(!navbarLockState)) }
+    },
+    {
+      key: 'hide-website',
+      icon: (websiteHiddenState) ? <VisibilityOffIcon/> : <VisibilityIcon/>,
+      text: `Elements ${websiteHiddenState ? 'hidden' : 'showing'}`,
+      onClick: () => { dispatch(setHideWebsite(!websiteHiddenState)) }
     }
   ];
 
   return (
     <ButtonDropDown title='Settings' icon={<SettingsIcon />}>
       <Typography align='center' m={1} sx={{ width: '250px' }}>
-        {'Settings'}
+        {'Website Settings'}
       </Typography>
       <hr />
       {settingOptions.map((settingOption) => (

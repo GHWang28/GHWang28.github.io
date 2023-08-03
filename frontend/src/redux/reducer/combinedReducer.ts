@@ -4,6 +4,7 @@ import setImageZoomReducer from './setImageZoomReducer';
 import setThemeModeReducer from './setThemeModeReducer';
 import setToggleSplashReducer from './setToggleSplashReducer';
 import setNavbarLockReducer from './setNavbarLockReducer';
+import setToggleHideWebsite from './setToggleHideWebsiteReducer';
 
 /**
  * Combines reducers for Redux
@@ -13,7 +14,8 @@ const combinedReducer = combineReducers({
   splash: setToggleSplashReducer,
   imgZoom: setImageZoomReducer,
   themeMode: setThemeModeReducer,
-  navbarLock: setNavbarLockReducer
+  navbarLock: setNavbarLockReducer,
+  hideWebsite: setToggleHideWebsite
 })
 
 export default combinedReducer;

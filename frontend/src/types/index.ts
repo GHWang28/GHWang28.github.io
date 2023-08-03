@@ -6,6 +6,13 @@ export type Action<T> = {
   value: T
 }
 
+export type BlobData = {
+  speed: number,
+  scale: string,
+  width: number,
+  color: string
+}
+
 export type FooterContacts = {
   onClick: React.MouseEventHandler<HTMLButtonElement>,
   title: string,
