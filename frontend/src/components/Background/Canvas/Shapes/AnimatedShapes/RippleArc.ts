@@ -10,10 +10,10 @@ type ClassConstructor = {
 }
 
 class RippleArc extends Arc implements AnimatedShape {
-  static readonly OFFSET: number = 15;
   static readonly MAX_DISTANCE: number = 90;
-  static readonly MIN_RADIUS: number = 80;
-  static readonly MAX_RADIUS: number = 150;
+  static readonly MIN_RADIUS: number = 70;
+  static readonly MAX_RADIUS: number = 85;
+  static readonly GENERATE_INTERVAL_LENGTH = 1;
 
   private lifeSpan: number;
   private lifeLeft: number;
@@ -23,14 +23,14 @@ class RippleArc extends Arc implements AnimatedShape {
 
   constructor({ x, y, strokeColor, context }: ClassConstructor) {
     super({
-      x: x + rng(-RippleArc.OFFSET, RippleArc.OFFSET),
-      y: y + rng(-RippleArc.OFFSET, RippleArc.OFFSET),
+      x,
+      y,
       strokeColor,
       radius: 0,
       endDegree: 360,
       context
     });
-    this.lifeSpan = rng(50, 200) / 100;
+    this.lifeSpan = rng(50, 150) / 100;
     this.lifeLeft = this.lifeSpan;
     this.maxRadius = rng(RippleArc.MIN_RADIUS * 100, RippleArc.MAX_RADIUS * 100) / 100;
     this.opacity = 1;

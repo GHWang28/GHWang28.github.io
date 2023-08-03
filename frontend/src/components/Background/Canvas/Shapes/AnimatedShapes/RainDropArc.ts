@@ -20,7 +20,7 @@ class RainDropArc extends Arc implements AnimatedShape {
   private velocityX: number;
   private velocityY: number;
   
-  constructor({ x, y, velocityX = 0, velocityY = -100, strokeColor = 'whitesmoke', fillColor, radius, context }: ClassConstructor) {
+  constructor({ x, y, velocityX = 0, velocityY = -150, strokeColor = 'whitesmoke', fillColor, radius, context }: ClassConstructor) {
     super({ x, y, fillColor: fillColor || colorToRGBA(strokeColor, rng(5, 75) / 100), strokeColor, radius, context, endDegree: 360 });
     this.velocityX = velocityX;
     this.velocityY = velocityY;
@@ -43,8 +43,8 @@ class RainDropArc extends Arc implements AnimatedShape {
         x: this.getX(),
         y: this.context.canvas.height - newRadius,
         radius: newRadius,
-        velocityY: -this.velocityY * (rng(10, 130) / 100) / 2,
-        velocityX: rng(-400, 400) / 100,
+        velocityY: -this.velocityY * (rng(10, 130) / 100) * 0.5,
+        velocityX: (this.velocityX) ? (this.velocityX * (rng(80, 120) / 100)) : (rng(-500, 500) / 100),
         strokeColor: this.strokeColor,
         fillColor: this.fillColor,
         context: this.context
