@@ -36,15 +36,15 @@ class RainDropArc extends Arc implements AnimatedShape {
   createSplash(): RainDropArc[] {
     const newRadius = Math.floor(this.radius / 2.5);
 
-    if (newRadius <= 0) return [];
+    if (newRadius < 1) return [];
 
     return Array.from({ length: rng(2, 5) }, () => (
       new RainDropArc({
         x: this.getX(),
         y: this.context.canvas.height - newRadius,
         radius: newRadius,
-        velocityY: -this.velocityY * (rng(10, 130) / 100) * 0.5,
-        velocityX: (this.velocityX) ? (this.velocityX * (rng(80, 120) / 100)) : (rng(-500, 500) / 100),
+        velocityY: -this.velocityY * (rng(30, 60) / 100),
+        velocityX: (this.velocityX) ? (this.velocityX * (rng(80, 120) / 100)) : ((rng(0, 1) ? -1 : 1) * rng(150, 750) / 100),
         strokeColor: this.strokeColor,
         fillColor: this.fillColor,
         context: this.context
