@@ -15,19 +15,18 @@ const ChipContainer = ({ children }: ComponentProps) => {
     justifyContent: 'left',
     alignItems: 'center',
     minHeight: '32px',
-    overflowY: 'auto',
+    overflowY: 'hidden',
     m: '5px 0px',
     rowGap: '8px',
   }
 
   return (
     <Box sx={chipContainerStyle}>
-      {(children.length === 0) && (
+      {(children.length === 0) ? (
         <Typography fontSize={18} sx={{ width: '100%', opacity: '0.7' }} align='center'>
           {'Empty'}
         </Typography>
-      )}
-      {children}
+      ) : ( children )}
     </Box>
   )
 }

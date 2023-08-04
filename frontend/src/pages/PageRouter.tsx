@@ -1,16 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Suspense } from 'react'
 import { useMediaQuery, useTheme } from '@mui/material';
 import { Route, Routes, useLocation } from 'react-router';
 import { useTransition } from 'react-spring';
 import ContactDetails from '../components/ContactDetails';
 import VersionNumber from '../components/VersionNumber';
 import AnimatedAbsoluteWrapper from '../wrappers/AnimatedAbsoluteWrapper';
-import PageAbout from './PageAbout';
 import PageLanding from './PageLanding';
 import PageProjects from './PageProjects';
 import PageError from './PageError';
 import PageBlog from './PageBlog';
 import PageSkills from './PageSkills';
+import PageLoading from './PageLoading';
+const PageAbout = React.lazy(() => import('./PageAbout'));
 
 const PageRouter = () => {
   const location = useLocation();
@@ -38,7 +39,7 @@ const PageRouter = () => {
             <Route path='/' element={<PageLanding />}/>
             <Route path='/projects/*' element={<PageProjects />}/>
             <Route path='/blog/*' element={<PageBlog />}/>
-            <Route path='/about' element={<PageAbout />}/>
+            <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
             <Route path='/about/skills' element={<PageSkills />}/>
           </Routes>
         </AnimatedAbsoluteWrapper>
@@ -64,9 +65,9 @@ const getTransitionEffect = (currLoc: string, prevLoc: string) => {
   ) {
     // left to right
     return {
-      from: { opacity: 0, x: '-50%', y: '0px', position: 'absolute' },
+      from: { opacity: 0, x: '-25%', y: '0px', position: 'absolute' },
       enter: { opacity: 1, x: '0%', y: '0px', position: 'absolute' },
-      leave: { opacity: 0,  x: '25%', y: '0px', position: 'static' },
+      leave: { opacity: 0,  x: '12.5%', y: '0px', position: 'static' },
     }
   } else if (
     (currLoc === '/about' && ['/projects', '/', '/blog'].includes(prevLoc))
@@ -75,9 +76,9 @@ const getTransitionEffect = (currLoc: string, prevLoc: string) => {
   ) {
     // right to left
     return {
-      from: { opacity: 0, x: '50%', y: '0px', position: 'static' },
+      from: { opacity: 0, x: '25%', y: '0px', position: 'static' },
       enter: { opacity: 1, x: '0%', y: '0px', position: 'static' },
-      leave: { opacity: 0, x: '-25%', y: '0px', position: 'absolute' },
+      leave: { opacity: 0, x: '-12.5%', y: '0px', position: 'absolute' },
     };
   } else if (prevLoc && prevLoc.startsWith('/projects/')) {
     // bottom to top

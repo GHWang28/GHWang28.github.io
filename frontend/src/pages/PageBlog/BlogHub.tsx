@@ -1,15 +1,32 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Suspense } from 'react';
 import CardContainer from '../../components/CardContainer';
-import CardBlog from '../../components/CardBlog';
 import blogs from './blogs';
 import GradientTitle from '../../components/GradientTitle';
+import TrailingCard from '../../components/CardBlog/TrailingCard';
+import CardLoading from '../../components/CardLoading';
+const CardBlog = React.lazy(() => import('../../components/CardBlog'));
 
-const BlogHub = () => (
-  <Fragment>
-    <GradientTitle title='Blog Posts' subtitle='Resources for students (and other shenanigans)'/>
+const BlogHub = () => {
 
-    <CardContainer cardData={[...blogs, { id: -999 }]} component={CardBlog} />
-  </Fragment>
-)
+  const arrayOfReactNodes = blogs.map((blogData, index) => (
+    <Suspense key={`blog-${index}`} fallback={<CardLoading />}>
+      <CardBlog
+        index={index}
+        data={blogData}
+      />
+    </Suspense>
+  ));
+
+  arrayOfReactNodes.push(<TrailingCard key='trailing-card' index={blogs.length}/>)
+
+  return (
+    <Fragment>
+      <GradientTitle title='Blog Posts' subtitle='Resources for students (and other shenanigans)'/>
+      <CardContainer>
+        {arrayOfReactNodes}
+      </CardContainer>
+    </Fragment>
+  )
+}
 
 export default BlogHub;

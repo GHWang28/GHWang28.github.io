@@ -16,10 +16,10 @@ type ComponentProps = {
 }
 
 const CardProject = ({ data, index = 0 }: ComponentProps) => {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const theme = useTheme();
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
   const lightMode = theme.palette.mode === 'light';
 
@@ -44,8 +44,8 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
         transition: 'scale 0.5s ease-in-out, box-shadow 0.5s ease-in-out, translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
         borderRadius: '15px',
         overflow: 'hidden',
-        mx: (largeMq) ? 0 : (mediumMq) ? 5 : 0,
-        mb: (mediumMq) ? 5 : 2,
+        mx: { lg: 0, md: 5, xs: 0 },
+        mb: { md: 5, xs: 2 },
         bgcolor: 'bgColor.main',
         scale: '0.975',
         boxShadow: '0 4px 8px 0 rgba(255,255,255,0.2)',
@@ -121,7 +121,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
               startIcon={button.icon}
               variant='contained'
               onClick={button?.onClick}
-              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: (smallMq) ? 'fit-content' : '75%', minWidth: '180px' }}
+              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: { sm: 'fit-content', xs: '75%' }, minWidth: '180px' }}
               disabled={button?.disabled != null}
             >
               {button.text}
@@ -145,7 +145,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
         inView={inView}
       />
       {/* Background to show image slideshow or video */}
-      {(imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
+      {imgs[0].endsWith('.webm') || (imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
     </Box>
   )
 }

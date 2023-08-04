@@ -6,6 +6,7 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import { useNavigate } from 'react-router';
 import BlogTags from '../BlogTags';
 import { BlogData } from '../../types';
+import CardDashed from '../CardDashed';
 
 type ComponentProps = {
   data: BlogData,
@@ -13,11 +14,12 @@ type ComponentProps = {
 }
 
 const CardBlog = ({ data, index = 0 }: ComponentProps) => {
-  const [ref, inView] = useInView();
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
   const navigate = useNavigate();
   
   const theme =  useTheme();
-  const lightMode = theme.palette.mode === 'light';
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
 
   const {
@@ -31,31 +33,17 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
   } = data;
 
   return (id < 0) ? (
-    <Box
+    <CardDashed
       ref={ref}
-      p={2}
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
         opacity: (inView) ? '0.8' : '0',
         translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
-        transition: 'scale 0.5s ease-in-out, box-shadow 0.5s ease-in-out, translate 0.5s ease-in-out, opacity 0.5s ease-in-out',
-        borderRadius: '15px',
-        overflow: 'hidden',
-        mx: { lg: 0, md: 5, xs: 0 },
-        mb: { md: 5, xs: 2 },
-        bgcolor: 'bgColor.main',
-        height: '300px',
-        scale: '0.975',
-        backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='15' ry='15' stroke='${lightMode ? 'black' : 'whitesmoke'}' stroke-width='10' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e")`
       }}
     >
       <Typography fontSize={18}>
         {' More posts coming soon...'}
       </Typography>
-    </Box>
+    </CardDashed>
   ) : (
     <Box
       ref={ref}
@@ -80,9 +68,7 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
         WebkitTapHighlightColor: 'transparent',
         cursor: 'pointer'
       }}
-      onClick={() => {
-        navigate(`${id}`);
-      }}
+      onClick={() => { navigate(`${id}`) }}
     >
       {(thumbnail != null) && (
         <Box

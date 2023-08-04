@@ -12,15 +12,13 @@ const ProjectMinecraftScreensaver = () => (
     <ImageGallery
       imgArray={[
         'https://youtu.be/dCYTLbNl_to',
-        'images/minecraft-recreation/screensaver-1.jpg',
-        'images/minecraft-recreation/screensaver-2.jpg',
-        'images/minecraft-recreation/screensaver-3.jpg',
-        'images/minecraft-recreation/screensaver-4.jpg'
+        'images/minecraft-recreation/screensaver-1.webp',
+        'images/minecraft-recreation/screensaver-2.webp',
+        'images/minecraft-recreation/screensaver-3.webp',
+        'images/minecraft-recreation/screensaver-4.webp'
       ]}
     />
-    <BoxInfo
-      title='Project Description'
-    >
+    <BoxInfo title='Project Description'>
       {'A small interactable screensaver based on the game '} 
       <Link href='https://www.minecraft.net/' target='_blank'>{'Minecraft'}</Link>
       {

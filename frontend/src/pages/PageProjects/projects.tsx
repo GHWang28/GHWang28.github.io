@@ -24,12 +24,12 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(25/12/2018) → (28/08/2019)',
       type: ['Artwork', 'High School Project'],
       imgs: [
-        '/images/hscbow/homesweethome.jpg',
-        '/images/hscbow/leaving.jpg',
-        '/images/hscbow/bonvoyage.jpg',
-        '/images/hscbow/rabureta.jpg',
-        '/images/hscbow/ruiji.jpg',
-        '/images/hscbow/homecoming.jpg',
+        '/images/hscbow/homesweethome.webp',
+        '/images/hscbow/leaving.webp',
+        '/images/hscbow/bonvoyage.webp',
+        '/images/hscbow/rabureta.webp',
+        '/images/hscbow/ruiji.webp',
+        '/images/hscbow/homecoming.webp',
       ],
       body: [
         'A Body of Work consisting of 6 artworks.',
@@ -68,11 +68,11 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(10/12/2021)',
       type: ['University Project', 'Game', 'C++', 'OpenGL'],
       imgs: [
-        '/images/minecraft-recreation/1.png',
-        '/images/minecraft-recreation/2.png',
-        '/images/minecraft-recreation/3.png',
-        '/images/minecraft-recreation/4.png',
-        '/images/minecraft-recreation/5.png'
+        '/images/minecraft-recreation/1.webp',
+        '/images/minecraft-recreation/2.webp',
+        '/images/minecraft-recreation/3.webp',
+        '/images/minecraft-recreation/4.webp',
+        '/images/minecraft-recreation/5.webp'
       ],
       body: [
         'Recreation of the base gameplay loop of Mojang\'s Minecraft with added features.',
@@ -111,7 +111,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(28/11/2022)',
       type: ['Game', 'Personal Project', 'React', 'JavaScript'],
       imgs: [
-        '/images/covers/tic-tac-toe-capture.jpg'
+        '/images/covers/tic-tac-toe-capture.webp'
       ],
       body: [
         'The classic game of Tic Tac Toe with a new layer of strategy.',
@@ -141,7 +141,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(30/11/2022)',
       type: ['Game', 'Personal Project', 'React', 'JavaScript', 'Firebase'],
       imgs: [
-        '/images/covers/spotter.jpg'
+        '/images/covers/spotter.webp'
       ],
       body: [
         'Players must locate your character before the time runs out.',
@@ -171,7 +171,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(21/9/2019)',
       type: ['Game', 'Personal Project'],
       imgs: [
-        '/images/covers/xny.png'
+        '/images/covers/xny.webp'
       ],
       body: [
         'Small puzzle game created with the RPG Maker MV Engine.',
@@ -200,7 +200,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(24/10/2022)',
       type: ['Frontend', 'University Project', 'JavaScript'],
       imgs: [
-        '/images/comp6080/slackr-cover.png'
+        '/images/comp6080/slackr-cover.webp'
       ],
       body: [
         <Fragment>
@@ -240,7 +240,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(20/9/2021)',
       type: ['OpenGL', 'University Project', 'C++'],
       imgs: [
-        '/images/minecraft-recreation/screensaver.mp4'
+        '/images/minecraft-recreation/screensaver.webm'
       ],
       body: [
         'Based on Mojang\'s Minecraft.',
@@ -279,7 +279,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(18/11/2022)',
       type: ['Frontend', 'University Project', 'JavaScript', 'React'],
       imgs: [
-        '/images/comp6080/airbnb-cover.jpg'
+        '/images/comp6080/airbnb-cover.webp'
       ],
       body: [
         <Fragment>
@@ -319,7 +319,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(22/12/2022)',
       type: ['Game', 'Personal Project', 'React', 'JavaScript'],
       imgs: [
-        '/images/covers/minesweeper.mp4'
+        '/images/covers/minesweeper.webm'
       ],
       body: [
         'Based on the classic Minesweeper game popularised by Microsoft.',
@@ -350,7 +350,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(03/01/2023) (Work in Progress)',
       type: ['Personal Project', 'React', 'JavaScript', 'Firebase', 'Frontend'],
       imgs: [
-        '/images/covers/convo.jpg'
+        '/images/covers/convo.webp'
       ],
       body: [
         'A passion project that I work on in my spare time.',

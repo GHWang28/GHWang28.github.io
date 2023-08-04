@@ -1,38 +1,24 @@
 import React, { Fragment } from 'react';
 import { Box, useMediaQuery, Theme } from '@mui/material';
-import { BlogData, ProjectData } from '../../types';
 import { splitArray } from '../../helpers';
 
 type ComponentProps = {
-  cardData: (BlogData | { id: -999 })[] | ProjectData[],
-  component: React.ElementType
+  children: React.ReactNode
 }
 
-const CardContainer = ({ cardData, component: Component }: ComponentProps) => {
+const CardContainer = ({ children }: ComponentProps) => {
   const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
 
   if (largeMq) {
-    const { odd: oddProj, even: evenProj } = splitArray(cardData);
+    const { odd: oddProj, even: evenProj } = splitArray(children as React.ReactNode[]);
 
     return (
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ width: '49.5%', m: 0 }}>
-          {evenProj.map((proj, index) => (
-            <Component
-              key={`project-${proj?.title?.toLowerCase()}`}
-              index={index * 2}
-              data={proj}
-            />
-          ))}
+          {evenProj}
         </Box>
         <Box sx={{ width: '49.5%', m: 0  }}>
-          {oddProj.map((proj, index) => (
-            <Component
-              key={`project-${proj?.title?.toLowerCase()}`}
-              index={index * 2 + 1}
-              data={proj}
-            />
-          ))}
+          {oddProj}
         </Box>
       </Box>
     )
@@ -40,13 +26,7 @@ const CardContainer = ({ cardData, component: Component }: ComponentProps) => {
 
   return (
     <Fragment>
-      {cardData.map((proj, index) => (
-        <Component
-          key={`project-${index}`}
-          index={index}
-          data={proj}
-        />
-      ))}
+      {children}
     </Fragment>
   )
 }

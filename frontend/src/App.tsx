@@ -2,17 +2,18 @@ import './styles/App.css';
 import './styles/CoinBlock.css';
 import './styles/Gradient.css';
 import './styles/Sparklez.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import ImageZoomer from './components/ImageZoomer';
-import PageRouter from './pages/PageRouter';
 import SwipeTutorial from './components/SwipeTutorial';
 import config from './config.json';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
 import { useAppSelector } from './hooks';
+import PageLoading from './pages/PageLoading';
+const PageRouter = React.lazy(() => import('./pages/PageRouter'));
+const Navbar = React.lazy(() => import('./components/Navbar'));
 
 declare module '@mui/material/styles' {
   interface PaletteColor {
@@ -123,6 +124,7 @@ export default function App() {
       bgColor: {
         main: (themeMode) ? 'rgb(225,225,225)' : 'rgb(40,40,40)',
         darker: (themeMode) ? 'rgb(205,205,205)' : 'rgb(0,0,0)',
+        transparent: (themeMode) ? 'rgb(205,205,205,0.2)' : 'rgb(0,0,0,0.2)'
       },
       mode: (themeMode) ? 'light' : 'dark',
     },
@@ -186,8 +188,12 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <SwipeTutorial />
       <ImageZoomer />
-      <Navbar />
-      {(!useAppSelector(state => state.hideWebsite)) && <PageRouter />}
+      <Suspense fallback={<PageLoading />}>
+        <Navbar />
+        {(!useAppSelector(state => state.hideWebsite)) && (
+          <PageRouter />
+        )}
+      </Suspense>
     </ThemeProvider>
   );
 }

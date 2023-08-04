@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, Suspense, useState } from 'react';
 import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import generateProjects from './projects';
@@ -9,9 +9,10 @@ import ButtonDropDown from '../../components/ButtonDropDown';
 import QuestionBlock from '../../components/QuestionBlock';
 import TagIcon from '../../icons/TagIcon';
 import CardContainer from '../../components/CardContainer';
-import CardProject from '../../components/CardProject';
 import GradientTitle from '../../components/GradientTitle';
 import { ProjectFilter } from '../../types';
+import CardLoading from '../../components/CardLoading';
+const CardProject = React.lazy(() => import('../../components/CardProject'));
 
 const ProjectHub = () => {
   const navigate = useNavigate();
@@ -105,7 +106,16 @@ const ProjectHub = () => {
           </Typography>
         </Box>
       ) : (
-        <CardContainer cardData={projects} component={CardProject} />
+        <CardContainer>
+          {projects.map((projData, index) => (
+            <Suspense key={`proj-${index}`} fallback={<CardLoading />}>
+              <CardProject
+                index={index}
+                data={projData}
+              />
+            </Suspense>
+          ))}
+        </CardContainer>
       )}
     </Fragment>
   )
