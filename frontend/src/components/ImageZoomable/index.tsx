@@ -12,20 +12,6 @@ type ComponentProps = BoxProps<'img'> & {
 
 const ImageZoomable = ({ src = '', sx, alternateSrc = '', springStyle, style, ...props }: ComponentProps) => {
   const dispatch = useAppDispatch();
-/* 
-  return (
-    <Box
-      component='img'
-      src={src}
-      {...props}
-      style={{ ...style, ...springStyle }}
-      sx={{
-        ...sx,
-        cursor: 'pointer'
-      }}
-      onClick={() => { dispatch(setImageZoom(alternateSrc || src)) }}
-    />
-  ) */
 
   return (
     <ImageLoader

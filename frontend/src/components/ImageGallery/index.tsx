@@ -122,10 +122,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         {/* Image viewer */}
         <Grid item xs={10} sm={10} sx={{...gallerySX, position: 'relative'}}>
           {transitions((style, imgIndex) => (
-            <AnimatedBox
-              style={style}
-              sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', justifyContent: 'center' }}
-            >
+            <AnimatedBox style={style} sx={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               {(isYouTubeURL(imgArray[imgIndex]) ? (
                 <VideoPlayer
                   key={uuidv4()}
@@ -136,7 +133,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
               ) : (
                 <ImageZoomable
                   alt={`Gallery Item #${imgIndex}`}
-                  sx={{ height: galleryHeight(), WebkitTapHighlightColor: 'transparent', }}
+                  sx={{ height: galleryHeight(), WebkitTapHighlightColor: 'transparent' }}
                   onContextMenu={(event) => { event.preventDefault() }}
                   title={`Gallery Item #${imgIndex}`}
                   src={imgArray[imgIndex]}
@@ -146,13 +143,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
           ))}
         </Grid>
         {/* > */}
-        <Grid
-          item
-          xs={1}
-          sm={1}
-          sx={{ ...gallerySX, ...arrowSx }}
-          zIndex={5}
-        >
+        <Grid item xs={1} sm={1} sx={{ ...gallerySX, ...arrowSx }} zIndex={5}>
           <SideArrow title='Next Image' onClick={cycleRight}>
             <ArrowRightIcon sx={{ scale: '3' }}/>
           </SideArrow>
@@ -164,14 +155,11 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         defer
         options={{ scrollbars: { autoHide: 'never', theme: (lightMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'scroll', y: 'scroll' }}}
         {...preventSwipeHandler}
-        sx={{
-          bgcolor: 'bgColor.darker',
-          pb: 1
-        }}
+        sx={{ bgcolor: 'bgColor.darker', pb: 1 }}
       >
-        <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
+        <Box sx={{ display: 'flex' }}>
           {imgArray.map((imgSrc, imgSrcNo) => (
-            <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative', display: 'inline', height: '100%' }}>
+            <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative', flex: 'none' }}>
               {(isYouTubeURL(imgSrc)) && (
                 <Box
                   component='img'
@@ -189,7 +177,8 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
                   src='/images/youtube.svg'
                 />
               )}
-              <ImageLoader
+              <Box
+                component='img'
                 sx={{
                   cursor: 'pointer',
                   height: '100px',
@@ -197,8 +186,6 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
                   scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
                   opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',
                   WebkitTapHighlightColor: 'transparent',
-                  minWidth: '100px',
-                  minHeight: '100px'
                 }}
                 onClick={() => { switchImg(imgSrcNo) }}
                 src={getYouTubeThumbnailImg(imgSrc)}

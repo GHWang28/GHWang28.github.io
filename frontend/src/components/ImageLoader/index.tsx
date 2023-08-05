@@ -1,33 +1,45 @@
 import React, { useState } from 'react';
-import { Box, CircularProgress, BoxProps } from '@mui/material'
+import { Box, CircularProgress, BoxProps, SxProps } from '@mui/material'
 import { InView } from 'react-intersection-observer';
 import { SpringValue } from 'react-spring';
 
 type ComponentProps = BoxProps<'img'> & {
   springStyle?: { rotateY: SpringValue<string>; position: SpringValue<string>; },
+  imageSx?: SxProps
 }
 
-const ImageLoader = ({ style, springStyle, ...props }: ComponentProps) => {
+const ImageLoader = ({ style, sx, springStyle, imageSx = { width: '100%', height: '100%' }, ...props }: ComponentProps) => {
   const [inView, setInView] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   
   return (
-    <InView rootMargin='9999999px 0px 0px 0px' onChange={(inView) => { setInView(inView) }}>
+    <Box
+      component={InView}
+      rootMargin='9999999px 0px 0px 0px'
+      onChange={(inView: boolean) => { setInView(inView) }}
+      sx={{
+        ...sx,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'contrastColor.main',
+        overflow: 'clip'
+      }}
+    >
       {!isLoaded && (
-        <Box sx={{ ...props?.sx, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'bgColor.transparent', color: 'contrastColor.main' }}>
-          <CircularProgress color='inherit' />
-        </Box>
+        <CircularProgress color='inherit' />
       )}
       {(inView) && (
         <Box
           onLoad={() => { setIsLoaded(true) }}
           component='img'
-          style={{ ...style, ...springStyle }}
           display={(isLoaded) ? 'block' : 'none'}
+          sx={imageSx}
           {...props}
+          style={{ ...style, ...springStyle }}
         />
       )}
-    </InView>
+    </Box>
   )
 }
 

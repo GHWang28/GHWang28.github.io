@@ -7,6 +7,7 @@ import blockPulsateAnim from './Canvas/Animators/blockPulsateAnim';
 import rippleAnim from './Canvas/Animators/rippleAnim';
 import mountainAnim from './Canvas/Animators/mountainAnim';
 import rainAnim from './Canvas/Animators/rainAnim';
+import { Position } from '../../types';
 
 const Background = () => {
   const themeMode = useAppSelector(state => state.themeMode);
@@ -31,6 +32,7 @@ const Background = () => {
 const BackgroundInner = () => {
   const backgroundIndex = useAppSelector(state => state.background);
   const [hidden, setHidden] = useState<boolean>(false);
+  const [midPos, setMidPos] = useState<Position>({ x: 0, y: 0});
 
   const theme = useTheme();
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
@@ -50,13 +52,31 @@ const BackgroundInner = () => {
     }
   }, []);
 
+  // Handling resize
+  useEffect(() => {
+    const resize = () => {
+      setMidPos({
+        x: window.innerWidth * 0.5,
+        y: window.innerHeight * 0.5
+      });
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+    }
+  }, []);
+
   // If the page is hidden, then return null as background
   if (hidden) {
     return null;
   }
 
   switch (backgroundIndex) {
-    case 0: return <Canvas anim={mountainAnim} />;
+    case 0: return (
+      <Canvas anim={(c: CanvasRenderingContext2D) => mountainAnim(c, midPos)} />
+    );
     case 1: return (
       <Canvas
         anim={(c: CanvasRenderingContext2D) => rainAnim(

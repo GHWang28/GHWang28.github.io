@@ -15,8 +15,8 @@ const AnimatedProfilePic = () => {
 
   // Available images to choose from
   const imgs = [
-    '/images/about/profile-pic-zoom.jpg',
-    '/images/about/tutor-pic.jpg'
+    '/images/about/profile-pic-zoom.webp',
+    '/images/about/tutor-pic.webp'
   ]
 
   const switchImg = (imgIndex: number) => {
@@ -83,7 +83,7 @@ const AnimatedProfilePic = () => {
               springStyle={style}
               alt={'Profile Shot of Gordon Wang'}
               src={imgs[imgIndex]}
-              alternateSrc={(currImg === 0) ? '/images/about/profile-pic.jpg' : imgs[currImg]}
+              alternateSrc={(currImg === 0) ? '/images/about/profile-pic.webp' : imgs[currImg]}
               sx={{
                 width: '100%',
                 height: '100%',

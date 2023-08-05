@@ -1,18 +1,16 @@
 import { calcDistance2D, isMobileOrTablet, rng } from '../../../../helpers';
+import { Position } from '../../../../types';
 import MountainShape from '../Shapes/AnimatedShapes/MountainShape';
 import PulsatingArc from '../Shapes/AnimatedShapes/PulsatingArc';
 import RadiantArc from '../Shapes/RadiantArc';
 import { renderAndAnimateShapes, renderShapes } from '../canvasRenderer';
 
-const mountainAnim = (context: CanvasRenderingContext2D): Function => {
+const mountainAnim = (context: CanvasRenderingContext2D, midPos: Position): Function => {
   let lastTime = performance.now(), deltaTime = 0;
   let animationFrameID: number;
   let arrayOfMountains: MountainShape[] = [];
   let moon: RadiantArc[] = [];
   let arrayOfStars: PulsatingArc[] = [];
-
-  const middleY = { x: 0, y: window.innerHeight / 2 }
-  const middleX = { x: window.innerWidth / 2, y: 0 }
 
   const generateScene = () => {
     const radius = (isMobileOrTablet()) ? 80 : 150;
@@ -99,11 +97,11 @@ const mountainAnim = (context: CanvasRenderingContext2D): Function => {
   const onMouseMove = (event: MouseEvent) => {
     const xDistance = calcDistance2D(
       { x: event.x, y: 0 },
-      middleX
+      { x: midPos.x, y: 0 }
     ) / (window.innerWidth / 2);
     const yDistance = calcDistance2D(
       { x: 0, y: event.y },
-      middleY
+      { x: 0, y: midPos.y }
     ) / (window.innerHeight / 2);
 
     const left = (event.x < (window.innerWidth / 2)) ? 1 : -1;

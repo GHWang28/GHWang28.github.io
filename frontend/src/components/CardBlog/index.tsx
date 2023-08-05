@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 import BlogTags from '../BlogTags';
 import { BlogData } from '../../types';
 import CardDashed from '../CardDashed';
+import ImageLoader from '../ImageLoader';
 
 type ComponentProps = {
   data: BlogData,
@@ -71,17 +72,18 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
       onClick={() => { navigate(`${id}`) }}
     >
       {(thumbnail != null) && (
-        <Box
-          component='img'
+        <ImageLoader
           src={thumbnail}
           alt={title}
           sx={{
             width: '100%',
-            maxHeight: '250px',
+            height: '350px',
+            pb: 1.5
+          }}
+          imageSx={{
             borderRadius: '15px',
-            objectFit: 'cover',
-            objectPosition: 'bottom',
-            bgcolor: 'rgb(200,200,200)'
+            bgcolor: 'rgb(200,200,200)',
+            height: '100%'
           }}
         />
       )}

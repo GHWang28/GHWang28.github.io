@@ -112,8 +112,8 @@ const ProjectEarthEphemeris = () => {
         </Typography>
         <ImageGallery
           imgArray={[
-            '/images/newsletter/nsw-art-gallery.jpg',
-            '/images/newsletter/cabramatta-article.jpg',
+            '/images/newsletter/nsw-art-gallery.webp',
+            '/images/newsletter/cabramatta-article.webp',
             '/images/sketch/artexpress-artgallery.webp',
             '/images/sketch/robot-conception.webp',
             '/images/sketch/ryoko.jpg',

@@ -36,6 +36,7 @@ const ImageRow = ({ src, title, body, aspectRatio = 1, rowNo }: ComponentProps) 
           borderColor: 'contrastColor.main',
           width: `${dim.width}px`,
           height: `${dim.width / aspectRatio}px`,
+          bgcolor: 'bgColor.transparent'
         }}
       />
     </Grid>
