@@ -75,7 +75,7 @@ const EducationCard = ({title, subtitle, color, src, date = [0, 0], description 
           my: 1,
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderColor: 'borderColor.main',
+          borderColor: 'contrastColor.main',
           '&:hover': {
             scale: '1.25'
           },

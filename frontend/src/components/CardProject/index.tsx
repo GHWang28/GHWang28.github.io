@@ -3,12 +3,10 @@ import { Box, Button, Chip, Typography, useMediaQuery, useTheme } from '@mui/mat
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
-import ImageSlideShow from './ImageSlideShow';
-import VideoShow from './VideoShow';
 import TagIcon from '../../icons/TagIcon';
-import WavyBackdrop from './WavyBackdrop';
 import TypographyBorder from '../TypographyBorder';
 import { ProjectData } from '../../types';
+import CardBackground from './CardBackground';
 
 type ComponentProps = {
   data: ProjectData,
@@ -21,7 +19,6 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
   });
   const theme = useTheme();
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
-  const lightMode = theme.palette.mode === 'light';
 
   const {
     title,
@@ -71,7 +68,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
                     variant='outlined'
                     sx={{
                       mr: (index === type.length - 1) ? 0 : 1,
-                      borderColor: 'borderColor.main',
+                      borderColor: 'contrastColor.main',
                       bgcolor: 'bgColor.main'
                     }}
                     key={`label-${index}`}
@@ -93,7 +90,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
             component='ul'
             sx={{
               py: 3,
-              border: `1px solid ${theme.palette.borderColor.main}`,
+              border: `1px solid ${theme.palette.contrastColor.main}`,
               borderRadius: '15px',
               bgcolor: 'bgColor.main'
             }}
@@ -121,7 +118,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
               startIcon={button.icon}
               variant='contained'
               onClick={button?.onClick}
-              sx={{ m: 0.5, border: `1px solid ${theme.palette.borderColor.main}`, width: { sm: 'fit-content', xs: '75%' }, minWidth: '180px' }}
+              sx={{ m: 0.5, border: `1px solid ${theme.palette.contrastColor.main}`, width: { sm: 'fit-content', xs: '75%' }, minWidth: '180px' }}
               disabled={button?.disabled != null}
             >
               {button.text}
@@ -130,22 +127,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
         </BootstrapTooltip>
       ))}
       {/* Wavy Backdrop displayed behind text */}
-      <WavyBackdrop
-        bgColor={(lightMode) ? 'white' : theme.palette.gray.main}
-        speed={7}
-        yPos='-37.5%'
-        direction={(index % 2) ? 'up' : 'down'}
-        inView={inView}
-      />
-      <WavyBackdrop
-        bgColor={(lightMode) ? 'gray' : 'rgba(20,20,20,0.6)'}
-        speed={7}
-        yPos='-67%'
-        direction={!(index % 2) ? 'up' : 'down'}
-        inView={inView}
-      />
-      {/* Background to show image slideshow or video */}
-      {imgs[0].endsWith('.webm') || (imgs[0].endsWith('.mp4')) ? <VideoShow src={imgs[0]} /> : <ImageSlideShow imgs={imgs} />}
+      <CardBackground odd={index % 2 === 0} imgs={imgs} inView={inView} />
     </Box>
   )
 }

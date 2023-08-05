@@ -45,7 +45,7 @@ const TimelineSectionItemSmall = ({ data, index }: ComponentProps) => {
               borderRadius: '50%',
               borderWidth: '2px',
               borderStyle: 'solid',
-              borderColor: 'borderColor.main',
+              borderColor: 'contrastColor.main',
               color: 'whitesmoke',
               bgcolor: data.timelineDotColor,
               cursor: 'pointer',

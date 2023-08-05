@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box } from '@mui/material';
 import { setImageZoom } from '../../redux/actions';
 import { BoxProps } from '@mui/material';
 import { useAppDispatch } from '../../hooks';
 import { SpringValue } from 'react-spring';
+import ImageLoader from '../ImageLoader';
 
 type ComponentProps = BoxProps<'img'> & {
   alternateSrc?: string,
@@ -12,7 +12,7 @@ type ComponentProps = BoxProps<'img'> & {
 
 const ImageZoomable = ({ src = '', sx, alternateSrc = '', springStyle, style, ...props }: ComponentProps) => {
   const dispatch = useAppDispatch();
-
+/* 
   return (
     <Box
       component='img'
@@ -24,6 +24,20 @@ const ImageZoomable = ({ src = '', sx, alternateSrc = '', springStyle, style, ..
         cursor: 'pointer'
       }}
       onClick={() => { dispatch(setImageZoom(alternateSrc || src)) }}
+    />
+  ) */
+
+  return (
+    <ImageLoader
+      src={src}
+      style={style}
+      springStyle={springStyle}
+      sx={{
+        ...sx,
+        cursor: 'pointer'
+      }}
+      onClick={() => { dispatch(setImageZoom(alternateSrc || src)) }}
+      {...props}
     />
   )
 }

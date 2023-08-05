@@ -270,7 +270,7 @@ const PageSkills = () => {
           <Fragment key={`category-${category.heading}`}>
             <Divider sx={{
               '&::before, &::after': {
-                borderColor: (lightMode) ? 'black.main' : 'whitesmoke',
+                borderColor: 'contrastColor.main',
               },
             }}>
               <Typography

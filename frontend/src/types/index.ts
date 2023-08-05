@@ -1,6 +1,11 @@
 import React from 'react';
 import BlogElement from './blogElementTypes';
 
+export type Dimension = {
+  width: number,
+  height: number
+}
+
 export type Action<T> = {
   type: string,
   value: T
@@ -17,6 +22,13 @@ export type FooterContacts = {
   onClick: React.MouseEventHandler<HTMLButtonElement>,
   title: string,
   icon: React.ReactNode
+}
+
+export type ArtworkData = {
+  src: string,
+  title?: string,
+  body?: string,
+  aspectRatio?: number
 }
 
 export type BlogData = {

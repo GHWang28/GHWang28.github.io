@@ -13,11 +13,11 @@ const ProjectMinecraftRecreation = () => (
       imgArray={[
         'https://youtu.be/xIFnil_tP2s',
         'https://youtu.be/PsKbE1M6UJg',
-        '/images/minecraft-recreation/1.png',
-        '/images/minecraft-recreation/2.png',
-        '/images/minecraft-recreation/3.png',
-        '/images/minecraft-recreation/4.png',
-        '/images/minecraft-recreation/5.png'
+        '/images/minecraft-recreation/1.webp',
+        '/images/minecraft-recreation/2.webp',
+        '/images/minecraft-recreation/3.webp',
+        '/images/minecraft-recreation/4.webp',
+        '/images/minecraft-recreation/5.webp'
       ]}
     />
     <BoxInfo

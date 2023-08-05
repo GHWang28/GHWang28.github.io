@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Grid, useMediaQuery, Theme } from '@mui/material';
+import { Box, Button, Grid, useMediaQuery, Theme, useTheme } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../helpers';
@@ -8,6 +8,8 @@ import { animated, useSpring, useTransition } from 'react-spring';
 import { v4 as uuidv4 } from 'uuid';
 import { useSwipeable } from 'react-swipeable';
 import ImageZoomable from '../ImageZoomable';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import ImageLoader from '../ImageLoader';
 
 type ComponentProps = {
   imgArray: string[]
@@ -19,6 +21,7 @@ type ComponentProps = {
  * Not providing a mainImgSrc will display a default image.
  */
 const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
+  const lightMode = useTheme().palette.mode === 'light';
   const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const [imgIndex, setImgIndex] = useState(0);
@@ -36,7 +39,6 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
       cycleImg(imgIndex - 1);
     }
   });
-
   const preventSwipeHandler = useSwipeable({
     onSwiped: ({ event }) => {
       event.stopPropagation();
@@ -57,11 +59,16 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
 
   /**
    * Cycles to the next image. If it is out of bounds, it will wrap around
-   * @param {number} newIndex
    */
   const cycleImg = (newIndex: number) => {
     switchImg(mod(newIndex, imgArray.length));
-  };
+  }
+  const cycleLeft = () => {
+    cycleImg(imgIndex - 1);
+  }
+  const cycleRight = () => {
+    cycleImg(imgIndex + 1);
+  }
   const switchImg = (img: number) => {
     setPrevImgIndex(imgIndex);
     setImgIndex(img);
@@ -93,7 +100,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         flexDirection: 'column',
         borderWidth: '2px',
         borderStyle: 'solid',
-        borderColor: 'borderColor.main',
+        borderColor: 'contrastColor.main',
         borderRadius: '8px',
         overflow: 'hidden',
         mx: (mediumMq) ? 10 : 0
@@ -108,23 +115,9 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
           sx={{ ...gallerySX, ...arrowSx }}
           zIndex={5}
         >
-          <Button
-            aria-label='Previous Image'
-            title='Previous Image'
-            sx={{
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: 'borderColor.main',
-              width: '100%',
-              height: '100%'
-            }}
-            onClick={() => {
-              cycleImg(imgIndex - 1);
-            }}
-            disableRipple
-          >
+          <SideArrow title='Previous Image' onClick={cycleLeft}>
             <ArrowLeftIcon sx={{ scale: '3' }}/>
-          </Button>
+          </SideArrow>
         </Grid>
         {/* Image viewer */}
         <Grid item xs={10} sm={10} sx={{...gallerySX, position: 'relative'}}>
@@ -160,78 +153,88 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
           sx={{ ...gallerySX, ...arrowSx }}
           zIndex={5}
         >
-          <Button
-            aria-label='Next Image'
-            title='Next Image'
-            sx={{
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: 'borderColor.main',
-              width: '100%',
-              height: '100%'
-            }}
-            onClick={() => {
-              cycleImg(imgIndex + 1);
-            }}
-            disableRipple
-          >
+          <SideArrow title='Next Image' onClick={cycleRight}>
             <ArrowRightIcon sx={{ scale: '3' }}/>
-          </Button>
+          </SideArrow>
         </Grid>
       </Grid>
       {/* Display other images on the bottom */}
       <Box
+        component={OverlayScrollbarsComponent}
+        defer
+        options={{ scrollbars: { autoHide: 'never', theme: (lightMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'scroll', y: 'scroll' }}}
         {...preventSwipeHandler}
         sx={{
-          display: 'flex',
-          justifyContent: 'left',
-          height: '100px',
-          width: '100%',
           bgcolor: 'bgColor.darker',
-          overflowX: 'auto',
-          overflowY: 'hidden'
+          pb: 1
         }}
       >
-        {imgArray.map((imgSrc, imgSrcNo) => (
-          <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative' }}>
-            {(isYouTubeURL(imgSrc)) && (
-              <Box
-                component='img'
+        <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
+          {imgArray.map((imgSrc, imgSrcNo) => (
+            <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative', display: 'inline', height: '100%' }}>
+              {(isYouTubeURL(imgSrc)) && (
+                <Box
+                  component='img'
+                  sx={{
+                    position: 'absolute',
+                    width: '50%',
+                    top: '50%',
+                    left: '50%',
+                    translate: '-50% -50%',
+                    pointerEvents: 'none',
+                    transition: 'scale 0.2s ease-in-out',
+                    scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
+                    zIndex: 2
+                  }}
+                  src='/images/youtube.svg'
+                />
+              )}
+              <ImageLoader
                 sx={{
-                  position: 'absolute',
-                  width: '50%',
-                  top: '50%',
-                  left: '50%',
-                  translate: '-50% -50%',
-                  pointerEvents: 'none',
-                  transition: 'scale 0.2s ease-in-out',
+                  cursor: 'pointer',
+                  height: '100px',
+                  transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
                   scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
-                  zIndex: 2
+                  opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',
+                  WebkitTapHighlightColor: 'transparent',
+                  minWidth: '100px',
+                  minHeight: '100px'
                 }}
-                src='/images/youtube.svg'
+                onClick={() => { switchImg(imgSrcNo) }}
+                src={getYouTubeThumbnailImg(imgSrc)}
+                alt={(imgSrcNo === 0) ? 'Thumbnail' : `Additional image #${imgSrcNo}`}
               />
-            )}
-            <Box
-              component='img'
-              sx={{
-                cursor: 'pointer',
-                height: '100px',
-                transition: 'scale 0.2s ease-in-out, opacity 0.2s ease-in-out',
-                scale: (imgIndex === imgSrcNo) ? '1.0' : '0.9',
-                opacity: (imgIndex === imgSrcNo) ? '1.0' : '0.5',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-              onClick={() => { switchImg(imgSrcNo) }}
-              src={getYouTubeThumbnailImg(imgSrc)}
-              title={
-                (imgSrcNo === 0) ? 'Thumbnail' : `Additional image #${imgSrcNo}`
-              }
-            />
-          </Box>
-        ))}
+            </Box>
+          ))}
+        </Box>
       </Box>
     </AnimatedBox>
   );
 }
+
+type SideArrowProps = {
+  children?: React.ReactNode,
+  onClick: React.MouseEventHandler<HTMLButtonElement>,
+  title?: string
+}
+
+const SideArrow = ({ children, onClick, title }: SideArrowProps) => (
+  <Button
+    aria-label={title}
+    title={title}
+    sx={{
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderColor: 'contrastColor.main',
+      width: '100%',
+      height: '100%',
+      color: 'contrastColor.main'
+    }}
+    onClick={onClick}
+    disableRipple
+  >
+    {children}
+  </Button>
+)
 
 export default ImageGallery;

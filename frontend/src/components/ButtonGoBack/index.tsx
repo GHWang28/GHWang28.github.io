@@ -23,7 +23,7 @@ const ButtonGoBack = ({ destination }: ComponentProps) => {
           mt: 2,
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderColor: 'borderColor.main',
+          borderColor: 'contrastColor.main',
           opacity: (hover) ? '1.0' : '0.5',
           transition: 'opacity 0.2s ease-in-out'
         }}

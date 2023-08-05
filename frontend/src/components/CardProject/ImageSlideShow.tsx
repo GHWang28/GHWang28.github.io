@@ -2,11 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
 type ComponentProps = {
-  imgs: string[]
+  imgs: string[],
+  onLoad: Function
 }
 
-const ImageSlideShow = ({ imgs }: ComponentProps) => {
+const ImageSlideShow = ({ imgs, onLoad }: ComponentProps) => {
   const [imageIndex, setImageIndex] = useState<number>(0);
+  const [totalLoaded, setTotalLoaded] = useState<number>(0);
 
   useEffect(() => {
     if (imgs.length <= 1) return;
@@ -18,6 +20,12 @@ const ImageSlideShow = ({ imgs }: ComponentProps) => {
     return () => { clearTimeout(timeout) }
   }, [imageIndex, imgs.length]);
 
+  useEffect(() => {
+    if (totalLoaded < imgs.length) return;
+
+    onLoad();
+  }, [totalLoaded, imgs, onLoad]);
+
   return (
     <Fragment>
       {imgs.map((src, index) => (
@@ -27,6 +35,9 @@ const ImageSlideShow = ({ imgs }: ComponentProps) => {
           alt={`image-background-${index}`}
           title={`Background Image #${index}`}
           src={src}
+          onLoad={() => {
+            setTotalLoaded((i) => i + 1);
+          }}
           sx={{
             position: 'absolute',
             top: '0px',

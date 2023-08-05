@@ -2,16 +2,18 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 type ComponentProps = {
-  src: string
+  src: string,
+  onCanPlayThrough: React.ReactEventHandler<HTMLVideoElement>
 }
 
-const VideoShow = ({ src }: ComponentProps) => {
+const VideoShow = ({ src, onCanPlayThrough }: ComponentProps) => {
   return (
     <Box
       component='video'
       muted
       loop
       autoPlay
+      onCanPlayThrough={onCanPlayThrough}
       sx={{
         position: 'absolute',
         top: '0px',
@@ -23,7 +25,7 @@ const VideoShow = ({ src }: ComponentProps) => {
         zIndex: -2,
       }}
     >
-      <source src={src} type='video/mp4'/>
+      <source src={src} type='video/webm'/>
     </Box>
   )
 }

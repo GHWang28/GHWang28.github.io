@@ -9,7 +9,7 @@ const generateHobbies = () : HobbyData[] => {
     sx: {
       borderWidth: '2px',
       borderStyle: 'solid',
-      borderColor: 'borderColor.main',
+      borderColor: 'contrastColor.main',
       borderRadius: '50%'
     }
   }

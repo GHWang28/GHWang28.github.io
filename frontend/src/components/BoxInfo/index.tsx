@@ -24,7 +24,7 @@ const BoxInfo = ({ children, title, footer, plagiarism = false }: ComponentProps
         borderRadius: '15px',
         borderWidth: '2px',
         borderStyle: 'solid',
-        borderColor: 'borderColor.main',
+        borderColor: 'contrastColor.main',
         bgcolor: 'bgColor.darker',
       }}
     >

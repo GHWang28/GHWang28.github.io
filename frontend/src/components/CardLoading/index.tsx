@@ -7,9 +7,10 @@ const CardLoading = () => (
     sx={{
       mx: { lg: 0, md: 5, xs: 0 },
       mb: { md: 5, xs: 2 },
+      color: 'contrastColor.main'
     }}
   >
-    <CircularProgress />
+    <CircularProgress color='inherit'/>
   </CardDashed>
 )
 

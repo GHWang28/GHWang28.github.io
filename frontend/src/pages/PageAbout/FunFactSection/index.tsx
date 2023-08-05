@@ -92,7 +92,7 @@ export default function FunFactSection () {
                 bgcolor: (themeMode === 'dark') ? 'black.main' : 'white.main',
                 borderWidth: '2px',
                 borderStyle: 'solid',
-                borderColor: 'borderColor.main',
+                borderColor: 'contrastColor.main',
                 borderRadius: '15px',
                 cursor: 'pointer'
               }}

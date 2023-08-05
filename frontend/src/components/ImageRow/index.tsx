@@ -1,22 +1,27 @@
+import React from 'react';
 import { Box, Grid, Typography, useMediaQuery, Theme } from '@mui/material';
-import React, { Fragment } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ImageZoomable from '../ImageZoomable';
+import { useResizeObserver } from '../../hooks';
 
 type ComponentProps = {
   src: string,
   title: string,
   body: string,
-  rowNo: number
+  rowNo: number,
+  aspectRatio?: number,
 }
 
-const ImageRow = ({ src, title, body, rowNo }: ComponentProps) => {
-  const [ref, inView] = useInView();
+const ImageRow = ({ src, title, body, aspectRatio = 1, rowNo }: ComponentProps) => {
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
+  const [imageRef, dim] = useResizeObserver<HTMLDivElement>();
   const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const isOdd = (rowNo % 2);
 
   const imgCol = (
-    <Grid item xs={12} md={8.7}>
+    <Grid ref={imageRef} key={`${title}-img`} item xs={12} md={8.7}>
       <ImageZoomable
         src={src}
         alt={'Artwork'}
@@ -28,27 +33,28 @@ const ImageRow = ({ src, title, body, rowNo }: ComponentProps) => {
           borderRadius: '2%',
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderColor: 'borderColor.main',
-          width: '100%'
+          borderColor: 'contrastColor.main',
+          width: `${dim.width}px`,
+          height: `${dim.width / aspectRatio}px`,
         }}
       />
     </Grid>
   )
   const textCol = (
-    <Grid item xs={12} md={3.3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <Grid key={`${title}-txt`} item xs={12} md={3.3} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <Box
-        p={(mediumMq) ? 2 : 0}
+        p={{ md: 2, xs: 0 }}
         m={1}
         sx={{
           bgcolor: 'bgColor.main',
           borderRadius: '15px',
           borderWidth: '2px',
           borderStyle: 'solid',
-          borderColor: 'borderColor.main'
+          borderColor: 'contrastColor.main'
         }}
       >
-        <Typography variant={'h5'} align='center'>
-          <u>{title}</u>
+        <Typography variant={'h5'} align='center' sx={{ textDecoration: 'underline' }}>
+          {title}
         </Typography>
         <Typography variant={'h6'} align='center' sx={{ opacity: '0.75' }}>
           {body}
@@ -70,11 +76,7 @@ const ImageRow = ({ src, title, body, rowNo }: ComponentProps) => {
         transition: 'translate 1.0s ease-in-out, opacity 1.0s ease-in-out',
       }}
     >
-      {row.map((col, index) => (
-        <Fragment key={`row-${rowNo}-col-${index}`}>
-          {col}
-        </Fragment>
-      ))}
+      {row}
     </Grid>
   )
 }

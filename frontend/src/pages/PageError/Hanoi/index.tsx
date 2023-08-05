@@ -110,7 +110,7 @@ const Hanoi = () => {
               width: '30vw',
               maxWidth: '300px',
               border: '2px solid',
-              borderColor: 'borderColor.main',
+              borderColor: 'contrastColor.main',
               borderRadius: '15px',
               position: 'relative',
               bgcolor: (prevTowerIndex === index) ? 'rgb(0,0,0,0.25)' : '',

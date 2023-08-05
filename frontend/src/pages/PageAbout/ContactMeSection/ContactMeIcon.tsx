@@ -45,7 +45,7 @@ const ContactMeIcon = ({ contact }: ComponentProps) => {
           sx={{
             borderWidth: '2px',
             borderStyle: 'solid',
-            borderColor: 'borderColor.main',
+            borderColor: 'contrastColor.main',
             transition: 'rotate 0.5s ease-in-out',
             rotate: '0deg',
             '&:hover': {

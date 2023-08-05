@@ -86,7 +86,7 @@ const CardQuiz = ({ question, options }: ComponentProps) => {
               <Button
                 sx={{
                   p: 2,
-                  border: `2px solid ${(!answered) ? theme.palette.borderColor.main : (answered && option.correct) ? theme.palette.green.main : theme.palette.red.main}`,
+                  border: `2px solid ${(!answered) ? theme.palette.contrastColor.main : (answered && option.correct) ? theme.palette.green.main : theme.palette.red.main}`,
                   borderRadius: '15px',
                   width: '100%',
                   height: '100%',
@@ -105,7 +105,7 @@ const CardQuiz = ({ question, options }: ComponentProps) => {
                   handleOptionClick(option.correct, option.explanation);
                 }}
               >
-                <Typography fontSize={16} color={(!answered) ? theme.palette.borderColor.main : (answered && option.correct) ? theme.palette.green.main : theme.palette.red.main} align='center'>{option.text}</Typography>
+                <Typography fontSize={16} color={(!answered) ? theme.palette.contrastColor.main : (answered && option.correct) ? theme.palette.green.main : theme.palette.red.main} align='center'>{option.text}</Typography>
               </Button>
             </Grid>
           ))}

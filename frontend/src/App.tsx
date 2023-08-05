@@ -40,7 +40,7 @@ declare module '@mui/material/styles' {
     darkgray: Palette['primary'],
     gray: Palette['primary'],
     orange: Palette['primary'],
-    borderColor: Palette['primary'],
+    contrastColor: Palette['primary'],
     tooltipColor: Palette['primary'],
     bgColor: Palette['primary'],
   }
@@ -55,7 +55,7 @@ declare module '@mui/material/styles' {
     darkgray: PaletteOptions['primary'],
     gray: PaletteOptions['primary'],
     orange: PaletteOptions['primary'],
-    borderColor: PaletteOptions['primary'],
+    contrastColor: PaletteOptions['primary'],
     tooltipColor: PaletteOptions['primary'],
     bgColor: PaletteOptions['primary'],
   }
@@ -114,7 +114,7 @@ export default function App() {
         main: 'rgb(255,146,72)',
         transparent: 'rgba(255,146,72,0.15)'
       },
-      borderColor: {
+      contrastColor: {
         main: (themeMode) ? 'black' : 'whitesmoke',
       },
       tooltipColor: {
@@ -177,7 +177,7 @@ export default function App() {
 
   // Handles the overlay scrollbar
   const [initialize] = useOverlayScrollbars({
-    options: { scrollbars: { autoHide: 'scroll', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
+    options: { scrollbars: { autoHide: 'never', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
     defer: true
   });
   useEffect(() => {

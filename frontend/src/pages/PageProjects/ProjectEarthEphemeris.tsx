@@ -6,10 +6,50 @@ import ImageGallery from '../../components/ImageGallery';
 import ImageRow from '../../components/ImageRow';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import GradientTitle from '../../components/GradientTitle';
+import { ArtworkData } from '../../types';
 
 const ProjectEarthEphemeris = () => {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
+
+  const images: ArtworkData[] = [
+    {
+      src: '/images/hscbow/homesweethome.webp',
+      title: 'Home Sweet Home',
+      body: 'Artwork #1',
+      aspectRatio: 71 / 50
+    },
+    {
+      src: '/images/hscbow/leaving.webp',
+      title: 'Leaving',
+      body: 'Artwork #2',
+      aspectRatio: 1
+    },
+    {
+      src: '/images/hscbow/bonvoyage.webp',
+      title: 'Bon Voyage',
+      body: 'Artwork #3',
+      aspectRatio: 71 / 50
+    },
+    {
+      src: '/images/hscbow/rabureta.webp',
+      title: 'Rabureta',
+      body: 'Artwork #4',
+      aspectRatio: 71 / 50
+    },
+    {
+      src: '/images/hscbow/ruiji.webp',
+      title: 'Ruiji',
+      body: 'Artwork #5',
+      aspectRatio: 71 / 50
+    },
+    {
+      src: '/images/hscbow/homecoming.webp',
+      title: 'Homecoming',
+      body: 'Artwork #6',
+      aspectRatio: 71 / 50
+    },
+  ]
 
   return (
     <Fragment>
@@ -21,12 +61,9 @@ const ProjectEarthEphemeris = () => {
         {/* Cotaining the images */}
         <Grid item xs={12} lg={8} xl={9}>
           <Grid container p={{ xs: 0, sm: 3 }} rowSpacing={1} rowGap={{ xs: 8 }} >
-            <ImageRow src='/images/hscbow/homesweethome.jpg' title='Home Sweet Home' body='Artwork #1' rowNo={1} />
-            <ImageRow src='/images/hscbow/leaving.jpg' title='Exiting W/O Leaving' body='Artwork #2' rowNo={2} />
-            <ImageRow src='/images/hscbow/bonvoyage.jpg' title='Bon Voyage' body='Artwork #3' rowNo={3} />
-            <ImageRow src='/images/hscbow/rabureta.jpg' title='Rabureta' body='Artwork #4' rowNo={4} />
-            <ImageRow src='/images/hscbow/ruiji.jpg' title='Ruiji' body='Artwork #5' rowNo={5} />
-            <ImageRow src='/images/hscbow/homecoming.jpg' title='Homecoming' body='Artwork #6' rowNo={6} />
+            {images.map((data: ArtworkData, index: number) => (
+              <ImageRow key={data.src} src={data.src} title={data.title || ''} body={data.body || ''} rowNo={index + 1} aspectRatio={data.aspectRatio} />
+            ))}
           </Grid>
         </Grid>
         
@@ -45,7 +82,7 @@ const ProjectEarthEphemeris = () => {
               borderRadius: '15px',
               borderWidth: '2px',
               borderStyle: 'solid',
-              borderColor: 'borderColor.main',
+              borderColor: 'contrastColor.main',
               bgcolor: 'bgColor.main',
               zIndex: 2
             }}

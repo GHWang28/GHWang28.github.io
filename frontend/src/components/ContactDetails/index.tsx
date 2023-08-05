@@ -1,18 +1,15 @@
 import React from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Box, IconButton, styled, useTheme } from '@mui/material';
+import { Box, IconButton, styled } from '@mui/material';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useSpring, animated } from 'react-spring';
 import { easings } from '@react-spring/web'
 import config from '../../config.json';
 
-const OutlinedButton = styled(IconButton)(() => {
-  const theme = useTheme();
-  return {
-    border: `1px solid ${theme.palette.borderColor.main}`
-  }
-});
+const OutlinedButton = styled(IconButton)(({ theme }) => ({
+  border: `1px solid ${theme.palette.contrastColor.main}`
+}));
 
 const ContactDetails = () => {
   const AnimatedBox = animated(Box);

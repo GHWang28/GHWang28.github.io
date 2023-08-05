@@ -47,7 +47,7 @@ const TimelineSectionItem = ({ data, index, end = false }: ComponentProps) => {
               bgcolor: data.timelineDotColor,
               borderWidth: '2px',
               borderStyle: 'solid',
-              borderColor: 'borderColor.main',
+              borderColor: 'contrastColor.main',
               cursor: 'pointer',
               '&:hover': {
                 scale: '1.25'
