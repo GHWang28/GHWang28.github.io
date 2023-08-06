@@ -47,7 +47,7 @@ const CardBackground = ({ inView, odd, imgs }: ComponentProps) => {
         <ImageSlideShow imgs={imgs} onLoad={onLoad} />
       )}
       {(!loaded) && (
-        <Box sx={{ color: 'contrastColor.main', position: 'absolute', right: '15px', bottom: '15px' }} >
+        <Box sx={{ color: 'contrastColor.main', position: 'absolute', right: '15px', top: '15px' }} >
           <CircularProgress color='inherit' />
         </Box>
       )}

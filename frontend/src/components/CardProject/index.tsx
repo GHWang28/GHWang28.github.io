@@ -7,6 +7,7 @@ import TagIcon from '../../icons/TagIcon';
 import TypographyBorder from '../TypographyBorder';
 import { ProjectData } from '../../types';
 import CardBackground from './CardBackground';
+import TagChip from './TagChip';
 
 type ComponentProps = {
   data: ProjectData,
@@ -54,7 +55,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
     >
       <Box sx={{ width: { sm: '60%', xs: '100%' }}}>
         <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
-          <TypographyBorder variant='h4'>
+          <TypographyBorder variant='h4' sx={{ maxWidth: { xs: '75%', sm: '100%' }, width: 'fit-content', bgcolor: 'gray.transparent' }}>
             {title}
           </TypographyBorder>
         </BootstrapTooltip>
@@ -63,17 +64,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
             <div>
               <ChipContainer>
                 {type.sort().map((label, index) => (
-                  <Chip
-                    icon={<TagIcon label={label} sx={{ ml: 0.6 }}/>}
-                    variant='outlined'
-                    sx={{
-                      mr: (index === type.length - 1) ? 0 : 1,
-                      borderColor: 'contrastColor.main',
-                      bgcolor: 'bgColor.main'
-                    }}
-                    key={`label-${index}`}
-                    label={label}
-                  />
+                  <TagChip key={`chip-${label}-${index}`} label={label}/>
                 ))}
               </ChipContainer>
             </div>

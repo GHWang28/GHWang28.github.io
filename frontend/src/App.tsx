@@ -4,7 +4,7 @@ import './styles/Gradient.css';
 import './styles/Sparklez.css';
 import React, { useEffect, Suspense } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ImageZoomer from './components/ImageZoomer';
 import SwipeTutorial from './components/SwipeTutorial';
@@ -108,7 +108,8 @@ export default function App() {
       },
       gray: {
         main: (themeMode) ? 'rgb(40,40,40)' : 'rgb(65,70,80)',
-        transparent: 'rgba(65,70,80,0.2)'
+        translucent: (themeMode) ? 'rgba(40,40,40,0.7)' : 'rgba(65,70,80,0.7)',
+        transparent: (themeMode) ? 'rgba(40,40,40,0.2)' : 'rgba(65,70,80,0.2)'
       },
       orange: {
         main: 'rgb(255,146,72)',
@@ -177,7 +178,7 @@ export default function App() {
 
   // Handles the overlay scrollbar
   const [initialize] = useOverlayScrollbars({
-    options: { scrollbars: { autoHide: 'never', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
+    options: { scrollbars: { autoHide: 'scroll', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
     defer: true
   });
   useEffect(() => {
@@ -190,7 +191,9 @@ export default function App() {
       <ImageZoomer />
       <Suspense fallback={<PageLoading />}>
         <Navbar />
-        {(!useAppSelector(state => state.hideWebsite)) && (
+        {(useAppSelector(state => state.hideWebsite)) ? (
+          <Box width='100vw' height='105vh' />
+        ) : (
           <PageRouter />
         )}
       </Suspense>

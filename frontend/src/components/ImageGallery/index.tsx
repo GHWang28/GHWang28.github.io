@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { useSwipeable } from 'react-swipeable';
 import ImageZoomable from '../ImageZoomable';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import ImageLoader from '../ImageLoader';
 
 type ComponentProps = {
   imgArray: string[]
@@ -154,10 +153,9 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         component={OverlayScrollbarsComponent}
         defer
         options={{ scrollbars: { autoHide: 'never', theme: (lightMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'scroll', y: 'scroll' }}}
-        {...preventSwipeHandler}
         sx={{ bgcolor: 'bgColor.darker', pb: 1 }}
       >
-        <Box sx={{ display: 'flex' }}>
+        <Box {...preventSwipeHandler} sx={{ display: 'flex' }}>
           {imgArray.map((imgSrc, imgSrcNo) => (
             <Box key={`img-${imgSrcNo}`} sx={{ position: 'relative', flex: 'none' }}>
               {(isYouTubeURL(imgSrc)) && (
