@@ -3,7 +3,6 @@ import { Box, Button, Chip, Typography, useMediaQuery, useTheme } from '@mui/mat
 import { useInView } from 'react-intersection-observer';
 import ChipContainer from '../ChipContainer';
 import BootstrapTooltip from '../BootstrapTooltip';
-import TagIcon from '../../icons/TagIcon';
 import TypographyBorder from '../TypographyBorder';
 import { ProjectData } from '../../types';
 import CardBackground from './CardBackground';
