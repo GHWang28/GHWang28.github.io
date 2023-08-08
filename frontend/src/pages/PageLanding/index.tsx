@@ -81,7 +81,7 @@ const PageLanding = () => {
           })}
           // @ts-ignore
           alt='Landing page background'
-          src='images/title-bg.png'
+          src='images/title-bg.webp'
           sx={{
             position: 'absolute',
             opacity: 0.8,

@@ -18,7 +18,7 @@ const Footer = () => {
   const gitInfo = GitInfo();
   const lightMode = (useTheme().palette.mode === 'light');
   const [copiedAddress, setCopiedAddress] = useState(false);
-  const logoSrc = (lightMode) ? '/images/gw-logo.png' : '/images/gw-logo-light.png';
+  const logoSrc = (lightMode) ? '/images/gw-logo.webp' : '/images/gw-logo-light.webp';
 
   if (location.pathname === '/') return null;
 

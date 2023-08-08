@@ -1,10 +1,10 @@
 import React from 'react';
 import { TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
-import { Box, ClickAwayListener, Collapse, Typography } from '@mui/material';
-import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import { ClickAwayListener, Collapse, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { TimelineData } from '../../../types';
+import ImageAvatar from '../../../components/ImageAvatar';
 
 type ComponentProps = {
   data: TimelineData,
@@ -40,33 +40,14 @@ const TimelineSectionItem = ({ data, index, end = false }: ComponentProps) => {
       </TimelineOppositeContent>
       <TimelineSeparator>
         <ClickAwayListener onClickAway={onClickAway}>
-          <TimelineDot
-            sx={{
-              overflow: 'clip',
-              WebkitTapHighlightColor: 'transparent',
-              bgcolor: data.timelineDotColor,
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: 'contrastColor.main',
-              cursor: 'pointer',
-              '&:hover': {
-                scale: '1.25'
-              },
-              transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
-              rotate: (show) ? '360deg' : '0deg'
-            }}
-            onClick={onClick}
-          >
-            {(data.timelineDotImg) ? (
-              <Box
-                alt='Employment Timeline Icon'
-                component='img'
-                sx={{ width: '45px', height: '45px' }}
-                src={data.timelineDotImg}
-              />
-            ) : (
-              <WorkHistoryIcon sx={{ width: '45px', height: '45px' }} />
-            )}
+          <TimelineDot sx={{ border: '0px', p: 0 }}>
+            <ImageAvatar
+              sx={{ rotate: (show) ? '360deg' : '0deg' }}
+              alt='timeline-icon'
+              src={data.timelineDotImg}
+              bgcolor={data.timelineDotColor}
+              onClick={onClick}
+            />
           </TimelineDot>
         </ClickAwayListener>
         {(!end) && (

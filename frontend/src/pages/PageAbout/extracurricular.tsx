@@ -9,7 +9,7 @@ const generateExtraCurricularTimeline = (navigate: NavigateFunction, location: L
     {
       oppContent: '(2017)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/robotics.jpg',
+      timelineDotImg: '/images/timeline/robotics.webp',
       timelineTitle: 'Zero Robotics High School Tournament',
       timelineContent: [
         'Worked with other peers to solve a challenging problem that involved resource management',
@@ -19,7 +19,7 @@ const generateExtraCurricularTimeline = (navigate: NavigateFunction, location: L
     {
       oppContent: '(2018)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/sefton-hs.jpg',
+      timelineDotImg: '/images/timeline/sefton-hs.webp',
       timelineTitle: 'Peer Support Leader at Sefton High School',
       timelineContent: [
         'Committed to a school-term long mentorship role, providing guidance and support to a group of 7th grade high school students',
@@ -30,7 +30,7 @@ const generateExtraCurricularTimeline = (navigate: NavigateFunction, location: L
     {
       oppContent: '(2019)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/art-express.jpg',
+      timelineDotImg: '/images/timeline/art-express.webp',
       timelineTitle: 'ArtExpress 2020',
       timelineContent: [
         'Submitted a 6-piece body of work for Art Express 2020, which later was selected for display at the prestigious Art Gallery of New South Wales',
@@ -50,7 +50,7 @@ const generateExtraCurricularTimeline = (navigate: NavigateFunction, location: L
     {
       oppContent: '(2022)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/trachack.jpg',
+      timelineDotImg: '/images/timeline/trachack.webp',
       timelineTitle: 'TracHack 22.2',
       timelineContent: [
         'Participated in a global competition that involved working as a team and creating a Machine Learning model that was able to predict the eligibility of customers for the Emergency Broadband Benefit Program',

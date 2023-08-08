@@ -28,7 +28,7 @@ const EducationSection = () => {
             title={'Sefton High\xa0School'}
             subtitle={'High School Certificate'}
             color={'blue'}
-            src={'/images/timeline/sefton-hs.jpg'}
+            src={'/images/timeline/sefton-hs.webp'}
             backgroundSrc={'/images/about/education/shs.webp'}
             date={[2014, 2019]}
             description={['Graduated with a 90+ ATAR.', 'Participated in a number of extra-curricular activities.']}
@@ -39,7 +39,7 @@ const EducationSection = () => {
             title={'University of New\xa0South\xa0Wales'}
             subtitle={'Undergraduate Degree'}
             color={'yellow'}
-            src={'/images/timeline/unsw.jpg'}
+            src={'/images/timeline/unsw.webp'}
             backgroundSrc={'/images/about/education/unsw.webp'}
             date={[2020, 2023]}
             description={[

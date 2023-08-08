@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Collapse, Typography, useTheme } from '@mui/material';
+import { Box, Collapse, Typography, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import ImageAvatar from '../../../components/ImageAvatar';
 
 type ComponentProps = {
   title: string,
@@ -67,19 +68,12 @@ const EducationCard = ({title, subtitle, color, src, date = [0, 0], description 
         setShow(!show)
       }}
     >
-      <Avatar
+      <ImageAvatar
         src={src}
+        alt='education-logo'
+        bgcolor={(color === 'yellow') ? 'rgb(254,230,0)' : 'rgb(255,255,255)'}
         sx={{
-          width: '50px',
-          height: '50px',
-          my: 1,
-          borderWidth: '2px',
-          borderStyle: 'solid',
-          borderColor: 'contrastColor.main',
-          '&:hover': {
-            scale: '1.25'
-          },
-          transition: 'scale 0.2s ease-in-out',
+          my: 1
         }}
       />
       <Typography variant='h5' color={`${color}.main`} align={'center'} fontWeight='bold'>

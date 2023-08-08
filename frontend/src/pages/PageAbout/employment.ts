@@ -6,7 +6,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
     {
       oppContent: '(February 2018)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/aie.jpg',
+      timelineDotImg: '/images/timeline/aie.webp',
       timelineTitle: 'Academy of Interactive Entertainment Work Experience',
       timelineContent: [
         'Obtained valuable experience and insight using industry-standard tools for game development and animation, such as Autodesk Maya, Adobe Animate, Photoshop, and GameMaker Studio',
@@ -18,7 +18,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
     {
       oppContent: '(30th November 2019) → (Present Time)',
       timelineDotColor: 'rgb(255,255,255)',
-      timelineDotImg: '/images/timeline/abc.jpg',
+      timelineDotImg: '/images/timeline/abc.webp',
       timelineTitle: 'Australia ABC College Tutor',
       timelineContent: [
         'Currently holding a tutoring and administrative role at Australia ABC College, specialising in providing support to primary and high school students. This strengthened my ability to thrive in a teaching environment',
@@ -31,7 +31,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
     {
       oppContent: '(13th February 2023) → (Present Time)',
       timelineDotColor: 'rgb(254,230,0)',
-      timelineDotImg: '/images/timeline/unsw.jpg',
+      timelineDotImg: '/images/timeline/unsw.webp',
       timelineTitle: 'UNSW COMP6080 Web Frontend Programming Tutor',
       timelineContent: [
         'Currently holding a tutoring role in a Frontend course at UNSW',

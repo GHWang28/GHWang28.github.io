@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Collapse, Grid, Typography } from '@mui/material';
-import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { TimelineData } from '../../../types';
+import ImageAvatar from '../../../components/ImageAvatar';
 
 type ComponentProps = {
   data: TimelineData,
@@ -37,40 +37,13 @@ const TimelineSectionItemSmall = ({ data, index }: ComponentProps) => {
           </Typography>
         </Grid>
         <Grid item xs={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box
-            sx={{
-              width: '57px',
-              height: '57px',
-              overflow: 'clip',
-              borderRadius: '50%',
-              borderWidth: '2px',
-              borderStyle: 'solid',
-              borderColor: 'contrastColor.main',
-              color: 'whitesmoke',
-              bgcolor: data.timelineDotColor,
-              cursor: 'pointer',
-              transition: 'scale 0.2s ease-in-out, rotate 0.5s ease-in-out',
-              rotate: (show) ? '360deg' : '0deg',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              WebkitTapHighlightColor: 'transparent',
-            }}
+          <ImageAvatar
+            sx={{ rotate: (show) ? '360deg' : '0deg' }}
+            alt='timeline-icon'
+            src={data.timelineDotImg}
+            bgcolor={data.timelineDotColor}
             onClick={onClick}
-          >
-            {(data.timelineDotImg) ? (
-              <Box
-                component='img'
-                alt='employment-timeline-icon'
-                src={data.timelineDotImg}
-                sx={{ width: '45px', height: '45px' }}
-              />
-            ) : (
-              <WorkHistoryIcon
-                sx={{ width: '45px', height: '45px' }}
-              />
-            )}
-          </Box>
+          />
         </Grid>
         <Grid item xs={5}>
           {/* Title of timeline */}
