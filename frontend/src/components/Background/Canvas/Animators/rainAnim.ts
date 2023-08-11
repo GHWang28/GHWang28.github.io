@@ -3,7 +3,7 @@ import RainDropArc from '../Shapes/AnimatedShapes/RainDropArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';
 import config from '../../../../config.json';
 
-const rainAnim = (context: CanvasRenderingContext2D, maxRainDrop: number = 500): Function => {
+const rainAnim = (context: CanvasRenderingContext2D): Function => {
   let lastTime = performance.now(), deltaTime = 0, createRainDropTimer = 0;
   let animationFrameID: number;
   let rainDrops: RainDropArc[] = [];
@@ -16,8 +16,9 @@ const rainAnim = (context: CanvasRenderingContext2D, maxRainDrop: number = 500):
 
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
+    const maxRainDrop = Math.floor(window.innerWidth / 4);
     // Generate new raindrops if needed
-    if (rainDrops.length < maxRainDrop && createRainDropTimer < 0) {
+    if (createRainDropTimer < 0 && rainDrops.length < maxRainDrop) {
       createRainDropTimer = RainDropArc.GENERATE_INTERVAL_LENGTH;
       rainDrops.push(
         ...Array.from({ length: 2 + rng(0, Math.ceil(maxRainDrop / 100)) }, () => (

@@ -47,11 +47,7 @@ function Settings () {
     },
     {
       icon: <SquareIcon sx={{ scale: '1.0' }}/>,
-      label: 'Blocks LG'
-    },
-    {
-      icon: <SquareIcon sx={{ scale: '0.66' }}/>,
-      label: 'Blocks SM'
+      label: 'Squares'
     },
     {
       icon: <MemoryIcon />,

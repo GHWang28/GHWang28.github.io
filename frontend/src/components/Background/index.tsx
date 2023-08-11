@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import React, { useEffect, useState, Fragment } from 'react';
+import { Box } from '@mui/material';
 import BackgroundWave from './BackgroundWave';
 import { useAppSelector } from '../../hooks';
 import Canvas from './Canvas';
@@ -7,35 +7,45 @@ import blockPulsateAnim from './Canvas/Animators/blockPulsateAnim';
 import rippleAnim from './Canvas/Animators/rippleAnim';
 import mountainAnim from './Canvas/Animators/mountainAnim';
 import rainAnim from './Canvas/Animators/rainAnim';
+import { animated, useTransition } from 'react-spring';
 
 const Background = () => {
   const themeMode = useAppSelector(state => state.themeMode);
+  const backgroundIndex = useAppSelector(state => state.background);
+
+  const transitions = useTransition(backgroundIndex, {
+    from: { opacity: 0, filter: 'blur(10px)' },
+    enter: { opacity: 1, filter: 'blur(0px)' },
+    leave: { opacity: 0, filter: 'blur(10px)'  },
+  });
+
+  const AnimatedBox = animated(Box);
+
   return (
-    <Box
-      sx={{
-        position: 'fixed',
-        top: '0px',
-        left: '0px',
-        filter: (themeMode === 'light') ? 'invert(100%)' : '',
-        width: '100vw',
-        height: '100vh',
-        maxHeight: '100vh',
-        zIndex: -999
-      }}
-    >
-      <BackgroundInner/>
-    </Box>
+    <Fragment>
+      {transitions((style, index) => (
+        <AnimatedBox
+          style={style}
+          sx={{
+            position: 'fixed',
+            top: '0px',
+            left: '0px',
+            filter: (themeMode === 'light') ? 'invert(100%)' : '',
+            width: '100vw',
+            height: '100vh',
+            maxHeight: '100vh',
+            zIndex: -999
+          }}
+        >
+          <BackgroundInner backgroundIndex={index}/>
+        </AnimatedBox>
+      ))}
+    </Fragment>
   )
 }
 
-const BackgroundInner = () => {
-  const backgroundIndex = useAppSelector(state => state.background);
+const BackgroundInner = ({ backgroundIndex }: { backgroundIndex: number }) => {
   const [hidden, setHidden] = useState<boolean>(false);
-
-  const theme = useTheme();
-  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('sm'));
-  const largeMq = useMediaQuery(theme.breakpoints.up('sm'));
 
   // Handling when the document can be visible or not
   useEffect(() => {
@@ -57,51 +67,11 @@ const BackgroundInner = () => {
 
   switch (backgroundIndex) {
     case 0: return <Canvas anim={mountainAnim} />;
-    case 1: return (
-      <Canvas
-        anim={(c: CanvasRenderingContext2D) => rainAnim(
-          c,
-          (largeMq) ? (
-            Math.floor(window.innerWidth / 3)
-          ) : (mediumMq) ? (
-            500
-          ) : (smallMq) ? (
-            250
-          ) : (100)
-        )}
-      />
-    );
+    case 1: return <Canvas anim={rainAnim}/>;
     case 2: return <BackgroundWave />;
     case 3: return <Canvas anim={rippleAnim} />;
-    case 4: return (
-      <Canvas
-        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
-          c,
-          (largeMq) ? (
-            250
-          ) : (mediumMq) ? (
-            200
-          ) : (smallMq) ? (
-            150
-          ) : (100)
-        )}
-      />
-    );
+    case 4: return <Canvas anim={blockPulsateAnim} />;
     case 5: return (
-      <Canvas
-        anim={(c: CanvasRenderingContext2D) => blockPulsateAnim(
-          c,
-          (largeMq) ? (
-            125
-          ) : (mediumMq) ? (
-            100
-          ) : (smallMq) ? (
-            75
-          ) : (50)
-        )}
-      />
-    );
-    case 6: return (
       <Box
         sx={{
           position: 'relative',

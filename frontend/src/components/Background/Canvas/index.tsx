@@ -5,7 +5,7 @@ type ComponentProps = {
   anim?: (arg: CanvasRenderingContext2D) => void;
 }
 
-const Canvas = ({ anim = (c: CanvasRenderingContext2D) => blockPulsateAnim(c, 100) }: ComponentProps) => {
+const Canvas = ({ anim = (c: CanvasRenderingContext2D) => blockPulsateAnim(c) }: ComponentProps) => {
   const ref = useRef<HTMLCanvasElement>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
