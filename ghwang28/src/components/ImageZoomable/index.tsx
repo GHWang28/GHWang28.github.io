@@ -2,7 +2,7 @@ import React from 'react';
 import { setImageZoom } from '../../redux/actions';
 import { BoxProps } from '@mui/material';
 import { useAppDispatch } from '../../hooks';
-import { SpringValue } from 'react-spring';
+import { SpringValue } from '@react-spring/web';
 import ImageLoader from '../ImageLoader';
 
 type ComponentProps = BoxProps<'img'> & {

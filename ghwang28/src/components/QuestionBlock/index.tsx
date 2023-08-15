@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, keyframes } from '@mui/material';
 import config from '../../config.json';
+// @ts-ignore
 import useSound from 'use-sound';
 import SMBCoinSFX from '../../sfx/smb-coin.ogg';
 import SMB1upSFX from '../../sfx/smb-1up.ogg';

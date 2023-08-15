@@ -1,7 +1,6 @@
 import { rng } from '../../../../../helpers';
 import { Position } from '../../../../../types';
 import Shape from '../Shape';
-import AnimatedShape from './AnimatedShape';
 
 type ClassConstructor = {
   x: number,
@@ -17,7 +16,7 @@ type ClassConstructor = {
   context: CanvasRenderingContext2D
 }
 
-class MountainShape extends Shape implements AnimatedShape {
+class MountainShape extends Shape {
   static readonly OFFSET: number = 100;
 
   private points: Position[];
@@ -96,10 +95,6 @@ class MountainShape extends Shape implements AnimatedShape {
       c.render();
     }
     */
-  }
-
-  animate(delta: number): void {
-    throw new Error('Method not implemented.');
   }
 }
 

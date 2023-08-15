@@ -3,6 +3,7 @@ import Disc from './Disc';
 import Rod from './Rod';
 import React, { useEffect, useState } from 'react';
 import { isSorted, rng } from '../../../helpers';
+// @ts-ignore
 import useSound from 'use-sound';
 import victorySFX from '../../../sfx/victory.ogg'
 import cardSFX from '../../../sfx/card.ogg'

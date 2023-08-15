@@ -25,7 +25,7 @@ export const rng = (min: number, max: number): number => {
  * @param {Array} array 
  * @returns 
  */
-export const randomiseArray = (array: Array<unknown>) : Array<unknown> => {
+export const randomiseArray = (array: Array<any>) : Array<any> => {
   const newArray = [...array];
 
   for (let index = array.length - 1; index > 0; index--) {
@@ -120,7 +120,7 @@ export const isSorted = (array: number[]): boolean => {
 /**
  * Executes the given function if a set time has passed since the last time this was executed
  */
-export const executeWithCooldown = (action: Function, lastClicked: number) => {
+export const executeWithCooldown = (action: () => void, lastClicked: number) => {
   const timeElapsed = Date.now() - lastClicked - config.COOL_DOWN;
 
   if (timeElapsed <= 0) {
@@ -134,7 +134,7 @@ export const executeWithCooldown = (action: Function, lastClicked: number) => {
 /**
  * Splits the array into odd and even arrays
  */
-export const splitArray = (array: unknown[]): { odd: unknown[]; even: unknown[] } => {
+export const splitArray = (array: any[]): { odd: any[]; even: any[] } => {
   const odd = array.filter((_, index) => (
     (index % 2) !== 0
   ))

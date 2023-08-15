@@ -4,7 +4,7 @@ import PulsatingArc from '../Shapes/AnimatedShapes/PulsatingArc';
 import RadiantArc from '../Shapes/RadiantArc';
 import { renderAndAnimateShapes, renderShapes } from '../canvasRenderer';
 
-const mountainAnim = (context: CanvasRenderingContext2D): Function => {
+const mountainAnim = (context: CanvasRenderingContext2D): () => void => {
   let lastTime = performance.now(), deltaTime = 0;
   let animationFrameID: number;
   let arrayOfMountains: MountainShape[] = [];
