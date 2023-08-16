@@ -24,12 +24,12 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(25/12/2018) → (28/08/2019)',
       type: ['Artwork', 'High School Project'],
       imgs: [
-        '/images/hscbow/homesweethome.webp',
-        '/images/hscbow/leaving.webp',
-        '/images/hscbow/bonvoyage.webp',
-        '/images/hscbow/rabureta.webp',
-        '/images/hscbow/ruiji.webp',
-        '/images/hscbow/homecoming.webp',
+        '/images/hscbow/homesweethome_lowres.webp',
+        '/images/hscbow/leaving_lowres.webp',
+        '/images/hscbow/bonvoyage_lowres.webp',
+        '/images/hscbow/rabureta_lowres.webp',
+        '/images/hscbow/ruiji_lowres.webp',
+        '/images/hscbow/homecoming_lowres.webp',
       ],
       body: [
         'A Body of Work consisting of 6 artworks.',

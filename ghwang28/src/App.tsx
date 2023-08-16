@@ -1,7 +1,6 @@
 import './styles/App.css';
 import './styles/CoinBlock.css';
 import './styles/Gradient.css';
-import './styles/Sparklez.css';
 import React, { useEffect, Suspense } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { Box, createTheme, ThemeProvider } from '@mui/material';

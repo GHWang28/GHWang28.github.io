@@ -1,10 +1,9 @@
 import React, { Fragment, Suspense } from 'react'
-import { useMediaQuery, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
 import { Route, Routes, useLocation } from 'react-router';
-import { useTransition } from '@react-spring/web';
+import { animated, useTransition } from '@react-spring/web';
 import ContactDetails from '../components/ContactDetails';
 import VersionNumber from '../components/VersionNumber';
-import AnimatedAbsoluteWrapper from '../wrappers/AnimatedAbsoluteWrapper';
 import PageLanding from './PageLanding';
 import PageProjects from './PageProjects';
 import PageError from './PageError';
@@ -16,33 +15,27 @@ const PageAbout = React.lazy(() => import('./PageAbout'));
 const PageRouter = () => {
   const location = useLocation();
   const transitions = useTransition(location, getTransitionEffect(location.pathname, location?.state?.prevLocation));
-  const theme = useTheme();
-  const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
-  const mediumMq = useMediaQuery(theme.breakpoints.up('md'));
-  const largeMq = useMediaQuery(theme.breakpoints.up('lg'));
-
-  const px = () => {
-    if (largeMq) return 22;
-    if (mediumMq) return 14;
-    if (smallMq) return 6;
-    return 0;
-  }
-  const pb = (location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5;
-  const pt = 8 + (smallMq ? 0 : 4);
+  const AnimatedBox = animated(Box);
 
   return (
     <Fragment>
-      {transitions((styles, item) => (
-        <AnimatedAbsoluteWrapper style={styles} pb={pb} px={px()} pt={pt}>
-          <Routes location={item}>
-            <Route path='*' element={<PageError />}/>
-            <Route path='/' element={<PageLanding />}/>
-            <Route path='/projects/*' element={<PageProjects />}/>
-            <Route path='/blog/*' element={<PageBlog />}/>
-            <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
-            <Route path='/about/skills' element={<PageSkills />}/>
-          </Routes>
-        </AnimatedAbsoluteWrapper>
+      {transitions(({ position, ...styles }, item) => (
+        <AnimatedBox style={{ ...styles, position: position as any }} sx={{ width: '100vw', left: '0px', top: '0px', overflow: 'clip' }}>
+          <Box
+            pb={(location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5}
+            px={{ xs: 0, sm: 6, md: 15, lg: 22 }}
+            pt={{ xs: 12, sm: 8 }}
+          >
+            <Routes location={item}>
+              <Route path='*' element={<PageError />}/>
+              <Route path='/' element={<PageLanding />}/>
+              <Route path='/projects/*' element={<PageProjects />}/>
+              <Route path='/blog/*' element={<PageBlog />}/>
+              <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
+              <Route path='/about/skills' element={<PageSkills />}/>
+            </Routes>
+          </Box>
+        </AnimatedBox>
       ))}
       {(location.pathname === '/') && (
         <Fragment>

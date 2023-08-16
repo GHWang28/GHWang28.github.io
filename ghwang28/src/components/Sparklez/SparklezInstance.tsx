@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
 import { rng } from '../../helpers';
+import { growShrink, spinAntiClockwise, spinClockwise } from './sparklezAnimation';
 
 type ComponentProps = {
   color: string,
   size: number,
-  style: {
-    top: string,
-    left: string,
-    zIndex: 2
-  }
+  top?: string,
+  left?: string,
+  zIndex?: number
 }
 
-const SparklezInstance = ({ color, size, style }: ComponentProps) => {
+const SparklezInstance = ({ color, size, top, left, zIndex }: ComponentProps) => {
+  const [spinDirection, setSpinDirection] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSpinDirection(Boolean(rng(0,1)))
+  }, []);
+
   return (
-    <span
-      className='sparklez-grow-shrink'
-      style={{ position: 'absolute', pointerEvents: 'none', ...style, translate: '-50% -50%' }}
+    <Box
+      component='span'
+      sx={{
+        animation: `${growShrink} 0.6s ease-in-out forwards`,
+        '& svg': {
+          animation: `${(spinDirection) ? spinClockwise : spinAntiClockwise} 0.6s linear forwards`
+        }
+      }}
+      style={{
+        position: 'absolute',
+        pointerEvents: 'none',
+        top, left, zIndex,
+        translate: '-50% -50%'
+      }}
     >
       <svg
-        style={{ transform: 'translate(-50000000%, 0)' }}
         width={size}
         height={size}
         viewBox='0 0 16 16'
         fill='none'
-        className={(rng(0, 1)) ? 'sparklez-spin-clockwise' : 'sparklez-spin-anticlockwise'}
       >
         <path
           stroke='white'
@@ -32,7 +47,7 @@ const SparklezInstance = ({ color, size, style }: ComponentProps) => {
           fill={color}
         />
       </svg>
-    </span>
+    </Box>
   );
 }
 

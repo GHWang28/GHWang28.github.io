@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
 import generateSparklez from './generateSparklez';
 import SparklezInstance from './SparklezInstance';
 import { rng } from '../../helpers';
@@ -27,7 +26,7 @@ const Sparklez = ({ children, frequency = 1, sizeRange = [5, 15] }: ComponentPro
     const addSpaklezTimer = setTimeout(() => {
       // Delete old sparklez
       const currTime = Date.now();
-      const copySparklez = [...sparklez].filter((instance) => (
+      const copySparklez = sparklez.filter((instance) => (
         currTime - instance.timestamp <= 1000
       ));
 
@@ -46,9 +45,8 @@ const Sparklez = ({ children, frequency = 1, sizeRange = [5, 15] }: ComponentPro
   });
 
   return (
-    <Box
-      component='span'
-      sx={{
+    <span
+      style={{
         position: 'relative',
         display: 'inline-block'
       }}
@@ -58,20 +56,19 @@ const Sparklez = ({ children, frequency = 1, sizeRange = [5, 15] }: ComponentPro
           key={`sparklez-${instance.id}`}
           color={instance.color}
           size={instance.size}
-          style={instance.style}
+          {...instance.style}
         />
       ))}
-      <Box
-        component='span'
-        sx={{
+      <span
+        style={{
           position: 'relative',
           zIndex: 1,
           fontWeight: 'bold'
         }}
       >
         {children}
-      </Box>
-    </Box>
+      </span>
+    </span>
   )
 }
 

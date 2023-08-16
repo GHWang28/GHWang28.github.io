@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, keyframes } from '@mui/material';
 import Wave from 'react-wavify';
-import WaveGradient from './WaveGradient';
 import BoatIcon from '../../../icons/BoatIcon';
 
 const bobbingAnimation = keyframes`
@@ -19,7 +18,7 @@ const bobbingAnimation = keyframes`
   }
 `
 
-function BackgroundWave () {
+const BackgroundWave = () => {
   const options = {
     height: 20,
     amplitude: 20,
@@ -29,19 +28,14 @@ function BackgroundWave () {
 
   return (
     <Box sx={{ width: '100vw', height: '100vh', bottom: '0px', zIndex: -1 }}>
-      <Box sx={{ opacity: 0.025, position: 'absolute', width: '100vw', height: '40vh', bottom: '0px'}}>
-        <Wave fill='url(#wave-gradient)' options={options}>
-          <WaveGradient />
-        </Wave>
-      </Box>
-      <Box sx={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '35vh', bottom: '0px'}}>
-        <Wave fill='url(#wave-gradient)' options={options}>
-          <WaveGradient />
-        </Wave>
-      </Box>
+      <div style={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '40vh', bottom: '0px', background: 'linear-gradient(to bottom, transparent 20%, whitesmoke 20%)'}}>
+        <Wave fill='whitesmoke' options={options}/>
+      </div>
+      <div style={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '35vh', bottom: '0px', background: 'linear-gradient(to bottom, transparent 30%, whitesmoke 30%)'}}>
+        <Wave fill='whitesmoke' options={options}/>
+      </div>
       <BoatIcon
         sx={{
-          opacity: '1',
           position: 'absolute',
           bottom: '29vh',
           left: '10vw',
@@ -50,12 +44,12 @@ function BackgroundWave () {
           animationDelay: '-0.5s'
         }}
       />
-      <Box sx={{ opacity: 0.10, position: 'absolute', width: '100vw', height: '30vh', bottom: '0px'}}>
-        <Wave fill='url(#wave-gradient)' options={{ ...options, speed: 0.2, points: 8 }} />
-      </Box>
-      <Box sx={{ opacity: 0.15, position: 'absolute', width: '100vw', height: '25vh', bottom: '0px'}}>
-        <Wave fill='url(#wave-gradient)' options={{ ...options, speed: 0.4, points: 5 }} />
-      </Box>
+      <div style={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '30vh', bottom: '0px', background: 'linear-gradient(to bottom, transparent 40%, whitesmoke 40%)'}}>
+        <Wave fill='whitesmoke' options={{ ...options, speed: 0.2, points: 8 }} />
+      </div>
+      <div style={{ opacity: 0.05, position: 'absolute', width: '100vw', height: '25vh', bottom: '0px', background: 'linear-gradient(to bottom, transparent 50%, whitesmoke 50%)'}}>
+        <Wave fill='whitesmoke' options={{ ...options, speed: 0.4, points: 5 }} />
+      </div>
     </Box>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, IconButton, keyframes, Typography } from "@mui/material";
-import { useState } from "react";
-import { useInView } from "react-intersection-observer";
-import BootstrapTooltip from "../../../components/BootstrapTooltip";
-import { ContactData } from "../../../types";
+import { Box, IconButton, keyframes, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import BootstrapTooltip from '../../../components/BootstrapTooltip';
+import { ContactData } from '../../../types';
 
 type ComponentProps = {
   contact: ContactData

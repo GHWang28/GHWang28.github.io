@@ -35,8 +35,8 @@ const WavyBackdrop = ({ bgColor, speed, yPos, direction, inView }: ComponentProp
   `
   return (
     /* Wave contained in another div to separate inView animation and the wavy animation */
-    <Box
-      sx={{
+    <div
+      style={{
         width: '200%',
         height: 'calc(100% + 240px)',
         position: 'absolute',
@@ -58,7 +58,7 @@ const WavyBackdrop = ({ bgColor, speed, yPos, direction, inView }: ComponentProp
           WebkitMask: waveMask
         }}
       />
-    </Box>
+    </div>
   )
 }
 
