@@ -30,7 +30,9 @@ const Background = () => {
             position: 'fixed',
             top: '0px',
             left: '0px',
-            filter: (themeMode === 'light') ? 'invert(100%)' : '',
+            '& > *': {
+              filter: (themeMode === 'light') ? 'invert(100%)' : 'invert(0%)',
+            },
             width: '100vw',
             height: '100vh',
             maxHeight: '100vh',
