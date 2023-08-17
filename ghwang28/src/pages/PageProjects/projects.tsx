@@ -7,7 +7,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import SparklezText from '../../components/Sparklez/SparklezText';
 import { Location, NavigateFunction } from 'react-router';
-import { ProjectData } from '../../types';
+import { IconTypes, ProjectData } from '../../types';
 
 const dotpoint100Percent = (
   <Fragment>
@@ -22,7 +22,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Earth\'s Ephemeris',
       date: '(25/12/2018) → (28/08/2019)',
-      type: ['Artwork', 'High School Project'],
+      type: new Set<IconTypes>(['Artwork', 'High School Project']),
       imgs: [
         '/images/hscbow/homesweethome_lowres.webp',
         '/images/hscbow/leaving_lowres.webp',
@@ -66,7 +66,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Minecraft Recreation',
       date: '(10/12/2021)',
-      type: ['University Project', 'Game', 'C++', 'OpenGL'],
+      type: new Set<IconTypes>(['University Project', 'Game', 'C++', 'OpenGL']),
       imgs: [
         '/images/minecraft-recreation/1.webp',
         '/images/minecraft-recreation/2.webp',
@@ -109,7 +109,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Tic-Tac-Toe: Capture',
       date: '(28/11/2022)',
-      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
+      type: new Set<IconTypes>(['Game', 'Personal Project', 'React', 'JavaScript']),
       imgs: [
         '/images/covers/tic-tac-toe-capture.webp'
       ],
@@ -139,7 +139,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Spotter',
       date: '(30/11/2022)',
-      type: ['Game', 'Personal Project', 'React', 'JavaScript', 'Firebase'],
+      type: new Set<IconTypes>(['Game', 'Personal Project', 'React', 'JavaScript', 'Firebase']),
       imgs: [
         '/images/covers/spotter.webp'
       ],
@@ -169,7 +169,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Xeno & Yova',
       date: '(21/9/2019)',
-      type: ['Game', 'Personal Project'],
+      type: new Set<IconTypes>(['Game', 'Personal Project']),
       imgs: [
         '/images/covers/xny.webp'
       ],
@@ -198,7 +198,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Slackr',
       date: '(24/10/2022)',
-      type: ['Frontend', 'University Project', 'JavaScript'],
+      type: new Set<IconTypes>(['Frontend', 'University Project', 'JavaScript']),
       imgs: [
         '/images/comp6080/slackr-cover.webp'
       ],
@@ -238,7 +238,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Minecraft Screensaver (Unofficial)',
       date: '(20/9/2021)',
-      type: ['OpenGL', 'University Project', 'C++'],
+      type: new Set<IconTypes>(['OpenGL', 'University Project', 'C++']),
       imgs: [
         '/images/minecraft-recreation/screensaver.webm'
       ],
@@ -277,7 +277,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Nutritious AirBnB',
       date: '(18/11/2022)',
-      type: ['Frontend', 'University Project', 'JavaScript', 'React'],
+      type: new Set<IconTypes>(['Frontend', 'University Project', 'JavaScript', 'React']),
       imgs: [
         '/images/comp6080/airbnb-cover.webp'
       ],
@@ -317,7 +317,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Minesweeper Recreation',
       date: '(22/12/2022)',
-      type: ['Game', 'Personal Project', 'React', 'JavaScript'],
+      type: new Set<IconTypes>(['Game', 'Personal Project', 'React', 'JavaScript']),
       imgs: [
         '/images/covers/minesweeper.webm'
       ],
@@ -348,7 +348,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     {
       title: 'Convo',
       date: '(03/01/2023) (Work in Progress)',
-      type: ['Personal Project', 'React', 'JavaScript', 'Firebase', 'Frontend'],
+      type: new Set<IconTypes>(['Personal Project', 'React', 'JavaScript', 'Firebase', 'Frontend']),
       imgs: [
         '/images/covers/convo.webp'
       ],

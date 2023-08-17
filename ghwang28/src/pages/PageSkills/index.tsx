@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Fragment } from 'react';
 import GradientTitle from '../../components/GradientTitle';
 import ButtonGoBack from '../../components/ButtonGoBack';
@@ -6,255 +6,260 @@ import { Box, Divider, Typography, useMediaQuery, useTheme } from '@mui/material
 import SkillIcon from './SkillIcon';
 import { Skill } from '../../types';
 
+const allSkills: Skill[] = [
+  {
+    name: 'C',
+    src: 'c.svg',
+    tags: ['Programming Languages']
+  },
+  {
+    name: 'C++',
+    src: 'c++.svg',
+    tags: ['Programming Languages']
+  },
+  {
+    name: 'Netlify',
+    src: 'netlify.svg',
+    tags: ['Frontend Technology', 'Backend Technology']
+  },
+  {
+    name: 'PyTorch',
+    src: 'pytorch.svg',
+    whitebg: true,
+    tags: ['Other']
+  },
+  {
+    name: 'CSS',
+    src: 'css.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Canvas',
+    src: 'canvas.png',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Dreamweaver',
+    src: 'dreamweaver.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Firebase',
+    src:   'firebase.svg',
+    tags: ['Backend Technology']
+  },
+  {
+    name: 'HTML',
+    src: 'html.png',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'JEST',
+    src: 'jest.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Cypress',
+    src: 'cypress.svg',
+    whitebg: true,
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Java',
+    src: 'java.svg',
+    tags: ['Programming Languages', 'Backend Technology']
+  },
+  {
+    name: 'Spring Boot',
+    src: 'spring-boot.svg',
+    whitebg: true,
+    tags: ['Backend Technology']
+  },
+  {
+    name: 'JavaScript',
+    src: 'js.svg',
+    tags: ['Programming Languages', 'Frontend Technology', 'Backend Technology']
+  },
+  {
+    name: 'TypeScript',
+    src: 'ts.svg',
+    tags: ['Programming Languages', 'Frontend Technology', 'Backend Technology']
+  },
+  {
+    name: 'OpenGL',
+    src: 'opengl.svg',
+    tags: ['Game Development']
+  },
+  {
+    name: 'Unity',
+    src: 'unity.png',
+    whitebg: true,
+    tags: ['Game Development']
+  },
+  {
+    name: 'Godot',
+    src: 'godot.svg',
+    tags: ['Game Development']
+  },
+  {
+    name: 'PostgreSQL',
+    src: 'psql.svg',
+    tags: ['Backend Technology']
+  },
+  {
+    name: 'Postman',
+    src: 'postman.png',
+    tags: ['Backend Technology']
+  },
+  {
+    name: 'Python',
+    src: 'python.svg',
+    tags: ['Programming Languages', 'Backend Technology']
+  },
+  {
+    name: 'React',
+    src: 'react.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Redux',
+    src: 'redux.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'React Router',
+    src: 'react-router.svg',
+    whitebg: true,
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Clip Studio Paint',
+    src: 'clip.jpg',
+    tags: ['Graphic Design']
+  },
+  {
+    name: 'Animate',
+    src: 'animate.svg',
+    tags: ['Graphic Design']
+  },
+  {
+    name: 'Photoshop',
+    src: 'ps.svg',
+    tags: ['Graphic Design']
+  },
+  {
+    name: 'Material UI',
+    src: 'mui.png',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Bootstrap',
+    src: 'bootstrap.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Tailwind CSS',
+    src: 'tailwind.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'Figma',
+    src: 'figma.svg',
+    tags: ['Frontend Technology']
+  },
+  {
+    name: 'RESTful API',
+    src: 'rest-api.svg',
+    whitebg: true,
+    tags: ['Frontend Technology', 'Backend Technology']
+  },
+  {
+    name: 'Word',
+    src: 'office-ms.svg',
+    tags: ['Administrative Tools']
+  },
+  {
+    name: 'Excel',
+    src: 'office-excel.svg',
+    tags: ['Administrative Tools']
+  },
+  {
+    name: 'PowerPoint',
+    src: 'office-pp.svg',
+    tags: ['Administrative Tools']
+  },
+  {
+    name: 'Slack',
+    src: 'slack.svg',
+    tags: ['Administrative Tools']
+  },
+  {
+    name: 'Teams',
+    src: 'office-teams.svg',
+    tags: ['Administrative Tools']
+  },
+  {
+    name: 'Camtasia',
+    src: 'camtasia.jpg',
+    tags: ['Other']
+  },
+  {
+    name: 'Git',
+    src: 'git.svg',
+    tags: ['Project Management']
+  },
+  {
+    name: 'JIRA',
+    src: 'jira.svg',
+    tags: ['Project Management']
+  },
+  {
+    name: 'Lucid Charts',
+    src: 'lucid-charts.png',
+    tags: ['Project Management']
+  },
+  {
+    name: 'English',
+    src: 'english.svg',
+    whitebg: true,
+    tags: ['Languages']
+  },
+  {
+    name: 'Mandarin Chinese',
+    src: 'chinese.svg',
+    whitebg: true,
+    tags: ['Languages']
+  }
+].sort((skillA, skillB) => ( skillA.name.localeCompare(skillB.name) ));
+
 const PageSkills = () => {
   const theme =  useTheme();
   const lightMode = theme.palette.mode === 'light';
   const smallMq = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const headings: string[] = [
-    'Programming Languages',
-    'Frontend Technology',
-    'Backend Technology',
-    'Graphic Design',
-    'Game Development',
-    'Project Management',
-    'Administrative Tools',
-    'Languages',
-    'Other'
-  ]
+  const categorisedSkills = useMemo(() => {
+    const headings: string[] = [
+      'Programming Languages',
+      'Frontend Technology',
+      'Backend Technology',
+      'Graphic Design',
+      'Game Development',
+      'Project Management',
+      'Administrative Tools',
+      'Languages',
+      'Other'
+    ];
 
-  const allSkills: Skill[] = [
-    {
-      name: 'C',
-      src: 'c.svg',
-      tags: ['Programming Languages']
-    },
-    {
-      name: 'C++',
-      src: 'c++.svg',
-      tags: ['Programming Languages']
-    },
-    {
-      name: 'Netlify',
-      src: 'netlify.svg',
-      tags: ['Frontend Technology', 'Backend Technology']
-    },
-    {
-      name: 'PyTorch',
-      src: 'pytorch.svg',
-      whitebg: true,
-      tags: ['Other']
-    },
-    {
-      name: 'CSS',
-      src: 'css.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Canvas',
-      src: 'canvas.png',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Dreamweaver',
-      src: 'dreamweaver.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Firebase',
-      src:   'firebase.svg',
-      tags: ['Backend Technology']
-    },
-    {
-      name: 'HTML',
-      src: 'html.png',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'JEST',
-      src: 'jest.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Cypress',
-      src: 'cypress.svg',
-      whitebg: true,
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Java',
-      src: 'java.svg',
-      tags: ['Programming Languages', 'Backend Technology']
-    },
-    {
-      name: 'Spring Boot',
-      src: 'spring-boot.svg',
-      whitebg: true,
-      tags: ['Backend Technology']
-    },
-    {
-      name: 'JavaScript',
-      src: 'js.svg',
-      tags: ['Programming Languages', 'Frontend Technology', 'Backend Technology']
-    },
-    {
-      name: 'TypeScript',
-      src: 'ts.svg',
-      tags: ['Programming Languages', 'Frontend Technology', 'Backend Technology']
-    },
-    {
-      name: 'OpenGL',
-      src: 'opengl.svg',
-      tags: ['Game Development']
-    },
-    {
-      name: 'Unity',
-      src: 'unity.png',
-      whitebg: true,
-      tags: ['Game Development']
-    },
-    {
-      name: 'Godot',
-      src: 'godot.svg',
-      tags: ['Game Development']
-    },
-    {
-      name: 'PostgreSQL',
-      src: 'psql.svg',
-      tags: ['Backend Technology']
-    },
-    {
-      name: 'Postman',
-      src: 'postman.png',
-      tags: ['Backend Technology']
-    },
-    {
-      name: 'Python',
-      src: 'python.svg',
-      tags: ['Programming Languages', 'Backend Technology']
-    },
-    {
-      name: 'React',
-      src: 'react.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Redux',
-      src: 'redux.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'React Router',
-      src: 'react-router.svg',
-      whitebg: true,
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Clip Studio Paint',
-      src: 'clip.jpg',
-      tags: ['Graphic Design']
-    },
-    {
-      name: 'Animate',
-      src: 'animate.svg',
-      tags: ['Graphic Design']
-    },
-    {
-      name: 'Photoshop',
-      src: 'ps.svg',
-      tags: ['Graphic Design']
-    },
-    {
-      name: 'Material UI',
-      src: 'mui.png',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Bootstrap',
-      src: 'bootstrap.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'Figma',
-      src: 'figma.svg',
-      tags: ['Frontend Technology']
-    },
-    {
-      name: 'RESTful API',
-      src: 'rest-api.svg',
-      whitebg: true,
-      tags: ['Frontend Technology', 'Backend Technology']
-    },
-    {
-      name: 'Word',
-      src: 'office-ms.svg',
-      tags: ['Administrative Tools']
-    },
-    {
-      name: 'Excel',
-      src: 'office-excel.svg',
-      tags: ['Administrative Tools']
-    },
-    {
-      name: 'PowerPoint',
-      src: 'office-pp.svg',
-      tags: ['Administrative Tools']
-    },
-    {
-      name: 'Slack',
-      src: 'slack.svg',
-      tags: ['Administrative Tools']
-    },
-    {
-      name: 'Teams',
-      src: 'office-teams.svg',
-      tags: ['Administrative Tools']
-    },
-    {
-      name: 'Camtasia',
-      src: 'camtasia.jpg',
-      tags: ['Other']
-    },
-    {
-      name: 'Git',
-      src: 'git.svg',
-      tags: ['Project Management']
-    },
-    {
-      name: 'JIRA',
-      src: 'jira.svg',
-      tags: ['Project Management']
-    },
-    {
-      name: 'Lucid Charts',
-      src: 'lucid-charts.png',
-      tags: ['Project Management']
-    },
-    {
-      name: 'English',
-      src: 'english.svg',
-      whitebg: true,
-      tags: ['Languages']
-    },
-    {
-      name: 'Mandarin Chinese',
-      src: 'chinese.svg',
-      whitebg: true,
-      tags: ['Languages']
-    }
-  ].sort((skillA, skillB) => ( skillA.name.localeCompare(skillB.name) ));
-
-  const categorisedSkills = headings.map((heading) => ({
-    heading,
-    allSkills: allSkills.filter((skill) => skill?.tags?.find((e) => ( e === heading )))
-  }));
+    return headings.map((heading) => ({
+      heading,
+      allSkills: allSkills.filter((skill) => skill?.tags?.find((e) => e === heading))
+    }))
+  }, []);
 
   return (
     <Fragment>
       <ButtonGoBack destination={'/about'} />
-
       <GradientTitle title='Skills' subtitle='I possess skills in...' />
-
       <Box
         mx='auto'
         px={{ xs: 0.5, sm: 2 }}
@@ -285,7 +290,7 @@ const PageSkills = () => {
             
             <Box display='flex' justifyContent='center' flexWrap='wrap' rowGap={4} my={3}>
               {category.allSkills.map((skill, index) => (
-                <SkillIcon skill={skill} index={index} key={`${skill.name}-index`}/>
+                <SkillIcon skill={skill} key={`${skill.name}-${index}`}/>
               ))}
             </Box>
           </Fragment>

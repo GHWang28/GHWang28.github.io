@@ -46,7 +46,7 @@ export type BlogData = {
 export type ProjectData = {
   title: string,
   date: string,
-  type: IconTypes[],
+  type: Set<IconTypes>,
   body: (React.ReactNode | string)[],
   imgs: string[],
   buttons: ProjectButtons[]

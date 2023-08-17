@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment, useMemo } from 'react';
 import { AppBar, Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from '@react-spring/web';
 import { useLocation, useNavigate } from 'react-router';
@@ -31,16 +31,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navigationOptions = config.PAGES.slice(1).map((navigationOption) => (
-    navigationOption.slice(1)
-  ));
-
-  const iconArray = [
-    <SmartToyIcon />,
-    <LightbulbIcon />,
-    <EmojiPeopleIcon />
-  ]
-
   // Moving the selected border around with each click
   useEffect(() => {
     // Find which tab to highlight by getting the correct ref
@@ -56,14 +46,21 @@ const Navbar = () => {
 
     const element = navOptionRefArray.current[Math.max(currPathIndex, 0)];
 
-    const divData = element?.getBoundingClientRect();
-    setSelectedDim({
-      bottom: element?.offsetTop + 3,
-      left: element?.offsetLeft,
-      width: divData?.width,
-      height: 0,
-      opacity: (currPathIndex < 0 || !rootPath) ? '0' : '1'
-    });
+    const windowResize = () => {
+      const divData = element?.getBoundingClientRect();
+      setSelectedDim({
+        bottom: element?.offsetTop + 3,
+        left: element?.offsetLeft,
+        width: divData?.width,
+        height: 0,
+        opacity: (currPathIndex < 0 || !rootPath) ? '0' : '1'
+      });
+    }
+    windowResize();
+
+    window.addEventListener('resize', windowResize);
+
+    return () => { window.removeEventListener('resize', windowResize) }
   }, [location]);
 
   // Manages hiding the navbar when scrolling
@@ -92,36 +89,41 @@ const Navbar = () => {
     };
   }, [lastScrollY, navbarLockState]);
 
-
-  // Contains the settings button
-  const settingsComponent = (
-    <Box ml='auto' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Settings />
-    </Box>
-  )
-
   // Adds a divider at the start and between each navigation option
-  const navigationElements = navigationOptions.map((navOption: string, index: number) => (
-    <NavbarButton
-      key={`nav-btn-${navOption}`}
-      ref={(e: HTMLButtonElement) => { navOptionRefArray.current[index] = e }}
-      onClick={() => {
-        navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
-      }}
-      disabled={location.pathname === `/${navOption}`}
-      label={navOption}
-      startIcon={iconArray[index]}
-    />
-  )).flatMap((element: React.ReactNode, index: number) => ((index === 0) ? (
-    // Insert the dividers
-    [
-      <Divider orientation='vertical' flexItem key={`divider-${index}`} />,
-      element,
-      <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
-    ]
-  ) : (
-    [element, <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />]
-  )));
+  const navigationElements = useMemo(() => {
+    const iconArray = [
+      <SmartToyIcon />,
+      <LightbulbIcon />,
+      <EmojiPeopleIcon />
+    ];
+    const navigationOptions = config.PAGES.slice(1).map((navigationOption) => (
+      navigationOption.slice(1)
+    ));
+    return navigationOptions.map((navOption: string, index: number) => (
+      <NavbarButton
+        key={`nav-btn-${navOption}`}
+        ref={(e: HTMLButtonElement) => { navOptionRefArray.current[index] = e }}
+        onClick={() => {
+          navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
+        }}
+        disabled={location.pathname === `/${navOption}`}
+        label={navOption}
+        startIcon={iconArray[index]}
+      />
+    )).map((element: React.ReactNode, index: number) => ((index === 0) ? (
+      // Insert the dividers
+      <Fragment>
+        <Divider orientation='vertical' flexItem key={`divider-${index}`} />
+        {element}
+        <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
+      </Fragment>
+    ) : (
+      <Fragment>
+        {element}
+        <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
+      </Fragment>
+    )))
+  }, [location.pathname, navigate])
 
   return (
     <AnimatedAppBar
@@ -151,7 +153,7 @@ const Navbar = () => {
         </Grid>
 
         {/* Display settings button here if the screen becomes tiny */}
-        {!smallMq && settingsComponent}
+        {!smallMq && <SettingsComponent />}
         {!smallMq && <Divider orientation="horizontal" flexItem sx={{ width: '100%', bgcolor: 'whitesmoke' }}/>}
   
         <Grid
@@ -169,9 +171,9 @@ const Navbar = () => {
           }}
         >
           {/* Border around selector */}
-          <Box
+          <span
             className='border-gradient marker'
-            sx={{
+            style={{
               position: 'absolute',
               display: 'flex',
               pointerEvents: 'none',
@@ -184,10 +186,16 @@ const Navbar = () => {
         </Grid>
 
         {/* Display settings button here if the screen becomes large enough */}
-        {smallMq && settingsComponent}
+        {smallMq && <SettingsComponent />}
       </Grid>
     </AnimatedAppBar>
   )
 }
+
+const SettingsComponent = () => (
+  <Box ml='auto' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Settings />
+  </Box>
+)
 
 export default Navbar;

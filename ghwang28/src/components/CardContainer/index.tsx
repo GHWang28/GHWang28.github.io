@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Box, useMediaQuery, Theme } from '@mui/material';
+import { useMediaQuery, Theme } from '@mui/material';
 import { splitArray } from '../../helpers';
 
 type ComponentProps = {
@@ -10,17 +10,17 @@ const CardContainer = ({ children }: ComponentProps) => {
   const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
 
   if (largeMq) {
-    const { odd: oddProj, even: evenProj } = splitArray(children as React.ReactNode[]);
+    const { odd, even } = splitArray(children as React.ReactNode[]);
 
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Box sx={{ width: '49.5%', m: 0 }}>
-          {evenProj}
-        </Box>
-        <Box sx={{ width: '49.5%', m: 0  }}>
-          {oddProj}
-        </Box>
-      </Box>
+      <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ width: '49.5%', margin: 0 }}>
+          {even}
+        </div>
+        <div style={{ width: '49.5%', margin: 0  }}>
+          {odd}
+        </div>
+      </section>
     )
   }
 

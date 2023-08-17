@@ -4,13 +4,13 @@ import { Route, Routes, useLocation } from 'react-router';
 import { animated, useTransition } from '@react-spring/web';
 import ContactDetails from '../components/ContactDetails';
 import VersionNumber from '../components/VersionNumber';
-import PageLanding from './PageLanding';
-import PageProjects from './PageProjects';
-import PageError from './PageError';
-import PageBlog from './PageBlog';
-import PageSkills from './PageSkills';
 import PageLoading from './PageLoading';
 const PageAbout = React.lazy(() => import('./PageAbout'));
+const PageBlog = React.lazy(() => import('./PageBlog'));
+const PageProjects = React.lazy(() => import('./PageProjects'));
+const PageLanding = React.lazy(() => import('./PageLanding'));
+const PageError = React.lazy(() => import('./PageError'));
+const PageSkills = React.lazy(() => import('./PageSkills'));
 
 const PageRouter = () => {
   const location = useLocation();
@@ -27,12 +27,12 @@ const PageRouter = () => {
             pt={{ xs: 12, sm: 8 }}
           >
             <Routes location={item}>
-              <Route path='*' element={<PageError />}/>
-              <Route path='/' element={<PageLanding />}/>
-              <Route path='/projects/*' element={<PageProjects />}/>
-              <Route path='/blog/*' element={<PageBlog />}/>
+              <Route path='*' element={<Suspense fallback={<PageLoading />}><PageError /></Suspense>}/>
+              <Route path='/' element={<Suspense fallback={<PageLoading />}><PageLanding /></Suspense>}/>
+              <Route path='/projects/*' element={<Suspense fallback={<PageLoading />}><PageProjects /></Suspense>}/>
+              <Route path='/blog/*' element={<Suspense fallback={<PageLoading />}><PageBlog /></Suspense>}/>
               <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
-              <Route path='/about/skills' element={<PageSkills />}/>
+              <Route path='/about/skills' element={<Suspense fallback={<PageLoading />}><PageSkills /></Suspense>}/>
             </Routes>
           </Box>
         </AnimatedBox>

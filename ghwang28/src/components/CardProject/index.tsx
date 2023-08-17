@@ -62,7 +62,7 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
           <BootstrapTooltip title='Tags' placement={(smallMq) ? 'left' : 'top-start'}>
             <div>
               <ChipContainer>
-                {type.sort().map((label, index) => (
+                {Array.from(type).sort().map((label, index) => (
                   <TagChip key={`chip-${label}-${index}`} label={label}/>
                 ))}
               </ChipContainer>

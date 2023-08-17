@@ -4,8 +4,7 @@ import { useInView } from '@react-spring/web';
 import { Skill } from '../../types';
 
 type ComponentProps = {
-  skill: Skill,
-  index?: number
+  skill: Skill
 }
 
 const levitateKeyframes = keyframes`
@@ -20,8 +19,7 @@ const levitateKeyframes = keyframes`
   }
 `
 
-export default function SkillIcon ({ skill, index = 0 }: ComponentProps) {
-  
+export default function SkillIcon ({ skill }: ComponentProps) {
   const {
     src,
     name,
@@ -34,6 +32,7 @@ export default function SkillIcon ({ skill, index = 0 }: ComponentProps) {
 
   return (
     <Box
+      component='span'
       ref={ref}
       sx={{
         display: 'flex',
@@ -44,7 +43,7 @@ export default function SkillIcon ({ skill, index = 0 }: ComponentProps) {
           animation: `${levitateKeyframes} 2s ease-in-out infinite`
         },
         opacity: (inView) ? '1' : 0,
-        transition: `opacity 0.5s ${50 * index}ms ease-in-out, scale 0.2s ease-in-out`,
+        transition: `opacity 0.5s ease-in-out, scale 0.2s ease-in-out`,
         minWidth: '64px'
       }}
       mx={2}

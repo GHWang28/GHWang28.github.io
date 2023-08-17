@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, useState } from 'react';
+import React, { Fragment, Suspense, useState, useMemo } from 'react';
 import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import generateProjects from './projects';
@@ -32,22 +32,24 @@ const ProjectHub = () => {
     { type: 'React', enabled: false },
   ]);
 
-  const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
-  const allProjs = generateProjects(navigate, location);
-  const projects = allProjs.filter((project) => {
-    for (const filterObj of filterEnabled) {
-      if (!project.type.includes(filterObj.type)) return false;
-    }
-    return true;
-  });
-
+  const projects = useMemo(() => {
+    const filterEnabled = filter.filter((filterObj) => (filterObj.enabled));
+    const allProjs = generateProjects(navigate, location);
+    return allProjs.filter((project) => {
+      for (const filterObj of filterEnabled) {
+        if (!project.type.has(filterObj.type)) return false;
+      }
+      return true;
+    });
+  }, [filter, location, navigate]);
+  
   return (
     <Fragment>
       <GradientTitle title='Projects' subtitle={'My proud creations, big and small'}/>
       {/* Filter Button */}
       <Box my={1.5} px={2} sx={{ width: '100%', display: 'flex', alignItems: 'center', boxSizing: 'border-box' }}>
         <Typography sx={{ opacity: 0.5 }}>
-          {`Showing ${projects.length}/${allProjs.length} projects.`}
+          {`Showing ${projects.length}/10 projects.`}
         </Typography>
         <ButtonDropDown sx={{ ml: 'auto' }} title='Filter' icon={<FilterAltIcon />}>
           <Typography align='center' m={1} sx={{ width: '250px' }}>

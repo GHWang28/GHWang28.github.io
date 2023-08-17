@@ -6,7 +6,6 @@ import { useSwipeable } from 'react-swipeable';
 import { Box, createTheme, ThemeProvider } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ImageZoomer from './components/ImageZoomer';
-import SwipeTutorial from './components/SwipeTutorial';
 import config from './config.json';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
 import { useAppSelector } from './hooks';
@@ -179,14 +178,13 @@ export default function App() {
   const [initialize] = useOverlayScrollbars({
     options: { scrollbars: { autoHide: 'scroll', theme: (themeMode) ? 'os-theme-dark' : 'os-theme-light' }, overflow: { x: 'hidden' } },
     defer: true
-  });
+  })
   useEffect(() => {
     initialize(document.body);
-  }, [initialize]);
+  }, [initialize])
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <SwipeTutorial />
       <ImageZoomer />
       <Suspense fallback={<PageLoading />}>
         <Navbar />

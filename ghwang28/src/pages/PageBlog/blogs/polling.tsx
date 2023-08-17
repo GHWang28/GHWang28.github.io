@@ -7,7 +7,7 @@ const pollingBlog: BlogData = {
   id: 1,
   title: 'Polling in ReactJS',
   subtitle: 'A guide on how to request data from the backend in set intervals.',
-  thumbnail: '/images/blog/thumbnail_polling.jpg',
+  thumbnail: '/images/blog/thumbnail_polling.webp',
   created: '2023-06-24T04:31:51.316Z',
   estimatedReadingTime: 5,
   quizIncluded: true,

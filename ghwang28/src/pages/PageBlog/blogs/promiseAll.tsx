@@ -8,7 +8,7 @@ const pollingAllBlog: BlogData = {
   id: 2,
   title: 'Why use Promise.all?',
   subtitle: 'How to make fetch requests concurrently.',
-  thumbnail: '/images/blog/thumbnail_promise.png',
+  thumbnail: '/images/blog/thumbnail_promise.webp',
   created: '2023-07-11T00:00:00.000Z',
   estimatedReadingTime: 7,
   quizIncluded: false,
