@@ -1,12 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Avatar, Box, useMediaQuery, Theme } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 import { animated, easings, useSpring, useTransition } from '@react-spring/web';
 import { executeWithCooldown } from '../../helpers';
 import ImageZoomable from '../../components/ImageZoomable';
 
 const AnimatedProfilePic = () => {
-  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
-
   const AnimatedBox = animated(Box);
   const AnimatedAvatar = animated(Avatar);
 
@@ -57,8 +55,8 @@ const AnimatedProfilePic = () => {
     <Fragment>
       <Box
         sx={{
-          maxWidth: (mediumMq) ? '100%' : '75%',
-          width: (mediumMq) ? '400px' : '300px',
+          maxWidth: { xs: '75%', md: '100%' },
+          width: { xs: '300px', md: '400px' },
           aspectRatio: 1,
           position: 'relative',
           display: 'flex',
