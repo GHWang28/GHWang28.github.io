@@ -59,6 +59,7 @@ const AnimatedProfilePic = () => {
         sx={{
           maxWidth: (mediumMq) ? '100%' : '75%',
           width: (mediumMq) ? '400px' : '300px',
+          aspectRatio: 1,
           position: 'relative',
           display: 'flex',
           alignItems: 'center'
@@ -86,7 +87,7 @@ const AnimatedProfilePic = () => {
               alternateSrc={(currImg === 0) ? '/images/about/profile-pic.webp' : imgs[currImg]}
               sx={{
                 width: '100%',
-                height: '100%',
+                aspectRatio: 1,
                 WebkitTapHighlightColor: 'transparent'
               }}
             />
