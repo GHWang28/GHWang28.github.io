@@ -59,6 +59,11 @@ const allSkills: Skill[] = [
     tags: ['Frontend Technology']
   },
   {
+    name: 'Vite',
+    src: 'vite.svg',
+    tags: ['Frontend Technology']
+  },
+  {
     name: 'Cypress',
     src: 'cypress.svg',
     whitebg: true,
