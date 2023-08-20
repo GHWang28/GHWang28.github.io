@@ -59,11 +59,6 @@ type ProjectButtons = {
   disabled?: string
 }
 
-export type ProjectFilter = {
-  type: IconTypes,
-  enabled: boolean
-}
-
 export type IconTypes = 'Artwork' | 'React' | 'C++' | 'Game' | 'OpenGL' | 'JavaScript' | 'Frontend' | 'Personal Project' | 'University Project' | 'High School Project' | 'Firebase'
 
 export type QuizOptions = {

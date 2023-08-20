@@ -189,3 +189,8 @@ export const colorToRGBA = (color: string, opacity: number): string => {
   }
   return `rgba(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]},${Math.max(0, Math.min(1, opacity))})`;
 }
+
+// Checks if the first set has any overlapped valye with the second set
+export const isSetOverlapping = <T>(setA: Set<T>, setB: Set<T>): boolean => {
+  return [...setA].some(element => setB.has(element));
+}

@@ -96,25 +96,21 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
         )}
       </Box>
       {buttons && buttons.map((button, buttonIndex) => (
-        <BootstrapTooltip key={`c${index}-b${buttonIndex}]`} placement='left' enterDelay={300} title={button?.disabled || button.text}>
-          <Box
-            component='span'
-            sx={{
-              display: 'flex',
-              justifyContent: { xs: 'center', sm: 'left' }
-            }}
-          >
-            <Button
-              startIcon={button.icon}
-              variant='contained'
-              onClick={button?.onClick}
-              sx={{ m: 0.5, border: `1px solid ${theme.palette.contrastColor.main}`, width: { sm: 'fit-content', xs: '75%' }, minWidth: '180px' }}
-              disabled={button?.disabled != null}
-            >
-              {button.text}
-            </Button>
-          </Box>
-        </BootstrapTooltip>
+        <Box component='span' sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'left' } }}>
+          <BootstrapTooltip followCursor key={`c${index}-b${buttonIndex}]`} placement='left' enterDelay={300} title={button?.disabled || button.text}>
+            <span>
+              <Button
+                startIcon={button.icon}
+                variant='contained'
+                onClick={button?.onClick}
+                sx={{ m: 0.5, border: `1px solid ${theme.palette.contrastColor.main}`, width: { sm: 'fit-content', xs: '75%' }, minWidth: '180px' }}
+                disabled={button?.disabled != null}
+              >
+                {button.text}
+              </Button>
+            </span>
+          </BootstrapTooltip>
+        </Box>
       ))}
       {/* Wavy Backdrop displayed behind text */}
       <CardBackground odd={index % 2 === 0} imgs={imgs} inView={inView} />

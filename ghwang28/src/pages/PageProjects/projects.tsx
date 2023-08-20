@@ -13,7 +13,7 @@ const dotpoint100Percent = (
   <Fragment>
     {'Achieved '}
     <SparklezText>{'100%'}</SparklezText>
-    {' for this Assignment.'}
+    {' for this University Assignment.'}
   </Fragment>
 )
 
@@ -60,6 +60,32 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
           onClick: () => {
             navigate('earth-ephemeris', { state: { prevLocation: location.pathname } })
           },
+        }
+      ]
+    },
+    {
+      title: 'Redflags',
+      date: '(19/08/2023) (Ongoing)',
+      type: new Set<IconTypes>(['Frontend', 'React']),
+      imgs: [
+        '/images/covers/redflags.webm',
+      ],
+      body: [
+        'Assisted and managed the development of the frontend for Redflags.',
+        'Worked in a small team consisted of a Frontend developer and a Backend developer.'
+      ],
+      buttons: [
+        {
+          text: 'View Live',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            window.open('https://redflags.red', '_blank')?.focus();
+          }
+        },
+        {
+          text: 'View Source',
+          icon: <CodeIcon />,
+          disabled: 'Source Code can not be shared.'
         }
       ]
     },
@@ -379,7 +405,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       buttons: [
         {
           text: 'View Live',
-          icon: <GameControllerIcon />,
+          icon: <VisibilityIcon />,
           onClick: () => {
             window.open('https://convo-ghwang28.netlify.app/', '_blank')?.focus();
           }
