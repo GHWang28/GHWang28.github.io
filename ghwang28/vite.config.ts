@@ -11,6 +11,6 @@ export default defineConfig({
     open: true
   },
   build: {
-    sourcemap: process.env.NODE_ENV !== 'production'
+    sourcemap: false
   }
 })
