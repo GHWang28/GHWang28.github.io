@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 type ComponentProps = {
   imgs: string[],
-  onLoad: Function
+  onLoad: () => void
 }
 
 const ImageSlideShow = ({ imgs, onLoad }: ComponentProps) => {
