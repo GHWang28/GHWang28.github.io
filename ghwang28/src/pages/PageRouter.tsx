@@ -20,22 +20,24 @@ const PageRouter = () => {
   return (
     <Fragment>
       {transitions(({ position, ...styles }, item) => (
-        <AnimatedBox style={{ ...styles, position: position as any }} sx={{ width: '100vw', left: '0px', top: '0px', overflow: 'clip' }}>
-          <Box
-            pb={(location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5}
-            px={{ xs: 0, sm: 6, md: 15, lg: 22 }}
-            pt={{ xs: 12, sm: 8 }}
-          >
-            <Routes location={item}>
-              <Route path='*' element={<Suspense fallback={<PageLoading />}><PageError /></Suspense>}/>
-              <Route path='/' element={<Suspense fallback={<PageLoading />}><PageLanding /></Suspense>}/>
-              <Route path='/projects/*' element={<Suspense fallback={<PageLoading />}><PageProjects /></Suspense>}/>
-              <Route path='/blog/*' element={<Suspense fallback={<PageLoading />}><PageBlog /></Suspense>}/>
-              <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
-              <Route path='/about/skills' element={<Suspense fallback={<PageLoading />}><PageSkills /></Suspense>}/>
-            </Routes>
-          </Box>
-        </AnimatedBox>
+        <Suspense fallback={<PageLoading />}>
+          <AnimatedBox component='section' style={{ ...styles, position: position as any }} sx={{ width: '100vw', left: '0px', top: '0px', overflow: 'clip' }}>
+            <Box
+              pb={(location.pathname.includes('/projects/showcase') || location.pathname === '/') ? 0 : 5}
+              px={{ xs: 0, sm: 6, md: 15, lg: 22 }}
+              pt={{ xs: 12, sm: 8 }}
+            >
+              <Routes location={item}>
+                <Route path='*' element={<PageError />}/>
+                <Route path='/' element={<PageLanding />}/>
+                <Route path='/projects/*' element={<PageProjects />} />
+                <Route path='/blog/*' element={<PageBlog />}/>
+                <Route path='/about' element={<PageAbout />}/>
+                <Route path='/about/skills' element={<PageSkills />}/>
+              </Routes>
+            </Box>
+          </AnimatedBox>
+        </Suspense>
       ))}
       {(location.pathname === '/') && (
         <Fragment>
