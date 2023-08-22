@@ -18,7 +18,7 @@ const PageRouter = () => {
   const AnimatedBox = animated(Box);
 
   return (
-    <Fragment>
+    <Suspense fallback={<PageLoading />}>
       {transitions(({ position, ...styles }, item) => (
         <AnimatedBox style={{ ...styles, position: position as any }} sx={{ width: '100vw', left: '0px', top: '0px', overflow: 'clip' }}>
           <Box
@@ -27,12 +27,12 @@ const PageRouter = () => {
             pt={{ xs: 12, sm: 8 }}
           >
             <Routes location={item}>
-              <Route path='*' element={<Suspense fallback={<PageLoading />}><PageError /></Suspense>}/>
-              <Route path='/' element={<Suspense fallback={<PageLoading />}><PageLanding /></Suspense>}/>
-              <Route path='/projects/*' element={<Suspense fallback={<PageLoading />}><PageProjects /></Suspense>}/>
-              <Route path='/blog/*' element={<Suspense fallback={<PageLoading />}><PageBlog /></Suspense>}/>
-              <Route path='/about' element={<Suspense fallback={<PageLoading />}><PageAbout /></Suspense>}/>
-              <Route path='/about/skills' element={<Suspense fallback={<PageLoading />}><PageSkills /></Suspense>}/>
+              <Route path='*' element={<PageError />}/>
+              <Route path='/' element={<PageLanding />}/>
+              <Route path='/projects/*' element={<PageProjects />} />
+              <Route path='/blog/*' element={<PageBlog />}/>
+              <Route path='/about' element={<PageAbout />}/>
+              <Route path='/about/skills' element={<PageSkills />}/>
             </Routes>
           </Box>
         </AnimatedBox>
@@ -43,7 +43,7 @@ const PageRouter = () => {
           <ContactDetails />
         </Fragment>
       )}
-    </Fragment>
+    </Suspense>
   )
 }
 
