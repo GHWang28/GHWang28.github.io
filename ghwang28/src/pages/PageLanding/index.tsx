@@ -73,6 +73,7 @@ const PageLanding = () => {
         {/* Background image */}
         <AnimatedBox
           component='img'
+          draggable={false}
           style={useSpring({
             from: { opacity: 0 },
             to: { opacity: 1 },

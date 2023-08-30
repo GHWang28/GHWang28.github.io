@@ -32,7 +32,6 @@ const PageAbout = () => {
   return (
     <Fragment>
       <GradientTitle title='About Me' subtitle='My README.md'/>
-
       <Grid
         container
         sx={{
@@ -40,6 +39,7 @@ const PageAbout = () => {
           borderRadius: '15px'
         }}
         px={{ xs: 0.5, sm: 2 }}
+        pb={4}
       >
         <Grid my={2.5} item md={4} xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
           <AnimatedProfilePic />

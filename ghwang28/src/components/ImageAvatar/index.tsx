@@ -34,6 +34,7 @@ const ImageAvatar = ({ src, alt, bgcolor = 'whitesmoke', sx, onClick }: Componen
       {(src) ? (
         <Box
           component='img'
+          draggable={false}
           alt={alt}
           src={src}
           sx={{ width: '85%', height: '85%' }}

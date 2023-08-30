@@ -80,6 +80,7 @@ const ImageZoomer = () => {
         </AnimatedIconButton>
         <AnimatedBox
           component='img'
+          draggable={false}
           // @ts-ignore
           alt='Zoomed in Image'
           onContextMenu={(event) => { event.preventDefault() }}

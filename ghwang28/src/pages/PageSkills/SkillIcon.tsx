@@ -50,6 +50,7 @@ export default function SkillIcon ({ skill }: ComponentProps) {
     >
       <Box
         component='img'
+        draggable={false}
         src={`/images/about/skills/${src}`}
         alt={name}
         sx={[

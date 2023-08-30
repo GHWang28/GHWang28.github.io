@@ -33,6 +33,7 @@ const ImageLoader = ({ style, sx, springStyle, imageSx = { width: '100%', height
         <Box
           onLoad={() => { setIsLoaded(true) }}
           component='img'
+          draggable={false}
           display={(isLoaded) ? 'block' : 'none'}
           sx={imageSx}
           {...props}

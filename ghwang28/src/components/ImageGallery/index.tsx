@@ -161,6 +161,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
               {(isYouTubeURL(imgSrc)) && (
                 <Box
                   component='img'
+                  draggable={false}
                   sx={{
                     position: 'absolute',
                     width: '50%',
@@ -177,6 +178,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
               )}
               <Box
                 component='img'
+                draggable={false}
                 sx={{
                   cursor: 'pointer',
                   height: '100px',

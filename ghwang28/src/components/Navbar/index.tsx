@@ -112,15 +112,15 @@ const Navbar = () => {
       />
     )).map((element: React.ReactNode, index: number) => ((index === 0) ? (
       // Insert the dividers
-      <Fragment>
-        <Divider orientation='vertical' flexItem key={`divider-${index}`} />
+      <Fragment key={`divider-${index}`}>
+        <Divider orientation='vertical' flexItem />
         {element}
-        <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
+        <Divider orientation='vertical' flexItem />
       </Fragment>
     ) : (
-      <Fragment>
+      <Fragment key={`divider-${index}`}>
         {element}
-        <Divider orientation='vertical' flexItem key={`divider-${index + 1}`} />
+        <Divider orientation='vertical' flexItem />
       </Fragment>
     )))
   }, [location.pathname, navigate])

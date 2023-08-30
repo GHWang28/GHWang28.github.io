@@ -59,6 +59,7 @@ function VideoPlayer ({ width, height, url }: ComponentProps) {
     >
       <Box
         component='img'
+        draggable={false}
         role='button'
         title='Play Video'
         alt='Play Button'
@@ -81,6 +82,7 @@ function VideoPlayer ({ width, height, url }: ComponentProps) {
       />
       <Box
         component='img'
+        draggable={false}
         alt='Video Thumbnail'
         src={thumbnailImg}
         sx={{

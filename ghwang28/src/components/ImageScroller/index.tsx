@@ -60,6 +60,7 @@ const ImageScroller = ({ images, height, length = '10s', bgcolor, tooltips = [],
             >
               <Box
                 component='img'
+                draggable={false}
                 sx={{ height: '90%' }}
                 alt={`skill-${index}`}
                 src={src}

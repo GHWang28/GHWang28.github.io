@@ -20,6 +20,7 @@ const ProjectSlackr = () => {
             transition: 'scale 0.5s ease-in-out'
           }}
           component='img'
+          draggable={false}
           src='/images/comp6080/slackr-logo.png'
           width='min(75%, 600px)'
         />

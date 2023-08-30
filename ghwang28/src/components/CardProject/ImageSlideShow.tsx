@@ -31,6 +31,7 @@ const ImageSlideShow = ({ imgs, onLoad }: ComponentProps) => {
       {imgs.map((src, index) => (
         <Box
           component='img'
+          draggable={false}
           key={`card-bg-${index}`}
           alt={`image-background-${index}`}
           title={`Background Image #${index}`}
