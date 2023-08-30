@@ -6,6 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactMeIcon from './ContactMeIcon';
 import { ContactData } from '../../../types';
+import ContactForm from './ContactForm';
 
 const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
   const [inViewRef, inView] = useInView({
@@ -54,24 +55,22 @@ const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Want to talk to me or see my CV? Contact me for any inquiries'}
+        {'Want to talk to me? Contact me through here...'}
       </Typography>
-      <Grid container rowSpacing={2}>
+
+      <Grid container rowSpacing={2} justifyContent='center'>
         {contacts.map((contact, index) => (
-          <Grid
-            key={`contact-${index}`}
-            item
-            xs={12}
-            sm={(12 / contacts.length)}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
+          <Grid item key={`contact-${index}`} xs={12} sm={(6 / contacts.length)}>
             <ContactMeIcon contact={contact} />
           </Grid>
         ))}
       </Grid>
+
+      <Typography mt={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+        {'...or fill out this form if you wish to stay anonymous.'}
+      </Typography>
+
+      <ContactForm />
     </Box>
   )
 });

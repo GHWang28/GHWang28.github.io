@@ -28,7 +28,7 @@ const EducationCard = ({title, subtitle, color, src, date = [0, 0], description 
         display: 'flex',
         alignItems: 'center',
         flexDirection: 'column',
-        bgcolor: (theme.palette.mode === 'dark') ? 'bgColor.main' : 'rgb(150,150,150)',
+        bgcolor: (theme.palette.mode === 'dark') ? 'bgColor.main' : 'rgb(190,190,190)',
         borderColor: `${color}.main`,
         borderStyle: 'solid',
         borderWidth: '2px',

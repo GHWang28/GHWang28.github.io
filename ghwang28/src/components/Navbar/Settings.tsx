@@ -73,12 +73,6 @@ function Settings () {
       onClick: () => { dispatch(setToggleSplash(!splashState)) }
     },
     {
-      key: 'theme',
-      icon: (themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>,
-      text: `${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()} mode`,
-      onClick: () => { dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark')) }
-    },
-    {
       key: 'lock',
       icon: (navbarLockState) ? <LockIcon/> : <LockOpenIcon/>,
       text: `Navbar ${navbarLockState ? 'locked' : 'unlocked'}`,
@@ -89,7 +83,13 @@ function Settings () {
       icon: (websiteHiddenState) ? <VisibilityOffIcon/> : <VisibilityIcon/>,
       text: `Elements ${websiteHiddenState ? 'hidden' : 'showing'}`,
       onClick: () => { dispatch(setHideWebsite(!websiteHiddenState)) }
-    }
+    },
+    {
+      key: 'theme',
+      icon: (themeMode === 'dark') ? <DarkModeIcon/> : <LightModeIcon/>,
+      text: `${themeMode[0].toUpperCase() + themeMode.slice(1).toLowerCase()} mode`,
+      onClick: () => { dispatch(setThemeMode((themeMode === 'dark') ? 'light' : 'dark')) }
+    },
   ];
 
   return (
