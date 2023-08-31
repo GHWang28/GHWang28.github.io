@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getYouTubeThumbnailImg, convertToEmbedYoutubeVid } from '../../helpers';
+import { getYouTubeThumbnailImg, convertToEmbedYoutubeVid } from '../../utils';
 import { Box } from '@mui/material';
 
 type ComponentProps = {

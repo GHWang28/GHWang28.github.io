@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import Disc from './Disc';
 import Rod from './Rod';
 import React, { useEffect, useState } from 'react';
-import { isSorted, rng } from '../../../helpers';
+import { isSorted, rng } from '../../../utils';
 // @ts-ignore
 import useSound from 'use-sound';
 import victorySFX from '../../../sfx/victory.ogg'

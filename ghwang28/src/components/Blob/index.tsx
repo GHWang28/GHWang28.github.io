@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated, easings } from '@react-spring/web'
-import { rng } from '../../helpers';
+import { rng } from '../../utils';
 import { Box, SxProps } from '@mui/material';
 
 type ComponentProps = {

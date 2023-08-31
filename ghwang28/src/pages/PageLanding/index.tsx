@@ -5,7 +5,7 @@ import Blob from '../../components/Blob';
 import Sparklez from '../../components/Sparklez';
 import SplashText from '../../components/SplashText';
 import config from '../../config.json';
-import { rng } from '../../helpers';
+import { rng } from '../../utils';
 import { BlobData } from '../../types';
 
 const PageLanding = () => {

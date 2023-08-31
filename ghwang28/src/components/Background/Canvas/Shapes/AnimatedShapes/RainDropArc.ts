@@ -1,6 +1,6 @@
 import AnimatedShape from './AnimatedShape';
 import Arc from '../Arc';
-import { colorToRGBA, rng } from '../../../../../helpers';
+import { colorToRGBA, rng } from '../../../../../utils';
 
 type ClassConstructor = {
   x: number,

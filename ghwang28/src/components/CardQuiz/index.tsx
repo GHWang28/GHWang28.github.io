@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Button, Collapse, Grid, IconButton, Typography, useTheme } from '@mui/material';
-import { randomiseArray } from '../../helpers';
+import { randomiseArray } from '../../utils';
 import TypographyBorder from '../TypographyBorder';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import RefreshIcon from '@mui/icons-material/Refresh';

@@ -4,7 +4,7 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import QuizIcon from '@mui/icons-material/Quiz';
-import { ISOToDateStr } from '../../helpers';
+import { ISOToDateStr } from '../../utils';
 
 type ComponentProps = {
   created: string,

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
-import { executeWithCooldown, rng } from '../../../helpers';
+import { executeWithCooldown, rng } from '../../../utils';
 import { animated, easings, useTransition } from '@react-spring/web';
 
 const funfactPool = [

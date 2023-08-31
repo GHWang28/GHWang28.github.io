@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { rng } from '../../helpers';
+import { rng } from '../../utils';
 import { growShrink, spinAntiClockwise, spinClockwise } from './sparklezAnimation';
 
 type ComponentProps = {

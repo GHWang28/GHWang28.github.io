@@ -1,4 +1,4 @@
-import { colorToRGBA } from '../../../../helpers';
+import { colorToRGBA } from '../../../../utils';
 import { CSSColorKeyword } from '../../../../types';
 import Arc from './Arc';
 

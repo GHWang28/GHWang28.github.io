@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Avatar, Box } from '@mui/material';
 import { animated, easings, useSpring, useTransition } from '@react-spring/web';
-import { executeWithCooldown } from '../../helpers';
+import { executeWithCooldown } from '../../utils';
 import ImageZoomable from '../../components/ImageZoomable';
 
 const AnimatedProfilePic = () => {

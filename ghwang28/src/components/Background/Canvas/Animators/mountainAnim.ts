@@ -1,4 +1,4 @@
-import { calcDistance2D, isMobileOrTablet, rng } from '../../../../helpers';
+import { calcDistance2D, isMobileOrTablet, rng } from '../../../../utils';
 import MountainShape from '../Shapes/AnimatedShapes/MountainShape';
 import PulsatingArc from '../Shapes/AnimatedShapes/PulsatingArc';
 import RadiantArc from '../Shapes/RadiantArc';

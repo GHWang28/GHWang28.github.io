@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { useMediaQuery, Theme } from '@mui/material';
-import { splitArray } from '../../helpers';
+import { splitArray } from '../../utils';
 
 type ComponentProps = {
   children: React.ReactNode

@@ -10,7 +10,7 @@ import TypographyBorder from '../../components/TypographyBorder';
 import CardQuiz from '../../components/CardQuiz';
 import CodeSnippet from '../../components/CodeSnippet';
 import BlogTags from '../../components/BlogTags';
-import { ISOToDateStr } from '../../helpers';
+import { ISOToDateStr } from '../../utils';
 import { BlogData } from '../../types';
 import BlogElement from '../../types/blogElementTypes';
 import blogs from './blogs';

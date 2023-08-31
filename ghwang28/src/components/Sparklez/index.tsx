@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import generateSparklez from './generateSparklez';
 import SparklezInstance from './SparklezInstance';
-import { rng } from '../../helpers';
+import { rng } from '../../utils';
 import { SparklezType } from '../../types';
 
 type ComponentProps = {

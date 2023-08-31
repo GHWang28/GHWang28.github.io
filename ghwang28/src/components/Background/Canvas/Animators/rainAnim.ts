@@ -1,4 +1,4 @@
-import { rng } from '../../../../helpers';
+import { rng } from '../../../../utils';
 import RainDropArc from '../Shapes/AnimatedShapes/RainDropArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';
 import config from '../../../../config.json';

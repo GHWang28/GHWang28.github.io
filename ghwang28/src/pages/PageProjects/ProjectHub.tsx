@@ -14,7 +14,7 @@ import CardContainer from '../../components/CardContainer';
 import GradientTitle from '../../components/GradientTitle';
 import CardLoading from '../../components/CardLoading';
 import { IconTypes } from '../../types';
-import { isSetOverlapping } from '../../helpers';
+import { isSetOverlapping } from '../../utils';
 const CardProject = React.lazy(() => import('../../components/CardProject'));
 
 const allFilters: IconTypes[] = [

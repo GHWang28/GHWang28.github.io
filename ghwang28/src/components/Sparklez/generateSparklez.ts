@@ -1,4 +1,4 @@
-import { rng } from '../../helpers';
+import { rng } from '../../utils';
 import { v4 } from 'uuid';
 import { SparklezType } from '../../types';
 

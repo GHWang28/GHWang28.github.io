@@ -1,4 +1,4 @@
-import { calcDistance2D, rng } from '../../../../helpers';
+import { calcDistance2D, rng } from '../../../../utils';
 import { Position } from '../../../../types';
 import RippleArc from '../Shapes/AnimatedShapes/RippleArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';

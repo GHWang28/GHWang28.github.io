@@ -1,4 +1,4 @@
-import { rng } from '../../../../../helpers';
+import { rng } from '../../../../../utils';
 import { Position } from '../../../../../types';
 import Shape from '../Shape';
 

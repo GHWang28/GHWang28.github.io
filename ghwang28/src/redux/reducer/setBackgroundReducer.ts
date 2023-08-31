@@ -1,5 +1,5 @@
 import config from '../../config.json'
-import { mod } from '../../helpers';
+import { mod } from '../../utils';
 import { Action } from '../../types';
 
 const setBackgroundReducer = (

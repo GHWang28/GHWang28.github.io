@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Grid, useMediaQuery, Theme, useTheme } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../helpers';
+import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../utils';
 import VideoPlayer from '../VideoPlayer';
 import { animated, useSpring, useTransition } from '@react-spring/web';
 import { v4 as uuidv4 } from 'uuid';

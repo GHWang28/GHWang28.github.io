@@ -1,4 +1,4 @@
-import { convertDegToRad } from '../../../../helpers';
+import { convertDegToRad } from '../../../../utils';
 import Shape from './Shape';
 
 type ClassConstructor = {

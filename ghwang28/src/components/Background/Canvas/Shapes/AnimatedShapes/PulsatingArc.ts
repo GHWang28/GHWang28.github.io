@@ -1,4 +1,4 @@
-import { rng } from '../../../../../helpers';
+import { rng } from '../../../../../utils';
 import AnimatedShape from './AnimatedShape';
 import Arc from '../Arc';
 
