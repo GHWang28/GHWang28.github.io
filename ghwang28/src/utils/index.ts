@@ -1,6 +1,5 @@
 import getVideoId from 'get-video-id';
-import config from '../config.json'
-import { Position } from '../types';
+import { GenericFunction, Position } from '../types';
 import colorConvert from 'color-convert';
 
 declare global {
@@ -118,20 +117,6 @@ export const isSorted = (array: number[]): boolean => {
 }
 
 /**
- * Executes the given function if a set time has passed since the last time this was executed
- */
-export const executeWithCooldown = (action: () => void, lastClicked: number) => {
-  const timeElapsed = Date.now() - lastClicked - config.COOL_DOWN;
-
-  if (timeElapsed <= 0) {
-    // After timeout, perform action
-    setTimeout(action, Math.abs(timeElapsed));
-  } else {
-    action();
-  }
-}
-
-/**
  * Splits the array into odd and even arrays
  */
 export const splitArray = (array: any[]): { odd: any[]; even: any[] } => {
@@ -193,4 +178,28 @@ export const colorToRGBA = (color: string, opacity: number): string => {
 // Checks if the first set has any overlapped valye with the second set
 export const isSetOverlapping = <T>(setA: Set<T>, setB: Set<T>): boolean => {
   return [...setA].some(element => setB.has(element));
+}
+
+// Classic throttle function. Only allows the execution of a function every throttleDuration ms
+export const throttle = (fn: GenericFunction, throttleDuration: number): GenericFunction => {
+  let lastCallTimestamp = 0;
+
+  return (...args) => {
+    const time = Date.now();
+    if (time - lastCallTimestamp <= throttleDuration) return;
+
+    lastCallTimestamp = time;
+    fn(...args);
+  }
+}
+
+// Classic debounce function. Executes a function after a set duration passes. If evoked again
+// before the duration passes, clear it and run with new arguments
+export const debounce = (fn: GenericFunction, debounceDuration: number): GenericFunction => {
+  let timerID: ReturnType<typeof setTimeout>;
+
+  return (...args) => {
+    clearTimeout(timerID);
+    setTimeout(() => { fn(...args) }, debounceDuration);
+  }
 }

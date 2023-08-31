@@ -1,6 +1,8 @@
 import React from 'react';
 import BlogElement from './blogElementTypes';
 
+export type GenericFunction = (...args: any[]) => any;
+
 export type Dimension = {
   width: number,
   height: number

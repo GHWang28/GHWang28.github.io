@@ -1,12 +1,11 @@
-import { calcDistance2D, rng } from '../../../../utils';
-import { Position } from '../../../../types';
+import { rng, throttle } from '../../../../utils';
+import { GenericFunction, Position } from '../../../../types';
 import RippleArc from '../Shapes/AnimatedShapes/RippleArc';
 import { renderAndAnimateShapes } from '../canvasRenderer';
 import config from '../../../../config.json';
 
-const rippleAnim = (context: CanvasRenderingContext2D): Function => {
+const rippleAnim = (context: CanvasRenderingContext2D): GenericFunction => {
   let lastTime = performance.now(), deltaTime = 0, createRippleTimer = 0;
-  let lastPos: Position | null = null; 
   let animationFrameID: number;
   let arrayOfShapes: RippleArc[] = [];
 
@@ -22,6 +21,7 @@ const rippleAnim = (context: CanvasRenderingContext2D): Function => {
     }
   }
 
+  const genRippleThrottle = throttle(genRipple, 125);
 
   // Generates the new shape via mouse movement
   const generateNewShapesByMovement = (event: MouseEvent) => {
@@ -29,10 +29,7 @@ const rippleAnim = (context: CanvasRenderingContext2D): Function => {
       x: event.x,
       y: event.y
     }
-    if (calcDistance2D(currPos, lastPos) > RippleArc.MAX_DISTANCE) {
-      genRipple([currPos]);
-      lastPos = currPos;
-    }
+    genRippleThrottle([currPos]);
   }
 
   // Generate new shapes via mouse clicking

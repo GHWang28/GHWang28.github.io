@@ -1,15 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 import { Avatar, Box } from '@mui/material';
 import { animated, easings, useSpring, useTransition } from '@react-spring/web';
-import { executeWithCooldown } from '../../utils';
+import { throttle } from '../../utils';
 import ImageZoomable from '../../components/ImageZoomable';
 
 const AnimatedProfilePic = () => {
   const AnimatedBox = animated(Box);
   const AnimatedAvatar = animated(Avatar);
-
-  const [lastClicked, setLastClicked] = useState(Date.now());
-  const [currImg, setCurrImg] = useState(0);
+  const [currImg, setCurrImg] = useState<number>(0);
 
   // Available images to choose from
   const imgs = [
@@ -17,12 +15,7 @@ const AnimatedProfilePic = () => {
     '/images/about/tutor-pic.webp'
   ]
 
-  const switchImg = (imgIndex: number) => {
-    executeWithCooldown(() => { 
-      setCurrImg(imgIndex);
-      setLastClicked(Date.now());
-    }, lastClicked);
-  }
+  const switchImg = useMemo(() => throttle((imgIndex) => { setCurrImg(imgIndex) }, 500), []);
 
   const avatarSX = {
     cursor: 'pointer',

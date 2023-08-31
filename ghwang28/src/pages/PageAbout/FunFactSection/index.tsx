@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useMemo } from 'react';
 import { Box, Grid, Typography, useTheme } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
 import Sparklez from '../../../components/Sparklez';
-import { executeWithCooldown, rng } from '../../../utils';
+import { rng, throttle } from '../../../utils';
 import { animated, easings, useTransition } from '@react-spring/web';
 
 const funfactPool = [
@@ -27,8 +27,7 @@ export default function FunFactSection () {
     rootMargin: '9999999px 0px 0px 0px'
   });
   const themeMode = useTheme().palette.mode;
-  const [lastClicked, setLastClicked] = useState(Date.now());
-  const [funfact, setFunfact] = useState(funfactPool[rng(0, funfactPool.length - 1)]);
+  const [funfact, setFunfact] = useState<number>(rng(0, funfactPool.length - 1));
 
   const transitions = useTransition(funfact, {
     from: { rotateY: '-180deg', position: 'static' },
@@ -41,19 +40,18 @@ export default function FunFactSection () {
   });
   const AnimatedBox = animated(Box);
 
-  const onClick = () => {
-    // Prevent spam clicking
-    executeWithCooldown(() => {
-      let randomIndex = rng(0, funfactPool.length - 1);
-      while (funfact === funfactPool[randomIndex]) {
-        randomIndex = rng(0, funfactPool.length - 1);
-      }
+  const onClick = useMemo(() => (
+    throttle(() => {
+      setFunfact((oldIndex) => {
+        let randomIndex = rng(0, funfactPool.length - 1);
+        while (oldIndex === randomIndex) {
+          randomIndex = rng(0, funfactPool.length - 1);
+        }
 
-      // Setting states
-      setFunfact(funfactPool[randomIndex]);
-      setLastClicked(Date.now());
-    }, lastClicked);
-  }
+        return randomIndex;
+      });
+    }, 750)
+  ), [])
 
   return (
     <Box
@@ -99,7 +97,7 @@ export default function FunFactSection () {
               onClick={onClick}
             >
               <Typography align='center' sx={{ userSelect: 'none' }}>
-                {funfactItem}
+                {funfactPool[funfactItem]}
               </Typography>
               <Typography align='center' variant='subtitle2' sx={{ userSelect: 'none', opacity: '50%' }}>
                 {'(Click to refresh)'}
