@@ -1,12 +1,11 @@
 
 import React, { Fragment } from 'react';
-import { Box, Link, Typography, useMediaQuery, useTheme, Theme } from '@mui/material';
+import { Box, Link, Typography, useTheme, Divider } from '@mui/material';
 import { useParams } from 'react-router';
 import ButtonGoBack from '../../components/ButtonGoBack';
 import GradientTitle from '../../components/GradientTitle';
 import PageError from '../PageError';
 import ImageZoomable from '../../components/ImageZoomable';
-import TypographyBorder from '../../components/TypographyBorder';
 import CardQuiz from '../../components/CardQuiz';
 import CodeSnippet from '../../components/CodeSnippet';
 import BlogTags from '../../components/BlogTags';
@@ -17,7 +16,6 @@ import blogs from './blogs';
 
 const BlogShowcase = () => {
   const blogID = Number(useParams().blogID);
-  const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   const lightMode = useTheme().palette.mode === 'light';
 
   const blogData = blogs.find((blogEntry: BlogData) => ( blogEntry.id === blogID ));
@@ -41,6 +39,7 @@ const BlogShowcase = () => {
         p={2}
         sx={{
           maxWidth: '750px',
+          aspectRatio: 1,
           display: 'flex',
           flexDirection: 'column',
           bgcolor: (lightMode) ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
@@ -67,15 +66,17 @@ const BlogShowcase = () => {
             case 'h3':
             case 'h2':
             case 'h1': return (
-              <TypographyBorder
-                key={`page-item-${elementData.type}-${index}`}
-                textAlign={(smallMq) ? 'left' : 'center'}
-                fontWeight='bold'
-                sx={{ my: (elementData.type === 'h6') ? 2 : 4 }}
-                variant={elementData.type}
-              >
-                {`${blogData.emoji} ${elementData.children}`}
-              </TypographyBorder>
+              <Fragment key={`page-item-${elementData.type}-${index}`}>
+                <Typography
+                  textAlign={{ sm: 'left', xs: 'center' }}
+                  fontWeight='bold'
+                  sx={{ mt: (elementData.type === 'h6') ? 2 : 4, mb: 1 }}
+                  variant={elementData.type}
+                >
+                  {`${blogData.emoji} ${elementData.children}`}
+                </Typography>
+                <Divider />
+              </Fragment>
             )
             case 'code': return (
               <CodeSnippet
@@ -95,14 +96,15 @@ const BlogShowcase = () => {
             case 'feedback': return (
               <Fragment key={`page-item-${elementData.type}-${index}`}>
                 <Box component='hr' width='100%' mt={4} />
-                <TypographyBorder
-                  textAlign={(smallMq) ? 'left' : 'center'}
+                <Typography
+                  textAlign={{ sm: 'left', xs: 'center' }}
                   fontWeight='bold'
                   sx={{ mt: 6, mb: 1 }}
                   variant='h4'
                 >
                   {`${blogData.emoji} Feedback`}
-                </TypographyBorder>
+                </Typography>
+                <Divider />
                 <Typography textAlign='justify' fontSize={16} my={2}>
                   {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
                   <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
@@ -120,9 +122,14 @@ const BlogShowcase = () => {
                 {ISOToDateStr(blogData?.created)}
               </Typography>
             )
+            case 'p': return (
+              <Typography key={`page-item-${elementData.type}-${index}`} textAlign={{ md: 'justify' }} fontSize={17} my={2}>{elementData.children}</Typography>
+            )
             default: return (
-              <Typography key={`page-item-${elementData.type}-${index}`} textAlign='justify' fontSize={16} my={2}>{elementData.children}</Typography>
-            );
+              <Fragment key={`frag-${index}`}>
+                {elementData.children}
+              </Fragment>
+            )
           }
         })}
       </Box>

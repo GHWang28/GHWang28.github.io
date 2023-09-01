@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTheme, Box, Typography, useMediaQuery } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
-import TypographyBorder from '../TypographyBorder';
 import BootstrapTooltip from '../BootstrapTooltip';
 import { useNavigate } from 'react-router';
 import BlogTags from '../BlogTags';
@@ -88,9 +87,9 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
         />
       )}
       <BootstrapTooltip title='Title' placement={(smallMq) ? 'left' : 'top-start'}>
-        <TypographyBorder variant='h4'>
+        <Typography variant='h4' px={1}>
           {title}
-        </TypographyBorder>
+        </Typography>
       </BootstrapTooltip>
       <Typography align='center' my={2}>
         {subtitle}

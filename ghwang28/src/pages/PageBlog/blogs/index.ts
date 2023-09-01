@@ -1,10 +1,12 @@
 import { BlogData } from '../../../types';
 import pollingBlog from './polling';
-import pollingAllBlog from './promiseAll';
+import promiseAllBlog from './promiseAll';
+import promisePoolBlog from './promisePool';
 
 const blogs: BlogData[] = [
   pollingBlog,
-  pollingAllBlog
+  promiseAllBlog,
+  promisePoolBlog
 ]
 
 export default blogs;

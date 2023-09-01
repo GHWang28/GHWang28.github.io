@@ -4,7 +4,7 @@ import SparklezText from '../../../components/Sparklez/SparklezText';
 import { Box } from '@mui/material';
 import { BlogData } from '../../../types';
 
-const pollingAllBlog: BlogData = {
+const promiseAllBlog: BlogData = {
   id: 2,
   title: 'Why use Promise.all?',
   subtitle: 'How to make fetch requests concurrently.',
@@ -313,9 +313,9 @@ for (const foodItem of allFoodItem) {
       children: <Fragment>
         {'Looks fine, so what\'s wrong? Well, the method of fetching above will not work because of the asynchronous nature of the'}
         <InlineCode>{'fetch/Promises'}</InlineCode>
-        {'. This means that the code will reach the next for loop'}
+        {'. This means that the code will reach the next for loop '}
         <b>{'before'}</b>
-        {'the fetches have completed.'}
+        {' the fetches have completed.'}
       </Fragment>
     },
     {
@@ -382,8 +382,11 @@ for (const foodItem of allFoodItem) {
     },
     {
       type: 'p',
-      children: <Fragment>
-        {'As a reminder, we need to do these steps in this order:'}
+      children: 'As a reminder, we need to do these steps in this order:'
+    },
+    {
+      type: 'as-is',
+      children: (
         <ul>
           <li>
             {'Get the array of order IDs.'}
@@ -395,6 +398,11 @@ for (const foodItem of allFoodItem) {
             {'When and only when the information needed has successfully been gathered, then we display them all onto the DOM'}
           </li>
         </ul>
+      )
+    },
+    {
+      type: 'p',
+      children: <Fragment>
         {'For now, we will skip the first step and focus on using'}
         <InlineCode>
           {'Promise.all'}
@@ -659,4 +667,4 @@ for (const foodItem of allFoodItems) {
 }
 
 
-export default pollingAllBlog;
+export default promiseAllBlog;
