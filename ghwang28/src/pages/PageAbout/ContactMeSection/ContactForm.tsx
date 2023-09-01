@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { Alert, Button, LinearProgress, Snackbar, styled } from '@mui/material';
 import Box from '@mui/material/Box';
 import generateEmailJSPackage from './emailjsData';
+import { useInView } from 'react-intersection-observer';
 
 enum Response {
   SUCCESS,
@@ -11,6 +12,10 @@ enum Response {
 }
 
 const ContactForm = () => {
+  const [ref, inView] = useInView({
+    rootMargin: '9999999px 0px 0px 0px'
+  });
+
   const [senderName, setSenderName] = useState<string>('');
   const [senderEmail, setSenderEmail] = useState<string>('');
   const [mailContent, setMailContent] = useState<string>('');
@@ -43,7 +48,7 @@ const ContactForm = () => {
   }
 
   return (
-    <Box onSubmit={onSubmit} component='form' sx={{ width: '900px', maxWidth: '100%', display: 'flex', flexDirection: 'column' }} mx='auto' my={5}>
+    <Box ref={ref} style={{ opacity: (inView) ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }} onSubmit={onSubmit} component='form' sx={{ width: '900px', maxWidth: '95%', display: 'flex', flexDirection: 'column' }} mx='auto' my={5}>
       <LinearProgress variant={(loading) ? 'indeterminate' : 'determinate'} value={0}/>
       <ContactFormTextField
         sx={{ borderBottom: '1px solid black' }}

@@ -55,7 +55,7 @@ const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Want to talk to me? Contact me through here...'}
+        {'Contact me through these...'}
       </Typography>
 
       <Grid container rowSpacing={2} justifyContent='center'>
