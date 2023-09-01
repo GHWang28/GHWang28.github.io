@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, Fragment, useMemo } from 'react';
 import { AppBar, Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from '@react-spring/web';
 import { useLocation, useNavigate } from 'react-router';
@@ -32,7 +32,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // Moving the selected border around with each click
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Find which tab to highlight by getting the correct ref
     // rootPath is here to ensure that the highlight fades if not on one of the root pages
     let rootPath = false;
