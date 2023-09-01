@@ -2,9 +2,10 @@ import moment from 'moment/moment';
 import { TimelineData } from '../../types';
 
 const generateEmploymentTimeline = (): TimelineData[] => {
+  const currTime = moment().format('do MMM YY');
   return [
     {
-      oppContent: '(February 2018)',
+      oppContent: '(Feb 18)',
       timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/aie.webp',
       timelineTitle: 'Academy of Interactive Entertainment Work Experience',
@@ -16,7 +17,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
       ]
     },
     {
-      oppContent: '(30th November 2019) → (Present Time)',
+      oppContent: `(30th Nov 19) → (${currTime})`,
       timelineDotColor: 'rgb(255,255,255)',
       timelineDotImg: '/images/timeline/abc.webp',
       timelineTitle: 'Australia ABC College Tutor',
@@ -29,7 +30,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
       ]
     },
     {
-      oppContent: '(13th February 2023) → (Present Time)',
+      oppContent: `(13th Feb 23) → (${currTime})`,
       timelineDotColor: 'rgb(254,230,0)',
       timelineDotImg: '/images/timeline/unsw.webp',
       timelineTitle: 'UNSW COMP6080 Web Frontend Programming Tutor',
@@ -43,7 +44,7 @@ const generateEmploymentTimeline = (): TimelineData[] => {
       ]
     },
     {
-      oppContent: `(${moment().format('Do MMMM YYYY')})`,
+      oppContent: `(${currTime})`,
       timelineDotColor: 'rgb(0,0,0)',
       timelineTitle: 'Present Time',
       timelineContent: [
