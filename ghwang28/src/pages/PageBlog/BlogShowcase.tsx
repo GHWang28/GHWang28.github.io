@@ -116,9 +116,7 @@ const BlogShowcase = () => {
             )
             case 'signoff': return (
               <Typography key={`page-item-${elementData.type}-${index}`} align='right' mt={3}>
-                {'- '}
-                <Box component='span' fontWeight='bold' color={'blue.main'}>{'Gordon Wang'}</Box>
-                <br />
+                {'Last updated: '}
                 {ISOToDateStr(blogData?.created)}
               </Typography>
             )
