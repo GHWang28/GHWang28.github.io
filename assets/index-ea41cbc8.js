@@ -1,0 +1,1 @@
+import{s as e}from"./index-d6d55350.js";const d=e("code")(({theme:o})=>({padding:"0px 4px",margin:"0px 4px",backgroundColor:o.palette.mode==="light"?"rgb(90,90,90)":"rgb(10,10,10)",borderRadius:"10px",color:o.palette.mode==="light"?"black":"whitesmoke"}));export{d as I};
