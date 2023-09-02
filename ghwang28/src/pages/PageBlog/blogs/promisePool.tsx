@@ -87,15 +87,15 @@ const promisePool = async (arrayOfFnPromise, limit) => {
   const res = Array(arrayOfFnPromise.length);
   
   async function executeNextPromise () {
-      // Base case when there's no more promises left
-      if (promiseCounter >= arrayOfFnPromise.length) return;
+    // Base case when there's no more promises left
+    if (promiseCounter >= arrayOfFnPromise.length) return;
 
-      // Populate the res array while incrementing the promise counter
-      // The () before the .catch is important since it starts pending the promise
-      res[promiseCounter] = await arrayOfFnPromise[promiseCounter++]().catch((err) => err);
+    // Populate the res array while incrementing the promise counter
+    // The () before the .catch is important since it starts pending the promise
+    res[promiseCounter] = await arrayOfFnPromise[promiseCounter++]().catch((err) => err);
 
-      // Loop back for the next promise
-      await executeNextPromise();
+    // Loop back for the next promise
+    await executeNextPromise();
   }
 
   // Creates an array with a length of "limit" filled with "executeNextPromise"
