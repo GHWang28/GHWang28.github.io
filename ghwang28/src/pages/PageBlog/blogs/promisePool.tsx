@@ -97,13 +97,7 @@ naivePromisePool([
     {
       type: 'p',
       children: <Fragment>
-        {'The whitespace in the diagram shows the moments where nothing was being resolved.'}
-      </Fragment>
-    },
-    {
-      type: 'p',
-      children: <Fragment>
-        {'This occurs because the time to resolve each chunk '}
+        {'The whitespace in the diagram shows the moments where nothing was being resolved. This occurs because the time to resolve each chunk '}
         <b>{'equals the time taken to resolve the longest promise within it.'}</b>
       </Fragment>
     },
