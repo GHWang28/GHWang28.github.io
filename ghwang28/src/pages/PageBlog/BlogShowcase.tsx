@@ -36,14 +36,15 @@ const BlogShowcase = () => {
   
       <Box
         mx='auto'
+        component='section'
         p={2}
         sx={{
-          maxWidth: '750px',
+          maxWidth: '800px',
           aspectRatio: 1,
           display: 'flex',
           flexDirection: 'column',
           bgcolor: (lightMode) ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
-          borderRadius: '15px'
+          borderRadius: '15px',
         }}
       >
         <ImageZoomable
@@ -54,82 +55,85 @@ const BlogShowcase = () => {
             borderRadius: '15px',
             border: '2px solid black',
             mx: 'auto',
-            bgcolor: 'rgb(200,200,200)'
+            bgcolor: 'rgb(200,200,200)',
           }}
         />
-        {blogData?.elements && blogData.elements.map((elementData: BlogElement, index: number) => {
-          // Convert type to React components
-          switch(elementData.type) {
-            case 'h6':
-            case 'h5':
-            case 'h4':
-            case 'h3':
-            case 'h2':
-            case 'h1': return (
-              <Fragment key={`page-item-${elementData.type}-${index}`}>
-                <Typography
-                  textAlign={{ sm: 'left', xs: 'center' }}
-                  fontWeight='bold'
-                  sx={{ mt: (elementData.type === 'h6') ? 2 : 4, mb: 1 }}
-                  variant={elementData.type}
-                >
-                  {`${blogData.emoji} ${elementData.children}`}
+        <Box component='section' sx={{ 'img': { my: 3 } }}>
+          {blogData?.elements && blogData.elements.map((elementData: BlogElement, index: number) => {
+            // Convert type to React components
+            switch(elementData.type) {
+              case 'h6':
+              case 'h5':
+              case 'h4':
+              case 'h3':
+              case 'h2':
+              case 'h1': return (
+                <Fragment key={`page-item-${elementData.type}-${index}`}>
+                  <Typography
+                    textAlign={{ sm: 'left', xs: 'center' }}
+                    fontWeight='bold'
+                    sx={{ mt: (elementData.type === 'h6') ? 2 : 4, mb: 1 }}
+                    variant={elementData.type}
+                  >
+                    {`${blogData.emoji} ${elementData.children}`}
+                  </Typography>
+                  <Divider sx={{ mb: 4 }} />
+                </Fragment>
+              )
+              case 'code': return (
+                <CodeSnippet
+                  key={`page-item-${elementData.type}-${index}`}
+                  language={elementData.language}
+                  snippet={elementData.children}
+                  title={elementData.title}
+                />
+              )
+              case 'quiz': return (
+                <CardQuiz
+                  key={`page-item-${elementData.type}-${index}`}
+                  question={elementData.question}
+                  options={elementData.options}
+                />
+              )
+              case 'feedback': return (
+                <Fragment key={`page-item-${elementData.type}-${index}`}>
+                  <Box component='hr' width='100%' mt={4} />
+                  <Typography
+                    textAlign={{ sm: 'left', xs: 'center' }}
+                    fontWeight='bold'
+                    sx={{ mt: 6, mb: 1 }}
+                    variant='h4'
+                  >
+                    {`${blogData.emoji} Feedback`}
+                  </Typography>
+                  <Divider />
+                  <Typography textAlign='justify' fontSize={20} my={2}>
+                    {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
+                    <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
+                      {'here'}
+                    </Link>
+                    {'!'}
+                  </Typography>
+                </Fragment>
+              )
+              case 'signoff': return (
+                <Typography key={`page-item-${elementData.type}-${index}`} align='right' mt={3}>
+                  {'Last updated: '}
+                  {ISOToDateStr(blogData?.created)}
                 </Typography>
-                <Divider />
-              </Fragment>
-            )
-            case 'code': return (
-              <CodeSnippet
-                key={`page-item-${elementData.type}-${index}`}
-                language={elementData.language}
-                snippet={elementData.children}
-                title={elementData.title}
-              />
-            )
-            case 'quiz': return (
-              <CardQuiz
-                key={`page-item-${elementData.type}-${index}`}
-                question={elementData.question}
-                options={elementData.options}
-              />
-            )
-            case 'feedback': return (
-              <Fragment key={`page-item-${elementData.type}-${index}`}>
-                <Box component='hr' width='100%' mt={4} />
-                <Typography
-                  textAlign={{ sm: 'left', xs: 'center' }}
-                  fontWeight='bold'
-                  sx={{ mt: 6, mb: 1 }}
-                  variant='h4'
-                >
-                  {`${blogData.emoji} Feedback`}
-                </Typography>
-                <Divider />
-                <Typography textAlign='justify' fontSize={16} my={2}>
-                  {'Find something wrong with one of my blog posts? Want to provide general feedback? Let me know '}
-                  <Link target='_blank' href='https://forms.gle/bEsuMMEHmtViWxmY7'>
-                    {'here'}
-                  </Link>
-                  {'!'}
-                </Typography>
-              </Fragment>
-            )
-            case 'signoff': return (
-              <Typography key={`page-item-${elementData.type}-${index}`} align='right' mt={3}>
-                {'Last updated: '}
-                {ISOToDateStr(blogData?.created)}
-              </Typography>
-            )
-            case 'p': return (
-              <Typography key={`page-item-${elementData.type}-${index}`} textAlign={{ md: 'justify' }} fontSize={17} my={2}>{elementData.children}</Typography>
-            )
-            default: return (
-              <Fragment key={`frag-${index}`}>
-                {elementData.children}
-              </Fragment>
-            )
-          }
-        })}
+              )
+              case 'p': return (
+                <Typography key={`page-item-${elementData.type}-${index}`} textAlign={{ md: 'justify' }} fontSize={20} my={6}>{elementData.children}</Typography>
+              )
+              default: return (
+                <Fragment key={`frag-${index}`}>
+                  {elementData.children}
+                </Fragment>
+              )
+            }
+          })}
+        </Box>
+        
       </Box>
     </Fragment>
   )

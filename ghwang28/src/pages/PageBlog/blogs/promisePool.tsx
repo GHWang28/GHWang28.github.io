@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
 import InlineCode from '../../../components/InlineCode';
 import { BlogData } from '../../../types';
+import Box from '@mui/material/Box';
 
 const promisePoolBlog: BlogData = {
   id: 3,
   title: 'What are Promise pools?',
   subtitle: 'A guide on balancing concurrency with resource constraints.',
   thumbnail: '/images/blog/thumbnail_pool.webp',
-  created: '2023-09-02T00:00:00.000Z',
-  estimatedReadingTime: 2,
+  created: '2023-09-04T00:00:00.000Z',
+  estimatedReadingTime: 4,
   quizIncluded: false,
   emoji: '🏊‍♀️',
   elements: [
@@ -26,9 +27,89 @@ const promisePoolBlog: BlogData = {
     {
       type: 'p',
       children: <Fragment>
-        {'The solution to this problem is a concept called '} 
-        <b>{'Promise Pools'}</b>{'.'}
+        {'We could try and divide the array of promises up into chunks of '}
+        <InlineCode>{'x'}</InlineCode>
+        {' size and then await for each chunk:'}
       </Fragment>
+    },
+    {
+      type: 'code',
+      language: 'js',
+      title: 'Naïve Solution',
+      children: `const naivePromisePool = async (arrayOfFnPromise, limit) => {
+  const promisePools = [];
+  const responses = [];
+  
+  // Divide into chunks of max size "limit"
+  while (arrayOfFnPromise.length > 0) {
+    promisePools.push(arrayOfFnPromise.splice(0, limit));
+  }
+
+  // For each pool, simultaneously fetch the online status of all IDs within the group.
+  for (const pool of promisePools) {
+    const pendingPromises = pool.map((promise) => promise());
+
+    // Wait for this chunk to be finished
+    const resolved = await Promise.all(pendingPromises);
+    responses.push(...resolved);
+  }
+
+  return responses;
+}
+
+// TESTING:
+// Benchmarking how long it takes to execute these with a limit of 2
+console.time('t');
+naivePromisePool([
+  () => new Promise((resolve) => setTimeout(() => { resolve(1) }, 4000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(2) }, 1000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(3) }, 1000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(4) }, 2000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(5) }, 2000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(6) }, 1000)),
+], 2).then(console.log).then(() => { console.timeEnd('t') });
+`
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'But there\'s a problem with this. The time it takes to resolve the above is 8 seconds. While that may seem quick, take a look at the diagram below:'}
+      </Fragment>
+    },
+    {
+      type: 'as-is',
+      children: <Box
+        component='img'
+        width='100%'
+        sx={{ aspectRatio: 874 / 191, borderRadius: '15px' }}
+        src='/images/blog/diagrams/naivePool.webp'
+        alt='Inefficient Pooling'
+      />
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'The diagram above shows the time it takes to resolve the promises using the'}
+        <InlineCode>{'naivePromisePool'}</InlineCode>
+        {' with a limit of 2 concurrent tasks (slot A and slot B) at a time and an array of 6 concurrent tasks as seen in the previous example code.'}
+      </Fragment>
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'The whitespace in the diagram shows the moments where nothing was being resolved.'}
+      </Fragment>
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'This occurs because the time to resolve each chunk '}
+        <b>{'equals the time taken to resolve the longest promise within it.'}</b>
+      </Fragment>
+    },
+    {
+      type: 'p',
+      children:  'This is a massive waste of time, especially when we\'re resolving a larger promise set. To optimise this, we will need to get rid of this chunk system.'
     },
     {
       type: 'h4',
@@ -76,11 +157,12 @@ const promisePoolBlog: BlogData = {
     },
     {
       type: 'h4',
-      children: '3. Implementation'
+      children: '3. Implementation & Results'
     },
     {
       type: 'code',
       language: 'js',
+      title: 'Optimal Promise Pool Solution',
       children: `// Promise pool implementation
 const promisePool = async (arrayOfFnPromise, limit) => {
   let promiseCounter = 0;
@@ -111,14 +193,36 @@ const promisePool = async (arrayOfFnPromise, limit) => {
 // Benchmarking how long it takes to execute these with a limit of 2
 console.time('t');
 promisePool([
-  () => new Promise((resolve) => setTimeout(() => { resolve(1) }, 6000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(1) }, 4000)),
   () => new Promise((resolve) => setTimeout(() => { resolve(2) }, 1000)),
   () => new Promise((resolve) => setTimeout(() => { resolve(3) }, 1000)),
-  () => new Promise((resolve) => setTimeout(() => { resolve(4) }, 1000)),
-  () => new Promise((resolve) => setTimeout(() => { resolve(4) }, 1000)),
-  () => new Promise((resolve) => setTimeout(() => { resolve(4) }, 1000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(4) }, 2000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(5) }, 2000)),
+  () => new Promise((resolve) => setTimeout(() => { resolve(6) }, 1000)),
 ], 2).then(console.log).then(() => { console.timeEnd('t') });
 `
+    },
+    {
+      type: 'p',
+      children: 'When you benchmark this using the same test used for the naïve promise pool function, we will get the following results:'
+    },
+    {
+      type: 'as-is',
+      children: <Box
+        component='img'
+        width='100%'
+        sx={{ aspectRatio: 874 / 191, borderRadius: '15px' }}
+        src='/images/blog/diagrams/optimalPool.webp'
+        alt='Efficient Pooling'
+      />
+    },
+    {
+      type: 'p',
+      children: <Fragment>
+        {'That is '}
+        <b>{'2 seconds'}</b>
+        {' saved! Notice that the odd or even numbered promises are not restricted to slot A or B - whenever a slot is freed, the next promise will occupy it immediately.'}
+      </Fragment>
     },
     {
       type: 'p',
