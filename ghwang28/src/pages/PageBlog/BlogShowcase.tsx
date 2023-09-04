@@ -127,7 +127,6 @@ const BlogShowcase = () => {
               )
               case 'img': return (
                 <ImageZoomable
-                  draggable={false}
                   component='img'
                   width='100%'
                   src={elementData.src}
@@ -137,7 +136,7 @@ const BlogShowcase = () => {
               )
               default: return (
                 <Fragment key={`frag-${index}`}>
-                  {elementData?.children || null}
+                  {elementData.children}
                 </Fragment>
               )
             }
