@@ -204,7 +204,7 @@ promisePool([
     },
     {
       type: 'p',
-      children: 'When you benchmark this using the same test used for the naïve promise pool function, we will get the following results:'
+      children: 'When we benchmark this using the same test used for the naïve promise pool function, we will see that it only takes 6 seconds now:'
     },
     {
       type: 'as-is',
