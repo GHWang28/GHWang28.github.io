@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import InlineCode from '../../../components/InlineCode';
 import { BlogData } from '../../../types';
-import Box from '@mui/material/Box';
 
 const promisePoolBlog: BlogData = {
   id: 3,
@@ -77,14 +76,10 @@ naivePromisePool([
       </Fragment>
     },
     {
-      type: 'as-is',
-      children: <Box
-        component='img'
-        width='100%'
-        sx={{ aspectRatio: 874 / 191, borderRadius: '15px' }}
-        src='/images/blog/diagrams/naivePool.webp'
-        alt='Inefficient Pooling'
-      />
+      type: 'img',
+      aspectRatio: 874 / 191,
+      src: '/images/blog/diagrams/naivePool.webp',
+      alt: 'Inefficient Pooling'
     },
     {
       type: 'p',
@@ -201,14 +196,10 @@ promisePool([
       children: 'When we benchmark this using the same test used for the naïve promise pool function, we will see that it only takes 6 seconds now:'
     },
     {
-      type: 'as-is',
-      children: <Box
-        component='img'
-        width='100%'
-        sx={{ aspectRatio: 874 / 191, borderRadius: '15px' }}
-        src='/images/blog/diagrams/optimalPool.webp'
-        alt='Efficient Pooling'
-      />
+      type: 'img',
+      aspectRatio: 874 / 191,
+      src: '/images/blog/diagrams/optimalPool.webp',
+      alt: 'Efficient Pooling'
     },
     {
       type: 'p',

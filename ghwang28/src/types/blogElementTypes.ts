@@ -1,7 +1,7 @@
 import React from 'react';
 import { QuizOptions } from '.';
 
-type BlogElement = OtherElementType | TextElementType | CodeElementType | QuizElementType | AsIsElement;
+type BlogElement = OtherElementType | TextElementType | CodeElementType | QuizElementType | Image | AsIsElement;
 
 type TextElementType = {
   type: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
@@ -28,6 +28,13 @@ type OtherElementType = {
 type AsIsElement = {
   type: 'as-is',
   children: React.ReactNode,
+}
+
+type Image = {
+  type: 'img',
+  src: string,
+  alt: string,
+  aspectRatio?: number
 }
 
 export default BlogElement;

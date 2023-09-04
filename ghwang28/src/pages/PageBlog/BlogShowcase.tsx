@@ -125,9 +125,19 @@ const BlogShowcase = () => {
               case 'p': return (
                 <Typography key={`page-item-${elementData.type}-${index}`} textAlign={{ md: 'justify' }} fontSize={20} my={6}>{elementData.children}</Typography>
               )
+              case 'img': return (
+                <ImageZoomable
+                  draggable={false}
+                  component='img'
+                  width='100%'
+                  src={elementData.src}
+                  alt={elementData.alt}
+                  sx={{ aspectRatio: elementData.aspectRatio, borderRadius: '15px' }}
+                />
+              )
               default: return (
                 <Fragment key={`frag-${index}`}>
-                  {elementData.children}
+                  {elementData?.children || null}
                 </Fragment>
               )
             }
