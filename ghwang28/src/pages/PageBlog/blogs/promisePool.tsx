@@ -107,15 +107,17 @@ naivePromisePool([
     {
       type: 'p',
       children: <Fragment>
-        {'The idea is that only an '}
+        {'Like with the previous solution, we will have '}
         <InlineCode>{'x'}</InlineCode>
-        {' amount of asynchronous tasks will be executing at once and be inside the "pool". The moment one of those tasks complete, another one will take its place in the pool. This ensures that we\'re not overwhelming the backend while minimising the wait time for these tasks to complete.'}
+        {' amount of asynchronous tasks will be executing at once. Rather than chunks, we will put the first '}
+        <InlineCode>{'x'}</InlineCode>
+        {' tasks into "pools". The moment one of those tasks complete, another one will take its place in the pool. This ensures that we\'re not overwhelming the backend while minimising the wait time for these tasks to complete.'}
       </Fragment>
     },
     {
       type: 'p',
       children: <Fragment>
-        {'Unfortunately, as of writing this, there is not a built in method of Promise pools. So, why not make our own?'}
+        {'Unfortunately, as of writing this, there is not a built in method of Promise pools. So, we will have to implement it ourselves.'}
       </Fragment>
     },
     {
