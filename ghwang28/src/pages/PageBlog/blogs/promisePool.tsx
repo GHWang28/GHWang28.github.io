@@ -92,58 +92,36 @@ naivePromisePool([
     {
       type: 'p',
       children: <Fragment>
-        {'The whitespace in the diagram shows the moments where nothing was being resolved. This occurs because the time to resolve each chunk '}
+        {'You may have observed that there are periods where the slot isn\'t resolving anything. This occurs because the time to resolve each chunk '}
         <b>{'equals the time taken to resolve the longest promise within it.'}</b>
       </Fragment>
     },
     {
       type: 'p',
-      children:  'This is a massive waste of time, especially when we\'re resolving a larger promise set. To optimise this, we will need to get rid of this chunk system.'
+      children: 'As you can tell, this is suboptimal. To optimise it, we will need to get rid of the chunk system.'
     },
     {
       type: 'h4',
-      children: '2. Intuition behind Promise pools'
+      children: '2. Intuition behind Optimised solution'
     },
     {
       type: 'p',
       children: <Fragment>
-        {'Like with the previous solution, we will have '}
-        <InlineCode>{'x'}</InlineCode>
-        {' amount of asynchronous tasks will be executing at once. Rather than chunks, we will put the first '}
-        <InlineCode>{'x'}</InlineCode>
-        {' tasks into "pools". The moment one of those tasks complete, another one will take its place in the pool. This ensures that we\'re not overwhelming the backend while minimising the wait time for these tasks to complete.'}
+        {'Similar to the previous function, we\'ll execute x asynchronous tasks concurrently by organizing them into "pools". Except this time, when one task completes, another replaces it in the pool.'}
       </Fragment>
     },
     {
       type: 'p',
       children: <Fragment>
-        {'Unfortunately, as of writing this, there is not a built in method of Promise pools. So, we will have to implement it ourselves.'}
+        {'Furthermore, this function will take in an array of '}
+        <b>{'functions that return promises'}</b>
+        {' (rather than an array of promises) to avoid immediate pending. This function will also accept a maximum concurrent promise count.'}
       </Fragment>
     },
     {
       type: 'p',
       children: <Fragment>
-        {'We\'ll need a function that, just like with '}
-        <InlineCode>{'Promise.all'}</InlineCode>
-        {' takes in an array. Rather than an array of promises, we need an '}
-        <b>{'array of functions that returns promises'}</b>
-        {'. That way, the promises won\'t start pending immediately.'}
-      </Fragment>
-    },
-    {
-      type: 'p',
-      children: <Fragment>
-        {'This function will also take in another '}
-        <b>{'number variable'}</b>
-        {', which determines the max amount of promises that will be pending at a time.'}
-      </Fragment>
-    },
-    {
-      type: 'p',
-      children: <Fragment>
-        {'Inside this function, we will need to resolve \'x\' amount of promises. Then, after a promises is fulfilled or rejected, resolve the next unresolved promise in the array. This can easily be implemented through a '}
-        <b>{'recursive function'}</b>
-        {'. Regarding which promise to resolve next, we can keep track of that with a counter variable.'}
+        {'Inside this function, we\'ll begin resolving as many promises as allowed initially (determined by the number passed into the function) and then continue resolving the next unsettled promise in the array using a recursive function and a counter variable to track settled promises.'}
       </Fragment>
     },
     {
