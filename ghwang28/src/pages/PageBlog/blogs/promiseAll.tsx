@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import InlineCode from '../../../components/InlineCode';
 import SparklezText from '../../../components/Sparklez/SparklezText';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { BlogData } from '../../../types';
 
 const promiseAllBlog: BlogData = {
@@ -387,17 +387,17 @@ for (const foodItem of allFoodItem) {
     {
       type: 'as-is',
       children: (
-        <ul>
+        <Box component='ul' sx={{ listStyle: 'none' }}>
           <li>
-            {'Get the array of order IDs.'}
+            <Typography>{'1. Get the array of order IDs.'}</Typography>
           </li>
           <li>
-            {'Get the information of each order ID '}<b>{'concurrently'}</b>{'.'}
+            <Typography>{'2. Get the information of each order ID '}<b>{'concurrently'}</b>{'.'}</Typography>
           </li>
           <li>
-            {'When and only when the information needed has successfully been gathered, then we display them all onto the DOM'}
+            <Typography>{'3. When and only when the information needed has successfully been gathered, then we display them all onto the DOM'}</Typography>
           </li>
-        </ul>
+        </Box>
       )
     },
     {
