@@ -147,7 +147,7 @@ export default function App() {
     document.body.className = (themeMode) ? 'light-mode-bg' : 'dark-mode-bg'
   }, [themeMode]);
 
-  // Handlign swiping effect
+  // Handling swiping effect
   const { ref: documentRef } = useSwipeable({
     delta: 50,
     preventScrollOnSwipe: true,
