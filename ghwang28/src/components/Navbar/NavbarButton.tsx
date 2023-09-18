@@ -26,6 +26,7 @@ const NavbarButton = forwardRef<HTMLButtonElement, ComponentProps>(({ label, hre
       style={{
         height: '100%',
         width: '33.33%',
+        pointerEvents: (disabled) ? 'none' : 'auto'
       }}
       onMouseEnter={() => { setHover(true) }}
       onMouseLeave={() => { setHover(false) }}
