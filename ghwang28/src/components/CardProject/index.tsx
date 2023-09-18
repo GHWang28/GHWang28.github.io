@@ -96,8 +96,8 @@ const CardProject = ({ data, index = 0 }: ComponentProps) => {
         )}
       </Box>
       {buttons && buttons.map((button, buttonIndex) => (
-        <Box component='span' sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'left' } }}>
-          <BootstrapTooltip followCursor key={`c${index}-b${buttonIndex}]`} placement='left' enterDelay={300} title={button?.disabled || button.text}>
+        <Box key={`c${index}-b${buttonIndex}]`} component='span' sx={{ display: 'flex', justifyContent: { xs: 'center', sm: 'left' } }}>
+          <BootstrapTooltip followCursor placement='left' enterDelay={300} title={button?.disabled || button.text}>
             <span>
               <Button
                 startIcon={button.icon}

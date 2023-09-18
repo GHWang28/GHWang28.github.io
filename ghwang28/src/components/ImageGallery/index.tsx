@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Grid, useMediaQuery, Theme, useTheme } from '@mui/material';
+import { Box, Button, Grid, useTheme } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { getYouTubeThumbnailImg, isYouTubeURL, mod } from '../../utils';
@@ -21,8 +21,6 @@ type ComponentProps = {
  */
 const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
   const lightMode = useTheme().palette.mode === 'light';
-  const largeMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const mediumMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'));
   const [imgIndex, setImgIndex] = useState(0);
   const [prevImgIndex, setPrevImgIndex] = useState(0);
 
@@ -73,12 +71,6 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
     setImgIndex(img);
   }
 
-  const galleryHeight = () => {
-    if (largeMq) return '500px';
-    if (mediumMq) return '400px';
-    return '200px';
-  }
-
   const gallerySX = {
     height: '100%',
     display: 'flex',
@@ -88,7 +80,8 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
   }
 
   const arrowSx = {
-    bgcolor: (mediumMq) ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.5)'
+    ...gallerySX,
+    bgcolor: { md: 'rgba(0,0,0,0.2)', xs: 'rgba(0,0,0,0.5)' },
   }
 
   return (
@@ -102,16 +95,16 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
         borderColor: 'contrastColor.main',
         borderRadius: '8px',
         overflow: 'hidden',
-        mx: (mediumMq) ? 10 : 0
+        mx: { md: 10 }
       }}
     >
-      <Grid {...swipeHandler} container sx={{ height: galleryHeight(), overflow: 'hidden' }}>
+      <Grid {...swipeHandler} container sx={{ height: { lg: '500px', md: '400px', xs: '200px' }, overflow: 'hidden' }}>
         {/* < */}
         <Grid
           item
           xs={1}
           sm={1}
-          sx={{ ...gallerySX, ...arrowSx }}
+          sx={arrowSx}
           zIndex={5}
         >
           <SideArrow title='Previous Image' onClick={cycleLeft}>
@@ -132,7 +125,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
               ) : (
                 <ImageZoomable
                   alt={`Gallery Item #${imgIndex}`}
-                  sx={{ height: galleryHeight(), WebkitTapHighlightColor: 'transparent' }}
+                  sx={{ height: '100%', width: '100%',}}
                   onContextMenu={(event) => { event.preventDefault() }}
                   title={`Gallery Item #${imgIndex}`}
                   src={imgArray[imgIndex]}
@@ -142,7 +135,7 @@ const ImageGallery = ({ imgArray = [] }: ComponentProps) => {
           ))}
         </Grid>
         {/* > */}
-        <Grid item xs={1} sm={1} sx={{ ...gallerySX, ...arrowSx }} zIndex={5}>
+        <Grid item xs={1} sm={1} sx={arrowSx} zIndex={5}>
           <SideArrow title='Next Image' onClick={cycleRight}>
             <ArrowRightIcon sx={{ scale: '3' }}/>
           </SideArrow>

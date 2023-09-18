@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, Fragment, useMemo } from 'react';
+import React, { useState, useEffect, useRef, Fragment, useMemo } from 'react';
 import { AppBar, Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { useSpring, animated } from '@react-spring/web';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 import LogoBox from '../LogoBox';
 import Settings from './Settings'
 import NavbarButton from './NavbarButton'; 
@@ -10,6 +10,12 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import { useAppSelector } from '../../hooks';
+
+const iconArray = [
+  <SmartToyIcon />,
+  <LightbulbIcon />,
+  <EmojiPeopleIcon />
+];
 
 const Navbar = () => {
   const navbarLockState = useAppSelector(state => state.navbarLock);
@@ -28,11 +34,10 @@ const Navbar = () => {
     to: { y: 0 }
   })
   const AnimatedAppBar = animated(AppBar);
-  const navigate = useNavigate();
   const location = useLocation();
 
   // Moving the selected border around with each click
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Find which tab to highlight by getting the correct ref
     // rootPath is here to ensure that the highlight fades if not on one of the root pages
     let rootPath = false;
@@ -91,21 +96,17 @@ const Navbar = () => {
 
   // Adds a divider at the start and between each navigation option
   const navigationElements = useMemo(() => {
-    const iconArray = [
-      <SmartToyIcon />,
-      <LightbulbIcon />,
-      <EmojiPeopleIcon />
-    ];
+
     const navigationOptions = config.PAGES.slice(1).map((navigationOption) => (
       navigationOption.slice(1)
     ));
+
     return navigationOptions.map((navOption: string, index: number) => (
       <NavbarButton
         key={`nav-btn-${navOption}`}
         ref={(e: HTMLButtonElement) => { navOptionRefArray.current[index] = e }}
-        onClick={() => {
-          navigate(`/${navOption}`, { state: { prevLocation: location.pathname } })
-        }}
+        href={`/${navOption}`}
+        state={{ prevLocation: location.pathname }}
         disabled={location.pathname === `/${navOption}`}
         label={navOption}
         startIcon={iconArray[index]}
@@ -123,7 +124,7 @@ const Navbar = () => {
         <Divider orientation='vertical' flexItem />
       </Fragment>
     )))
-  }, [location.pathname, navigate])
+  }, [location.pathname])
 
   return (
     <AnimatedAppBar

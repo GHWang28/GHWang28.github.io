@@ -20,7 +20,8 @@ const ImageZoomable = ({ src = '', sx, alternateSrc = '', springStyle, style, ..
       springStyle={springStyle}
       sx={{
         ...sx,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        WebkitTapHighlightColor: 'transparent'
       }}
       onClick={() => { dispatch(setImageZoom(alternateSrc || src)) }}
       {...props}

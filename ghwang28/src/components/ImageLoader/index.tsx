@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, CircularProgress, BoxProps, SxProps } from '@mui/material'
-import { InView } from 'react-intersection-observer';
 import { SpringValue } from '@react-spring/web';
 
 type ComponentProps = BoxProps<'img'> & {
@@ -9,37 +8,35 @@ type ComponentProps = BoxProps<'img'> & {
 }
 
 const ImageLoader = ({ style, sx, springStyle, imageSx = { width: '100%', height: '100%' }, ...props }: ComponentProps) => {
-  const [inView, setInView] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   
   return (
     <Box
-      component={InView}
-      rootMargin='9999999px 0px 0px 0px'
-      onChange={(inView: boolean) => { setInView(inView) }}
       sx={{
         ...sx,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        position: 'relative',
         color: 'contrastColor.main',
         overflow: 'clip'
       }}
     >
       {!isLoaded && (
-        <CircularProgress color='inherit' />
+        <CircularProgress sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          translate: '-50% -50%',
+        }} color='inherit' />
       )}
-      {(inView) && (
-        <Box
-          onLoad={() => { setIsLoaded(true) }}
-          component='img'
-          draggable={false}
-          display={(isLoaded) ? 'block' : 'none'}
-          sx={imageSx}
-          {...props}
-          style={{ ...style, ...springStyle }}
-        />
-      )}
+      <Box
+        onLoad={() => { setIsLoaded(true) }}
+        component='img'
+        loading='lazy'
+        draggable={false}
+        visibility={(isLoaded) ? 'visible' : 'hidden'}
+        sx={{ ...imageSx, objectFit: 'contain' }}
+        {...props}
+        style={{ ...style, ...springStyle }}
+      />
     </Box>
   )
 }
