@@ -5,7 +5,6 @@ import BootstrapTooltip from '../BootstrapTooltip';
 import { useNavigate } from 'react-router';
 import BlogTags from '../BlogTags';
 import { BlogData } from '../../types';
-import CardDashed from '../CardDashed';
 import ImageLoader from '../ImageLoader';
 
 type ComponentProps = {
@@ -32,19 +31,7 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
     quizIncluded
   } = data;
 
-  return (id < 0) ? (
-    <CardDashed
-      ref={ref}
-      sx={{
-        opacity: (inView) ? '0.8' : '0',
-        translate: (inView) ? '0px' : ((index % 2) ? '100px' : '-100px'),
-      }}
-    >
-      <Typography fontSize={18}>
-        {' More posts coming soon...'}
-      </Typography>
-    </CardDashed>
-  ) : (
+  return (
     <Box
       ref={ref}
       className='border-gradient'
@@ -82,7 +69,9 @@ const CardBlog = ({ data, index = 0 }: ComponentProps) => {
           imageSx={{
             borderRadius: '15px',
             bgcolor: 'rgb(200,200,200)',
-            height: '100%'
+            height: '100%',
+            display: 'block',
+            mx: 'auto'
           }}
         />
       )}

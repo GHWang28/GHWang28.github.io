@@ -58,13 +58,12 @@ const AnimatedProfilePic = () => {
       >
         {transitions((style, imgIndex) => (
           <AnimatedBox
-            className='border-gradient round'
             sx={{
               overflow: 'hidden',
               borderRadius: '50%',
               transition: 'scale 0.2s ease-in-out',
               '&:hover': {
-                scale: '1.05'
+                scale: '1.01'
               },
               backfaceVisibility: 'hidden'
             }}
