@@ -5,6 +5,7 @@ import { animated, useTransition } from '@react-spring/web';
 import ContactDetails from '../components/ContactDetails';
 import VersionNumber from '../components/VersionNumber';
 import PageLoading from './PageLoading';
+import Footer from '../components/Footer';
 const PageAbout = React.lazy(() => import('./PageAbout'));
 const PageBlog = React.lazy(() => import('./PageBlog'));
 const PageProjects = React.lazy(() => import('./PageProjects'));
@@ -39,11 +40,13 @@ const PageRouter = () => {
           </AnimatedBox>
         </Suspense>
       ))}
-      {(location.pathname === '/') && (
+      {(location.pathname === '/') ? (
         <Fragment>
           <VersionNumber />
           <ContactDetails />
         </Fragment>
+      ) : (
+        <Footer />
       )}
     </Fragment>
   )
@@ -60,9 +63,9 @@ const getTransitionEffect = (currLoc: string, prevLoc: string) => {
   ) {
     // left to right
     return {
-      from: { opacity: 0, x: '-25%', y: '0px', position: 'absolute' },
+      from: { opacity: 0, x: '-15%', y: '0px', position: 'absolute' },
       enter: { opacity: 1, x: '0%', y: '0px', position: 'absolute' },
-      leave: { opacity: 0,  x: '12.5%', y: '0px', position: 'static' },
+      leave: { opacity: 0,  x: '7.5%', y: '0px', position: 'static' },
     }
   } else if (
     (currLoc === '/about' && ['/projects', '/', '/blog'].includes(prevLoc))
@@ -71,9 +74,9 @@ const getTransitionEffect = (currLoc: string, prevLoc: string) => {
   ) {
     // right to left
     return {
-      from: { opacity: 0, x: '25%', y: '0px', position: 'static' },
+      from: { opacity: 0, x: '15%', y: '0px', position: 'static' },
       enter: { opacity: 1, x: '0%', y: '0px', position: 'static' },
-      leave: { opacity: 0, x: '-12.5%', y: '0px', position: 'absolute' },
+      leave: { opacity: 0, x: '-7.5%', y: '0px', position: 'absolute' },
     };
   } else if (prevLoc && prevLoc.startsWith('/projects/')) {
     // bottom to top
