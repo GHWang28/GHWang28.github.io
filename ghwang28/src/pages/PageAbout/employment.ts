@@ -17,7 +17,7 @@ const generateEmploymentTimeline = (): TimelineData[] => [
     ]
   },
   {
-    oppContent: `(30th Nov 19) → (${currTime})`,
+    oppContent: `(30th Nov 19) → (17th Dec 23)`,
     timelineDotColor: 'rgb(255,255,255)',
     timelineDotImg: '/images/timeline/abc.webp',
     timelineTitle: 'Australia ABC College Tutor',
