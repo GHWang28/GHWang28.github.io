@@ -1,0 +1,1 @@
+import{j as s}from"./index-1783a4d6.js";import{S as r}from"./index-1f697e84.js";const m=({children:a,gradient:t="",noSparklez:e=!1})=>e?s.jsx("span",{className:`gradient-text ${t}`,children:a}):s.jsx(r,{children:s.jsx("span",{className:`gradient-text ${t}`,children:a})});export{m as S};
