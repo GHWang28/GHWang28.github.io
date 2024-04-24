@@ -40,16 +40,16 @@ const generateEmploymentTimeline = (): TimelineData[] => [
       'Involved guiding and nurturing the growth of university students with limited experience in Frontend development, empowering them to comprehend the intricacies and possibilities of the React library.',
       'Assisted and guided students in Help Sessions with Frontend related queries by exchanging ideas and listening to their problems',
       'Consistently answering and monitoring the course forum questions from students',
-      'Graded student’s assignments and exams',
+      'Graded student\'s assignments and exams',
     ]
   },
   {
     oppContent: `(13th Nov 23) → (${currTime})`,
     timelineDotColor: 'rgb(0,0,0)',
     timelineDotImg: '/images/timeline/tiktok.webp',
-    timelineTitle: 'TikTok Australia Frontend Engineer',
+    timelineTitle: 'TikTok LIVE Frontend Engineer',
     timelineContent: [
-      'Started a Graduate Frontend role at TikTok Australia.'
+      'Started a Graduate Frontend role at TikTok LIVE.'
     ]
   },
   {
@@ -57,7 +57,7 @@ const generateEmploymentTimeline = (): TimelineData[] => [
     timelineDotColor: 'rgb(0,0,0)',
     timelineTitle: 'Present Time',
     timelineContent: [
-      'I am currently employed at Australia ABC College Tutoring, work as a Frontend Tutor at UNSW and a Graduate Frontend Engineer at TikTok Australia.'
+      'Presently employed as a Frontend Programming Tutor at UNSW while concurrently holding a Frontend Engineer position at TikTok LIVE.'
     ]
   }
 ]

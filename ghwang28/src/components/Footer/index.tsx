@@ -102,7 +102,7 @@ const Footer = () => {
         />
         <Box sx={{ height: '30%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <Typography fontFamily='my-handwriting' sx={{ lineHeight: 1, fontWeight: 'bold' }}>
-            {'© 2023 Designed by Gordon Wang'}
+            {'© 2024 Designed by Gordon Wang'}
           </Typography>
           <Typography fontFamily='my-handwriting' sx={{ lineHeight: 1 }}>
             {`Last updated: ${config.LATEST_UPDATE}`}
