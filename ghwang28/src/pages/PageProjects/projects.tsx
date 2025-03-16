@@ -64,6 +64,26 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       ]
     },
     {
+      title: 'The Dead Man\'s Hand',
+      date: '(7/3/2025) (Work in Progess)',
+      type: new Set<IconTypes>(['Game', 'Personal Project', 'Artwork']),
+      imgs: [
+        '/images/the-dead-mans-hand/TheDeadManHandTitleCover.webm',
+      ],
+      body: [
+        'A passion project that I work on in my spare time.',
+      ],
+      buttons: [
+        {
+          text: 'View Concept Art',
+          icon: <PaletteIcon />,
+          onClick: () => {
+            navigate('the-dead-mans-hand', { state: { prevLocation: location.pathname } })
+          },
+        }
+      ]
+    },
+    {
       title: 'Redflags',
       date: '(19/08/2023) (Ongoing)',
       type: new Set<IconTypes>(['Frontend', 'React']),
@@ -420,6 +440,8 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       ]
     }
   ]
+
+  // return projects;
 
   return projects.sort((a, b) => a.title.localeCompare(b.title));
 } 

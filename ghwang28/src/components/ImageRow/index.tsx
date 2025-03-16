@@ -54,7 +54,7 @@ const ImageRow = ({ src, title, body, aspectRatio = 1, rowNo }: ComponentProps) 
           borderColor: 'contrastColor.main'
         }}
       >
-        <Typography variant={'h5'} align='center' sx={{ textDecoration: 'underline' }}>
+        <Typography variant={'h5'} align='center'>
           {title}
         </Typography>
         <Typography variant={'h6'} align='center' sx={{ opacity: '0.75' }}>

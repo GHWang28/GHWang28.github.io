@@ -8,7 +8,7 @@ import ButtonGoBack from '../../components/ButtonGoBack';
 import GradientTitle from '../../components/GradientTitle';
 import { ArtworkData } from '../../types';
 
-const ProjectEarthEphemeris = () => {
+const ProjectEarthEphemeris: React.FC = () => {
   const [ref, inView] = useInView();
   const AnimatedBox = animated(Box);
 
