@@ -8,6 +8,7 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 import SchoolIcon from '@mui/icons-material/School';
 import FaceIcon from '@mui/icons-material/Face';
 import WebIcon from '@mui/icons-material/Web';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import HighschoolIcon from './HighschoolIcon';
 import FirebaseIcon from './FirebaseIcon';
 import { SxProps } from '@mui/material';
@@ -31,6 +32,7 @@ const TagIcon = ({ label, sx }: ComponentProps) => {
     case 'University Project': return <SchoolIcon sx={sx} />
     case 'High School Project': return <HighschoolIcon sx={sx} />
     case 'Firebase': return <FirebaseIcon sx={sx} />
+    case 'Utility': return <ConstructionIcon sx={sx} />
     default: return null;
   }
 }

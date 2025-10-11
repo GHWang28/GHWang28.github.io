@@ -11,5 +11,8 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
-  }
+  },
+  optimizeDeps: {
+    include: ['@mui/material/Tooltip', '@emotion/styled', "@mui/material/Box"],
+  },
 })

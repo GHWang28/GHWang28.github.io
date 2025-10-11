@@ -16,6 +16,7 @@ const CodeSnippet = ({ snippet, title, ...props }: ComponentProps) => {
   const lightMode = theme.palette.mode === 'light';
 
   const codeBlock = (
+    // @ts-expect-error
     <SyntaxHighlighter customStyle={{ margin: '0px' }} {...props} style={lightMode ? light : dark}>
       {snippet}
     </SyntaxHighlighter>

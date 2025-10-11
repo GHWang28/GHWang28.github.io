@@ -61,7 +61,7 @@ type ProjectButtons = {
   disabled?: string
 }
 
-export type IconTypes = 'Artwork' | 'React' | 'C++' | 'Game' | 'OpenGL' | 'JavaScript' | 'Frontend' | 'Personal Project' | 'University Project' | 'High School Project' | 'Firebase'
+export type IconTypes = 'Artwork' | 'React' | 'C++' | 'Game' | 'OpenGL' | 'JavaScript' | 'Frontend' | 'Personal Project' | 'University Project' | 'High School Project' | 'Firebase' | 'Utility'
 
 export type QuizOptions = {
   text: React.ReactNode | string,

@@ -84,6 +84,26 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       ]
     },
     {
+      title: 'Sprite Sheet Generator',
+      date: '(10/10/2025)',
+      type: new Set<IconTypes>(['Utility']),
+      imgs: [
+        '/images/sprite-sheet-generator.png',
+      ],
+      body: [
+        'A quick tool made to help generate sprite sheets for games',
+      ],
+      buttons: [
+        {
+          text: 'View Live',
+          icon: <VisibilityIcon />,
+          onClick: () => {
+            navigate('sprite-generator', { state: { prevLocation: location.pathname } })
+          },
+        }
+      ]
+    },
+    {
       title: 'Redflags',
       date: '(19/08/2023) (Ongoing)',
       type: new Set<IconTypes>(['Frontend', 'React']),

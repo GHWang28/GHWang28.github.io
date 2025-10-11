@@ -10,6 +10,7 @@ const ProjectSlackr = React.lazy(() => import('./UniversityProjs/ProjectSlackr')
 const ProjectMinecraftRecreation = React.lazy(() => import('./UniversityProjs/ProjectMinecraftRecreation'));
 const ProjectMinecraftScreensaver = React.lazy(() => import('./UniversityProjs/ProjectMinecraftScreensaver'));
 const ProjectTheDeadMansHand = React.lazy(() => import('./ProjectTheDeadMansHand'));
+const ProjectSpriteSheetGenerator = React.lazy(() => import('./ProjectSpriteSheetGenerator'));
 
 const PageProjects = () => {
   return (
@@ -22,6 +23,7 @@ const PageProjects = () => {
         <Route path='slackr/' element={<ProjectSlackr />}/>
         <Route path='airbnb/' element={<ProjectAirBnB />}/>
         <Route path='the-dead-mans-hand/' element={<ProjectTheDeadMansHand />} />
+        <Route path='sprite-generator/' element={<ProjectSpriteSheetGenerator />} />
         <Route path='showcase/:project' element={<ProjectIFrameShowCase />}/>
       </Routes>
     </Suspense>

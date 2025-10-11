@@ -199,7 +199,23 @@ export const debounce = (fn: GenericFunction, debounceDuration: number): Generic
   let timerID: ReturnType<typeof setTimeout>;
 
   return (...args) => {
+    // @ts-expect-error
     clearTimeout(timerID);
     setTimeout(() => { fn(...args) }, debounceDuration);
   }
 }
+
+export const clamp = (value: number, min: number, max: number): number => {
+  if (min > max) {
+    console.warn(`clamp: min value (${min}) is greater than max value (${max}). The values will be swapped.`);
+    [min, max] = [max, min]; // Swap the values
+  }
+
+  if (value < min) {
+    return min;
+  }
+  if (value > max) {
+    return max;
+  }
+  return value;
+};
