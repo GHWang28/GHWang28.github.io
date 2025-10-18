@@ -1,257 +1,513 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import {
+  DndContext,
+  DragEndEvent,
+  DragStartEvent,
+  DragOverlay,
+  useDraggable,
+  useDroppable,
+  UniqueIdentifier,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import {
   Box,
   Button,
   TextField,
+  Container,
   Typography,
   Alert,
   Stack,
   Paper,
-  CircularProgress,
-  Grid,
 } from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { clamp } from '../../utils';
-import { useDebounceEffect } from 'ahooks'
+import { useSize } from 'ahooks';
 
-// Define the structure for our loaded image data
-interface LoadedImage {
-  element: HTMLImageElement;
-  name: string;
+// --- Type Definitions ---
+
+/** Represents a validated, uploaded image */
+interface ImageItem {
+  id: UniqueIdentifier;
+  file: File;
+  previewUrl: string;
+  imageElement: HTMLImageElement;
 }
 
+/** Maps a grid index (number) to an image ID (UniqueIdentifier) */
+type GridMapping = Record<number, UniqueIdentifier>;
+
+interface ImageDimensions {
+  width: number;
+  height: number;
+}
+
+// --- Helper Function ---
+
 /**
- * A React component to upload multiple images, verify their dimensions,
- * and collate them into a single downloadable image grid.
+ * Loads a File object into an HTMLImageElement to get its dimensions.
+ * @returns A promise that resolves with the image element and its dimensions.
  */
-const ProjectSpriteSheetGenerator: React.FC = () => {
-  // State for managing images, grid layout, errors, and loading status
-  const [images, setImages] = useState<LoadedImage[]>([]);
-  const [columns, setColumns] = useState<number>(3);
-  const [rows, setRows] = useState<number>(2);
-  const [error, setError] = useState<string | null>(null);
-  const [collatedImageURL, setCollatedImageURL] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+const getImageData = (
+  file: File,
+  id: UniqueIdentifier
+): Promise<ImageItem> => {
+  return new Promise((resolve, reject) => {
+    const previewUrl = URL.createObjectURL(file);
+    const image = new Image();
+    image.src = previewUrl;
 
-  // Refs to interact with the hidden file input and canvas elements
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  /**
-   * Handles the file selection process. It loads the images,
-   * verifies their dimensions, and updates the state.
-   */
-  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files || files.length === 0) {
-      return;
-    }
-
-    setIsLoading(true);
-    handleReset();
-
-    const imagePromises: Promise<LoadedImage>[] = Array.from(files).map(file => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-        img.onload = () => {
-          URL.revokeObjectURL(img.src); // Clean up memory
-          resolve({ element: img, name: file.name });
-        };
-        img.onerror = () => {
-          URL.revokeObjectURL(img.src);
-          reject(`Could not load image: ${file.name}`);
-        };
+    image.onload = () => {
+      resolve({
+        id,
+        file,
+        previewUrl,
+        imageElement: image,
       });
-    });
+    };
+    image.onerror = (err) => {
+      URL.revokeObjectURL(previewUrl);
+      reject(new Error(`Failed to load image: ${file.name}. ${err}`));
+    };
+  });
+};
 
-    try {
-      const loadedImages = await Promise.all(imagePromises);
+// --- DraggableImage Component ---
 
-      // --- Dimension Verification ---
-      if (loadedImages.length > 1) {
-        const firstImage = loadedImages[0].element;
-        const { width: expectedWidth, height: expectedHeight } = firstImage;
+interface DraggableImageProps {
+  item: ImageItem;
+  dimensions: ImageDimensions;
+}
 
-        for (const { element, name } of loadedImages) {
-          if (element.width !== expectedWidth || element.height !== expectedHeight) {
-            setError(
-              `Dimension mismatch: All images must be ${expectedWidth}x${expectedHeight}px. Image '${name}' is ${element.width}x${element.height}px.`
-            );
-            setIsLoading(false);
-            return;
-          }
-        }
+const DraggableImage: React.FC<DraggableImageProps> = ({ item, dimensions }) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: item.id,
+  });
+
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        cursor: 'grabbing',
+        zIndex: 100, // Ensure it's on top while dragging
       }
-      setImages(loadedImages);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
-    } finally {
-      setIsLoading(false);
-      // Reset file input to allow re-uploading the same files
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    }
-  };
-
-  /**
-   * This effect runs whenever the images or grid dimensions change.
-   * It draws the images onto the canvas and generates the final image URL.
-   */
-  useDebounceEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || images.length === 0) {
-      setCollatedImageURL('');
-      return;
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      return;
-    }
-
-    // Get dimensions from the first image (they are all the same)
-    const { width: imageWidth, height: imageHeight } = images[0].element;
-
-    // Set canvas size based on grid
-    canvas.width = imageWidth * columns;
-    canvas.height = imageHeight * rows;
-
-    // Clear previous drawings
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw images onto the canvas in a grid
-    for (let i = 0; i < images.length && i < columns * rows; i++) {
-      const img = images[i].element;
-      const col = i % columns;
-      const row = Math.floor(i / columns);
-      const dx = col * imageWidth;
-      const dy = row * imageHeight;
-      ctx.drawImage(img, dx, dy, imageWidth, imageHeight);
-    }
-
-    // Generate the data URL for the final image
-    setCollatedImageURL(canvas.toDataURL('image/png'));
-  }, [images, columns, rows], { wait: 500 });
-
-  const handleReset = () => {
-    setError(null);
-    setImages([]); // Clear previous images
-  }
+    : {
+        cursor: 'grab',
+      };
 
   return (
-    <Box sx={{ minHeight: '75vh', display: 'grid', placeItems: 'center' }}>
-      <Paper elevation={3} sx={{ p: 4, maxWidth: 800, margin: 'auto' }}>
-        <Stack spacing={3}>
-          <Typography variant="h4" component="h1" gutterBottom align="center">
-            {'👾 Sprite Sheet Generator'}
-          </Typography>
-          <Typography variant="h6" component="h1" gutterBottom align="center">
-            {'Your images are not stored in any server. Completely client side.'}
-          </Typography>
+    <Box
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+      sx={{
+        width: dimensions.width,
+        height: dimensions.height,
+        touchAction: 'none', // Recommended by dnd-kit for touch devices
+      }}
+    >
+      <img
+        src={item.previewUrl}
+        width={dimensions.width}
+        height={dimensions.height}
+        alt={item.file.name}
+        style={{ pointerEvents: 'none' }} // Prevent img from capturing drag events
+      />
+    </Box>
+  );
+};
 
-          {/* --- Step 1: Upload --- */}
-          <Box>
-            <Typography variant="h6" component="h2" gutterBottom>
-              {'1. Upload Images'}
-            </Typography>
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              style={{ display: 'none' }}
+// --- DroppableCell Component ---
+
+interface DroppableCellProps {
+  index: number;
+  children: React.ReactNode;
+  dimensions: ImageDimensions;
+}
+
+const DroppableCell: React.FC<DroppableCellProps> = ({
+  index,
+  children,
+  dimensions,
+}) => {
+  const { setNodeRef, isOver } = useDroppable({
+    id: index,
+  });
+
+  return (
+    <Box
+      ref={setNodeRef}
+      sx={{
+        width: dimensions.width,
+        height: dimensions.height,
+        backgroundColor: isOver ? 'action.hover' : 'transparent',
+        outline: '1px dashed whitesmoke'
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+// --- Main SpriteSheetGenerator Component ---
+
+const ProjectSpriteSheetGenerator: React.FC = () => {
+  // --- State ---
+  const [items, setItems] = useState<ImageItem[]>([]);
+  const [imageDimensions, setImageDimensions] = useState<ImageDimensions | null>(
+    null
+  );
+  const [gridRows, setGridRows] = useState(4);
+  const [gridCols, setGridCols] = useState(4);
+  const [gridMapping, setGridMapping] = useState<GridMapping>({});
+  const [error, setError] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+
+  // Use pointer sensor for better drag-and-drop experience
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8, // Start dragging after 8px move
+      },
+    })
+  );
+
+  // --- Memory Cleanup ---
+  useEffect(() => {
+    // Revoke object URLs on component unmount to prevent memory leaks
+    return () => {
+      items.forEach((item) => URL.revokeObjectURL(item.previewUrl));
+    };
+  }, [items]);
+
+  // --- Handlers ---
+
+  const handleFileChange = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files ? Array.from(e.target.files) : [];
+      if (files.length === 0) return;
+
+      // Reset state for new upload
+      setError(null);
+      setItems([]);
+      setGridMapping({});
+      setImageDimensions(null);
+
+      try {
+        // Load all images and check dimensions
+        const newImageItems = await Promise.all(
+          files.map((file) => getImageData(file, crypto.randomUUID()))
+        );
+
+        if (newImageItems.length === 0) return;
+
+        // Check if all dimensions are a match
+        const firstDim = newImageItems[0].imageElement;
+        const allSameDimensions = newImageItems.every(
+          (item) =>
+            item.imageElement.width === firstDim.width &&
+            item.imageElement.height === firstDim.height
+        );
+
+        if (!allSameDimensions) {
+          setError(
+            'Dimension Mismatch: All images must have the same width and height.'
+          );
+          return;
+        }
+
+        // --- Success ---
+        const newDimensions = {
+          width: firstDim.width,
+          height: firstDim.height,
+        };
+        setImageDimensions(newDimensions);
+        setItems(newImageItems);
+
+        // Populate the grid with the new images
+        const newMapping: GridMapping = {};
+        const maxCells = gridRows * gridCols;
+        for (let i = 0; i < newImageItems.length && i < maxCells; i++) {
+          newMapping[i] = newImageItems[i].id;
+        }
+        setGridMapping(newMapping);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An unknown error occurred.');
+      }
+    },
+    [gridCols, gridRows] // Rerun if grid size changes before upload
+  );
+
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(event.active.id);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    setActiveId(null);
+    const { active, over } = event;
+
+    // No drop target
+    if (!over) return;
+
+    const draggedId = active.id;
+    const droppedIndex = over.id as number; // This is the grid cell index
+
+    setGridMapping((prevMapping) => {
+      const newMapping: GridMapping = { ...prevMapping };
+
+      // Find the original index of the item being dragged
+      const originalIndexKey = Object.keys(prevMapping).find(
+        (key) => prevMapping[Number(key)] === draggedId
+      );
+      const originalIndex =
+        originalIndexKey !== undefined ? Number(originalIndexKey) : undefined;
+
+      // Get the ID of the item (if any) currently in the drop slot
+      const itemAtDropSlot = prevMapping[droppedIndex];
+
+      // --- Logic for swap / move ---
+
+      // 1. Remove the dragged item from its original position
+      if (originalIndex !== undefined) {
+        delete newMapping[originalIndex];
+      }
+
+      // 2. Place the dragged item in the new (dropped) position
+      newMapping[droppedIndex] = draggedId;
+
+      // 3. If there was an item at the drop slot...
+      if (itemAtDropSlot) {
+        // ...and the dragged item came from somewhere *inside* the grid...
+        if (originalIndex !== undefined) {
+          // ...move the item from the drop slot to the dragged item's original slot
+          newMapping[originalIndex] = itemAtDropSlot;
+        }
+        // (If the dragged item came from outside the grid - not supported here -
+        // the item at the drop slot would just be overwritten)
+      }
+
+      return newMapping;
+    });
+  };
+
+  const handleExport = () => {
+    if (!imageDimensions || items.length === 0) {
+      setError('No images to export.');
+      return;
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = imageDimensions.width * gridCols;
+    canvas.height = imageDimensions.height * gridRows;
+    const ctx = canvas.getContext('2d');
+
+    if (!ctx) {
+      setError('Could not create canvas context for export.');
+      return;
+    }
+
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Find the ImageItem lookup by ID for efficiency
+    const itemMap = new Map(items.map((item) => [item.id, item]));
+
+    // Draw images based on the grid mapping
+    for (let i = 0; i < gridRows * gridCols; i++) {
+      const itemId = gridMapping[i];
+      if (itemId) {
+        const item = itemMap.get(itemId);
+        if (item) {
+          const row = Math.floor(i / gridCols);
+          const col = i % gridCols;
+          ctx.drawImage(
+            item.imageElement,
+            col * imageDimensions.width,
+            row * imageDimensions.height
+          );
+        }
+      }
+    }
+
+    // Trigger download
+    const dataUrl = canvas.toDataURL('image/png'); // Lossless PNG
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'spritesheet.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleClear = () => {
+    setItems([]);
+    setGridMapping({});
+    setImageDimensions(null);
+    setError(null);
+  };
+
+  // --- Memoized Values ---
+
+  const totalCells = gridRows * gridCols;
+  const activeItem = useMemo(
+    () => items.find((item) => item.id === activeId),
+    [activeId, items]
+  );
+
+  const gridRef = useRef<HTMLDivElement>(null)
+  const gridSize = useSize(gridRef)
+
+  const gridRenderDimensions = useMemo(() => {
+    if (!imageDimensions || !gridSize) return null
+
+    const gridWidth = gridSize.width || 100;
+
+    const imageWidth = gridWidth / gridCols;
+    const ratio = imageDimensions.width / imageWidth;
+    const imageHeight = imageDimensions.height / ratio;
+
+    return {
+      width: imageWidth,
+      height: imageHeight
+    }
+  }, [gridCols, gridSize, imageDimensions])
+
+  // --- Render ---
+
+  return (
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      modifiers={[restrictToWindowEdges]}
+    >
+      <Container maxWidth="lg" sx={{ my: 4, minHeight: '60vh' }}>
+        <Typography variant="h4" component="h1" gutterBottom align='center'>
+          {'👾 Sprite Sheet Generator'}
+        </Typography>
+        <Typography variant="h6" component="h6" gutterBottom align='center'>
+          {'Generates a Sprite Sheet on the client side'}
+        </Typography>
+
+        <Paper sx={{ p: 2, mb: 2 }}>
+          <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
+            <Button
+              variant="contained"
+              component="label"
+              startIcon={<UploadFileIcon />}
+            >
+              Upload Images
+              <input
+                type="file"
+                hidden
+                multiple
+                accept="image/png, image/jpeg, image/gif, image/webp"
+                onChange={handleFileChange}
+              />
+            </Button>
+            <TextField
+              label="Rows"
+              type="number"
+              value={gridRows}
+              onChange={(e) =>
+                setGridRows(Math.max(1, parseInt(e.target.value, 10) || 1))
+              }
+              inputProps={{ min: 1 }}
+              sx={{ width: 100 }}
+            />
+            <TextField
+              label="Columns"
+              type="number"
+              value={gridCols}
+              onChange={(e) =>
+                setGridCols(Math.max(1, parseInt(e.target.value, 10) || 1))
+              }
+              inputProps={{ min: 1 }}
+              sx={{ width: 100 }}
             />
             <Button
               variant="contained"
-              startIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : <CloudUploadIcon />}
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isLoading}
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={handleClear}
+              sx={{
+                marginLeft: 'auto !important'
+              }}
             >
-              {isLoading ? 'Processing...' : 'Select Images'}
+              Clear
             </Button>
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-              {'Select multiple images. All images must have the same dimensions.'}
-            </Typography>
-          </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<DownloadIcon />}
+              onClick={handleExport}
+              disabled={items.length === 0}
+            >
+              Export
+            </Button>
+          </Stack>
+        </Paper>
 
-          {/* --- Display Error --- */}
-          {error && <Alert severity="error">{error}</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
 
-          {/* --- Step 2: Configure Grid --- */}
-          <Box>
-            <Typography variant="h6" component="h2" gutterBottom>
-              {'2. Configure Grid Layout'}
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Columns"
-                  type="number"
-                  value={columns}
-                  onChange={(e) => setColumns(clamp(parseInt(e.target.value), 1, 100))}
-                  InputProps={{ inputProps: { min: 1, max: 100 } }}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Rows"
-                  type="number"
-                  value={rows}
-                  onChange={(e) => setRows(clamp(parseInt(e.target.value), 1, 100))}
-                  InputProps={{ inputProps: { min: 1, max: 100 } }}
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
-          </Box>
-
-          {/* --- Step 3: Download --- */}
-          {collatedImageURL && rows >= 1 && columns >= 1 && (
-            <Box>
-              <Typography variant="h6" component="h2" gutterBottom>
-                {'3. Download Result'}
-              </Typography>
-              <Box
-                sx={{
-                  border: '2px dashed',
-                  borderColor: 'divider',
-                  p: 1,
-                  borderRadius: 1,
-                  mb: 2,
-                }}
+        {!!gridRenderDimensions && <Box
+          ref={gridRef}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${gridCols}, ${gridRenderDimensions.width}px)`,
+            // gap: '4px',
+            // border: '1px solid',
+            // borderColor: 'divider',
+            backgroundColor: 'transparent',
+            // padding: '4px',
+            // overflow: 'auto', // Add scroll if grid is too large
+            maxWidth: '100%',
+          }}
+        >
+          {Array.from({ length: totalCells }).map((_, index) => {
+            const itemId = gridMapping[index];
+            const item = items.find((i) => i.id === itemId);
+            return (
+              <DroppableCell
+                key={index}
+                index={index}
+                dimensions={gridRenderDimensions}
               >
-                <img
-                  src={collatedImageURL}
-                  alt="Collated"
-                  style={{ width: '100%', display: 'block' }}
-                />
-              </Box>
+                {item ? (
+                  <DraggableImage item={item} dimensions={gridRenderDimensions} />
+                ) : null}
+              </DroppableCell>
+            );
+          })}
+        </Box>}
+      </Container>
 
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <a href={collatedImageURL} download="collated-image.png" style={{ textDecoration: 'none' }}>
-                  <Button variant="contained" color="success" startIcon={<DownloadIcon />}>
-                    {'Download Image'}
-                  </Button>
-                </a>
-                <Button color="error" variant="contained" startIcon={<DeleteIcon />} onClick={handleReset}>
-                  {'Reset'}
-                </Button>
-              </Box>
-
-            </Box>
-          )}
-
-          {/* Hidden canvas element for image processing */}
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
-        </Stack>
-      </Paper>
-    </Box>
+      {/* Drag Overlay: Renders the item being dragged */}
+      <DragOverlay>
+        {(gridRenderDimensions && activeItem) ? (
+          <Box
+            sx={{
+              width: gridRenderDimensions.width,
+              height: gridRenderDimensions.height,
+            }}
+          >
+            <img
+              src={activeItem.previewUrl}
+              width={gridRenderDimensions.width}
+              height={gridRenderDimensions.height}
+              alt="Dragging item"
+            />
+          </Box>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
   );
 };
 
