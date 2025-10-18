@@ -85,7 +85,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     },
     {
       title: 'Sprite Sheet Generator',
-      date: '(10/10/2025)',
+      date: '(18/10/2025)',
       type: new Set<IconTypes>(['Utility']),
       imgs: [
         '/images/sprite-sheet-generator.png',

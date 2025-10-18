@@ -375,6 +375,8 @@ const ProjectSpriteSheetGenerator: React.FC = () => {
     }
   }, [gridCols, gridSize, imageDimensions])
 
+  console.log({ gridRenderDimensions })
+
   // --- Render ---
 
   return (
@@ -457,21 +459,18 @@ const ProjectSpriteSheetGenerator: React.FC = () => {
           </Alert>
         )}
 
-        {!!gridRenderDimensions && <Box
+        <Box
           ref={gridRef}
           sx={{
             display: 'grid',
-            gridTemplateColumns: `repeat(${gridCols}, ${gridRenderDimensions.width}px)`,
-            // gap: '4px',
-            // border: '1px solid',
-            // borderColor: 'divider',
+            ...(gridRenderDimensions ? {
+              gridTemplateColumns: `repeat(${gridCols}, ${gridRenderDimensions.width}px)`,
+            } : {}),
             backgroundColor: 'transparent',
-            // padding: '4px',
-            // overflow: 'auto', // Add scroll if grid is too large
             maxWidth: '100%',
           }}
         >
-          {Array.from({ length: totalCells }).map((_, index) => {
+          {gridRenderDimensions && Array.from({ length: totalCells }).map((_, index) => {
             const itemId = gridMapping[index];
             const item = items.find((i) => i.id === itemId);
             return (
@@ -486,7 +485,7 @@ const ProjectSpriteSheetGenerator: React.FC = () => {
               </DroppableCell>
             );
           })}
-        </Box>}
+        </Box>
       </Container>
 
       {/* Drag Overlay: Renders the item being dragged */}
