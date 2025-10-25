@@ -207,7 +207,6 @@ export const debounce = (fn: GenericFunction, debounceDuration: number): Generic
 
 export const clamp = (value: number, min: number, max: number): number => {
   if (min > max) {
-    console.warn(`clamp: min value (${min}) is greater than max value (${max}). The values will be swapped.`);
     [min, max] = [max, min]; // Swap the values
   }
 
