@@ -1,4 +1,5 @@
 import { Image2dGrid, ImageDim, ImageFileMapping, ImageItem } from "./typings";
+import JSZip from "jszip";
 
 /**
  * Loads a File object into an HTMLImageElement to get its dimensions.
@@ -77,18 +78,130 @@ export const removeUndefinedValues = <T extends object>(obj: T): T => {
   return newObj as T;
 }
 
-export const exportImage = ({
+type IHandleParsedUploadedImages = { imageNameToFile: ImageFileMapping, imageDim: ImageDim };
+
+export const handleParsingUploadedImages = async (files: File[]): Promise<IHandleParsedUploadedImages> => {
+  const newImageItems = await Promise.all(
+    files.map((file) => getImageData(file, file.name))
+  );
+
+  if (newImageItems.length === 0) throw new Error('No files found')
+
+  // Check if all dimensions are a match
+  const firstDim = newImageItems[0].imageElement;
+  const allSameDimensions = newImageItems.every(
+    (item) =>
+      item.imageElement.width === firstDim.width &&
+      item.imageElement.height === firstDim.height
+  );
+
+  if (!allSameDimensions) {
+    throw new Error('Images do not have the same dimensions')
+  }
+
+  const imageNameToFile = newImageItems.reduce((prev, curr) => {
+    return {
+      [curr.id]: curr,
+      ...prev
+    }
+  }, {} as ImageFileMapping);
+
+  return {
+    imageNameToFile,
+    imageDim: {
+      width: firstDim.width,
+      height: firstDim.height,
+    }
+  }
+}
+
+type JsonData = {
+  rows: number,
+  cols: number,
+  imageGrid: Image2dGrid,
+  projectName: string,
+}
+
+export const handleParsingUploadedProject = async (file: File): Promise<JsonData & { imageFiles: File[] }> => {
+  const zip = new JSZip();
+  const loadedZip = await zip.loadAsync(file);
+
+  let parsedJson: JsonData = {
+    rows: 0,
+    cols: 0,
+    imageGrid: {},
+    projectName: '',
+  };
+  const imageFiles: File[] = [];
+
+  await Promise.all(Object.entries(loadedZip.files).map(async ([relativePath, zipEntry]) => {
+    if (relativePath.endsWith(".json")) {
+      // Handle JSON
+      const text = await zipEntry.async("text");
+      parsedJson = JSON.parse(text);
+    } else if (/\.(png|jpg|jpeg|gif|webp)$/i.test(relativePath)) {
+      // Handle images
+      const blob = await zipEntry.async("blob");
+
+      const fileFromZip = new File([blob], relativePath.split("/").pop() || relativePath, {
+          type: blob.type || "image/*",
+        });
+
+      imageFiles.push(fileFromZip);
+    }
+  }))
+
+  if (parsedJson.rows === 0 || parsedJson.cols === 0) throw new Error("Invalid JSON file");
+
+  return {
+    ...parsedJson,
+    imageFiles
+  }
+}
+
+export const handleExportingProject = async ({ imageFiles, ...jsonData }: JsonData & { imageFiles: File[] }) => {
+  const zip = new JSZip();
+
+  // 1. Add JSON file
+  const jsonString = JSON.stringify(jsonData, null, 2);
+  zip.file("state.json", jsonString);
+
+  // 2. Add images
+  for (const image of imageFiles) {
+    const arrayBuffer = await image.arrayBuffer();
+    zip.file(`images/${image.name}`, arrayBuffer, { binary: true });
+  }
+
+  // 3. Generate ZIP blob
+  const zipBlob = await zip.generateAsync({ type: "blob" });
+
+  // 4. Create a download link
+  const url = URL.createObjectURL(zipBlob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${jsonData.projectName}_project.zip`; // filename
+  document.body.appendChild(link);
+  link.click();
+
+  // 5. Cleanup
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+export const handleExportSpritesheet = ({
   imageDim,
   totalCols,
   totalRows,
   imageGrid,
   imageNameToFile,
+  projectName
 }: {
   imageDim: ImageDim,
   totalCols: number,
   totalRows: number,
   imageGrid: Image2dGrid,
-  imageNameToFile: ImageFileMapping
+  imageNameToFile: ImageFileMapping,
+  projectName: string
 }) => {
   const canvas = document.createElement('canvas');
   canvas.width = imageDim.width * totalCols;
@@ -118,7 +231,7 @@ export const exportImage = ({
   const dataUrl = canvas.toDataURL('image/png'); // Lossless PNG
   const link = document.createElement('a');
   link.href = dataUrl;
-  link.download = 'spritesheet.png';
+  link.download = `${projectName}.png`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

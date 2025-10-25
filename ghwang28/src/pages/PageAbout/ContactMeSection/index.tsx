@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactMeIcon from './ContactMeIcon';
 import { ContactData } from '../../../types';
-import ContactForm from './ContactForm';
+// import ContactForm from './ContactForm';
 
 const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
   const [inViewRef, inView] = useInView({
@@ -16,11 +16,11 @@ const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
   const contacts: ContactData[] = [
     {
       label: 'E-mail',
-      info: 'gordon.wang280801@gmail.com',
+      info: 'ghwang28@outlook.com',
       extraInfo: 'Copied E-mail to Clipboard!',
       icon: <MailIcon fontSize='large' />,
       onClick: () => {
-        navigator.clipboard.writeText('gordon.wang280801@gmail.com');
+        navigator.clipboard.writeText('ghwang28@outlook.com');
       },
       tooltip: 'Copy E-mail Address to Clipboard',
     },
@@ -55,7 +55,7 @@ const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
         {'Want to get in touch?'}
       </Typography>
       <Typography mb={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
-        {'Contact me through these...'}
+        {'You can contact me through here'}
       </Typography>
 
       <Grid container rowSpacing={2} justifyContent='center'>
@@ -66,11 +66,11 @@ const ContactMeSection = forwardRef<HTMLDivElement>((_, ref) => {
         ))}
       </Grid>
 
-      <Typography mt={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
+      {/* <Typography mt={5} variant='subtitle1' fontWeight='bold' align='center' color='text.secondary'>
         {'...or fill out this form if you wish to stay anonymous.'}
       </Typography>
 
-      <ContactForm />
+      <ContactForm /> */}
     </Box>
   )
 });

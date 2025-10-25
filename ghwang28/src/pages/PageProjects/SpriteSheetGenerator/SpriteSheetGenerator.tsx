@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Box, Button, Paper, TextField, Tooltip, Typography } from '@mui/material';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import DownloadIcon from '@mui/icons-material/Download';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { exportImage, getAllOccupiedImages, getImageData, removeUndefinedValues } from './utils';
+import { handleExportSpritesheet, getAllOccupiedImages, handleExportingProject, handleParsingUploadedImages, handleParsingUploadedProject, removeUndefinedValues } from './utils';
 import { useRequest, useSize } from 'ahooks';
 import { Image2dGrid, ImageDim, ImageFileMapping } from './typings';
 import { cloneDeep, get, isEmpty, set } from 'lodash';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import DownloadIcon from '@mui/icons-material/Download';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FolderZipIcon from '@mui/icons-material/FolderZip';
+import { LoadingButton } from '@mui/lab';
 
 export const SpriteSheetGenerator: React.FC = () => {
+  const [projectName, setProjectName] = useState<string>('');
   const [gridRows, setGridRows] = useState<number>(10);
   const [gridCols, setGridCols] = useState<number>(10);
 
@@ -20,61 +23,69 @@ export const SpriteSheetGenerator: React.FC = () => {
     setImageGrid({});
   }, [])
 
+  // Handling image upload
   const {
-    run: handleFileChange,
-    data,
-    // loading,
-    error
-  } = useRequest(async (e: React.ChangeEvent<HTMLInputElement>): Promise<{
+    runAsync: uploadImageFiles,
+    data: uploadImageData,
+    loading: uploadImagesLoading,
+    error: uploadImageError
+  } = useRequest(async (files: File[]): Promise<{
     imageDim: ImageDim,
     imageNameToFile: ImageFileMapping
   }> => {
-    const files = e.target.files ? Array.from(e.target.files) : [];
     if (files.length === 0) throw new Error('No files found')
 
     // Load all images and check dimensions
-    const newImageItems = await Promise.all(
-      files.map((file) => getImageData(file, file.name))
-    );
-
-    if (newImageItems.length === 0) throw new Error('No files found')
-
-    // Check if all dimensions are a match
-    const firstDim = newImageItems[0].imageElement;
-    const allSameDimensions = newImageItems.every(
-      (item) =>
-        item.imageElement.width === firstDim.width &&
-        item.imageElement.height === firstDim.height
-    );
-
-    if (!allSameDimensions) {
-      throw new Error('Images do not have the same dimensions')
-    }
-
     resetGrid();
 
-    const imageMapping = newImageItems.reduce((prev, curr) => {
-      return {
-        [curr.id]: curr,
-        ...prev
-      }
-    }, {} as ImageFileMapping);
+    return await handleParsingUploadedImages(files)
+  }, {
+    manual: true,
+  })
+  const {
+    imageDim = { width: 50, height: 50 },
+    imageNameToFile = {}
+  } = uploadImageData || {};
 
-    return {
-      imageDim: {
-        width: firstDim.width,
-        height: firstDim.height,
-      },
-      imageNameToFile: imageMapping
-    }
+  // Handling project upload
+  const {
+    runAsync: uploadProjectFiles,
+    // data: uploadProjectData,
+    loading: uploadProjectLoading,
+    error: uploadProjectError
+  } = useRequest(async (files: File[]): Promise<void> => {
+    if (files.length === 0) throw new Error('No files found')
+
+    // Load all images and check dimensions
+    resetGrid();
+
+    const project = await handleParsingUploadedProject(files[0]);
+    await uploadImageFiles(project.imageFiles);
+
+    setGridCols(project.cols);
+    setGridRows(project.rows);
+    setImageGrid(project.imageGrid);
+    setProjectName(project.projectName || "Unknown");
   }, {
     manual: true,
   })
 
+  // Handling project export
   const {
-    imageDim = { width: 50, height: 50 },
-    imageNameToFile = {}
-  } = data || {};
+    run: exportProject,
+    loading: exportProjectLoading,
+    error: exportProjectError
+  } = useRequest(async (): Promise<void> => {
+    await handleExportingProject({
+      rows: gridRows,
+      cols: gridCols,
+      imageGrid,
+      imageFiles: Object.values(imageNameToFile).flatMap((item) => item?.file || []),
+      projectName
+    })
+  }, {
+    manual: true,
+  })
 
   useEffect(() => {
     setImageGrid((prevMap) => {
@@ -135,6 +146,8 @@ export const SpriteSheetGenerator: React.FC = () => {
     setSelectedCoords([])
   }, [selectedCoords])
 
+  const allErrors = [uploadImageError, uploadProjectError, exportProjectError].filter(Boolean) as Error[]
+
   return (
     <Box
       sx={{
@@ -151,21 +164,36 @@ export const SpriteSheetGenerator: React.FC = () => {
         <Typography variant="h6" component="h6" align='center'>
           {'Generates a Sprite Sheet on the client side'}
         </Typography>
+
+        {/* Project name */}
         <Box sx={{ display: 'flex', gap: 2, marginTop: 4 }}>
-          <Button
+          <TextField
+            label="Project Name"
+            type="text"
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+            size="small"
+            fullWidth
+          />
+        </Box>
+        {/* Top row buttons */}
+        <Box sx={{ display: 'flex', gap: 2, marginTop: 4 }}>
+          <LoadingButton
             variant="contained"
             component="label"
             startIcon={<UploadFileIcon />}
+            loading={uploadImagesLoading}
+            loadingPosition="start"
           >
             {'Upload Images'}
             <input
               type="file"
               hidden
               multiple
-              accept="image/png, image/jpeg, image/gif, image/webp"
-              onChange={handleFileChange}
+              accept="image/png, image/jpeg, image/webp"
+              onChange={(e) => void uploadImageFiles(e.target.files ? Array.from(e.target.files) : [])}
             />
-          </Button>
+          </LoadingButton>
           <TextField
             label="Rows"
             type="number"
@@ -203,19 +231,52 @@ export const SpriteSheetGenerator: React.FC = () => {
             variant="contained"
             color="primary"
             startIcon={<DownloadIcon />}
-            onClick={() => exportImage({ imageDim, imageGrid, imageNameToFile, totalCols: gridCols, totalRows: gridRows })}
+            onClick={() => handleExportSpritesheet({ imageDim, imageGrid, imageNameToFile, totalCols: gridCols, totalRows: gridRows, projectName })}
             disabled={isEmpty(imageGrid)}
           >
             {'Export'}
           </Button>
         </Box>
+        {/* Bottom row buttons */}
+        <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
+          <LoadingButton
+            variant="contained"
+            component="label"
+            color="warning"
+            startIcon={<FolderZipIcon />}
+            loading={uploadProjectLoading}
+            loadingPosition="start"
+          >
+            {'Upload Project'}
+            <input
+              type="file"
+              hidden
+              accept=".zip"
+              onChange={(e) => void uploadProjectFiles(e.target.files ? Array.from(e.target.files) : [])}
+            />
+          </LoadingButton>
+
+          <LoadingButton
+            variant="contained"
+            color="warning"
+            startIcon={<DownloadIcon />}
+            onClick={() => exportProject()}
+            loading={exportProjectLoading}
+            loadingPosition="start"
+            sx={{
+              marginLeft: 'auto !important'
+            }}
+          >
+            {'Export Project'}
+          </LoadingButton>
+        </Box>
       </Paper>
 
-      {error && (
-        <Alert severity="error">
-          {error.message}
+      {allErrors.map((err, i) => (
+        <Alert key={`error-${i}`} severity="error">
+          {err.message}
         </Alert>
-      )}
+      ))}
 
       <Paper sx={{ p: 2 }}>
         <Typography sx={{ marginBottom: 2 }} fontSize={12}>
