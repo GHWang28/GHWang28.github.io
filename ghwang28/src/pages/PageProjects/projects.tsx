@@ -88,7 +88,7 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
       date: '(18/10/2025)',
       type: new Set<IconTypes>(['Utility']),
       imgs: [
-        '/images/sprite-sheet-generator.png',
+        '/images/covers/sprite-sheet-generator.webp',
       ],
       body: [
         'A quick tool made to help generate sprite sheets for games',
