@@ -1,1 +1,1 @@
-export * from './fallback'
+export { Fallback } from './fallback'

@@ -27,7 +27,9 @@ export const Fallback: React.FC<ComponentProps> = ({ error }) => {
         display: 'grid',
         placeItems: 'center',
         opacity: visible ? '1' : '0',
-        transition: 'opacity 0.5s ease-in-out'
+        transition: 'opacity 0.5s ease-in-out',
+        padding: '48px',
+        boxSizing: 'border-box'
       }}
     >
       <Box

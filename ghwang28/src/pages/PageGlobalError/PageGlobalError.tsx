@@ -14,13 +14,6 @@ export class PageGlobalError extends React.Component<
     return { error };
   }
 
-  // componentDidCatch(error: Error) {
-    // if (/Failed to fetch dynamically imported module/.test(error.message)) {
-    //   console.warn("Chunk load failed — refreshing page...");
-    //   window.location.reload();
-    // }
-  // }
-
   render() {
     if (this.state.error) {
       return <Fallback error={this.state.error} />;

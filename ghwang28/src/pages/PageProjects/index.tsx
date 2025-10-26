@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router';
+import ProjectSpriteSheetGenerator from './ProjectSpriteSheetGenerator';
 import PageLoading from '../PageLoading';
 
 const ProjectAirBnB = React.lazy(() => import('./UniversityProjs/ProjectAirBnB'));
@@ -10,7 +11,8 @@ const ProjectSlackr = React.lazy(() => import('./UniversityProjs/ProjectSlackr')
 const ProjectMinecraftRecreation = React.lazy(() => import('./UniversityProjs/ProjectMinecraftRecreation'));
 const ProjectMinecraftScreensaver = React.lazy(() => import('./UniversityProjs/ProjectMinecraftScreensaver'));
 const ProjectTheDeadMansHand = React.lazy(() => import('./ProjectTheDeadMansHand'));
-const ProjectSpriteSheetGenerator = React.lazy(() => import('./ProjectSpriteSheetGenerator'));
+// Can not be lazy loaded for unknown reasons
+// const ProjectSpriteSheetGenerator = React.lazy(() => import('./ProjectSpriteSheetGenerator'));
 
 const PageProjects = () => {
   return (

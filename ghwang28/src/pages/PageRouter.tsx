@@ -6,12 +6,15 @@ import ContactDetails from '../components/ContactDetails';
 import VersionNumber from '../components/VersionNumber';
 import PageLoading from './PageLoading';
 import Footer from '../components/Footer';
-const PageAbout = React.lazy(() => import('./PageAbout'));
+import PageAbout from './PageAbout'
+
 const PageBlog = React.lazy(() => import('./PageBlog'));
 const PageProjects = React.lazy(() => import('./PageProjects'));
 const PageLanding = React.lazy(() => import('./PageLanding'));
 const PageError = React.lazy(() => import('./PageError'));
 const PageSkills = React.lazy(() => import('./PageSkills'));
+// Can not be lazy loaded for unknown reasons
+// const PageAbout = React.lazy(() => import('./PageAbout'));
 
 const PageRouter = () => {
   const location = useLocation();
