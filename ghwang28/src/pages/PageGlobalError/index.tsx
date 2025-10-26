@@ -1,0 +1,1 @@
+export { PageGlobalError } from './PageGlobalError';

@@ -20,6 +20,7 @@ const VersionNumber = () => {
       easing: easings.easeOutBounce
     }
   })
+
   return (
     <Box
       sx={{

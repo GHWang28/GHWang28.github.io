@@ -10,6 +10,7 @@ import config from './config.json';
 import { useOverlayScrollbars } from 'overlayscrollbars-react';
 import { useAppSelector } from './hooks';
 import PageLoading from './pages/PageLoading';
+import { PageGlobalError } from './pages/PageGlobalError';
 const PageRouter = React.lazy(() => import('./pages/PageRouter'));
 const Navbar = React.lazy(() => import('./components/Navbar'));
 
@@ -185,15 +186,17 @@ export default function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <ImageZoomer />
-      <Suspense fallback={<PageLoading />}>
-        <Navbar />
-        {(useAppSelector(state => state.hideWebsite)) ? (
-          <Box width='100vw' height='105vh' />
-        ) : (
-          <PageRouter />
-        )}
-      </Suspense>
+      <PageGlobalError>
+        <ImageZoomer />
+        <Suspense fallback={<PageLoading />}>
+          <Navbar />
+          {(useAppSelector(state => state.hideWebsite)) ? (
+            <Box width='100vw' height='105vh' />
+          ) : (
+            <PageRouter />
+          )}
+        </Suspense>
+      </PageGlobalError>
     </ThemeProvider>
   );
 }

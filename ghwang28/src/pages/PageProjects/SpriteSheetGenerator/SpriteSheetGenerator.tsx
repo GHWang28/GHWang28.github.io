@@ -16,8 +16,6 @@ export const SpriteSheetGenerator: React.FC = () => {
   const [gridCols, setGridCols] = useState<number>(10);
 
   const [imageGrid, setImageGrid] = useState<Image2dGrid>({})
-  // const [imageNameToFile, setImageNameToFile] = useState<ImageFileMapping>({})
-  // const [cellDim, setCellDim] = useState<{ width: number, height: number } | null>(null);
 
   const resetGrid = useCallback(() => {
     setImageGrid({});
