@@ -1,19 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Box, Button, Paper, TextField, Tooltip, Typography } from '@mui/material';
+import { Alert, Box, Paper, Typography } from '@mui/material';
 import { handleExportSpritesheet, getAllOccupiedImages, handleExportingProject, handleParsingUploadedImages, handleParsingUploadedProject, removeUndefinedValues } from './utils';
 import { useRequest, useSize } from 'ahooks';
 import { Image2dGrid, ImageDim, ImageFileMapping } from './typings';
 import { cloneDeep, get, isEmpty, set } from 'lodash';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import DownloadIcon from '@mui/icons-material/Download';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FolderZipIcon from '@mui/icons-material/FolderZip';
-import { LoadingButton } from '@mui/lab';
+import { CellTooltip, OperationBar } from './components';
 
 export const SpriteSheetGenerator: React.FC = () => {
   const [projectName, setProjectName] = useState<string>('');
-  const [gridRows, setGridRows] = useState<number>(10);
-  const [gridCols, setGridCols] = useState<number>(10);
+  const [gridRows, setGridRows] = useState<number>(5);
+  const [gridCols, setGridCols] = useState<number>(5);
 
   const [imageGrid, setImageGrid] = useState<Image2dGrid>({})
 
@@ -163,111 +159,23 @@ export const SpriteSheetGenerator: React.FC = () => {
           {'Generates a Sprite Sheet on the client side'}
         </Typography>
 
-        {/* Project name */}
-        <Box sx={{ display: 'flex', gap: 2, marginTop: 4 }}>
-          <TextField
-            label="Project Name"
-            type="text"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            size="small"
-            fullWidth
-          />
-        </Box>
-        {/* Top row buttons */}
-        <Box sx={{ display: 'flex', gap: 2, marginTop: 4 }}>
-          <LoadingButton
-            variant="contained"
-            component="label"
-            startIcon={<UploadFileIcon />}
-            loading={uploadImagesLoading}
-            loadingPosition="start"
-          >
-            {'Upload Images'}
-            <input
-              type="file"
-              hidden
-              multiple
-              accept="image/png, image/jpeg, image/webp"
-              onChange={(e) => void uploadImageFiles(e.target.files ? Array.from(e.target.files) : [])}
-            />
-          </LoadingButton>
-          <TextField
-            label="Rows"
-            type="number"
-            value={gridRows}
-            onChange={(e) =>
-              setGridRows(Math.max(1, parseInt(e.target.value, 10) || 1))
-            }
-            inputProps={{ min: 1 }}
-            sx={{ width: 100 }}
-            size="small"
-          />
-          <TextField
-            label="Columns"
-            type="number"
-            value={gridCols}
-            onChange={(e) =>
-              setGridCols(Math.max(1, parseInt(e.target.value, 10) || 1))
-            }
-            inputProps={{ min: 1 }}
-            sx={{ width: 100 }}
-            size="small"
-          />
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<DeleteIcon />}
-            onClick={resetGrid}
-            sx={{
-              marginLeft: 'auto !important'
-            }}
-          >
-            {'Clear'}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<DownloadIcon />}
-            onClick={() => handleExportSpritesheet({ imageDim, imageGrid, imageNameToFile, totalCols: gridCols, totalRows: gridRows, projectName })}
-            disabled={isEmpty(imageGrid)}
-          >
-            {'Export'}
-          </Button>
-        </Box>
-        {/* Bottom row buttons */}
-        <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
-          <LoadingButton
-            variant="contained"
-            component="label"
-            color="warning"
-            startIcon={<FolderZipIcon />}
-            loading={uploadProjectLoading}
-            loadingPosition="start"
-          >
-            {'Upload Project'}
-            <input
-              type="file"
-              hidden
-              accept=".zip"
-              onChange={(e) => void uploadProjectFiles(e.target.files ? Array.from(e.target.files) : [])}
-            />
-          </LoadingButton>
-
-          <LoadingButton
-            variant="contained"
-            color="warning"
-            startIcon={<DownloadIcon />}
-            onClick={() => exportProject()}
-            loading={exportProjectLoading}
-            loadingPosition="start"
-            sx={{
-              marginLeft: 'auto !important'
-            }}
-          >
-            {'Export Project'}
-          </LoadingButton>
-        </Box>
+        <OperationBar
+          projectName={projectName}
+          setProjectName={(e) => setProjectName(e.target.value)}
+          uploadImagesLoading={uploadImagesLoading}
+          uploadImages={(e) => void uploadImageFiles(e.target.files ? Array.from(e.target.files) : [])}
+          gridRows={gridRows}
+          setRows={(e) => setGridRows(Math.max(1, parseInt(e.target.value, 10) || 1))}
+          gridCols={gridCols}
+          setCols={(e) => setGridCols(Math.max(1, parseInt(e.target.value, 10) || 1))}
+          resetGrid={resetGrid}
+          exportSpriteSheet={() => handleExportSpritesheet({ imageDim, imageGrid, imageNameToFile, totalCols: gridCols, totalRows: gridRows, projectName })}
+          exportDisabled={isEmpty(imageGrid)}
+          uploadProjectLoading={uploadProjectLoading}
+          uploadProject={(e) => void uploadProjectFiles(e.target.files ? Array.from(e.target.files) : [])}
+          exportProject={() => exportProject()}
+          exportProjectLoading={exportProjectLoading}
+        />
       </Paper>
 
       {allErrors.map((err, i) => (
@@ -298,7 +206,7 @@ export const SpriteSheetGenerator: React.FC = () => {
               const isSelected = selectedCoords.some(([_x, _y]) => _x === x && _y === y)
 
               return (
-                <Tooltip key={key} title={imageData?.id || "Empty"} arrow disableInteractive>
+                <CellTooltip key={key} content={[`${imageData?.id || "Empty"}`, `(${key})`]}>
                   <Box
                     onClick={() => setSelectedCoords((prev) => [...prev, [x, y]])}
                     sx={{
@@ -323,7 +231,7 @@ export const SpriteSheetGenerator: React.FC = () => {
                       } : {})}
                     />
                   </Box>
-                </Tooltip>
+                </CellTooltip>
               )
             })
           ))}

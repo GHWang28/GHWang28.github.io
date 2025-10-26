@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import packageJson from '../../../package.json';
 import { Box, Collapse, IconButton, Typography, useTheme } from "@mui/material";
 import { useSpring, animated, easings } from '@react-spring/web';
 import CodeIcon from '@mui/icons-material/Code';
 import BootstrapTooltip from '../BootstrapTooltip';
 import Ticker from '../Ticker';
 import config from '../../config.json';
+import packageJson from '../../../package.json';
 
 const VersionNumber = () => {
   const [hover, setHover] = useState(false);
