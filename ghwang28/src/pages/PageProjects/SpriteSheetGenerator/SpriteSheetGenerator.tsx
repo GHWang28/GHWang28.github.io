@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Box, Paper, Typography } from '@mui/material';
 import { handleExportSpritesheet, getAllOccupiedImages, handleExportingProject, handleParsingUploadedImages, handleParsingUploadedProject, removeUndefinedValues } from './utils';
-import { useRequest, useSize } from 'ahooks';
+import { useClickAway, useRequest, useSize } from 'ahooks';
 import { Image2dGrid, ImageDim, ImageFileMapping } from './typings';
-import { cloneDeep, get, isEmpty, set } from 'lodash';
+import { cloneDeep, get, isEmpty, merge, set } from 'lodash';
 import { CellTooltip, OperationBar } from './components';
 
 export const SpriteSheetGenerator: React.FC = () => {
@@ -14,8 +14,15 @@ export const SpriteSheetGenerator: React.FC = () => {
   const [imageGrid, setImageGrid] = useState<Image2dGrid>({})
 
   const resetGrid = useCallback(() => {
+    prevImageUpload.current = null;
     setImageGrid({});
   }, [])
+
+  // Allows multiple images to be uploaded sequentially until grid reset
+  const prevImageUpload = useRef<{
+    imageDim: ImageDim,
+    imageNameToFile: ImageFileMapping
+  } | null>(null)
 
   // Handling image upload
   const {
@@ -29,10 +36,20 @@ export const SpriteSheetGenerator: React.FC = () => {
   }> => {
     if (files.length === 0) throw new Error('No files found')
 
-    // Load all images and check dimensions
-    resetGrid();
+    const parsedImageUpload = await handleParsingUploadedImages(files);
 
-    return await handleParsingUploadedImages(files)
+    // Load all images and check dimensions
+    if (prevImageUpload.current) {
+      if (!(prevImageUpload.current.imageDim.width === parsedImageUpload.imageDim.width && prevImageUpload.current.imageDim.height === parsedImageUpload.imageDim.height)) {
+        throw new Error('Images do not have the same dimensions')
+      }
+
+      // Merge previous response into the current response
+      merge(parsedImageUpload, prevImageUpload.current);
+    }
+    
+    prevImageUpload.current = parsedImageUpload;
+    return parsedImageUpload;
   }, {
     manual: true,
   })
@@ -145,6 +162,11 @@ export const SpriteSheetGenerator: React.FC = () => {
   }, [selectedCoords])
 
   const allErrors = [uploadImageError, uploadProjectError, exportProjectError].filter(Boolean) as Error[]
+
+  // Deselect when clicked outside the grid container
+  useClickAway(() => {
+    setSelectedCoords([]);
+  }, gridRef)
 
   return (
     <Box

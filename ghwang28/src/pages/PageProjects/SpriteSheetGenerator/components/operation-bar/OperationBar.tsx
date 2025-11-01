@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoadingButton } from '@mui/lab';
-import { Box, Button, styled, TextField, Theme, useMediaQuery } from '@mui/material';
+import { Button, styled, TextField, Theme, useMediaQuery } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -29,13 +29,25 @@ type ComponentProps = {
 
 const FormRow = styled('div')({
   display: 'flex',
-  gap: 8,
+  gap: 12,
   justifyContent: 'space-between'
 })
 
 const SmallFormRow = styled('div')({
   display: 'flex',
-  gap: 8,
+  gap: 12,
+})
+
+const OperationBarContainer = styled('div')({
+  width: '100%',
+  display: 'flex',
+  gap: '12px',
+  flexDirection: 'column',
+  mt: '24px'
+})
+
+const MarginLeftAutoContainer = styled('div')({
+  marginLeft: 'auto'
 })
 
 export const OperationBar: React.FC<ComponentProps> = ({
@@ -173,15 +185,7 @@ export const OperationBar: React.FC<ComponentProps> = ({
   const smallMq = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        gap: 2,
-        flexDirection: 'column',
-        mt: 2
-      }}
-    >
+    <OperationBarContainer>
       {smallMq ? (
         <FormRow>
           {projectNameComponent}
@@ -195,9 +199,9 @@ export const OperationBar: React.FC<ComponentProps> = ({
           <SmallFormRow>
             {rowComponent}
             {colComponent}
-            <Box sx={{ marginLeft: 'auto' }}>
+            <MarginLeftAutoContainer>
               {deleteComponent}
-            </Box>
+            </MarginLeftAutoContainer>
           </SmallFormRow>
         </React.Fragment>
       )}
@@ -211,6 +215,6 @@ export const OperationBar: React.FC<ComponentProps> = ({
         {uploadProjectComponent}
         {exportProjectComponent}
       </FormRow>
-    </Box>
+    </OperationBarContainer>
   );
 };
