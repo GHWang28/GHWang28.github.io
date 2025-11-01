@@ -140,6 +140,10 @@ export const SpriteSheetGenerator: React.FC = () => {
     setSelectedCoords([])
   }, [selectedCoords])
 
+  const selectedCoordSet = useMemo(() => {
+    return new Set<string>(selectedCoords.map(([x, y]) => `${x},${y}`))
+  }, [selectedCoords])
+
   const allErrors = [uploadImageError, uploadProjectError, exportProjectError].filter(Boolean) as Error[]
 
   return (
@@ -203,10 +207,12 @@ export const SpriteSheetGenerator: React.FC = () => {
               const imgFileName = get(imageGrid, [x, y]);
               const imageData = get(imageNameToFile, imgFileName || '')
 
-              const isSelected = selectedCoords.some(([_x, _y]) => _x === x && _y === y)
+              const isSelected = selectedCoordSet.has(key)
+
+              const cellNumber = x * gridCols + y
 
               return (
-                <CellTooltip key={key} content={[`${imageData?.id || "Empty"}`, `(${key})`]}>
+                <CellTooltip key={key} content={[`${imageData?.id || "Empty"}`, `(${key})`, `Cell #${cellNumber}`]}>
                   <Box
                     onClick={() => setSelectedCoords((prev) => [...prev, [x, y]])}
                     sx={{
