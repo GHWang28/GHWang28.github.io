@@ -1,6 +1,20 @@
 import { Image2dGrid, ImageDim, ImageFileMapping, ImageItem } from "./typings";
 import JSZip from "jszip";
 
+const NO_NAME = 'no_name' as const;
+
+const toSnakeCase = (str: string): string => {
+  return str
+    // Replace all non-alphanumeric characters with a space
+    .replace(/[^a-zA-Z0-9]+/g, ' ')
+    // Insert a space before capital letters (for camel/Pascal case)
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    // Trim and convert spaces to underscores
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '_');
+}
+
 /**
  * Loads a File object into an HTMLImageElement to get its dimensions.
  * @returns A promise that resolves with the image element and its dimensions.
@@ -179,7 +193,7 @@ export const handleExportingProject = async ({ imageFiles, ...jsonData }: JsonDa
   const url = URL.createObjectURL(zipBlob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `${jsonData.projectName}_project.zip`; // filename
+  link.download = `${jsonData.projectName ? toSnakeCase(jsonData.projectName) : NO_NAME}_project.zip`; // filename
   document.body.appendChild(link);
   link.click();
 
@@ -212,7 +226,7 @@ export const handleExportSpritesheet = ({
     throw new Error('Could not create canvas context for export.');
   }
 
-  // Clear canvas
+  // Step 1 - Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   traverseImageGrid(({ x, y, fileName }) => {
@@ -227,11 +241,11 @@ export const handleExportSpritesheet = ({
     );
   }, imageGrid)
 
-  // Trigger download
+  // Step 2 - Trigger download
   const dataUrl = canvas.toDataURL('image/png'); // Lossless PNG
   const link = document.createElement('a');
   link.href = dataUrl;
-  link.download = `${projectName}.png`;
+  link.download = `${projectName ? toSnakeCase(projectName) : NO_NAME}.png`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

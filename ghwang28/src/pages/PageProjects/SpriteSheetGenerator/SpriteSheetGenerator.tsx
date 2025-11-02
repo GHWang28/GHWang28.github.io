@@ -45,11 +45,12 @@ export const SpriteSheetGenerator: React.FC = () => {
       }
 
       // Merge previous response into the current response
-      merge(parsedImageUpload, prevImageUpload.current);
+      merge(prevImageUpload.current, parsedImageUpload);
+    } else {
+      prevImageUpload.current = parsedImageUpload;
     }
     
-    prevImageUpload.current = parsedImageUpload;
-    return parsedImageUpload;
+    return { ...prevImageUpload.current }; // Need to spread so new memory will be allocated
   }, {
     manual: true,
   })
