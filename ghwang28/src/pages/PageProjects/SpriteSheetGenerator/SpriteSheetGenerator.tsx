@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Box, Paper, Typography } from '@mui/material';
+import { Alert, Box, Paper, Typography, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { handleExportSpritesheet, getAllOccupiedImages, handleExportingProject, handleParsingUploadedImages, handleParsingUploadedProject, removeUndefinedValues } from './utils';
 import { useClickAway, useRequest, useSize } from 'ahooks';
 import { Image2dGrid, ImageDim, ImageFileMapping } from './typings';
@@ -169,6 +170,19 @@ export const SpriteSheetGenerator: React.FC = () => {
     setSelectedCoords([]);
   }, gridRef)
 
+  // Handle deleting a specific cell
+  const handleDeleteCell = useCallback((e: React.MouseEvent, x: number, y: number) => {
+    e.stopPropagation(); // Prevents the cell from being selected for swapping
+    setImageGrid((prevImageGrid) => {
+      const newImageGrid = cloneDeep(prevImageGrid);
+      set(newImageGrid, [x, y], undefined);
+      return removeUndefinedValues(newImageGrid);
+    });
+    
+    // Deselect if it was currently selected
+    setSelectedCoords((prev) => prev.filter(coord => coord[0] !== x || coord[1] !== y));
+  }, []);
+
   return (
     <Box
       sx={{
@@ -239,6 +253,7 @@ export const SpriteSheetGenerator: React.FC = () => {
                   <Box
                     onClick={() => setSelectedCoords((prev) => [...prev, [x, y]])}
                     sx={{
+                      position: 'relative', // Added relative positioning for absolute child
                       ...(isSelected ? {
                         backgroundColor: 'rgba(255,255,255,0.5)',
                       } : {
@@ -252,6 +267,28 @@ export const SpriteSheetGenerator: React.FC = () => {
                       display: 'flex'
                     }}
                   >
+                    {/* Delete Cross Icon Button */}
+                    {imageData && (
+                      <IconButton
+                        size="small"
+                        onClick={(e) => handleDeleteCell(e, x, y)}
+                        sx={{
+                          position: 'absolute',
+                          top: 2,
+                          left: 2,
+                          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                          color: 'white',
+                          padding: '2px',
+                          zIndex: 10,
+                          '&:hover': {
+                            backgroundColor: 'rgba(255, 0, 0, 0.8)', // Turns red to indicate delete action
+                          },
+                        }}
+                      >
+                        <CloseIcon fontSize="small" />
+                      </IconButton>
+                    )}
+
                     <Box
                       sx={{ width: '100%', height: '100%' }}
                       {...(imageData ? {
