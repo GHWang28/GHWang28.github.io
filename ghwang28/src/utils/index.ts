@@ -196,12 +196,11 @@ export const throttle = (fn: GenericFunction, throttleDuration: number): Generic
 // Classic debounce function. Executes a function after a set duration passes. If evoked again
 // before the duration passes, clear it and run with new arguments
 export const debounce = (fn: GenericFunction, debounceDuration: number): GenericFunction => {
-  let timerID: ReturnType<typeof setTimeout>;
+  let timerID: ReturnType<typeof setTimeout> | undefined;
 
   return (...args) => {
-    // @ts-expect-error
     clearTimeout(timerID);
-    setTimeout(() => { fn(...args) }, debounceDuration);
+    timerID = setTimeout(() => { fn(...args) }, debounceDuration);
   }
 }
 

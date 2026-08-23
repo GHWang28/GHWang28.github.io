@@ -71,31 +71,29 @@ export const SpriteSheetGenerator: React.FC = () => {
       <GradientTitle title="Sprite Sheet Generator" subtitle="Pack, slice, preview, and export game-ready sheets" />
 
       <Box
-        onDragEnter={(e) => {
+        onDragEnter={(e: React.DragEvent<HTMLDivElement>) => {
           e.preventDefault();
           setDragging(true);
         }}
-        onDragOver={(e) => e.preventDefault()}
-        onDragLeave={(e) => {
+        onDragOver={(e: React.DragEvent<HTMLDivElement>) => e.preventDefault()}
+        onDragLeave={(e: React.DragEvent<HTMLDivElement>) => {
           if (e.currentTarget.contains(e.relatedTarget as Node)) return;
           setDragging(false);
         }}
-        onDrop={(e) => {
+        onDrop={(e: React.DragEvent<HTMLDivElement>) => {
           e.preventDefault();
           setDragging(false);
           void handleDroppedFiles(Array.from(e.dataTransfer.files));
         }}
-        sx={[
-          {
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 1.5,
-            pb: 4,
-            mx: { md: -4, lg: -8 },
-          },
-          generatorSx,
-        ]}
+        sx={{
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1.5,
+          pb: 4,
+          mx: { md: -4, lg: -8 },
+          ...generatorSx,
+        }}
       >
         {dragging && (
           <Box

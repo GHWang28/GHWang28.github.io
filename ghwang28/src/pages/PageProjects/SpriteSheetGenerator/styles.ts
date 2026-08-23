@@ -1,12 +1,10 @@
-import { SxProps, Theme } from '@mui/material';
-
 const insetOutline = {
   border: 'none',
   outline: '1px solid',
   outlineOffset: '-1px',
 };
 
-export const generatorSx: SxProps<Theme> = {
+export const generatorSx = {
   '& .MuiButton-outlined, & .MuiButton-outlined:hover, & .MuiButton-outlined.Mui-focusVisible, & .MuiButton-outlined.Mui-disabled': {
     border: 'none',
   },
