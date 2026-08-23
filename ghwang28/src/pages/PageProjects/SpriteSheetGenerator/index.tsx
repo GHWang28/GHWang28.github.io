@@ -1,1 +1,1 @@
-export { SpriteSheetGenerator } from './SpriteSheetGenerator'
+export { SpriteSheetGenerator } from './SpriteSheetGenerator';

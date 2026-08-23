@@ -85,13 +85,13 @@ const generateProjects = (navigate: NavigateFunction, location: Location): Proje
     },
     {
       title: 'Sprite Sheet Generator',
-      date: '(18/10/2025)',
+      date: '(23/08/2026)',
       type: new Set<IconTypes>(['Utility']),
       imgs: [
         '/images/covers/sprite-sheet-generator.webp',
       ],
       body: [
-        'A quick tool made to help generate sprite sheets for games',
+        'Client-side sprite sheet packer with slicing, animation preview, and atlas export',
       ],
       buttons: [
         {
